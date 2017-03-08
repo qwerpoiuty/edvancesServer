@@ -1,0 +1,260 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+    <!-- column -->
+    <div class="col">
+        <div class="content-wrapper profile">
+            <!-- main header -->
+            <div class=" lter wrapper-md bredcrumb">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Edit Profile</small>
+                    </div>
+                </div>
+            </div>
+            <!-- / main header -->
+            <div class="pad-20">
+                <div class="vbox outlined ">
+                    <div class="nav-tabs-alt tab-wrap">
+                        <ul class="nav nav-tabs nav-justified profile-tab">
+                            <li class="tablinks active">
+                                <a data-target="#tab-1" role="tab" data-toggle="tab" class="light-text" ng-click="openBrowse(event,'tab-1')"><i class="fa fa-lock"></i> Edit Profile</a>
+                            </li>
+                            <li class="tablinks">
+                                <a data-target="#tab-2" role="tab" data-toggle="tab" class="light-text" ng-click="openBrowse(event,'tab-2')"><i class="fa fa-credit-card"></i> Payroll Options</a>
+                            </li>
+                            <li>
+                                <a data-target="#tab-3" role="tab" data-toggle="tab" class="light-text" ng-click="openBrowse(event,'tab-3')"><i class="fa fa-list-ul"></i> Credentials</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row-row">
+                        <div class="cell scrollable hover">
+                            <div class="cell-inner">
+                                <div class="tab-content">
+                                    <!--Edit Profile Tab Start-->
+                                    <div class="tab-pane active" id="tab-1">
+                                        <div class="wrapper-md">
+                                            <form class="form-horizontal" method="get">
+                                                <div class="form-group mar-20">
+                                                    <label class="col-sm-2 control-label">Avatar</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="user-thumb"><img src="img/a7.jpg" title="John Doe" alt="John Doe" /></div>
+                                                        <a href="" class="fill-btn change-pro">Change</a>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Full Name</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" placeholder="First Name">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" placeholder="Last Name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Grade Level</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Highest Grade Level">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Age</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="your Current Age">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Email</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Email Address">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Interests</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="What subjects are you interested in?">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Change Password</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="password" class="form-control" placeholder="Password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mar-btm-30">
+                                                    <label class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-8">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox" checked="" value="">
+                                                                <i></i> Option two checked
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-8">
+                                                        <button type="submit" class="fill-btn">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--Edit Profile Tab End-->
+                                    <div class="tab-pane" id="tab-2">
+                                        <!--Payroll Options Tab Start-->
+                                        <div class="wrapper-md payment-methods">
+                                            <div class="clearfix max-wid-920">
+                                                <div class="title-box float-lt">
+                                                    <span class="main-title">Payment Methods</span>
+                                                    <span class="reltd-title">Lorem ipsum dolor sit amet, consectetur adipiscing </span>
+                                                </div>
+                                                <a href="" class="outlined-btn gray-btn float-rt">Message a Moderator</a>
+                                            </div>
+                                            <div class="outlined clearfix graph no-top-border pay-detl max-wid-920">
+                                                <ul class="class-list">
+                                                    <li>
+                                                        <div class="col-md-6 no-pad"> <span class="pro-img-list">
+                  <img src="img/bank-icon.png" title="User" alt="User">
+                </span>
+                                                            <span class="activity-title">Bank Wire Transfer<br>  
+                  <span class="desc-det">updated 2 months ago</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6 pad-left-0 text-right action-contl"><span class="act-num pad-right-20">**** **** **** 1356</span> <span class="act-num red-text pad-right-20">Default</span> <a href=""><i class="fa fa-edit"></i> Edit</a></div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="col-md-6 no-pad"> <span class="pro-img-list">
+                  <img src="img/paypal-icon.png" title="User" alt="User">
+                </span>
+                                                            <span class="activity-title">PayPal<br>  
+                  <span class="desc-det">updated 4 months ago</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6 pad-left-0 text-right action-contl"><span class="act-num pad-right-20">**** **** **** (USD)</span> <a href=""><i class="fa fa-edit"></i> Edit</a></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix pad-20 no-side-pad max-wid-920">
+                                                <a href="" class="fill-btn float-rt add-payroll">Add Payout Method</a>
+                                            </div>
+                                        </div>
+                                        <!--Payroll Options Tab Start-->
+                                        <!--Add Payroll Start-->
+                                        <div class="wrapper-md add-paroll-method">
+                                            <form class="form-horizontal" method="get">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Bank Name</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Full Bank Institution Name">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Account Number</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Enter Your Bank Account Number">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">IBAN/SWIFT Code</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Enter The Account IBAN or SWIFT Code">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group help-text">
+                                                    <label class="col-sm-2 control-label">Full Name</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <span class="help-block m-b-none">Name on Bank Account</span>
+                                                                <input type="text" class="form-control" placeholder="First Name">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" placeholder="Last Name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group help-text">
+                                                    <label class="col-sm-2 control-label">Address </label>
+                                                    <div class="col-sm-8 ">
+                                                        <span class="help-block m-b-none">Address Linked to Bank Account</span>
+                                                        <input type="text" class="form-control" placeholder="Street Number, Street Name, Unit Number">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">City </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="City Name">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Zip/Postal Code </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Zip Code">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Country </label>
+                                                    <div class="col-sm-8">
+                                                        <select name="carlist" form="carform" class="form-control">
+                                                            <option value="">Volvo</option>
+                                                            <option value="">Saab</option>
+                                                            <option value="">Opel</option>
+                                                            <option value="">Audi</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mar-btm-30">
+                                                    <label class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-8">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox" checked="" value="">
+                                                                <i></i> Make Default Payout Method
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-8">
+                                                        <button type="submit" class="fill-btn mar-right-10">Save changes</button>
+                                                        <button type="submit" class="outlined-btn red-btn cancel-payroll">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!--Add Payroll End-->
+                                    </div>
+                                    <script type="text/javascript">
+                                    $('.add-payroll').click(function() {
+                                        $('.payment-methods').hide();
+                                        $('.add-paroll-method').show();
+                                    });
+                                    $('.cancel-payroll').click(function() {
+                                        $('.payment-methods').show();
+                                        $('.add-paroll-method').hide();
+                                    });
+                                    </script>
+                                    <div class="tab-pane" id="tab-3">
+                                        <div class="wrapper-md">
+                                            Credentials
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /column -->
+    </div>
+</div>
+<!-- /hbox layout -->

@@ -1,0 +1,22 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+#main {
+  margin: 0 auto;
+}
+
+//APP WIDE STANDARD CLASSES
+.unstyled::-webkit-inner-spin-button,
+.unstyled::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.row-centered {
+    text-align:center;
+}
