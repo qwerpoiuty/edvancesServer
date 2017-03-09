@@ -34,3 +34,15 @@ router.get('/email', ensureAuthenticated, (req, res) => {
         res.json(user)
     })
 })
+
+router.get('/delete', ensureAuthenticated, (req,res) => {
+     User.destroy({
+        where: {
+            email: req.query.email
+        },
+        attributes: ['id', 'email']
+
+    }).then(user => {
+        res.json(user)
+    })
+})

@@ -97,6 +97,39 @@ describe('User Route', function() {
         })
     })
 
+    describe('Delete User by Email', () => {
+        var loggedInAgent;
+
+        var userInfo = {
+            email: 'joe@gmail.com',
+            password: 'shoopdawoop'
+        };
+
+        beforeEach('Create a user', function() {
+            return User.create(userInfo);
+        });
+
+        beforeEach('Create loggedIn user agent and authenticate', function(done) {
+            loggedInAgent = supertest.agent(app);
+            loggedInAgent.post('/login').send(userInfo).end(done);
+        });
+
+        it ('it should DELETE a user given the email' ,(done) =>{
+            var query = {email: userInfo.email}
+            loggedInAgent
+            .delete('api/users/delete')
+            .query(query)
+            .expect(200)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('message').eql('user successfully deleted!');
+                res.body.result.should.have.property('ok').eql(1);
+                res.body.result.should.have.property('n').eql(1);
+              done();
+            });
+         })
+    });
 });
 
 describe('Classroom Route', function() {
@@ -167,5 +200,23 @@ describe('Classroom Route', function() {
                 done();
             });
         });
+    });
+
+     describe('Delete Classroom by Title', () => {
+        it ('it should DELETE a Classroom given the title' ,(done) =>{
+            var query = {title: classroomInfo.title}
+            loggedInAgent
+            .delete('api/classrooms/delete')
+            .query(query)
+            .expect(200)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('message').eql('classroom successfully deleted!');
+                res.body.result.should.have.property('ok').eql(1);
+                res.body.result.should.have.property('n').eql(1);
+              done();
+            });
+         })
     });
 })
