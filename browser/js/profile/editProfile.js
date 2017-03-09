@@ -2,11 +2,19 @@ app.config(function($stateProvider) {
     $stateProvider.state('edit', {
         url: '/edit',
         templateUrl: 'js/profile/editProfile.html',
-        controller: 'editProfileCtrl'
+        controller: 'editProfileCtrl',
+        resolve: {
+            user: function(AuthService) {
+                return AuthService.getLoggedInUser().then(user => {
+                    return user
+                })
+            }
+        }
     });
 });
 
-app.controller('editProfileCtrl', function($scope, $sce, $uibModal) {
+app.controller('editProfileCtrl', function($scope, $sce, $uibModal, user) {
+    $scope.user = user
     $scope.openBrowse = function(evt, tabSelection) {
             console.log('hello')
                 // Declare all variables

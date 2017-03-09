@@ -25,6 +25,9 @@ module.exports = db.define('classroom', {
     },
     times: {
         type: Sequelize.ARRAY(Sequelize.INTEGER)
+    },
+    lessongs: {
+        type: Sequelize.JSON
     }
 }, {
     instanceMethods: {
