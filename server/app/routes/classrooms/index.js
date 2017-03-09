@@ -22,3 +22,15 @@ router.get('/', ensureAuthenticated, (req, res) => {
         res.json(classrooms)
     })
 })
+
+router.get('/delete', ensureAuthenticated, (req, res) =>{
+     Classroom.destroy({
+        where: {
+            title: req.query.title
+        },
+        attributes: ['id', 'title']
+
+    }).then(user => {
+        res.json(user)
+    })
+})
