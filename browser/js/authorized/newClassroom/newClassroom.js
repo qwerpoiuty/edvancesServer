@@ -7,7 +7,9 @@ app.config(function($stateProvider) {
 });
 
 app.controller('newClassroomCtrl', function($scope, $sce, $uibModal) {
-    $scope.openBrowse = function(evt, tabSelection) {
+    // $("#editor").wysiwyg()
+
+    $scope.openBrowse = function(target, tabSelection) {
         // Declare all variables
         var i, tabcontent, tablinks;
         // Get all elements with class="tabcontent" and hide them
@@ -23,7 +25,8 @@ app.controller('newClassroomCtrl', function($scope, $sce, $uibModal) {
         }
         // Show the current tab, and add an "active" class to the link that opened the tab
         document.getElementById(tabSelection).style.display = "block";
-        evt.currentTarget.className += " active";
+        var targetTab = document.getElementById(target);
+        targetTab.className += " active";
         $scope.tables = null
     }
 });

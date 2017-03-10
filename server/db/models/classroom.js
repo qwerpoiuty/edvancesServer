@@ -17,6 +17,9 @@ module.exports = db.define('classroom', {
     title: {
         type: Sequelize.STRING
     },
+    subject: {
+        type: Sequelize.STRING
+    },
     startDate: {
         type: Sequelize.DATE
     },
@@ -28,6 +31,9 @@ module.exports = db.define('classroom', {
     },
     lessongs: {
         type: Sequelize.JSON
+    },
+    description: {
+        type: Sequelize.TEXT
     }
 }, {
     instanceMethods: {

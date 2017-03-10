@@ -17,14 +17,14 @@
                     <!--Bredcrumb Start-->
                     <div class="nav-tabs-alt tab-wrap">
                         <ul class="nav nav-tabs nav-justified profile-tab">
-                            <li class="active">
-                                <a data-target="#tab-1" role="tab" data-toggle="tab" class="light-text"><i class="fa fa-align-left"></i> Course</a>
+                            <li id="course-tab" class="tablinks active" ng-click="openBrowse('course-tab','tab-1')">
+                                <a data-target="#tab-1" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-align-left"></i> Course</a>
                             </li>
-                            <li>
-                                <a data-target="#tab-2" role="tab" data-toggle="tab" class="light-text"><i class="fa fa-credit-card"></i> Meta</a>
+                            <li id="meta-tab" class="tablinks" ng-click="openBrowse('meta-tab','tab-2')">
+                                <a data-target="#tab-2" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-credit-card"></i> Meta</a>
                             </li>
-                            <li>
-                                <a data-target="#tab-3" role="tab" data-toggle="tab" class="light-text"><i class="fa fa-file-text-o"></i> Lessons</a>
+                            <li id='lessons-tab' class="tablinks" ng-click="openBrowse('lessons-tab','tab-3')">
+                                <a data-target="#tab-3" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-file-text-o"></i> Lessons</a>
                             </li>
                         </ul>
                     </div>
@@ -36,33 +36,17 @@
                                     <!--Create Course Start-->
                                     <div class="tab-pane active" id="tab-1">
                                         <div class="wrapper-md">
-                                            <form class="form-horizontal" method="get">
+                                            <form class="form-horizontal" ng-submit="openBrowse('meta-tab','tab-2')">
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Title</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" placeholder="Enter course name">
+                                                        <input type="text" class="form-control" placeholder="Enter course name" ng-model="newClassroom.title" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Description</label>
                                                     <div class="col-sm-8">
-                                                        <div class="btn-toolbar m-b-sm btn-editor outlined pad-10" data-role="editor-toolbar" data-target="#editor">
-                                                            <div class="btn-group dropdown" dropdown>
-                                                                <a class="btn btn-default" dropdown-toggle tooltip="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a href data-edit="fontName Serif" style="font-family:'Serif'">Serif</a></li>
-                                                                    <li><a href data-edit="fontName Sans" style="font-family:'Sans'">Sans</a></li>
-                                                                    <li><a href data-edit="fontName Arial" style="font-family:'Arial'">Arial</a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="btn-group dropdown" dropdown>
-                                                                <a class="btn btn-default" dropdown-toggle data-toggle="dropdown" tooltip="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a href data-edit="fontSize 5" style="font-size:24px">Huge</a></li>
-                                                                    <li><a href data-edit="fontSize 3" style="font-size:18px">Normal</a></li>
-                                                                    <li><a href data-edit="fontSize 1" style="font-size:14px">Small</a></li>
-                                                                </ul>
-                                                            </div>
+<!--                                                         <div class="btn-toolbar m-b-sm btn-editor outlined pad-10" data-role="editor-toolbar" data-target="#editor">
                                                             <div class="btn-group">
                                                                 <a class="btn btn-default" data-edit="bold" tooltip="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
                                                                 <a class="btn btn-default" data-edit="italic" tooltip="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
@@ -81,31 +65,16 @@
                                                                 <a class="btn btn-default" data-edit="justifyright" tooltip="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
                                                                 <a class="btn btn-default" data-edit="justifyfull" tooltip="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
                                                             </div>
-                                                            <div class="btn-group dropdown" dropdown>
-                                                                <a class="btn btn-default" dropdown-toggle tooltip="Hyperlink"><i class="fa fa-link"></i></a>
-                                                                <div class="dropdown-menu">
-                                                                    <div class="input-group m-l-xs m-r-xs">
-                                                                        <input class="form-control input-sm" id="LinkInput" placeholder="URL" type="text" data-edit="createLink" />
-                                                                        <div class="input-group-btn">
-                                                                            <button class="btn btn-sm btn-default" type="button">Add</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a class="btn btn-default" data-edit="unlink" tooltip="Remove Hyperlink"><i class="fa fa-cut"></i></a>
-                                                            </div>
-                                                            <div class="btn-group">
-                                                                <a class="btn btn-default" tooltip="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
-                                                                <input type="file" data-edit="insertImage" style="position:absolute; opacity:0; width:41px; height:34px" />
-                                                            </div>
                                                         </div>
-                                                        <div ui-jq="wysiwyg" class="form-control text-editor">
-                                                        </div>
+                                                        <div id="editor" class="form-control text-editor" ng-model="newClassroom.description">
+                                                        </div>-->
+                                                        <textarea class="form-control text-editor" ng-model="newClassroom.description"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"></label>
                                                     <div class="col-sm-8">
-                                                        <button type="submit" class="fill-btn">Save Changes</button>
+                                                        <button type="submit" class="fill-btn">Next</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -115,11 +84,11 @@
                                     <!--Create Course Meta start-->
                                     <div class="tab-pane" id="tab-2">
                                         <div class="wrapper-md ">
-                                            <form class="form-horizontal" method="get">
+                                            <form class="form-horizontal" ng-submit="openBrowse('lesson-tab','tab-3')">
                                                 <div class="form-group select-field">
                                                     <label class="col-sm-2 control-label">Category </label>
                                                     <div class="col-sm-4">
-                                                        <select name="carlist" form="carform" class="form-control">
+                                                        <select name="carlist" form="carform" class="form-control" ng-model="classroom.subject">
                                                             <option value="">Mathematics</option>
                                                             <option value="">Vat 2</option>
                                                             <option value="">Vat 3</option>
