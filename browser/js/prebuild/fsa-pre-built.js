@@ -96,12 +96,13 @@
                     });
                 });
         };
-        this.lock = function(credentials) {
-            return $http.post('/lock', credentials)
-                .then(error => {
-                    return error
-                })
+
+        this.signup = function(user) {
+            return $http.post('/signup', user).then(response => {
+                return response.data
+            })
         }
+
         this.logout = function() {
             return $http.get('/logout').then(function() {
                 Session.destroy();

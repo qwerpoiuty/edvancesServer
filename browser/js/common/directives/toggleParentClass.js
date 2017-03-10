@@ -3,7 +3,6 @@ app.directive('toggleParentClass', function() {
         restrict: 'A',
         link: function(scope, element, attrs) {
             element.bind('click', function() {
-                console.log(element.parent(), attrs.toggleClass)
                 if (element.parent().hasClass(attrs.toggleParentClass)) {
                     element.parent().toggleClass(attrs.toggleParentClass);
                 } else {

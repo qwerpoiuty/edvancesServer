@@ -1,15 +1,32 @@
 app.config(function($stateProvider) {
     $stateProvider.state('edit', {
         url: '/edit',
-        templateUrl: 'js/profile/editProfile.html',
-        controller: 'editProfileCtrl'
+        templateUrl: 'js/authorized/profile/editProfile.html',
+        controller: 'editProfileCtrl',
+        parent: 'authorized',
+        resolve: {
+            user: function(AuthService) {
+                return AuthService.getLoggedInUser().then(user => {
+                    return user
+                })
+            }
+        }
     });
 });
 
-app.controller('editProfileCtrl', function($scope, $sce, $uibModal) {
+app.controller('editProfileCtrl', function($scope, $sce, $uibModal, user, userFactory) {
+    $scope.user = user
+
+    $scope.saveChanges = user => {
+        userFactory.updateUser(user).then(user => {
+            $state.go('profile')
+        })
+    }
+
+
+
     $scope.openBrowse = function(evt, tabSelection) {
-            console.log('hello')
-                // Declare all variables
+            // Declare all variables
             var i, tabcontent, tablinks;
             // Get all elements with class="tabcontent" and hide them
             tabcontent = document.getElementsByClassName("tab-pane");

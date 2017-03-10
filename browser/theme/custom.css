@@ -8,7 +8,8 @@ body {
     font-family: "open-sans", sans-serif, Arial;
     color: #555c66
 }
-
+ul{    padding: 0; list-style: none; margin: 0}
+a.active, a:hover{color: #ea605e}
 .nav > li > a:hover,
 .nav > li > a:focus {
     background: transparent;
@@ -104,7 +105,7 @@ div.navbar-header.g-black {
 
 .edv-search input {
     border: 1px solid #cbcfd2;
-    padding: 8px 16px 11px !important;
+    padding: 8px 54px 11px 16px!important;
     font-size: 15px;
     border: 1px solid #cbcfd2;
     padding: 9px 16px;
@@ -341,7 +342,31 @@ span.block.user-pro-name {
 }
 
 .form-control:focus{border-color: #ea605e;}
+
+.quiz-manager .select-field > label{padding: 14px 10px 14px 0 !important; }
+    .select-field > div > select{background: #cdcdcd;border: 0;
+    margin: 0;
+    padding: 14px;
+    height: 50px;
+    color: #fff;
+    border-radius: 4px;}
+    .modal-title{    font-size: 20px;
+    font-weight: bold;}
+.app-footer.wrapper{background: #fff}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success,.btn-success{background: #ec5d61; border-color: #ec5d61}
 /*Global layout adjustments End*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*Dashboard Css start*/
@@ -359,9 +384,6 @@ span.block.user-pro-name {
     padding: 0 20px;
 }
 
-.pad-20 {
-    padding: 20px;
-}
 
 .info-bar .icon-cc {
     float: left;
@@ -668,6 +690,7 @@ span.desc-det {
     margin-right: 7px;
 }
 .action-contl{padding-top: 5px;}
+li.active > a > span{color: #fff}
 /*dashboard css end*/
 
 
@@ -728,6 +751,245 @@ span.desc-det {
 /*Edit Profile End*/
 
 
+/*My Cources Start*/
+.btn-toolbar .btn-group:first-child{margin-left: 0}
+.btn-toolbar{margin-bottom: 0; margin-left: 0 }
+.text-editor{    overflow: scroll;
+    height: 280px;
+    max-height: 280px;
+    border: 1px solid #dddce0;
+    border-top: 0;
+    padding: 15px;}
+    .form-control.text-editor:focus(border-color: #dddce0)
+.lesson-title{    font-size: 16px;
+    line-height: 23px;
+    vertical-align: middle;
+    margin-top: 6px;}
+    .mycourses .vbox .row-row .cell .cell-inner{position: inherit;}
+   .mycourses ul.list-group li.list-group-item{cursor: move; padding: 0; border: 0; margin-bottom: 10px;     padding-left: 46px; background: url(../img/move-icon.png) no-repeat left top;}
+   .mycourses .sortable-placeholder{height: 76px;margin-bottom: 10px;}
+   .mycourses .list-group-item > .text-wrap {border: 1px solid #e7ecee;    padding: 12px;}
+    .mycourses .outlined-btn.gray-btn{    padding: 8px 15px;}
+    .mycourses .edit-btn{    margin: 6px 0;}
+    .mycourses .user-thumb {
+    position: relative;
+    height: 114px;
+    width: 114px;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 20px;}
+ .mycourses .i-switch i:before{    background-color: #d0d5dc !important;}
+ .mycourses .bg-dark{background-color: #ea605e}
+ .small-title > .title-box > .main-title{    font-size: 19px;
+    padding-left: 45px;
+    display: inline-block;
+    vertical-align: bottom;}
+/*My Cources End*/
+
+/*Create Cource Start*/
+.dropzone{    border: 13px dashed #e4e9ef;
+    display: inline-block;
+    width: 100%;
+    height: 265px;
+    position: relative;}
+    .instruction{    font-size: 16px;
+    font-weight: 600;
+    color: #e6e6e6;
+    height: 138px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;}
+    .file-structure{    min-height: 265px;
+    border: 1px solid #e4e9ef;}
+    .filetree ul {
+    padding-left: 20px;
+}
+.filetree{    line-height: 25px;}
+.edit-lesson{display: none;}
+/*Create Cource End*/
+
+
+/*Quiz Manager Start*/
+.sort-drop select{    min-width: 230px;}
+.view-as .view{    color: #565d67;
+    background: #cdcdcd;
+    padding: 13px 16px 11px !important;
+    width: auto;
+    display: inline-block;font-size: 18px;}
+    .view-as{border-radius: 3px; overflow: hidden;}
+    .view-as a.view.active{color: #fff;
+    background: #ea605e;}
+
+    .quiz-block > img{width: 100%; display: inline-block;}
+    div.states > .desc-det i{color: #ea605e}
+    .add-quiz .dashed{border:13px dashed #ededed; display: inline-block;width: 100%;
+    height: 376px;    position: relative;}
+    .add-quiz .dashed img{    max-width: 100%;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;}
+    .special-input{    margin: 0;
+    border: 1px solid #e6e5ea;
+    padding: 14px;
+    height: inherit;
+    margin-right: 15px;
+    display: inline-block;
+    width: 87px;
+    text-align: center;}
+    .special-select{display: inline-block;
+    max-width: 128px;}
+    .modal-header {
+    border-bottom: 1px solid #cdcdcd;
+    background: #cdcdcd;
+}
+.modal-content{border-radius: 0;}
+.modal-header .close {
+    margin-top: -3px;
+    font-size: 34px;
+    color: #566165;
+    opacity: 1;
+}
+.modal-content {
+    -webkit-box-shadow: 0 0px 20px rgba(0, 0, 0, .2);
+    box-shadow: 0 0px 20px rgba(0, 0, 0, .2);
+}
+/*Quiz Manager End*/
+
+/*Messages board start*/
+.thumb-lg {width: 105px; margin: 0;}
+.user-ms-info{display: inline-block;
+    padding: 23px;
+    padding-right: 0;}
+   .messages-board .panel{    -webkit-box-shadow: none;
+    box-shadow: none;}
+    .username-wro{    font-size: 18px;}
+    .message-text{    font-size: 16px;
+    padding-top: 8px;
+    display: inline-block;}
+    .postmessage{width: 100%;}
+    .postmessage input{    width: 100%;
+    font-size: 19px;
+    padding: 21px 15px;
+    border: 0;
+    border-bottom: 1px solid #ee5d60;
+    background: #eee;
+    margin-bottom: 1px;}
+    .online-stud-list > li a{    padding: 15px 20px;
+    border-bottom: 1px solid #f3f3f3;     display: block;}
+    .online-stud-list > li a.active, .online-stud-list > li a:hover{background: #ea605e; color: #fff}
+    .online-stud-list > li a.active span.avatar {border: 2px solid #fff}
+    .online-tit {border-bottom: 1px solid #dee5e7;
+    font-size: 18px;
+    font-weight: bold;
+}
+.offline{border-top: 1px solid #dee5e7;}
+/*Messages board end*/
+
+
+/*forum home list start*/
+.forum-category li a {
+    padding: 19px 0;
+    display: block;
+    border-bottom: 1px solid #dedede;
+    font-size: 15px;
+}
+.forum-search{position: relative;}
+.forum-search-btn{ position: absolute;
+    background: #e95d60;
+    border: 0;
+    top: 0;
+    right: 0;
+    padding: 13px 15px;
+    height: 47px;-webkit-border-top-right-radius: 3px;
+-webkit-border-bottom-right-radius: 3px;
+-moz-border-radius-topright: 3px;
+-moz-border-radius-bottomright: 3px;
+border-top-right-radius: 3px;
+border-bottom-right-radius: 3px;}
+.forum-search input.search-for {
+    padding:12px 59px 12px 16px;
+    width: 100%;
+    font-size: 15px;
+    border: 1px solid #dddce0;
+    border-radius: 3px;
+    margin-bottom: 26px;
+}
+.paginatoin{float: right;}
+    .paginatoin > button.btn-success{border-color: #e95d60}
+    .paginatoin > button {
+    font-size: 16px;
+    padding: 12px 20px;
+    margin: 3px;
+    box-shadow: none; border-color: #ddd;
+}
+.paginatoin > button:last-child{margin-right: 0}
+.number-posts{    display: block;
+    text-align: center;
+    margin-top: 5px;}
+    .message-feed > .message-feed{margin-left: 80px;}
+    .postcommentbox textarea{    border: 0;
+    padding: 0;
+    border-bottom: 1px solid #ec5d61;
+    width: 100%; max-width: 1118px;}
+/*forum home end*/
+
+
+/*Reports start*/
+ul.statslist li{float: left; width: 100%;}
+ul.statslist li > span{padding: 10px 15px; display: inline-block; text-align: right;}
+ul.statslist li > span:first-child{padding-bottom: 0; text-align: left;}
+.daterangepicker.ltr .ranges{width: 100%;     margin: 0; padding-bottom: 0 !important;
+    padding: 5px;}
+.daterangepicker.ltr .ranges ul{margin: 0; width: 100%;}
+.daterangepicker.ltr .calendar{height: inherit !important;    width: 50% !important;    margin: 0 !important;
+    padding: 5px !important;}
+    .daterangepicker .calendar th, .daterangepicker .calendar td{    min-width: 20px !important; border-radius: 3px !important}
+    .daterangepicker.ltr .left .daterangepicker_input, .daterangepicker.ltr .calendar.left .calendar-table{padding: 0 !important}
+    .daterangepicker.ltr{max-width: 530px !important;}
+    .daterangepicker.ltr .ranges ul li:last-child{margin-bottom: 0 !important}
+    div#reportrange {
+    background: #cecece;
+    padding: 8px 14px;
+    border-radius: 3px;
+    margin: 17px 0;
+}
+.ranges li:hover, .ranges li.active {
+    background: #ea605e !important;
+    border: 1px solid #ea605e !important;color: #fff !important;
+}
+.ranges li{    border-radius: 2px !important;    display: inline-block;   
+    text-align: center;
+    margin-right: 9px;
+    margin-bottom: 7px !important;
+    padding: 6px 12px !important;
+    color: #b1403f !important}
+.daterangepicker .input-mini.active{border-color: #ea605e !important; border-radius: 2px !important; }
+.daterangepicker td.active, .daterangepicker td.active:hover{background: #ea605e !important;}
+.table-condensed > tbody > tr > td.off{ background: #fff !important;}
+
+.export{float: right !important;}
+.export .btn{    margin: 0;
+    border-radius: 3px !important;}
+.btn:hover, .btn:focus, .btn.focus{color: #fff;}
+span.label.label-default{display: none !important;}
+.pagination > li > a {
+    font-size: 16px;
+    padding: 12px 20px;
+    margin: 1px;
+    box-shadow: none;
+    border-color: #ddd;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+        border-color: #e95d60 !important; background: #e95d60 !important;
+}
+/*Reports End*/
 
 
 
@@ -737,6 +999,112 @@ span.desc-det {
 
 
 
+
+
+
+
+
+
+/*Commen CSS Start*/
+.p-l-r-20{padding-left: 20px !important; padding-right: 20px !important }
+.no-pad{padding:0 !important }
+.p-l-0{padding-left: 0 !important}
+.p-r-0{padding-right: 0 !important}
+.no-pad-top{padding-top: 0}
+.pad-10{padding: 10px;}
+.pad-10-20{padding: 10px 20px;}
+.pad-20{padding: 20px;}
+.pad-25{padding: 25px;}
+.pad-left-0{padding-left: 0}
+.no-side-pad{padding-left: 0; padding-right: 0 }
+.pad-right-20{padding-right: 20px;}
+.pad-top-20{padding-top: 20px;}
+.p-r-10{padding-right: 10px;}
+.pad-12{padding: 12px;}
+
+.m-b-20{margin-bottom: 20px;}
+.m-b-30{margin-bottom: 30px;}
+.m-t-10{margin-top: 5px;}
+.m-t-20{margin-top: 20px;}
+.m-b-10a{margin-bottom: 10px;}
+.m-b-3em{margin-bottom: 3em}
+.m-t--5{margin-top: -5px;}
+.m-t-30{margin-top: 30px;}
+.mar-20{margin: 20px;}
+.mar-btm-30{margin-bottom: 30px;}
+.mar-right-10{margin-right: 10px;}
+.no-m{margin: 0 !important;}
+.m-l-80{margin-left: 80px;}
+
+.d-n-{display: none;}
+
+.float-lt{float: left;}
+.float-rt{float: right;}
+
+.no-top-border{border-top: 0 !important}
+.no-bottom-border{border-bottom: 0 !important;}
+
+.red-text{color: #ea605e}
+.geen-text{color: #89c541}
+.light-text{color: #c6c6c6}
+.help-text .help-block{margin-top: -20px;}
+.help-text {padding-top: 20px;}
+
+.outlined{border: 1px solid #dddce0}
+
+.max-wid-920{max-width: 920px; margin: auto}
+
+.slim-btn{padding: 9px 17px !important;}
+
+a.link{color: #ea605e !important}
+
+.text-center {text-align: center;}
+
+.outlined-btn.gray-btn {
+    border: 1px solid #cecece;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 14px 30px 15px;
+    font-weight: bold;
+    display: inline-block;
+    background: transparent;
+}
+
+.outlined-btn.gray-btn:hover {
+    border-color: #626973;
+    background: #626973;
+    color: #fff
+}
+
+.outlined-btn.red-btn {
+    border: 1px solid #ea605e;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 13px 30px 15px;
+    font-weight: bold;
+    display: inline-block;
+    color: #ea605e;
+     background: transparent;
+}
+
+.outlined-btn.red-btn:hover {
+    border-color: #ea605e;
+    background: #ea605e;
+    color: #fff
+}
+
+.clearfix:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+/*Commen CSS End*/
 
 
 
@@ -788,6 +1156,13 @@ span.desc-det {
 @media (max-width: 1024px) {}
 
 @media (max-width: 992px) {
+   #reportrange {
+    float: none !important;
+    display: inline-block;
+}
+.mobile-center{text-align: center;}
+    .earnings-head{text-align: center;}
+    .export{float: none !important;}
     .edv-search {
         max-width: 100%;
         padding: 0 11px 28px;
@@ -827,6 +1202,7 @@ span.desc-det {
 }
 
 @media (max-width: 767px) {
+    .hide-767{display: none;}
     .help-text .control-label{    margin-bottom: 20px;}
     .help-text{padding-top: 0 !important}
     .hidden-upto-xs {
@@ -902,8 +1278,18 @@ span.desc-det {
         background-color: #f6f8f8;
     }
 }
-
+@media (max-width: 565px) {
+    .daterangepicker.ltr .calendar{width: 100% !important}
+    .ranges li{min-width: 120px;}
+}
 @media (max-width: 500px) {
+    ul.class-list li{text-align: center;}
+    ul.class-list li .pro-img-list{    margin-bottom: 15px;}
+    ul.class-list li .activity-title{display: block;width: 100%;margin-bottom: 15px;}
+    ul.class-list li a.forumcount{float: none;}
+    .for-head{text-align: center;}
+    .for-head > .title-box{width: 100%}
+    .for-head > .fr-newtop{float: none; margin-top: 15px;}
     .mobile li.call-li {
         display: block;
         width: 100%
@@ -932,105 +1318,3 @@ span.desc-det {
     .nav-tabs-alt ul.nav-tabs.nav-justified.profile-tab{height:121px;}
 }
 /*media query end*/
-
-
-/*Commen CSS Start*/
-.outlined-btn.gray-btn {
-    border: 1px solid #cecece;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    font-size: 15px;
-    padding: 14px 30px 15px;
-    font-weight: bold;
-    display: inline-block;
-    background: transparent;
-}
-
-.outlined-btn.gray-btn:hover {
-    border-color: #626973;
-    background: #626973;
-    color: #fff
-}
-
-.outlined-btn.red-btn {
-    border: 1px solid #ea605e;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    font-size: 15px;
-    padding: 13px 30px 15px;
-    font-weight: bold;
-    display: inline-block;
-    color: #ea605e;
-     background: transparent;
-}
-
-a.link {
-    color: #ea605e !important
-}
-
-.outlined-btn.red-btn:hover {
-    border-color: #ea605e;
-    background: #ea605e;
-    color: #fff
-}
-.pad-20{padding: 20px;}
-.mar-20{margin: 20px;}
-.no-pad-top {
-    padding-top: 0
-}
-.no-pad{padding:0 }
-.no-side-pad{padding-left: 0; padding-right: 0 }
-
-.outlined {
-    border: 1px solid #dddce0
-}
-.pad-left-0{padding-left: 0}
-.mar-btm-30 {
-    margin-bottom: 30px;
-}
-.pad-right-20{padding-right: 20px;}
- .mar-right-10{margin-right: 10px;}
-.pad-top-20{padding-top: 20px;}
-.float-lt {
-    float: left;
-}
-
-.float-rt {
-    float: right;
-}
-
-.clearfix:after {
-    content: ".";
-    visibility: hidden;
-    display: block;
-    height: 0;
-    clear: both;
-}
-
-.no-top-border {
-    border-top: 0
-}
-
-.text-center {
-    text-align: center;
-}
-
-.red-text {
-    color: #ea605e
-}
-
-.geen-text {
-    color: #89c541
-}
-
-.light-text {
-    color: #c6c6c6
-}
-.help-text .help-block{margin-top: -20px;}
-.help-text {padding-top: 20px;}
-/*Commen CSS End*/
-
-
-
