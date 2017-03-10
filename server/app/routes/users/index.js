@@ -35,8 +35,8 @@ router.get('/email', ensureAuthenticated, (req, res) => {
     })
 })
 
-router.get('/delete', ensureAuthenticated, (req,res) => {
-     User.destroy({
+router.get('/delete', ensureAuthenticated, (req, res) => {
+    User.destroy({
         where: {
             email: req.query.email
         },
@@ -45,4 +45,17 @@ router.get('/delete', ensureAuthenticated, (req,res) => {
     }).then(user => {
         res.json(user)
     })
+})
+
+router.post('/', (req, res) => {
+    User.findOrCreate({
+            where: {
+                email: req.body.email
+            },
+            defaults: req.body
+        })
+        .spread((user, created) => {
+            if (created) res.json(user)
+            else res.json(false)
+        })
 })

@@ -1,0 +1,268 @@
+<div class="app-content-body">
+    <div class="hbox hbox-auto-xs hbox-auto-sm">
+<!-- main -->
+<div class="col">
+    <div class="content-wrapper">
+        <!-- main header -->
+        <div class=" lter wrapper-md bredcrumb">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <small class="text-muted">Dashboard</small>
+                </div>
+            </div>
+        </div>
+        <!-- / main header -->
+        <div class="wrapper-md">
+            <!-- info bar -->
+            <div class="row mar-btm-30">
+                <div class="col-md-12">
+                    <div class="outlined pad-20 info-bar clearfix">
+                        <div class="icon-cc"><span><img src="img/credit-card.png" alt="CC" title="CC" /></span></div>
+                        <div class="info-wrap"><span class="info-text">Your subscription ends on <strong>March 31, 2017</strong></span></div>
+                        <div class="info-btn"><a href="" class="fill-btn">Upgrade</a></div>
+                    </div>
+                </div>
+            </div>
+            <!-- / info bar -->
+            <div class="row">
+                <!-- Earnings this month -->
+                <div class="col-md-6 mar-btm-30">
+                    <div class="outlined clearfix pad-20">
+                        <div class="title-box float-lt">
+                            <span class="main-title">Earnings</span>
+                            <span class="reltd-title">This Month</span>
+                        </div>
+                        <a href="" class="outlined-btn gray-btn float-rt">REPORTS</a>
+                    </div>
+                    <div class="outlined clearfix pad-20 no-pad-top graph no-top-border">
+                        <div class="panel-body">
+                            <div ui-jq="plot" ui-options="
+          [
+            { data: [ [1,30],[5,50],[10,40],[15,80],[17,40],[18,70],[22,35],[26,60],[28,45],[30,80] ], label: 'Gross Revenue', points: { show: true }, lines: { show: true, fill: false} }, 
+            { data: [ [1,20],[5,43],[10,25],[15,64],[17,37],[18,60],[22,20],[26,50],[28,30],[30,65] ], label: 'Gross Revenue', points: { show: true }, lines: { show: true, fill: false} }
+          ],
+          {
+            colors: [ '#ea605e','#89c541' ],
+            series: { shadowSize: 0 },
+            xaxis:{ font: { color: '#ccc' } },
+            yaxis:{ font: { color: '#ccc' } },
+            grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+            tooltip: true,
+            tooltipOpts: { content: '%s of Date %x is %yk',  defaultTheme: false, shifts: { x: 0, y: 20 } }
+          }
+        " style="height:147px"></div>
+                        </div>
+                    </div>
+                    <div class="outlined clearfix pad-20 no-top-border">
+                        <div class="row">
+                            <div class="col-md-6 col-xs-6 text-center rev-stat"><strong>Gross Revenue</strong><span class="graph-value red-text">80.20k</span></div>
+                            <div class="col-md-6 col-xs-6 text-center rev-stat"><strong>Net Revenue</strong><span class="graph-value geen-text">45k</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Earnings this month -->
+                <!-- Upcoming Classes -->
+                <div class="col-md-6 mar-btm-30 upcoming-classes">
+                    <div class="outlined clearfix pad-20">
+                        <div class="title-box float-lt">
+                            <span class="main-title">Upcoming Classes</span>
+                            <span class="reltd-title">Your upcoming classes for the day</span>
+                        </div>
+                    </div>
+                    <div class="outlined clearfix graph no-top-border">
+                        <ul class="class-list">
+                            <li><span class="class-title">Fractions 101</span> <span class="class-time">10:00 AM - 11:30 AM</span></li>
+                            <li><span class="class-title">Fractions 101</span> <span class="class-time">10:00 AM - 11:30 AM</span></li>
+                            <li><span class="class-title">Fractions 101</span> <span class="class-time">10:00 AM - 11:30 AM</span></li>
+                        </ul>
+                    </div>
+                    <div class="outlined clearfix pad-20 no-top-border">
+                        <a href="" class="fill-btn float-rt">View All</a>
+                    </div>
+                </div>
+                <!-- / Upcoming Classes -->
+            </div>
+            <div class="row">
+                <!-- Calender -->
+                <div class="col-md-6 mar-btm-30">
+                    <div class="outlined clearfix">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                jQuery('#calendar').eCalendar({
+                    firstDayOfWeek: 1,
+                    weekDays: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    textArrows: {
+                        previous: '<',
+                        next: '>'
+                    },
+                    eventTitle: 'Events',
+                    url: '',
+                    events: [{
+                        title: 'Event 1',
+                        description: 'Description 1',
+                        datetime: new Date(2016, 7, 15, 17)
+                    }, {
+                        title: 'Event 2',
+                        description: 'Description 2',
+                        datetime: new Date(2016, 7, 14, 16)
+                    }, {
+                        title: 'Event 3',
+                        description: 'jQueryScript.Net',
+                        datetime: new Date(2016, 7, 10, 16)
+                    }]
+                });
+                </script>
+                <!-- / Calender -->
+                <!-- Courses -->
+                <div class="col-md-6 mar-btm-30 courses">
+                    <div class="outlined clearfix pad-20">
+                        <div class="title-box float-lt">
+                            <span class="main-title">Courses</span>
+                            <span class="reltd-title">Your current courses</span>
+                        </div>
+                    </div>
+                    <div class="outlined clearfix graph no-top-border">
+                        <ul class="class-list">
+                            <li><span class="class-title">Fractions 101</span> <span class="cource-progress" title="90%"><span class="pregress-bar" style="width: 90%"></span></span>
+                            </li>
+                            <li><span class="class-title">Fractions 101</span> <span class="cource-progress" title="60%"><span class="pregress-bar" style="width: 60%"></span></span>
+                            </li>
+                            <li><span class="class-title">Fractions 101</span> <span class="cource-progress" title="80%"><span class="pregress-bar" style="width: 80%"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="outlined clearfix pad-20 no-top-border">
+                        <a href="" class="outlined-btn red-btn float-rt">Create Course </a><a href="" class="fill-btn float-rt">View All</a>
+                    </div>
+                </div>
+                <!-- / Courses -->
+            </div>
+            <div class="row">
+                <!-- Transactions -->
+                <div class="col-md-6 mar-btm-30 activity">
+                    <div class="outlined clearfix pad-20">
+                        <div class="title-box float-lt">
+                            <span class="main-title">Transactions</span>
+                            <span class="reltd-title">Latest from statement </span>
+                        </div>
+                        <a href="" class="outlined-btn gray-btn float-rt">STATEMENT</a>
+                    </div>
+                    <div class="outlined clearfix graph no-top-border">
+                        <ul class="class-list">
+                            <li>
+                                <span class="class-title">Fractions 101</span>
+                                <span class="trns-date float-lt light-text">Jan 20, 2017</span>
+                                <span class="trans-detail light-text">#7854 <span class="trans-amt red-text">$79.00</span>
+                                <br>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="class-title">Fractions 101</span>
+                                <span class="trns-date float-lt light-text">Jan 20, 2017</span>
+                                <span class="trans-detail light-text">#7854 <span class="trans-amt red-text">$79.00</span>
+                                <br>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="class-title">Fractions 101</span>
+                                <span class="trns-date float-lt light-text">Jan 20, 2017</span>
+                                <span class="trans-detail light-text">#7854 <span class="trans-amt red-text">$79.00</span>
+                                <br>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="class-title">Fractions 101</span>
+                                <span class="trns-date float-lt light-text">Jan 20, 2017</span>
+                                <span class="trans-detail light-text">#7854 <span class="trans-amt red-text">$79.00</span>
+                                <br>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- / Transactions -->
+                <!-- Assignment Due -->
+                <div class="col-md-6 mar-btm-30 assignment-due">
+                    <div class="outlined clearfix pad-20">
+                        <div class="title-box float-lt">
+                            <span class="main-title">Assignment Due (3)</span>
+                            <span class="reltd-title">Your upcoming classes for the day</span>
+                        </div>
+                    </div>
+                    <div class="outlined clearfix graph no-top-border">
+                        <ul class="class-list">
+                            <li><span class="class-title">Fractions 101</span> <span class="class-time">Wed. Jan 20, 2017</span></li>
+                            <li><span class="class-title">Fractions 101</span> <span class="class-time">Wed. Jan 20, 2017</span></li>
+                            <li><span class="class-title">Fractions 101</span> <span class="class-time">Wed. Jan 20, 2017</span></li>
+                        </ul>
+                    </div>
+                    <div class="outlined clearfix pad-20 no-top-border">
+                        <a href="" class="fill-btn float-rt">View All</a>
+                    </div>
+                </div>
+                <!-- / Assignment Due -->
+            </div>
+            <div class="row">
+                <!-- Recent Activity -->
+                <div class="col-md-12 mar-btm-30 recent-activity">
+                    <div class="outlined clearfix pad-20">
+                        <div class="title-box float-lt">
+                            <span class="main-title">Recent Activity</span>
+                            <span class="reltd-title">Latest forum topics & comments</span>
+                        </div>
+                    </div>
+                    <div class="outlined clearfix graph no-top-border">
+                        <ul class="class-list">
+                            <li>
+                                <span class="pro-img-list">
+              <img src="img/a1.jpg" title="User" alt="User" />
+            </span>
+                                <span class="activity-title">Can someone help with Fractions?<br>  
+              <span class="desc-det">
+                <span class="desc-lbl">Topic:</span> Fractions
+                                <span class="desc-lbl">By:</span> John Doe
+                                </span>
+                                </span>
+                                <span class="activity-time">01 hr ago</span>
+                            </li>
+                            <li>
+                                <span class="pro-img-list">
+              <img src="img/a1.jpg" title="User" alt="User" />
+            </span>
+                                <span class="activity-title">Can someone help with Fractions?<br>  
+              <span class="desc-det">
+                <span class="desc-lbl">Topic:</span> Fractions
+                                <span class="desc-lbl">By:</span> John Doe
+                                </span>
+                                </span>
+                                <span class="activity-time">01 hr ago</span>
+                            </li>
+                            <li>
+                                <span class="pro-img-list">
+              <img src="img/a1.jpg" title="User" alt="User" />
+            </span>
+                                <span class="activity-title">Can someone help with Fractions?<br>  
+              <span class="desc-det">
+                <span class="desc-lbl">Topic:</span> Fractions
+                                <span class="desc-lbl">By:</span> John Doe
+                                </span>
+                                </span>
+                                <span class="activity-time">01 hr ago</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="outlined clearfix pad-20 no-top-border">
+                        <a href="" class="fill-btn float-rt">View All</a>
+                    </div>
+                </div>
+                <!-- / Recent Activity -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / main -->
+    </div>
+</div>

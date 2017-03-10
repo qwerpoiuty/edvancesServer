@@ -1,8 +1,9 @@
 app.config(function($stateProvider) {
     $stateProvider.state('dashboard', {
         url: '/dashboard',
-        templateUrl: 'js/dashboard/dashboard.html',
-        controller: 'dashboardCtrl'
+        templateUrl: 'js/authorized/dashboard/dashboard.html',
+        controller: 'dashboardCtrl',
+        parent: 'authorized'
     });
 });
 
