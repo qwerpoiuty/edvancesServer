@@ -24,7 +24,6 @@ router.get('/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/email', ensureAuthenticated, (req, res) => {
-     console.log(chalk.red.bgBlue.bold("EMAIL ROUTE"));
     User.findOne({
         where: {
             email: req.query.email
@@ -37,7 +36,6 @@ router.get('/email', ensureAuthenticated, (req, res) => {
 })
 
 router.post('/delete', ensureAuthenticated, (req, res) => {
-    console.log(chalk.red.bgYellow.bold("DELETE ROUTE"));
      User.destroy({
         where: {
             email: req.body.email
@@ -52,5 +50,22 @@ router.post('/delete', ensureAuthenticated, (req, res) => {
             msg.payload = 'Successfuly Deleted'
         }
         res.json(msg)
+    })
+})
+
+router.post('/update', ensureAuthenticated, (req,res)=>{
+    console.log(chalk.blue.bgYellow.bold("UPDATE ROUTE"))
+    const updates = req.body.updates;
+      User.findOne({
+        where: {
+            email: req.body.email
+        }
+    }).then(user => {
+        return user.updateAttributes(updates)
+        .then(updatedUser => {
+            res.send({
+                updatedUser: _.omit(updatedUser.toJSON(), ['password', 'salt'])
+            });
+        })
     })
 })
