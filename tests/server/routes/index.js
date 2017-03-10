@@ -7,6 +7,8 @@ var db = require('../../../server/db');
 
 var supertest = require('supertest');
 
+var chalk = require('chalk');
+
 describe('User Route', function() {
 
     var app, User;
@@ -114,18 +116,16 @@ describe('User Route', function() {
             loggedInAgent.post('/login').send(userInfo).end(done);
         });
 
-        it ('it should DELETE a user given the email' ,(done) =>{
+        it ('should DELETE a user given the email', done =>{
             var query = {email: userInfo.email}
             loggedInAgent
-            .delete('api/users/delete')
-            .query(query)
+            .post('/api/users/delete')
+            .send(query)
             .expect(200)
             .end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('object');
-                res.body.should.have.property('message').eql('user successfully deleted!');
-                res.body.result.should.have.property('ok').eql(1);
-                res.body.result.should.have.property('n').eql(1);
+                expect(res.body.header).to.equal(200);
+                expect(res.body).to.be.a('object');
+                expect(res.body.payload).to.equal('Successfuly Deleted');
               done();
             });
          })
@@ -203,18 +203,17 @@ describe('Classroom Route', function() {
     });
 
      describe('Delete Classroom by Title', () => {
-        it ('it should DELETE a Classroom given the title' ,(done) =>{
+        it ('should DELETE a Classroom given the Title', done =>{
             var query = {title: classroomInfo.title}
             loggedInAgent
-            .delete('api/classrooms/delete')
-            .query(query)
+            .post('/api/classrooms/delete')
+            .send(query)
             .expect(200)
             .end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('object');
-                res.body.should.have.property('message').eql('classroom successfully deleted!');
-                res.body.result.should.have.property('ok').eql(1);
-                res.body.result.should.have.property('n').eql(1);
+                console.log(chalk.blue.bgRed.bold(JSON.stringify(res.body)));
+                expect(res.body.header).to.equal(200);
+                expect(res.body).to.be.a('object');
+                expect(res.body.payload).to.equal('Successfuly Deleted');
               done();
             });
          })

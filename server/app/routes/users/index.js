@@ -24,6 +24,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/email', ensureAuthenticated, (req, res) => {
+     console.log(chalk.red.bgBlue.bold("EMAIL ROUTE"));
     User.findOne({
         where: {
             email: req.query.email
@@ -35,14 +36,21 @@ router.get('/email', ensureAuthenticated, (req, res) => {
     })
 })
 
-router.get('/delete', ensureAuthenticated, (req,res) => {
+router.post('/delete', ensureAuthenticated, (req, res) => {
+    console.log(chalk.red.bgYellow.bold("DELETE ROUTE"));
      User.destroy({
         where: {
-            email: req.query.email
-        },
-        attributes: ['id', 'email']
-
-    }).then(user => {
-        res.json(user)
+            email: req.body.email
+        }
+    }).then(bool => {
+        var msg = {
+            header: 500,
+            payload: 'Unsuccesfully Deleted'
+        }
+        if (bool == true) {
+            msg.header = 200;
+            msg.payload = 'Successfuly Deleted'
+        }
+        res.json(msg)
     })
 })
