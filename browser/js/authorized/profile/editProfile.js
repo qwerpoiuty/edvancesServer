@@ -1,9 +1,9 @@
 app.config(function($stateProvider) {
     $stateProvider.state('edit', {
         url: '/edit',
-        templateUrl: 'js/authorized/profile/editProfile.html',
+        templateUrl: 'js/teachers/profile/editProfile.html',
         controller: 'editProfileCtrl',
-        parent: 'authorized',
+        parent: 'teacher',
         resolve: {
             user: function(AuthService) {
                 return AuthService.getLoggedInUser().then(user => {
@@ -17,10 +17,11 @@ app.config(function($stateProvider) {
 app.controller('editProfileCtrl', function($scope, $sce, $uibModal, user, userFactory) {
     $scope.user = user
 
-    $scope.saveChanges = user => {
-        userFactory.updateUser(user).then(user => {
-            $state.go('profile')
-        })
+    $scope.updateUser = user => {
+        console.log(user)
+        // userFactory.updateUser(user).then(user => {
+        //     $state.go('profile')
+        // })
     }
 
 

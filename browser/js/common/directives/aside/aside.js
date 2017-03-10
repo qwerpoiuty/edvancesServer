@@ -7,7 +7,10 @@ app.directive('aside', function($state) {
         },
         templateUrl: 'js/common/directives/aside/aside.html',
         link: function(scope) {
-
+            scope.templateUrl = () => {
+                if (scope.user.role == 1) return 'js/authorized/teachers/aside.html'
+                else return
+            }
 
         }
 

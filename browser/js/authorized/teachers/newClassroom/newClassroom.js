@@ -1,14 +1,16 @@
 app.config(function($stateProvider) {
     $stateProvider.state('newClassroom', {
-        templateUrl: 'js/authorized/newClassroom/newClassroom.html',
+        templateUrl: 'js/authorized/teachers/newClassroom/newClassroom.html',
         controller: 'newClassroomCtrl',
-        parent: 'authorized'
+        parent: 'teacher'
     });
 });
 
-app.controller('newClassroomCtrl', function($scope, $sce, $uibModal) {
+app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, classroomFactory) {
     // $("#editor").wysiwyg()
+    $scope.createClass = (classroom) => {
 
+    }
     $scope.openBrowse = function(target, tabSelection) {
         // Declare all variables
         var i, tabcontent, tablinks;

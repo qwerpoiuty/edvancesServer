@@ -3,7 +3,7 @@ app.config(function($stateProvider) {
         url: '/classroom',
         templateUrl: 'js/authourized/classroom/classroom.html',
         controller: 'classroomCtrl',
-        parent: 'authorized'
+        parent: 'teacher'
     });
 });
 

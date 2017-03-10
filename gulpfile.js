@@ -108,7 +108,7 @@ gulp.task('buildCSS', function() {
         .pipe(sass())
         .pipe(concat('scss-files.scss'));
 
-    var cssStream = gulp.src(['./browser/theme/app.css', './browser/theme/custom.css', './browser/theme/font.css', './browser/theme/jquery.e-calendar.css', './material-design-icons.css', './browser/theme/md.css'])
+    var cssStream = gulp.src(['./browser/theme/app.css', './browser/theme/font.css', './browser/theme/jquery.e-calendar.css', './material-design-icons.css', './browser/theme/md.css', './browser/theme/custom.css'])
         .pipe(concat('css-files.css'));
 
     var mergedStream = merge(lessStream, scssStream, cssStream)

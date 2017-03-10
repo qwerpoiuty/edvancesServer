@@ -4,7 +4,9 @@
   -->
   <div class="navi-wrap">
     <!-- nav -->
-    <nav ui-nav class="navi clearfix" ng-include="'js/common/directives/aside/nav.html'"></nav>
+    <nav ui-nav class="navi clearfix">
+    	<ng-include src="templateUrl()"></ng-include>
+    </nav>
     <!-- nav -->
 
   </div>
