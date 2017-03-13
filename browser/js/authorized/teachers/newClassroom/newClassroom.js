@@ -2,7 +2,7 @@ app.config(function($stateProvider) {
     $stateProvider.state('newClassroom', {
         templateUrl: 'js/authorized/teachers/newClassroom/newClassroom.html',
         controller: 'newClassroomCtrl',
-        parent: 'teacher'
+        parent: 'authorized'
     });
 });
 

@@ -1,9 +1,9 @@
 app.config(function($stateProvider) {
     $stateProvider.state('classroom', {
         url: '/classroom',
-        templateUrl: 'js/authourized/classroom/classroom.html',
+        templateUrl: 'js/authorized/classroom/classroom.html',
         controller: 'classroomCtrl',
-        parent: 'teacher'
+        parent: 'authorized'
     });
 });
 

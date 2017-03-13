@@ -9,7 +9,7 @@ app.directive('aside', function($state) {
         link: function(scope) {
             scope.templateUrl = () => {
                 if (scope.user.role == 1) return 'js/authorized/teachers/aside.html'
-                else return
+                else return "js/authorized/students/aside.html"
             }
 
         }
