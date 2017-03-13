@@ -148,7 +148,7 @@ describe('User Route', function() {
             loggedInAgent.post('/login').send(userInfo).end(done);
         });
 
-      it('it should UPDATE a user given the email', done => {
+      it('it should UPDATE a user', done => {
             var body ={email:'joe@gmail.com', updates:{
                 email:'hello@hello.com',
                 password:'shoopdawoop2'
@@ -191,7 +191,7 @@ describe('Classroom Route', function() {
         password: 'shoopdawoop'
     };
     var classroomInfo = {
-        title: 'TestClassroom',
+        title: 'Test Classroom',
         teacher: 1,
         students: [],
         startDate: Date.now(),
@@ -254,4 +254,23 @@ describe('Classroom Route', function() {
             });
          })
     });
+
+    describe('Update Classrom by Title', () =>{
+       it('it should UPDATE a Classroom', done => {
+            var body ={title:'Test Classroom', updates:{
+                title:'Changed Classroom',
+                description: 'Hello This Should Work'
+            }}
+            loggedInAgent
+            .post('/api/classrooms/update')
+            .send(body)
+            .expect(200)
+            .end((err, res) => {
+                expect(res.body).to.be.a('object');
+                expect(res.body.description).to.equal('Hello This Should Work');
+                expect(res.body.title).to.equal('Changed Classroom');
+                done();
+            });
+        }); 
+    }) 
 })

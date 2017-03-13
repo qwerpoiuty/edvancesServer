@@ -40,3 +40,19 @@ router.post('/delete', ensureAuthenticated, (req, res) => {
         res.json(msg)
     })
 })
+
+router.post('/update', ensureAuthenticated, (req,res)=>{
+    console.log(chalk.blue.bgYellow.bold("UPDATE ROUTE"))
+    const updates = req.body.updates;
+      Classroom.findOne({
+        where: {
+            title: req.body.title
+        }
+    }).then(classroom => {
+        return classroom.updateAttributes(updates)
+        .then(updatedClassroom => {
+            console.log(chalk.red.bgYellow.bold(JSON.stringify(updatedClassroom)))
+         res.json(updatedClassroom)
+        })
+    })
+})
