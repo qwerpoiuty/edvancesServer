@@ -1,7 +1,7 @@
 'use strict';
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var chalk = require('chalk');
 var _ = require('lodash');
 
