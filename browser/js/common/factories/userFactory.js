@@ -25,7 +25,11 @@ app.factory('userFactory', function($http) {
         })
     }
     d.updateUser = (user) => {
-        return $http.post('/api/users/update', user).then(response => {
+        var updates = {
+            id: user.id,
+            updates: user
+        }
+        return $http.post('/api/users/update', updates).then(response => {
             return response.data
         })
     }

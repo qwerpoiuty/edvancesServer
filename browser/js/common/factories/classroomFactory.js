@@ -8,13 +8,8 @@ app.factory('classroomFactory', function($http) {
         })
     }
 
-    d.findSingleClassroom = (email) => {
-        var query = {
-            email: email
-        }
-        return $http.get('/api/classrooms/single', {
-            params: query
-        }).then(response => {
+    d.findSingleClassroom = (id) => {
+        return $http.get('/api/classrooms/' + id).then(response => {
             return response.data
         })
     }

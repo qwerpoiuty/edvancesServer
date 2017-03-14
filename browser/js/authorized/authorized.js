@@ -12,6 +12,6 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('authorizedCtrl', function($scope, user) {
+app.controller('authorizedCtrl', function($scope, user, $state) {
     $scope.user = user
 });

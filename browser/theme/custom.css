@@ -354,6 +354,15 @@ span.block.user-pro-name {
     font-weight: bold;}
 .app-footer.wrapper{background: #fff}
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success,.btn-success{background: #ec5d61; border-color: #ec5d61}
+ .fill-btn.fill-btn-green{background-color: #8ec63f;}
+  .fill-btn.fill-btn-green:hover{background-color: #73b812;}
+
+    /*students start*/
+    .bold-hr{    border-top: 2px solid #cfcfcf;
+    width: 40px;
+    float: left;
+    margin: 13px 0;}
+    /*students end*/
 /*Global layout adjustments End*/
 
 
@@ -691,6 +700,18 @@ span.desc-det {
 }
 .action-contl{padding-top: 5px;}
 li.active > a > span{color: #fff}
+
+    /*st start*/
+    .result-wrap, .stud-quiz-dash{display: inline-block; vertical-align: middle;}
+    .result-rat{font-size: 35px; font-weight: 600}
+    .result-wrap{line-height: normal; text-align: center; float: right;}
+    .students .stud-quiz-dash > .class-title{display: block;}
+    .result-lbl{font-weight: bold;}
+    .result-rat.good{color: #565d67}
+    .result-rat.great{color: #8dcd55}
+    .result-rat.failed{color: #e26062}
+    /*st end*/
+
 /*dashboard css end*/
 
 
@@ -885,11 +906,74 @@ li.active > a > span{color: #fff}
     border-bottom: 1px solid #f3f3f3;     display: block;}
     .online-stud-list > li a.active, .online-stud-list > li a:hover{background: #ea605e; color: #fff}
     .online-stud-list > li a.active span.avatar {border: 2px solid #fff}
-    .online-tit {border-bottom: 1px solid #dee5e7;
+    .online-tit {border-bottom: 1px solid #f3f3f3;
     font-size: 18px;
     font-weight: bold;
 }
 .offline{border-top: 1px solid #dee5e7;}
+
+    /*students start*/
+    div.accordion.course-documents{padding: 20px 40px;}
+    .course-timer{display: inline-block;
+    text-align: center;    margin-right: 20px;}
+     .course-timer:last-child{margin-right: 0}
+    .course-timer .red-text{    font-size: 22px;
+    font-weight: 600;}
+    .user-chat{    border: 1px solid #cdcdcd;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 10px 12px 11px;
+    vertical-align: middle;
+    margin-left: 10px;}
+    .user-chat:hover{border-color: #ea605e}
+
+     .accordion-toggle {cursor: pointer; display: block; margin: 0px;}
+  .accordion-content {display: none;}
+  .accordion-content.default {display: block;}
+  .innertab{    font-size: 15px;
+    font-weight: bold;}
+    .semisect{margin-bottom: 15px;display: block; margin-top: 10px;}
+    .assignments-col{border-bottom: 1px solid #dddce0}
+    .innertab.active-tab, .innercont.active-cont{background: #f7f8fc}
+    .trsocial a:first-child{padding-left: 0}
+    .trsocial a{padding: 5px;
+    font-size: 17px;
+    margin-top: 1px;
+    display: inline-block;}
+    .instructor-info{float: left;
+    padding: 15px;}
+    .instr-bio{width: 100%;}
+    .secondery-title{font-size: 20px;
+    font-weight: bold;}
+    .tbl-icon{    margin: -10px 0px -10px -10px;
+    padding: 10px;
+    background: #cdcdcd;
+    vertical-align: top;}
+    .wb-wrapper{    padding: 10px;    text-align: center;}
+    .wb-wrapper div{display: inline-block;}
+    .wb-wrapper .secondery-title{    margin: 2px 0 0 0;}
+    .whiteboard-area{    min-height: 250px;}
+    .classroom-cal .c-grid-title{    font-size: 20px;}
+    .classroom-cal .calendar .c-pad-top {
+    padding: 3.5% 1%;
+}
+.notes-text{
+        display: inline-block;
+    vertical-align: middle;
+}
+.notes-list li{    padding-bottom: 20px;
+    border-bottom: 1px solid #ededed;
+    margin-bottom: 20px;}
+.notes-list li:last-child{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+.teacher-ct{    padding: 20px 0;
+    border-bottom: 1px solid #eee;}
+.course-img{display: inline-block;margin-right: 15px;}
+
+    /*students end*/
 /*Messages board end*/
 
 
@@ -1005,12 +1089,15 @@ span.label.label-default{display: none !important;}
 
 
 
+
+
 /*Commen CSS Start*/
 .p-l-r-20{padding-left: 20px !important; padding-right: 20px !important }
 .no-pad{padding:0 !important }
 .p-l-0{padding-left: 0 !important}
 .p-r-0{padding-right: 0 !important}
-.no-pad-top{padding-top: 0}
+.p-b-35{padding-bottom: 35px !important;}
+.no-pad-top{padding-top: 0 !important}
 .pad-10{padding: 10px;}
 .pad-10-20{padding: 10px 20px;}
 .pad-20{padding: 20px;}
@@ -1021,6 +1108,7 @@ span.label.label-default{display: none !important;}
 .pad-top-20{padding-top: 20px;}
 .p-r-10{padding-right: 10px;}
 .pad-12{padding: 12px;}
+.p-b-20{padding-bottom: 20px;}
 
 .m-b-20{margin-bottom: 20px;}
 .m-b-30{margin-bottom: 30px;}
@@ -1036,14 +1124,18 @@ span.label.label-default{display: none !important;}
 .no-m{margin: 0 !important;}
 .m-l-80{margin-left: 80px;}
 
+.w-full{width: 100%}
 .d-n-{display: none;}
-
+.d-i-b{display: inline-block;}
+.v-a-m{vertical-align: middle;}
 .float-lt{float: left;}
 .float-rt{float: right;}
 
 .no-top-border{border-top: 0 !important}
 .no-bottom-border{border-bottom: 0 !important;}
 
+.normal-text{    font-size: 14px;
+    font-weight: normal;}
 .red-text{color: #ea605e}
 .geen-text{color: #89c541}
 .light-text{color: #c6c6c6}
@@ -1084,12 +1176,14 @@ a.link{color: #ea605e !important}
     -moz-border-radius: 3px;
     border-radius: 3px;
     font-size: 15px;
-    padding: 13px 30px 15px;
+    padding: 13px 30px 14px;
     font-weight: bold;
     display: inline-block;
     color: #ea605e;
      background: transparent;
 }
+
+
 
 .outlined-btn.red-btn:hover {
     border-color: #ea605e;
@@ -1113,6 +1207,10 @@ a.link{color: #ea605e !important}
 
 
 /*Media Query Start*/
+@media (max-width: 1500px) {
+.support-col, .stream-col{width: 100%}
+div.course-documents.accordion{padding: 20px;}
+}
 
 @media (max-width: 1400px) {
     .top-bar {
@@ -1281,6 +1379,11 @@ a.link{color: #ea605e !important}
 @media (max-width: 565px) {
     .daterangepicker.ltr .calendar{width: 100% !important}
     .ranges li{min-width: 120px;}
+    .toolsttype{    display: block;
+    width: 100%;
+    margin-top: 15px;}
+    .joincls{    width: 100%;
+    margin-top: 15px;}
 }
 @media (max-width: 500px) {
     ul.class-list li{text-align: center;}
@@ -1316,5 +1419,9 @@ a.link{color: #ea605e !important}
     .nav-tabs-alt ul.nav-tabs.nav-justified.profile-tab > li a{border-right: 0 !important; margin-bottom: 0;}
     .nav-tabs-alt ul.nav-tabs.nav-justified.profile-tab > li.active a{border: none; background: #eee !important;     }
     .nav-tabs-alt ul.nav-tabs.nav-justified.profile-tab{height:121px;}
+    .activity-time{display: block; float: none;}
+    /*students*/
+    .result-wrap, .stud-quiz-dash{float: none; display: block;}
+    /*students*/
 }
 /*media query end*/

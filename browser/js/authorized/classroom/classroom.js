@@ -1,13 +1,22 @@
 app.config(function($stateProvider) {
     $stateProvider.state('classroom', {
-        url: '/classroom',
+        url: '/classroom/:id',
         templateUrl: 'js/authorized/classroom/classroom.html',
         controller: 'classroomCtrl',
-        parent: 'authorized'
+        parent: 'authorized',
+        resolve: {
+            classroom: (classroomFactory, $stateParams) => {
+                return classroomFactory.findSingleClassroom($stateParams.id).then(classroom => {
+                    return classroom
+                })
+            }
+        }
     });
 });
 
-app.controller('classroomCtrl', function($scope, $sce, $uibModal) {
+app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom) {
+    $scope.classroom = classroom[0][0]
+    console.log($scope.classroom)
     $scope.launch = () => {
         var modal = $uibModal.open({
             templateUrl: "js/common/modals/jitsi/jitsi.html",
@@ -15,7 +24,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal) {
             size: 'lg',
             resolve: {
                 room: () => {
-                    return "testing"
+                    return $scope.classroom.id
                 }
             }
         })

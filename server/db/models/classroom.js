@@ -29,7 +29,7 @@ module.exports = db.define('classroom', {
     times: {
         type: Sequelize.ARRAY(Sequelize.INTEGER)
     },
-    lessongs: {
+    lessons: {
         type: Sequelize.JSON
     },
     description: {

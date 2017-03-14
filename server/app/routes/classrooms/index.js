@@ -23,8 +23,23 @@ router.get('/', ensureAuthenticated, (req, res) => {
     })
 })
 
+router.get('/:id', ensureAuthenticated, (req, res) => {
+    db.query(`select teacher.name as teacher_name, c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location 
+from classrooms c
+inner join users as teacher
+on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom => {
+        res.json(classroom)
+    })
+})
+
+router.post('/', ensureAuthenticated, (req, res) => {
+    Classroom.create(req.body).then(classroom => {
+        res.json(classroom)
+    })
+})
+
 router.post('/delete', ensureAuthenticated, (req, res) => {
-     Classroom.destroy({
+    Classroom.destroy({
         where: {
             title: req.body.title
         }
@@ -41,18 +56,18 @@ router.post('/delete', ensureAuthenticated, (req, res) => {
     })
 })
 
-router.post('/update', ensureAuthenticated, (req,res)=>{
+router.post('/update', ensureAuthenticated, (req, res) => {
     console.log(chalk.blue.bgYellow.bold("UPDATE ROUTE"))
     const updates = req.body.updates;
-      Classroom.findOne({
+    Classroom.findOne({
         where: {
             title: req.body.title
         }
     }).then(classroom => {
         return classroom.updateAttributes(updates)
-        .then(updatedClassroom => {
-            console.log(chalk.red.bgYellow.bold(JSON.stringify(updatedClassroom)))
-         res.json(updatedClassroom)
-        })
+            .then(updatedClassroom => {
+                console.log(chalk.red.bgYellow.bold(JSON.stringify(updatedClassroom)))
+                res.json(updatedClassroom)
+            })
     })
 })

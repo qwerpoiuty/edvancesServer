@@ -35,9 +35,31 @@ router.get('/email', ensureAuthenticated, (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+    User.findOrCreate({
+        where: {
+            email: req.body.email
+        },
+        defaults: req.body
+    }).spread((user, created) => {
+        if (!created) {
+            var message = {
+                header: 401,
+                message: "That email is already registered"
+            }
+            res.json(message)
+        } else {
+            var message = {
+                header: 200,
+                message: "User created"
+            }
+            res.json(message)
+        }
+    })
+})
 
 router.post('/delete', ensureAuthenticated, (req, res) => {
-     User.destroy({
+    User.destroy({
 
         where: {
             email: req.body.email
@@ -56,19 +78,20 @@ router.post('/delete', ensureAuthenticated, (req, res) => {
 })
 
 
-router.post('/update', ensureAuthenticated, (req,res)=>{
+router.post('/update', ensureAuthenticated, (req, res) => {
+    console.log(req.body)
     console.log(chalk.blue.bgYellow.bold("UPDATE ROUTE"))
     const updates = req.body.updates;
-      User.findOne({
+    User.findOne({
         where: {
-            email: req.body.email
+            id: req.body.id
         }
     }).then(user => {
         return user.updateAttributes(updates)
-        .then(updatedUser => {
-            res.send({
-                updatedUser: _.omit(updatedUser.toJSON(), ['password', 'salt'])
-            });
-        })
+            .then(updatedUser => {
+                res.send({
+                    updatedUser: _.omit(updatedUser.toJSON(), ['password', 'salt'])
+                });
+            })
     })
 })

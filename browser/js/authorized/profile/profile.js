@@ -3,7 +3,7 @@ app.config(function($stateProvider) {
         url: '/profile',
         templateUrl: 'js/authorized/profile/profile.html',
         controller: 'profileCtrl',
-        parent: 'authorized'
+        parent: 'dashboard'
     });
 });
 

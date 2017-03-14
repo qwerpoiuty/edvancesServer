@@ -22,6 +22,15 @@ module.exports = db.define('user', {
     },
     name: {
         type: Sequelize.STRING
+    },
+    grade: {
+        type: Sequelize.STRING
+    },
+    interests: {
+        type: Sequelize.STRING
+    },
+    location: {
+        type: Sequelize.STRING
     }
 }, {
     instanceMethods: {
