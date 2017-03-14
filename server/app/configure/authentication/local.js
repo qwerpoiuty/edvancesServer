@@ -67,7 +67,6 @@ module.exports = function(app, db) {
             }
             // req.logIn will establish our session.
             req.logIn(user, function(loginErr) {
-                console.log(chalk.red(loginErr))
                 if (loginErr) return next(loginErr);
 
                 // We respond with a response object that has user with _id and email.

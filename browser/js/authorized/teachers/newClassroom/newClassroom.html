@@ -1,0 +1,297 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs hbox-auto-sm create-courses" ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+    <!-- column -->
+    <div class="col">
+        <div class="content-wrapper mycourses">
+            <!-- main header Start-->
+            <div class=" lter wrapper-md bredcrumb">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">My Courses</small> <i class="fa fa-angle-right"></i> <small class="text-muted">Create Course</small>
+                    </div>
+                </div>
+            </div>
+            <!-- main header End-->
+            <div class="pad-20">
+                <div class="vbox outlined ">
+                    <!--Bredcrumb Start-->
+                    <div class="nav-tabs-alt tab-wrap">
+                        <ul class="nav nav-tabs nav-justified profile-tab">
+                            <li id="course-tab" class="tablinks active" ng-click="openBrowse('course-tab','tab-1')">
+                                <a data-target="#tab-1" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-align-left"></i> Course</a>
+                            </li>
+                            <li id="meta-tab" class="tablinks" ng-click="openBrowse('meta-tab','tab-2')">
+                                <a data-target="#tab-2" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-credit-card"></i> Meta</a>
+                            </li>
+<!--                             <li id='lessons-tab' class="tablinks" ng-click="openBrowse('lessons-tab','tab-3')">
+                                <a data-target="#tab-3" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-file-text-o"></i> Lessons</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <!--Bredcrumb End-->
+                    <div class="row-row">
+                        <div class="cell scrollable hover">
+                            <div class="cell-inner">
+                                <div class="tab-content">
+                                    <!--Create Course Start-->
+                                    <div class="tab-pane active" id="tab-1">
+                                        <div class="wrapper-md">
+                                            <form class="form-horizontal" ng-submit="openBrowse('meta-tab','tab-2')">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Title</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Enter course name" ng-model="newClassroom.title" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Description</label>
+                                                    <div class="col-sm-8">
+<!--                                                         <div class="btn-toolbar m-b-sm btn-editor outlined pad-10" data-role="editor-toolbar" data-target="#editor">
+                                                            <div class="btn-group">
+                                                                <a class="btn btn-default" data-edit="bold" tooltip="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                                                                <a class="btn btn-default" data-edit="italic" tooltip="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                                                                <a class="btn btn-default" data-edit="strikethrough" tooltip="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                                                                <a class="btn btn-default" data-edit="underline" tooltip="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <a class="btn btn-default" data-edit="insertunorderedlist" tooltip="Bullet list"><i class="fa fa-list-ul"></i></a>
+                                                                <a class="btn btn-default" data-edit="insertorderedlist" tooltip="Number list"><i class="fa fa-list-ol"></i></a>
+                                                                <a class="btn btn-default" data-edit="outdent" tooltip="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
+                                                                <a class="btn btn-default" data-edit="indent" tooltip="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <a class="btn btn-default" data-edit="justifyleft" tooltip="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+                                                                <a class="btn btn-default" data-edit="justifycenter" tooltip="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+                                                                <a class="btn btn-default" data-edit="justifyright" tooltip="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+                                                                <a class="btn btn-default" data-edit="justifyfull" tooltip="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div id="editor" class="form-control text-editor" ng-model="newClassroom.description">
+                                                        </div>-->
+                                                        <textarea class="form-control text-editor" ng-model="newClassroom.description"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-8">
+                                                        <button type="submit" class="fill-btn">Next</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--Create Course End-->
+                                    <!--Create Course Meta start-->
+                                    <div class="tab-pane" id="tab-2">
+                                        <div class="wrapper-md ">
+                                            <form class="form-horizontal" ng-submit="createClass(newClassroom)">
+                                                <div class="form-group select-field">
+                                                    <label class="col-sm-2 control-label">Category </label>
+                                                    <div class="col-sm-4">
+                                                        <select name="carlist" form="carform" class="form-control" ng-model="newClassroom.subject">
+                                                            <option value="">Mathematics</option>
+                                                            <option value="">Vat 2</option>
+                                                            <option value="">Vat 3</option>
+                                                            <option value="">Vat 4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Course Days </label>
+                                                    <div class="col-sm-8">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Start Date</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" ng-model="newClassroom.startDate" class="form-control" placeholder="What is the course start date?">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">End Date</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" ng-model="newClassroom.endDate" class="form-control" placeholder="When does the course finish?">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-8">
+                                                        <button type="submit" class="fill-btn ">Create Class</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--Create Course Meta End-->
+                                    <!--Create Course Lessons Start-->
+                                    <!-- <div class="tab-pane" id="tab-3"> -->
+                                        <!--Lessons list Start-->
+                                        <!-- <div class="wrapper-md lessons-list">
+                                            <div class="clearfix max-wid-920">
+                                                <div class="title-box float-lt m-t-10">
+                                                    <span class="main-title">5 Lessons</span>
+                                                </div>
+                                                <button type="button" class="fill-btn float-rt slim-btn m-b-20 add-lesson">Add Lesson</button>
+                                            </div>
+                                            <ul ui-jq="sortable" class="list-group gutter list-group-lg list-group-sp max-wid-920">
+                                                <li class="list-group-item">
+                                                    <div class="text-wrap">
+                                                        <span class="pull-right edit-btn">
+                                                        <button type="button" class="outlined-btn gray-btn add-lesson"><i class="fa fa-pencil"></i> Edit</button>
+                                                    </span>
+                                                        <div class="clear">
+                                                            <span class="pro-img-list">
+                                                        <img src="img/ls1.jpg" title="User" alt="User"></span>
+                                                            <span class="activity-title">Introduction<br>  
+                                                        <span class="desc-det">updated 1 month ago</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="text-wrap">
+                                                        <span class="pull-right edit-btn">
+                                                        <button type="button" class="outlined-btn gray-btn add-lesson"><i class="fa fa-pencil"></i> Edit</button>
+                                                    </span>
+                                                        <div class="clear">
+                                                            <span class="pro-img-list">
+                                                        <img src="img/ls2.jpg" title="User" alt="User"></span>
+                                                            <span class="activity-title">Lesson Name Goes Here<br>  
+                                                        <span class="desc-det">updated 1 month ago</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="text-wrap">
+                                                        <span class="pull-right edit-btn">
+                                                        <button type="button" class="outlined-btn gray-btn add-lesson"><i class="fa fa-pencil"></i> Edit</button>
+                                                    </span>
+                                                        <div class="clear">
+                                                            <span class="pro-img-list">
+                                                        <img src="img/ls3.jpg" title="User" alt="User"></span>
+                                                            <span class="activity-title">Lesson Name Goes Here<br>  
+                                                        <span class="desc-det">updated 1 month ago</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="text-wrap">
+                                                        <span class="pull-right edit-btn">
+                                                        <button type="button" class="outlined-btn gray-btn add-lesson"><i class="fa fa-pencil"></i> Edit</button>
+                                                    </span>
+                                                        <div class="clear">
+                                                            <span class="pro-img-list">
+                                                        <img src="img/ls4.jpg" title="User" alt="User"></span>
+                                                            <span class="activity-title">Lesson Name Goes Here<br>  
+                                                        <span class="desc-det">updated 1 month ago</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="text-wrap">
+                                                        <span class="pull-right edit-btn">
+                                                        <button type="button" class="outlined-btn gray-btn add-lesson"><i class="fa fa-pencil"></i> Edit</button>
+                                                    </span>
+                                                        <div class="clear">
+                                                            <span class="pro-img-list">
+                                                        <img src="img/ls5.jpg" title="User" alt="User"></span>
+                                                            <span class="activity-title">Lesson Name Goes Here<br>  
+                                                        <span class="desc-det">updated 1 month ago</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div> -->
+                                        <!--Lessons list End-->
+                                        <!--Add Edit Lesson Start-->
+                         <!--                <div class="wrapper-md edit-lesson">
+                                            <form class="form-horizontal" method="get">
+                                                <div class="form-group mar-20">
+                                                    <label class="col-sm-2 control-label">Preview</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="user-thumb"><img src="img/placeholder.png" title="John Doe" alt="John Doe" /></div>
+                                                        <a href="" class="fill-btn change-pro slim-btn">Add Image</a>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Title </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Write an awesome title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group select-field">
+                                                    <label class="col-sm-2 control-label">Course </label>
+                                                    <div class="col-sm-4">
+                                                        <select name="carlist" form="carform" class="form-control">
+                                                            <option value="">Fractions 101 - GR01</option>
+                                                            <option value="">Fractions 101 - GR02</option>
+                                                            <option value="">Fractions 101 - GR03</option>
+                                                            <option value="">Fractions 101 - GR04</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group m-t-30">
+                                                    <label class="col-sm-2 control-label">File</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6 m-b-30">
+                                                                <div class="dropzone">
+                                                                    <div class="instruction text-center">
+                                                                        <img src="img/add-quiz.jpg" alt="Add Quiz" title="Add Quiz" class="m-b-10a">
+                                                                        <br> Drop file here to upload
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="file-structure pad-20">
+                                                                    <ul class="filetree">
+                                                                        <li><a href=""><i class="fa fa-folder-open"></i> Lesson files</a>
+                                                                            <ul>
+                                                                                <li><a href=""><i class="fa fa-file-o"></i> Lesson-1-install.zip</a></li>
+                                                                                <li><a href=""><i class="fa fa-file-o"></i> Lesson-1-install.zip</a></li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label"></label>
+                                                    <div class="col-sm-8">
+                                                        <button type="submit" class="fill-btn mar-right-10 save-lesson">Save Lesson</button>
+                                                        <button type="submit" class="outlined-btn red-btn cancel-lesson">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div> -->
+                                        <!--Add Edit Lesson End-->
+                                    <!-- </div> -->
+                                    <!-- <script type="text/javascript">
+                                    $('.add-lesson').click(function() {
+                                        $('.lessons-list').hide();
+                                        $('.edit-lesson').show();
+                                    });
+                                    $('.save-lesson, .cancel-lesson').click(function() {
+                                        $('.lessons-list').show();
+                                        $('.edit-lesson').hide();
+                                    });
+                                    </script> -->
+                                    <!--Create Course Lessons End-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /column -->
+    </div>
+</div>
+<!-- /hbox layout -->

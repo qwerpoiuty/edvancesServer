@@ -1,8 +1,9 @@
 app.config(function($stateProvider) {
     $stateProvider.state('profile', {
         url: '/profile',
-        templateUrl: 'js/profile/profile.html',
-        controller: 'profileCtrl'
+        templateUrl: 'js/authorized/profile/profile.html',
+        controller: 'profileCtrl',
+        parent: 'dashboard'
     });
 });
 

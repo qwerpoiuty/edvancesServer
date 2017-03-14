@@ -4,13 +4,14 @@ app.controller('jitsiCtrl', function($scope, $uibModalInstance, room) {
     var height = 700;
     $scope.room = room
     $scope.test = () => {
-        console.log(document.getElementById("jitsi"))
         $scope.videoApi = new JitsiMeetExternalAPI(domain, "test", width, height, document.getElementById("jitsi"));
         $scope.videoApi.executeCommand('toggleFilmStrip')
     }
 
     $scope.close = () => {
-        $scope.videoApi.dispose()
-        $uibModalInstance.close()
+        $scope.videoApi.dispose().then(() => {
+
+            $uibModalInstance.close()
+        })
     }
 });

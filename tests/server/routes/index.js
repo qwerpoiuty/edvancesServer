@@ -7,6 +7,8 @@ var db = require('../../../server/db');
 
 var supertest = require('supertest');
 
+var chalk = require('chalk');
+
 describe('User Route', function() {
 
     var app, User;
@@ -97,6 +99,73 @@ describe('User Route', function() {
         })
     })
 
+    describe('Delete User by Email', () => {
+        var loggedInAgent;
+
+        var userInfo = {
+            email: 'joe@gmail.com',
+            password: 'shoopdawoop'
+        };
+
+        beforeEach('Create a user', function() {
+            return User.create(userInfo);
+        });
+
+        beforeEach('Create loggedIn user agent and authenticate', function(done) {
+            loggedInAgent = supertest.agent(app);
+            loggedInAgent.post('/login').send(userInfo).end(done);
+        });
+
+        it ('should DELETE a user given the email', done =>{
+            var query = {email: userInfo.email}
+            loggedInAgent
+            .post('/api/users/delete')
+            .send(query)
+            .expect(200)
+            .end((err, res) => {
+                expect(res.body.header).to.equal(200);
+                expect(res.body).to.be.a('object');
+                expect(res.body.payload).to.equal('Successfuly Deleted');
+              done();
+            });
+         })
+    });
+
+    describe('Update User by Email', () => {
+        var loggedInAgent;
+
+        var userInfo = {
+            email: 'joe@gmail.com',
+            password: 'shoopdawoop'
+        };
+
+        beforeEach('Create a user', function() {
+            return User.create(userInfo);
+        });
+
+        beforeEach('Create loggedIn user agent and authenticate', function(done) {
+            loggedInAgent = supertest.agent(app);
+            loggedInAgent.post('/login').send(userInfo).end(done);
+        });
+
+      it('it should UPDATE a user', done => {
+            var body ={email:'joe@gmail.com', updates:{
+                email:'hello@hello.com',
+                password:'shoopdawoop2'
+            }}
+            loggedInAgent
+            .post('/api/users/update')
+            .send(body)
+            .expect(200)
+            .end((err, res) => {
+                expect(res.body).to.be.a('object');
+                expect(res.body.updatedUser.password).to.equal(undefined);
+                expect(res.body.updatedUser.email).to.equal('hello@hello.com');
+                done();
+            });
+     
+      });
+  });
 });
 
 describe('Classroom Route', function() {
@@ -136,7 +205,7 @@ describe('Classroom Route', function() {
 
     beforeEach('Create a classroom', () => {
         return Classroom.create(classroomInfo)
-    })
+    });
 
     beforeEach('Create loggedIn user agent and authenticate', function(done) {
         loggedInAgent = supertest.agent(app);
@@ -168,4 +237,40 @@ describe('Classroom Route', function() {
             });
         });
     });
+
+     describe('Delete Classroom by Title', () => {
+        it ('should DELETE a Classroom given the Title', done =>{
+            var query = {title: classroomInfo.title}
+            loggedInAgent
+            .post('/api/classrooms/delete')
+            .send(query)
+            .expect(200)
+            .end((err, res) => {
+                // console.log(chalk.blue.bgRed.bold(JSON.stringify(res.body)));
+                expect(res.body.header).to.equal(200);
+                expect(res.body).to.be.a('object');
+                expect(res.body.payload).to.equal('Successfuly Deleted');
+              done();
+            });
+         })
+    });
+
+    describe('Update Classrom by Title', () =>{
+       it('it should UPDATE a Classroom', done => {
+            var body ={title:'Test Classroom', updates:{
+                title:'Changed Classroom',
+                description: 'Hello This Should Work'
+            }}
+            loggedInAgent
+            .post('/api/classrooms/update')
+            .send(body)
+            .expect(200)
+            .end((err, res) => {
+                expect(res.body).to.be.a('object');
+                expect(res.body.description).to.equal('Hello This Should Work');
+                expect(res.body.title).to.equal('Changed Classroom');
+                done();
+            });
+        }); 
+    }) 
 })

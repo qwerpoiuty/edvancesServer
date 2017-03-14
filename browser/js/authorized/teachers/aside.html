@@ -10,7 +10,7 @@
       <span class="font-bold">Profile</span>
     </a>
     <ul class="nav nav-sub dk">
-      <li class="user-thum-lg" ui-sref-active="active">
+      <li ui-sref="profile" class="user-thum-lg" ui-sref-active="active">
         <span class="dropdown wrapper" >
         <span class="no-border">
           <span class="thumb-lg w-auto-folded avatar m-t-sm">
@@ -19,13 +19,13 @@
         </span>
         <span href class="dropdown-toggle hidden-folded no-border" dropdown-toggle>
           <span class="clear">
-            <span class="block user-pro-name">Teacher Name</span>
+            <span class="block user-pro-name">{{user.name}}</span>
           </span>
         </span>
       </span>
       </li>
       <li ui-sref-active="active">
-        <a ui-sref="profile" class="editpro">
+        <a ui-sref="edit" class="editpro">
           <span>Edit Profile</span>
         </a>
       </li>
@@ -73,7 +73,7 @@
         </a>
       </li>
       <li ui-sref-active="active">
-        <a ui-sref="app.dashboard">
+        <a ui-sref="newClassroom">
           <span>Create Course</span>
         </a>
       </li>
