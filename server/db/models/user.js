@@ -1,5 +1,5 @@
 'use strict';
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var _ = require('lodash');
 var Sequelize = require('sequelize');
 
