@@ -1,5 +1,6 @@
 app.factory('userFactory', function($http) {
     var d = {}
+        //teachers
     d.findUsers = (query) => {
         return $http.get('/api/users/', {
             params: query
@@ -33,7 +34,19 @@ app.factory('userFactory', function($http) {
             return response.data
         })
     }
-
+    d.changeProfile = (userId, picture) => {
+        var file = picture;
+        var fd = new FormData();
+        fd.append('profilePic', file);
+        return $http.post('/api/users/profilePic/' + userId, fd, {
+            transformRequest: angular.identity,
+            headers: {
+                'Content-Type': undefined
+            }
+        }).then(response => {
+            return response.data
+        })
+    }
     d.deleteUser = (email) => {
         var query = {
             email: email

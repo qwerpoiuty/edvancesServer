@@ -28,7 +28,8 @@
                         </div>
                         <!--Video Stream start-->
                         <div class="video-streem outlined clearfix no-top-border">
-                            <img src="img/video-streem.jpg" alt="video stream" class="img-responsive w-full" ng-click="launch()"/>
+                            <img ng-hide="joined" src="img/video-streem.jpg" alt="video stream" class="img-responsive w-full" ng-click="launch()"/>
+                            <div id="jitsi" ng-show="joined"></div>
                         </div>
                         <!--Video Stream end-->
                         <div class="no-top-border outlined clearfix courseclock pad-20">
@@ -42,7 +43,8 @@
                                 <span class="red-text">36</span><br><span>Minutes</span>
                             </div>
                             <div class="float-rt joincls">
-                                <a href="" class="outlined-btn red-btn v-a-m">Join Class</a>
+                                <a ng-click="test()" ng-hide="joined" class="outlined-btn red-btn v-a-m">Join Class</a>
+                                <a ng-click="close()" ng-show="joined" class="outlined-btn red-btn v-a-m">Leave Class</a>
                                 <a href="" class="user-chat v-a-m"><img src="img/user-chat.jpg" alt="user chat" /></a>
                             </div>
                         </div>

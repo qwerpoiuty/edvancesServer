@@ -34,5 +34,17 @@ app.factory('classroomFactory', function($http) {
         })
     }
 
+    d.getLesson = (classroomId) => {
+        return $http.get('/api/lessons/classroomLesson/' + classroomId).then(response => {
+            return response.data
+        })
+    }
+
+    d.createLesson = (classroomId, lesson) => {
+        return $http.post('/api/lessons/' + classroomId, lesson).then(response => {
+            return response.data
+        })
+    }
+
     return d
 })

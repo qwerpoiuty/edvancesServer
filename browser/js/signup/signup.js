@@ -18,9 +18,7 @@ app.controller('signupCtrl', function($scope, $state, AuthService, userFactory) 
             .then(function(response) {
                 if (response) {
                     return AuthService.login($scope.user).then(function(user) {
-                        $state.go('profile', {
-                            id: user.id
-                        })
+                        $state.go('dashboard')
                     })
                 } else {
                     $scope.authError = "That email is already registered"

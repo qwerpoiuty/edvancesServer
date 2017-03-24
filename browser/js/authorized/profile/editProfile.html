@@ -17,13 +17,13 @@
                     <div class="nav-tabs-alt tab-wrap">
                         <ul class="nav nav-tabs nav-justified profile-tab">
                             <li class="tablinks active">
-                                <a data-target="#tab-1" role="tab" data-toggle="tab" class="light-text" ng-click="openBrowse(event,'tab-1')"><i class="fa fa-lock"></i> Edit Profile</a>
+                                <a data-target="#tab-1" role="tab" data-toggle="tab" class="light-text" ng-click="openBrowse($event,'tab-1')"><i class="fa fa-lock"></i> Edit Profile</a>
                             </li>
                             <li class="tablinks">
-                                <a data-target="#tab-2" role="tab" data-toggle="tab" class="light-text" ng-click="openBrowse(event,'tab-2')"><i class="fa fa-credit-card"></i> Payroll Options</a>
+                                <a data-target="#tab-2" role="tab" data-toggle="tab" class="light-text" ng-click="openBrowse($event,'tab-2')"><i class="fa fa-credit-card"></i> Payroll Options</a>
                             </li>
                             <li>
-                                <a data-target="#tab-3" role="tab" data-toggle="tab" class="light-text" ng-click="openBrowse(event,'tab-3')"><i class="fa fa-list-ul"></i> Credentials</a>
+                                <a data-target="#tab-3" role="tab" data-toggle="tab" class="light-text" ng-click="openBrowse($event,'tab-3')"><i class="fa fa-list-ul"></i> Credentials</a>
                             </li>
                         </ul>
                     </div>
@@ -38,9 +38,17 @@
                                                 <div class="form-group mar-20">
                                                     <label class="col-sm-2 control-label">Avatar</label>
                                                     <div class="col-sm-8">
-                                                        <div class="user-thumb"><img src="img/a7.jpg" title="John Doe" alt="John Doe" /></div>
-                                                        <a href="" class="fill-btn change-pro">Change</a>
+                                                        <div class="user-thumb"><img id="john" title="John Doe" alt="John Doe" /></div>
+                                                        <input style="width: 0.1px;
+                                                                height: 0.1px;
+                                                                opacity: 0;
+                                                                overflow: hidden;
+                                                                position: absolute;
+                                                                z-index: -1;"
+                                                                type="file" name="file" id="file" class="inputfile" file-model="newProfilePic" />
+                                                        <label for="file" href="" class="fill-btn change-pro">Change</lable>
                                                     </div>
+                                                    
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Full Name</label>
@@ -247,7 +255,11 @@
                                     </script>
                                     <div class="tab-pane" id="tab-3">
                                         <div class="wrapper-md">
-                                            Credentials
+                                            <ul class="credential-list">
+                                                <li ng-repeat="credential in credentials" ng-click="downloadCredential(credential.id)">{{credential.name}}</li>
+                                            </ul>
+                                            <input type="file" id="credentialSelect" class="inputfile" file-model="newCredential" />
+                                            <button class="btn btn-success" ng-click="uploadCredential()">Upload</button>
                                         </div>
                                     </div>
                                 </div>

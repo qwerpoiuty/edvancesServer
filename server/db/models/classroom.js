@@ -30,12 +30,17 @@ module.exports = db.define('classroom', {
         type: Sequelize.ARRAY(Sequelize.INTEGER)
     },
     lessons: {
-        type: Sequelize.JSON
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
     },
     description: {
         type: Sequelize.TEXT
     }
 }, {
+    classMethods: {
+        associate: (db) => {
+            this.belongsTo(db.model('teacher'))
+        }
+    },
     instanceMethods: {
 
     },
@@ -43,5 +48,5 @@ module.exports = db.define('classroom', {
 
     }
 }, {
-    timestamps: false
+    timestamps: true
 });

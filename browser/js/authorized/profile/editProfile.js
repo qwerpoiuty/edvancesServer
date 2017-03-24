@@ -2,27 +2,49 @@ app.config(function($stateProvider) {
     $stateProvider.state('edit', {
         templateUrl: 'js/authorized/profile/editProfile.html',
         controller: 'editProfileCtrl',
-        parent: 'dashboard',
+        parent: 'authorized',
         resolve: {
-            user: function(AuthService) {
-                return AuthService.getLoggedInUser().then(user => {
-                    return user
-                })
-            }
+
         }
     });
 });
 
-app.controller('editProfileCtrl', function($scope, $sce, $uibModal, user, userFactory, $state) {
-    $scope.user = user
-
+app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory, $state, documentFactory, FileSaver, Blob) {
+    documentFactory.getCredentials($scope.user.id).then(credentials => {
+        $scope.credentials = credentials
+    })
+    if ($scope.user.profilePic) {
+        document.getElementById('john').setAttribute('src', 'data:image/jpeg;base64,' +
+            btoa($scope.user.profilePic.data))
+    } else {
+        $scope.image = "img/a7.jpg"
+    }
     $scope.updateUser = user => {
         console.log(user)
         userFactory.updateUser(user).then(user => {
             $state.go('profile')
         })
     }
-
+    $scope.downloadCredential = id => {
+        documentFactory.getDocumentById(id).then(doc => {
+            var blob = new Blob([doc.data.data], {
+                type: doc.type
+            });
+            FileSaver.saveAs(blob, doc.name);
+        })
+    }
+    $scope.test = function() {
+        userFactory.changeProfile($scope.user.id, $scope.newProfilePic).then(response => {
+            console.log(response)
+        })
+    }
+    $scope.uploadCredential = () => {
+        documentFactory.createUserDocument($scope.newCredential, $scope.user).then(response => {
+            $scope.credentials.push($scope.newCredential)
+            $scope.newCredentials = null
+            document.getElementById('credentialSelect').valu(null)
+        })
+    }
 
 
     $scope.openBrowse = function(evt, tabSelection) {

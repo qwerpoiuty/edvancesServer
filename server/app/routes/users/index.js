@@ -5,6 +5,11 @@ var _ = require('lodash');
 var chalk = require('chalk')
 var db = require('../../../db');
 var User = db.model('user')
+var multer = require('multer')
+var storage = multer.memoryStorage()
+var upload = multer({
+    storage: storage
+})
 
 var ensureAuthenticated = function(req, res, next) {
     var err;
@@ -79,8 +84,6 @@ router.post('/delete', ensureAuthenticated, (req, res) => {
 
 
 router.post('/update', ensureAuthenticated, (req, res) => {
-    console.log(req.body)
-    console.log(chalk.blue.bgYellow.bold("UPDATE ROUTE"))
     const updates = req.body.updates;
     User.findOne({
         where: {
@@ -94,4 +97,33 @@ router.post('/update', ensureAuthenticated, (req, res) => {
                 });
             })
     })
+})
+
+router.post('/profilePic/:id', ensureAuthenticated, upload.single('profilePic'), (req, res) => {
+    console.log('hello', req.file)
+    User.findById(req.params.id)
+        .then(function(user) {
+            return user.update({
+                profilePic: req.file.buffer
+            })
+        }).then(function(updatedUser) {
+            res.send({
+                updatedUser: _.omit(updatedUser.toJSON(), ['password', 'salt'])
+            });
+        })
+})
+router.post('/doc/:id', upload.single('doc'), function(req, res) {
+    User.findById(req.params.id)
+        .then(function(user) {
+            if (user.documents === null) {
+                user.documents = [req.file.buffer]
+            } else {
+                user.documents.push(req.file.buffer)
+            }
+            return user.save()
+        }).then(function(updatedUser) {
+            res.send({
+                updatedUser: _.omit(updatedUser.toJSON(), ['password', 'salt'])
+            });
+        })
 })

@@ -60,11 +60,6 @@ module.exports = function(app, db) {
                 error.status = 401;
                 return next(error);
             }
-            if (user.locked) {
-                var error = new Error('Locked');
-                error.status = 400;
-                return next(error)
-            }
             // req.logIn will establish our session.
             req.logIn(user, function(loginErr) {
                 if (loginErr) return next(loginErr);

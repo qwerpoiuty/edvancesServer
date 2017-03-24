@@ -16,23 +16,24 @@ app.config(function($stateProvider) {
 
 app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom) {
     $scope.classroom = classroom[0][0]
-    console.log($scope.classroom)
-    $scope.launch = () => {
-        var modal = $uibModal.open({
-            templateUrl: "js/common/modals/jitsi/jitsi.html",
-            controller: `jitsiCtrl`,
-            size: 'lg',
-            resolve: {
-                room: () => {
-                    return $scope.classroom.id
-                }
-            }
-        })
-        modal.result.then((result) => {
-            if (result) {
-                $scope.selectedProject.members = result
-                $scope.refreshSingleProject($scope.selectedProject.project_id)
-            }
+    console.log(classroom)
+    var domain = "meet.jit.si";
+    var width = 740;
+    var height = 422;
+    $scope.joined = false
+    console.log($scope.user)
+    $scope.room = `${$scope.user.id}${$scope.classroom.id}`
+    $scope.test = () => {
+        $scope.joined = true
+        $scope.videoApi = new JitsiMeetExternalAPI(domain, "test", width, height, document.getElementById("jitsi"));
+        $scope.videoApi.executeCommand('toggleFilmStrip')
+    }
+
+    $scope.close = () => {
+        $scope.joined = false
+        $scope.videoApi.dispose().then(() => {
+
+            $uibModalInstance.close()
         })
     }
 });
