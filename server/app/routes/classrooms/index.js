@@ -5,6 +5,20 @@ var _ = require('lodash');
 var chalk = require('chalk')
 var db = require('../../../db');
 var Classroom = db.model('classroom')
+var multer = require('multer')
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './server/uploads/classrooms')
+    },
+    filename: function(req, file, cb) {
+        if (req.owner !== null) {
+            cb(null, 'C_' + req.params.id + '-' + file.originalname + '-')
+        }
+    }
+})
+var upload = multer({
+    storage: storage
+})
 
 var ensureAuthenticated = function(req, res, next) {
     var err;
@@ -24,11 +38,11 @@ router.get('/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/:id', ensureAuthenticated, (req, res) => {
-    db.query(`select teacher.name as teacher_name, c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location 
+    db.query(`select teacher.id as teacher_id, teacher.name as teacher_name, c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject 
 from classrooms c
 inner join users as teacher
 on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom => {
-        res.json(classroom)
+        res.json(classroom[0])
     })
 })
 

@@ -6,7 +6,16 @@ var chalk = require('chalk')
 var db = require('../../../db');
 var User = db.model('user')
 var multer = require('multer')
-var storage = multer.memoryStorage()
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './server/uploads/users')
+    },
+    filename: function(req, file, cb) {
+        if (req.owner !== null) {
+            cb(null, req.params.id + '-' + file.originalname + '-')
+        }
+    }
+})
 var upload = multer({
     storage: storage
 })

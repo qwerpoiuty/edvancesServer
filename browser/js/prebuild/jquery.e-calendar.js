@@ -5,7 +5,6 @@
  */
 
 (function($) {
-
     var eCalendar = function(options, object) {
         // Initializing global variables
         var adDay = new Date().getDate();

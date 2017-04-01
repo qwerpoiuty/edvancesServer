@@ -34,6 +34,10 @@ module.exports = db.define('user', {
     },
     location: {
         type: Sequelize.STRING
+    },
+    teacherOptions: {
+        type: Sequelize.JSON
+            //Teachinglevel, experience, credentials,bio, hours
     }
 }, {
     instanceMethods: {

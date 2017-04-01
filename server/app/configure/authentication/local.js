@@ -39,11 +39,6 @@ module.exports = function(app, db) {
         passwordField: 'password'
     }, strategyFn));
 
-    app.post('/lock', function(req, res, next) {
-        db.query(`update users set locked = true where users.email = '${req.body.email}'`).then(() => {
-            res.sendStatus(200)
-        })
-    })
 
     // A POST /login route is created to handle login.
     app.post('/login', function(req, res, next) {

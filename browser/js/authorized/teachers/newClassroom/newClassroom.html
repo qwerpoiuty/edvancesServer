@@ -20,7 +20,7 @@
                             <li id="course-tab" class="tablinks active" ng-click="openBrowse('course-tab','tab-1')">
                                 <a data-target="#tab-1" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-align-left"></i> Course</a>
                             </li>
-                            <li id="meta-tab" class="tablinks" ng-click="openBrowse('meta-tab','tab-2')">
+                            <li id="meta-tab" class="tablinks">
                                 <a data-target="#tab-2" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-credit-card"></i> Meta</a>
                             </li>
 <!--                             <li id='lessons-tab' class="tablinks" ng-click="openBrowse('lessons-tab','tab-3')">
@@ -89,29 +89,52 @@
                                                     <label class="col-sm-2 control-label">Category </label>
                                                     <div class="col-sm-4">
                                                         <select name="carlist" form="carform" class="form-control" ng-model="newClassroom.subject">
-                                                            <option value="">Mathematics</option>
-                                                            <option value="">Vat 2</option>
-                                                            <option value="">Vat 3</option>
-                                                            <option value="">Vat 4</option>
+                                                            <option value="Mathematics">Mathematics</option>
+                                                            <option value="English">English</option>
+                                                            <option value="Science">Science</option>
+                                                            <option value="History">History</option>
                                                         </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Course Days </label>
-                                                    <div class="col-sm-8">
-                                                        
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Start Date</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" ng-model="newClassroom.startDate" class="form-control" placeholder="What is the course start date?">
+                                                        <input type="date" ng-model="newClassroom.startDate" class="form-control" placeholder="What is the course start date?">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">End Date</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" ng-model="newClassroom.endDate" class="form-control" placeholder="When does the course finish?">
+                                                        <input type="date" ng-model="newClassroom.endDate" class="form-control" placeholder="When does the course finish?">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Course Days </label>
+                                                    <div class="col-sm-8">
+                                                        <div class="weekDays-selector">
+                                                          <input type="checkbox" id="weekday-mon" ng-model="days[0]" class="weekday" />
+                                                          <label for="weekday-mon">M</label>
+                                                          <input type="checkbox" id="weekday-tue" ng-model="days[1]" class="weekday" />
+                                                          <label for="weekday-tue">T</label>
+                                                          <input type="checkbox" id="weekday-wed" ng-model="days[2]" class="weekday" />
+                                                          <label for="weekday-wed">W</label>
+                                                          <input type="checkbox" id="weekday-thu" ng-model="days[3]" class="weekday" />
+                                                          <label for="weekday-thu">T</label>
+                                                          <input type="checkbox" id="weekday-fri" ng-model="days[4]" class="weekday" />
+                                                          <label for="weekday-fri">F</label>
+                                                          <input type="checkbox" id="weekday-sat" ng-model="days[5]" class="weekday" />
+                                                          <label for="weekday-sat">S</label>
+                                                          <input type="checkbox" id="weekday-sun" ng-model="days[6]" class="weekday" />
+                                                          <label for="weekday-sun">S</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row" ng-repeat="(key,value) in days">
+                                                        <label class="col-sm-2 control-label">{{weekdays[key]}}: </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="time" id="exampleInput" name="input" ng-model="times[key]" placeholder="HH:mm:ss" required />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

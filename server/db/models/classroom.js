@@ -27,10 +27,11 @@ module.exports = db.define('classroom', {
         type: Sequelize.DATE
     },
     times: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
+        type: Sequelize.JSON
     },
     lessons: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        defaultValue: []
     },
     description: {
         type: Sequelize.TEXT

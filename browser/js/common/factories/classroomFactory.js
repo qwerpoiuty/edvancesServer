@@ -34,8 +34,25 @@ app.factory('classroomFactory', function($http) {
         })
     }
 
-    d.getLesson = (classroomId) => {
-        return $http.get('/api/lessons/classroomLesson/' + classroomId).then(response => {
+    d.getClassroomLessons = (classroomId) => {
+        return $http.get('/api/lessons/classroomLessons/' + classroomId).then(response => {
+            return response.data
+        })
+    }
+
+    d.getLessonDocuments = (array) => {
+        var query = {
+            array: array
+        }
+        return $http.get('/api/documents/array', {
+            params: query
+        }).then(response => {
+            return response.data
+        })
+    }
+
+    d.updateLesson = (lessonId, attributes) => {
+        return $http.post('/api/lessons/update/' + lessonId, attributes).then(response => {
             return response.data
         })
     }

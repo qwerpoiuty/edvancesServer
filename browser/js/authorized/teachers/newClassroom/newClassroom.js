@@ -7,11 +7,23 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, classroomFactory) {
+app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, classroomFactory, moment) {
     // $("#editor").wysiwyg()
+    $scope.days, $scope.times = {}
+    $scope.classroomTimes = {}
+    $scope.weekdays = {
+        0: 'Monday',
+        1: 'Tuesday',
+        2: 'Wednesday',
+        3: 'Thursday',
+        4: 'Friday',
+        5: 'Saturday',
+        6: 'Sunday'
+    }
     $scope.createClass = (classroom) => {
-        classroom.teacher = $scope.user.id
         console.log(classroom)
+        classroom.teacher = $scope.user.id
+        classroom.times = $scope.times
         classroomFactory.createClassroom(classroom).then(classroom => {
             $state.go("classroom", {
                 id: classroom.id

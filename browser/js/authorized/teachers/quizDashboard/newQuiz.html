@@ -1,0 +1,206 @@
+<div class="col">
+    <div class="content-wrapper mycourses">
+        <!-- main header -->
+        <div class=" lter wrapper-md bredcrumb">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <a ui-sref="app.quizmanager"><small class="text-muted">Quiz Manager</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">New Quiz</small>
+                </div>
+            </div>
+        </div>
+        <!-- / main header -->
+        <div class="pad-20">
+            <div class="vbox outlined ">
+                <div class="nav-tabs-alt tab-wrap">
+                    <ul class="nav nav-tabs nav-justified profile-tab">
+                        <li class="active">
+                            <a data-target="#tab-1" role="tab" data-toggle="tab" class="light-text"><i class="fa fa-lock"></i> Quiz</a>
+                        </li>
+                        <li>
+                            <a data-target="#tab-3" role="tab" data-toggle="tab" class="light-text"><i class="fa fa-question-circle"></i> Questions</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row-row">
+                    <div class="cell scrollable hover">
+                        <div class="cell-inner">
+                            <div class="tab-content">
+                                <!--Edit Profile Tab Start-->
+                                <div class="tab-pane active" id="tab-1">
+                                    <div class="wrapper-md">
+                                        <form class="form-horizontal" method="get">
+                                            <div class="form-group mar-20">
+                                                <label class="col-sm-2 control-label">Quiz Image</label>
+                                                <div class="col-sm-8">
+                                                    <div class="user-thumb"><img src="img/placeholder.png" title="John Doe" alt="John Doe" /></div>
+                                                    <a href="" class="fill-btn change-pro slim-btn">Change</a>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Title</label>
+                                                <div class="col-sm-8">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control" placeholder="Enter Quiz Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group select-field">
+                                                <label class="col-sm-2 control-label">Course </label>
+                                                <div class="col-sm-4">
+                                                    <select name="carlist" form="carform" class="form-control">
+                                                        <option value="">Fractions 101 - GR10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Timeframe</label>
+                                                <div class="col-sm-10">
+                                                    <label class="i-switch i-switch-lg bg-dark m-t-xs m-r">
+                                                        <input type="checkbox">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group select-field m-b-30">
+                                                <label class="col-sm-2 control-label hide-767"></label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control special-input" placeholder="Hours" value="2">
+                                                    <select name="carlist" form="carform" class="form-control special-select">
+                                                        <option value="">Hours</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label"></label>
+                                                <div class="col-sm-8">
+                                                    <button type="submit" class="fill-btn">Save Quiz</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--Edit Quiz Question Start-->
+                                <div class="tab-pane" id="tab-3">
+                                    <div class="wrapper-md">
+                                        <div class="clearfix max-wid-920 small-title">
+                                            <div class="title-box float-lt m-t-10">
+                                                <span class="main-title">5 Questions</span>
+                                            </div>
+                                            
+                                            <span ng-controller="ModalDemoCtrl">
+                                              <script type="text/ng-template" id="myModalContent.html">
+                                                <div ng-include="'tpl/add_question.html'"></div>
+                                              </script>
+                                              <button class="fill-btn float-rt slim-btn m-b-20" ng-click="open('md')">Add Question</button>
+                                            </span>
+                                        </div>
+                                        <ul ui-jq="sortable" class="list-group gutter list-group-lg list-group-sp max-wid-920">
+                                            <li class="list-group-item">
+                                                <div class="text-wrap">
+                                                    <span class="pull-right edit-btn">
+                                                        <span ng-controller="ModalDemoCtrl">
+                                                          <script type="text/ng-template" id="myModalContent.html">
+                                                            <div ng-include="'tpl/add_question.html'"></div>
+                                                          </script>
+                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
+                                                        </span>
+                                                    </span>
+                                                    <div class="clear">
+                                                        <span class="pro-img-list">
+                                                    <img src="img/ls1.jpg" title="User" alt="User"></span>
+                                                        <span class="activity-title">Introduction<br>  
+                                                    <span class="desc-det">updated 1 month ago</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="text-wrap">
+                                                    <span class="pull-right edit-btn">
+                                                        <span ng-controller="ModalDemoCtrl">
+                                                          <script type="text/ng-template" id="myModalContent.html">
+                                                            <div ng-include="'tpl/add_question.html'"></div>
+                                                          </script>
+                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
+                                                        </span>
+                                                    </span>
+                                                    <div class="clear">
+                                                        <span class="pro-img-list">
+                                                    <img src="img/ls2.jpg" title="User" alt="User"></span>
+                                                        <span class="activity-title">Lesson Name Goes Here<br>  
+                                                    <span class="desc-det">updated 1 month ago</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="text-wrap">
+                                                    <span class="pull-right edit-btn">
+                                                        <span ng-controller="ModalDemoCtrl">
+                                                          <script type="text/ng-template" id="myModalContent.html">
+                                                            <div ng-include="'tpl/add_question.html'"></div>
+                                                          </script>
+                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
+                                                        </span>
+                                                    </span>
+                                                    <div class="clear">
+                                                        <span class="pro-img-list">
+                                                    <img src="img/ls3.jpg" title="User" alt="User"></span>
+                                                        <span class="activity-title">Lesson Name Goes Here<br>  
+                                                    <span class="desc-det">updated 1 month ago</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="text-wrap">
+                                                    <span class="pull-right edit-btn">
+                                                        <span ng-controller="ModalDemoCtrl">
+                                                          <script type="text/ng-template" id="myModalContent.html">
+                                                            <div ng-include="'tpl/add_question.html'"></div>
+                                                          </script>
+                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
+                                                        </span>
+                                                    </span>
+                                                    <div class="clear">
+                                                        <span class="pro-img-list">
+                                                    <img src="img/ls4.jpg" title="User" alt="User"></span>
+                                                        <span class="activity-title">Lesson Name Goes Here<br>  
+                                                    <span class="desc-det">updated 1 month ago</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="text-wrap">
+                                                    <span class="pull-right edit-btn">
+                                                        <span ng-controller="ModalDemoCtrl">
+                                                          <script type="text/ng-template" id="myModalContent.html">
+                                                            <div ng-include="'tpl/add_question.html'"></div>
+                                                          </script>
+                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
+                                                        </span>
+                                                    </span>
+                                                    <div class="clear">
+                                                        <span class="pro-img-list">
+                                                    <img src="img/ls5.jpg" title="User" alt="User"></span>
+                                                        <span class="activity-title">Lesson Name Goes Here<br>  
+                                                    <span class="desc-det">updated 1 month ago</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+</div>

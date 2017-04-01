@@ -1,10 +1,10 @@
 'use strict';
-window.app = angular.module('edvances', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngFileSaver']);
+window.app = angular.module('edvances', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngFileSaver', 'ngFileUpload', 'angularMoment']);
 
 app.config(function($urlRouterProvider, $locationProvider, $compileProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(|blob|):/);
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data|chrome-extension):/);
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
     $urlRouterProvider.otherwise('/');
     // Trigger page refresh when accessing an OAuth route
