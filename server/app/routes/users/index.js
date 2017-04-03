@@ -86,7 +86,7 @@ router.post('/profilePic/:id', upload.single('profilePic'), (req, res) => {
                     res.json({
                         status: 200,
                         message: 'Successfully uploaded',
-                        data: user
+                        data: _.omit(user.toJSON(), ['password', 'salt'])
                     })
                 })
             }

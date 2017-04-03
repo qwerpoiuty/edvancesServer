@@ -9,7 +9,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory, $state, documentFactory, $stateParams) {
+app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory, $state, documentFactory, $stateParams, AuthService) {
 
     $scope.teacher = ($scope.user.role == 1)
     if ($scope.user.profilePic) {
@@ -30,7 +30,7 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
 
     $scope.changeProfilePic = pic => {
         userFactory.changeProfilePic(pic, $scope.user.id).then(response => {
-            $scope.user = response.data
+            AuthService.getLoggedInUser()
         })
     }
     $scope.updateUser = user => {
