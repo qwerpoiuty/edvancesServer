@@ -12,11 +12,11 @@ app.factory('documentFactory', function($http) {
             return response.data
         })
     }
-    d.createUserDocument = (doc, user) => {
+    d.updateProfilePic = (doc, user) => {
         var file = doc;
         var fd = new FormData();
         fd.append('credential', file);
-        return $http.post('/api/documents/user/' + user.id, fd, {
+        return $http.post('/api/documents/user/profile/' + user, fd, {
             transformRequest: angular.identity,
             headers: {
                 'Content-Type': undefined
@@ -25,6 +25,7 @@ app.factory('documentFactory', function($http) {
             return response.data
         })
     }
+
     d.createLessonDocument = (doc, lessonId) => {
         var file = doc;
         var fd = new FormData();

@@ -24,7 +24,7 @@ module.exports = db.define('user', {
         type: Sequelize.STRING
     },
     profilePic: {
-        type: Sequelize.BLOB
+        type: Sequelize.STRING
     },
     grade: {
         type: Sequelize.STRING

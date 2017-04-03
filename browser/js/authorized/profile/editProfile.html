@@ -38,15 +38,8 @@
                                                 <div class="form-group mar-20">
                                                     <label class="col-sm-2 control-label">Avatar</label>
                                                     <div class="col-sm-8">
-                                                        <div class="user-thumb"><img id="john" title="John Doe" alt="John Doe" /></div>
-                                                        <input style="width: 0.1px;
-                                                                height: 0.1px;
-                                                                opacity: 0;
-                                                                overflow: hidden;
-                                                                position: absolute;
-                                                                z-index: -1;"
-                                                                type="file" name="file" id="file" class="inputfile" file-model="newProfilePic" />
-                                                        <label for="file" href="" class="fill-btn change-pro">Change</lable>
+                                                        <div class="user-thumb"><img id="john" title="John Doe" alt="John Doe" src="https://edvances.blob.core.windows.net/profile-pictures/{{user.profilePic}}" /></div>
+                                                        <button ng-if="teacher" type="file" class="fill-btn change-pro" ngf-select="changeProfilePic($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="2MB">Change</button>
                                                     </div>
                                                     
                                                 </div>
@@ -58,12 +51,6 @@
                                                                 <input type="text" class="form-control" placeholder="Full Name" ng-model="user.name">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Grade Level</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" placeholder="Highest Grade Level" ng-model="user.grade">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -90,11 +77,19 @@
                                                         <input type="text" class="form-control" placeholder="Where are you located?" ng-model="user.location">
                                                     </div>
                                                 </div>
+                                                <div ng-if="!teacher">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Grade Level</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Highest Grade Level" ng-model="user.grade">
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Interests</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control" placeholder="What subjects are you interested in?" ng-model="user.interests">
                                                     </div>
+                                                </div>
                                                 </div>
                                                 <!-- <div class="form-group mar-btm-30">
                                                     <label class="col-sm-2 control-label"></label>
@@ -107,6 +102,65 @@
                                                         </div>
                                                     </div>
                                                 </div> -->
+                                                <!-- /teacherOptions -->
+                                                <div ng-if="teacher">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Teaching Title</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="What is your title?" ng-model="user.teacherOptions.title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Teaching Level</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="What level do you teacher?" ng-model="user.teacherOptions.teachingLevel">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">How much experience do you have?</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="How many years of experience do you have?" ng-model="user.teacherOptions.experience">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Bio</label>
+                                                    <div class="col-sm-8">
+                                                        <textarea type="text" class="form-control" placeholder="Tell us about yourself" ng-model="user.teacherOptions.bio"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Availability</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="weekDays-selector">
+                                                          <input type="checkbox" id="weekday-mon" ng-model="days[0]" class="weekday" />
+                                                          <label for="weekday-mon">M</label>
+                                                          <input type="checkbox" id="weekday-tue" ng-model="days[1]" class="weekday" />
+                                                          <label for="weekday-tue">T</label>
+                                                          <input type="checkbox" id="weekday-wed" ng-model="days[2]" class="weekday" />
+                                                          <label for="weekday-wed">W</label>
+                                                          <input type="checkbox" id="weekday-thu" ng-model="days[3]" class="weekday" />
+                                                          <label for="weekday-thu">T</label>
+                                                          <input type="checkbox" id="weekday-fri" ng-model="days[4]" class="weekday" />
+                                                          <label for="weekday-fri">F</label>
+                                                          <input type="checkbox" id="weekday-sat" ng-model="days[5]" class="weekday" />
+                                                          <label for="weekday-sat">S</label>
+                                                          <input type="checkbox" id="weekday-sun" ng-model="days[6]" class="weekday" />
+                                                          <label for="weekday-sun">S</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row" ng-repeat="(key,value) in days">
+                                                        <label class="col-sm-2 control-label">{{weekdays[key]}}: </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="time" id="exampleInput" name="input" ng-model="times[key].start" placeholder="HH:mm:ss" required /> 
+                                                            to 
+                                                            <input type="time" id="exampleInput" name="input" ng-model="times[key].end" placeholder="HH:mm:ss" required />
+                                                            <pre>{{times}}</pre>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"></label>
                                                     <div class="col-sm-8">

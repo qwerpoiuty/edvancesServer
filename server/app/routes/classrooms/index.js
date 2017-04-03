@@ -45,6 +45,12 @@ on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom
         res.json(classroom[0])
     })
 })
+router.get('/user/:id', (req, res) => {
+    //remember to fetch prices here as well
+    db.query(`select c.description,c."startDate",c.times, c.subject,c.title from classrooms c inner join users u on u.id = c.teacher where u.id = ${req.params.id}`).then(classrooms => {
+        res.json(classrooms[0])
+    })
+})
 
 router.post('/', ensureAuthenticated, (req, res) => {
     Classroom.create(req.body).then(classroom => {

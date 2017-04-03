@@ -6,19 +6,22 @@ var chalk = require('chalk')
 var db = require('../../../db');
 var Document = db.model('document')
 var multer = require('multer')
-var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './server/uploads/users')
-    },
-    filename: function(req, file, cb) {
-        if (req.owner !== null) {
-            cb(null, req.params.id + '-' + file.originalname + '-')
-        }
-    }
-})
+var azure = require('azure-storage');
+var blobSvc = azure.createBlobService('DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net')
+var storage = multer.memoryStorage();
+var streamifier = require('streamifier');
+// var storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//         cb(null, './browser/uploads/lessons')
+//     },
+//     filename: function(req, file, cb) {
+//         cb(null, 'L_' + req.params.id + '-' + file.originalname)
+//     }
+// })
 var upload = multer({
     storage: storage
 })
+
 
 var ensureAuthenticated = function(req, res, next) {
     var err;

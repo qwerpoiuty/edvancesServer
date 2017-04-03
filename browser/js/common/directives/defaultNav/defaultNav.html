@@ -8,8 +8,10 @@
                 <div class="col-sm-7 text-right">
                     <ul>
                         <li><i class="fa fa-mobile"></i> Call Us +888 234 5678</li>
-                        <li><a href="#loginmodal" class="login-link" data-toggle="modal"> Login</a></li>
-                        <li><a href="#register" class="login-link" data-toggle="modal">Signup</a></li>
+                        <li ng-if="!user"><a class="login-link" ng-click="loginModal()"> Login</a></li>
+                        <li ng-if="!user"><a class="login-link" ng-click="signupModal()">Signup</a></li>
+                        <li ng-if="user" class="login"><a class="login-link" ui-sref="dashboard" ui-sref-active="active">My Dashboard</a></li>
+                        <li><a ng-if="user" class="login-link" ng-click="logout()">Logout</a></li>
                     </ul>
                 </div>
             </div>

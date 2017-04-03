@@ -9,9 +9,9 @@ app.factory('userFactory', function($http) {
         })
     }
 
-    d.findSingleUser = (email) => {
+    d.findSingleUser = (id) => {
         var query = {
-            email: email
+            id: id
         }
         return $http.get('/api/users/single', {
             params: query
@@ -34,7 +34,7 @@ app.factory('userFactory', function($http) {
             return response.data
         })
     }
-    d.changeProfile = (userId, picture) => {
+    d.changeProfilePic = (picture, userId) => {
         var file = picture;
         var fd = new FormData();
         fd.append('profilePic', file);

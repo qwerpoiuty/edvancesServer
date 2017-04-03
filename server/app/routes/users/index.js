@@ -6,19 +6,22 @@ var chalk = require('chalk')
 var db = require('../../../db');
 var User = db.model('user')
 var multer = require('multer')
-var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './server/uploads/users')
-    },
-    filename: function(req, file, cb) {
-        if (req.owner !== null) {
-            cb(null, req.params.id + '-' + file.originalname + '-')
-        }
-    }
-})
+var azure = require('azure-storage');
+var blobSvc = azure.createBlobService('DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net')
+var storage = multer.memoryStorage();
+var streamifier = require('streamifier');
+// var storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//         cb(null, './browser/uploads/lessons')
+//     },
+//     filename: function(req, file, cb) {
+//         cb(null, 'L_' + req.params.id + '-' + file.originalname)
+//     }
+// })
 var upload = multer({
     storage: storage
 })
+
 
 var ensureAuthenticated = function(req, res, next) {
     var err;
@@ -37,13 +40,11 @@ router.get('/', ensureAuthenticated, (req, res) => {
     })
 })
 
-router.get('/email', ensureAuthenticated, (req, res) => {
+router.get('/single', ensureAuthenticated, (req, res) => {
     User.findOne({
         where: {
-            email: req.query.email
-        },
-        attributes: ['id', 'email']
-
+            id: req.query.id
+        }
     }).then(user => {
         res.json(user)
     })
@@ -70,6 +71,26 @@ router.post('/', (req, res) => {
             res.json(message)
         }
     })
+})
+
+router.post('/profilePic/:id', upload.single('profilePic'), (req, res) => {
+    var stream = streamifier.createReadStream(req.file.buffer)
+    var picName = req.params.id + '-' + req.file.originalname
+    blobSvc.createBlockBlobFromStream('profile-pictures', req.params.id + '-' + req.file.originalname, stream, req.file.size,
+        function(error, result, response) {
+            if (!error) {
+                User.findById(req.params.id).then(user => {
+                    user.profilePic = picName
+                    return user.save()
+                }).then((user) => {
+                    res.json({
+                        status: 200,
+                        message: 'Successfully uploaded',
+                        data: user
+                    })
+                })
+            }
+        })
 })
 
 router.post('/delete', ensureAuthenticated, (req, res) => {

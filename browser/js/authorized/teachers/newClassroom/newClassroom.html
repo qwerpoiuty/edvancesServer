@@ -20,8 +20,8 @@
                             <li id="course-tab" class="tablinks active" ng-click="openBrowse('course-tab','tab-1')">
                                 <a data-target="#tab-1" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-align-left"></i> Course</a>
                             </li>
-                            <li id="meta-tab" class="tablinks">
-                                <a data-target="#tab-2" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-credit-card"></i> Meta</a>
+                            <li id="meta-tab" class="tablinks" labe>
+                                <a ng-disabled="basicInfo.$invalid" class="light-text tablinks"><i class="fa fa-credit-card"></i> Meta</a>
                             </li>
 <!--                             <li id='lessons-tab' class="tablinks" ng-click="openBrowse('lessons-tab','tab-3')">
                                 <a data-target="#tab-3" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-file-text-o"></i> Lessons</a>
@@ -36,7 +36,7 @@
                                     <!--Create Course Start-->
                                     <div class="tab-pane active" id="tab-1">
                                         <div class="wrapper-md">
-                                            <form class="form-horizontal" ng-submit="openBrowse('meta-tab','tab-2')">
+                                            <form name = "basicInfo" class="form-horizontal" ng-submit="openBrowse('meta-tab','tab-2')">
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Title</label>
                                                     <div class="col-sm-8">
@@ -89,7 +89,7 @@
                                                     <label class="col-sm-2 control-label">Category </label>
                                                     <div class="col-sm-4">
                                                         <select name="carlist" form="carform" class="form-control" ng-model="newClassroom.subject">
-                                                            <option value="Mathematics">Mathematics</option>
+                                                            <option selected="selected" value="Mathematics">Mathematics</option>
                                                             <option value="English">English</option>
                                                             <option value="Science">Science</option>
                                                             <option value="History">History</option>
