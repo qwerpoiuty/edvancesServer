@@ -1,4 +1,4 @@
-app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, $uibModal) {
 
     return {
         restrict: 'E',
@@ -7,27 +7,22 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state) 
         link: function(scope) {
 
             scope.user = null;
-
             scope.isLoggedIn = function() {
                 return AuthService.isAuthenticated();
             };
-
             scope.logout = function() {
                 AuthService.logout().then(function() {
-                    $state.go('login');
+                    $state.go('home');
                 });
             };
-
             var setUser = function() {
                 AuthService.getLoggedInUser().then(function(user) {
                     scope.user = user;
                 });
             };
-
             var removeUser = function() {
                 scope.user = null;
             };
-
             scope.fold = function() {
                 document.getElementById('app').classList.toggle('app-aside-folded')
             }
@@ -35,6 +30,22 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state) 
                 console.log(node.target)
             }
             setUser();
+
+            scope.login = () => {
+                var modalInstance = $uibModal.open({
+                    templateUrl: "js/common/modals/login/login.html",
+                    controller: 'loginCtrl',
+                    size: 'md'
+                })
+            }
+
+            scope.signup = () => {
+                var modalInstance = $uibModal.open({
+                    templateUrl: "js/common/modals/signup/signup.html",
+                    controller: 'signupCtrl',
+                    size: 'md'
+                })
+            }
 
             $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);

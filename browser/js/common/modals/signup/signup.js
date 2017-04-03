@@ -1,22 +1,14 @@
-app.config(function($stateProvider) {
-    $stateProvider.state('signup', {
-        url: '/signup',
-        templateUrl: 'js/signup/signup.html',
-        controller: 'signupCtrl'
-    });
-
-})
-app.controller('signupCtrl', function($scope, $state, AuthService, userFactory) {
-
-    $scope.teacher = true
-
+app.controller('signupCtrl', function($scope, $state, AuthService, userFactory, $uibModalInstance) {
     $scope.signup = function(user) {
+        if (user.password !== user.confirm) {
+            $scope.authError = "Your passwords don't match"
+            return
+        }
         $scope.authError = null;
-
-        user.role = 1
         userFactory.createUser(user)
             .then(function(response) {
                 if (response) {
+                    $uibModalInstance.close(false)
                     return AuthService.login($scope.user).then(function(user) {
                         $state.go('dashboard')
                     })
@@ -25,5 +17,7 @@ app.controller('signupCtrl', function($scope, $state, AuthService, userFactory) 
                 }
             });
     };
-
+    $scope.close = () => {
+        $uibModalInstance.close(false)
+    }
 });
