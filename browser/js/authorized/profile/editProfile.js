@@ -9,15 +9,21 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory, $state, documentFactory, $stateParams, AuthService) {
+app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory, $state, documentFactory, $stateParams, AuthService, moment) {
 
     $scope.teacher = ($scope.user.role == 1)
-    if ($scope.user.profilePic) {
-        $scope.image = "img/a7.jpg"
-    } else {
-        $scope.image = "img/a7.jpg"
-    }
     $scope.times = {}
+    $scope.days = {}
+    Object.keys($scope.user.teacherOptions.times).forEach(time => {
+        $scope.times[time] = {}
+        $scope.times[time].start = new Date($scope.user.teacherOptions.times[time].start)
+        $scope.times[time].end = new Date($scope.user.teacherOptions.times[time].end)
+    })
+    console.log($scope.times)
+    for (let key in Object.keys($scope.times)) {
+        $scope.days[key] = true
+    }
+
     $scope.weekdays = {
         0: 'Monday',
         1: 'Tuesday',
@@ -30,12 +36,12 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
 
     $scope.changeProfilePic = pic => {
         userFactory.changeProfilePic(pic, $scope.user.id).then(response => {
-            AuthService.getLoggedInUser()
+            console.log(response)
+            $scope.getUpdatedUser(response.data.id)
         })
     }
     $scope.updateUser = user => {
         user.teacherOptions.times = $scope.times ? $scope.times : []
-        console.log(user)
         userFactory.updateUser(user).then(user => {
             $state.go('profile')
         })

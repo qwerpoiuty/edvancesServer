@@ -12,6 +12,12 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('authorizedCtrl', function($scope, user, $state) {
+app.controller('authorizedCtrl', function($scope, user, $state, userFactory) {
     $scope.user = user
+    $scope.getUpdatedUser = (id) => {
+        userFactory.findSingleUser(id).then(user => {
+            $scope.user = user
+            console.log(user)
+        })
+    }
 });

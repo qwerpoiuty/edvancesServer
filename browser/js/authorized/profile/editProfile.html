@@ -150,7 +150,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="row" ng-repeat="(key,value) in days">
+                                                    <div class="row" ng-repeat="(key,value) in days track by $index">
                                                         <label class="col-sm-2 control-label">{{weekdays[key]}}: </label>
                                                         <div class="col-sm-8">
                                                             <input type="time" id="exampleInput" name="input" ng-model="times[key].start" placeholder="HH:mm:ss" required /> 

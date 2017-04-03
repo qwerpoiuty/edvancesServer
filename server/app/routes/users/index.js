@@ -46,7 +46,7 @@ router.get('/single', ensureAuthenticated, (req, res) => {
             id: req.query.id
         }
     }).then(user => {
-        res.json(user)
+        res.json(_.omit(user.toJSON(), ['password', 'salt']))
     })
 })
 
@@ -130,7 +130,6 @@ router.post('/update', ensureAuthenticated, (req, res) => {
 })
 
 router.post('/profilePic/:id', ensureAuthenticated, upload.single('profilePic'), (req, res) => {
-    console.log('hello', req.file)
     User.findById(req.params.id)
         .then(function(user) {
             return user.update({
