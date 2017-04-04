@@ -13,7 +13,7 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
 
     $scope.teacher = ($scope.user.role == 1)
     $scope.times = {}
-    $scope.days = {}
+    $scope.days = [, , , , , , , ]
     Object.keys($scope.user.teacherOptions.times).forEach(time => {
         $scope.times[time] = {}
         $scope.times[time].start = new Date($scope.user.teacherOptions.times[time].start)
@@ -36,7 +36,6 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
 
     $scope.changeProfilePic = pic => {
         userFactory.changeProfilePic(pic, $scope.user.id).then(response => {
-            console.log(response)
             $scope.getUpdatedUser(response.data.id)
         })
     }

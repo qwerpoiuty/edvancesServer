@@ -37,15 +37,15 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         for (var key of Object.keys(times)) {
             if (today.isoWeekday() < key) {
                 $scope.nextLessonDay = $scope.weekdays[key]
-                $scope.nextLessonTime = moment(times[key]).format("hh:mm a")
+                $scope.nextLessonTime = moment(times[key].start).format("hh:mm a")
                 break
             } else if (today.isoWeekday() == key) {
                 $scope.nextLessonDay = "Today"
-                $scope.nextLessonTime = moment(times[key]).format("hh:mm a")
+                $scope.nextLessonTime = moment(times[key].start).format("hh:mm a")
                 break
             }
             $scope.nextLessonDay = $scope.weekdays[key]
-            $scope.nextLessonTime = moment(times[key]).format("hh:mm a")
+            $scope.nextLessonTime = moment(times[key].start).format("hh:mm a")
         }
         if (today > $scope.classroom.endDate) {
             $scope.nextLesson = 'This class is over'
