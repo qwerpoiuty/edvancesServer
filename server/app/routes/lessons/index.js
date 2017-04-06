@@ -51,7 +51,7 @@ router.get('/classroomLessons/:id', ensureAuthenticated, (req, res) => {
         res.json({
             status: 200,
             message: 'fetched',
-            payload: lessons
+            data: lessons
         })
     }).catch(() => {
         res.json({

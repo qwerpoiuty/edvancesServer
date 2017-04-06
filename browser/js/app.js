@@ -1,5 +1,5 @@
 'use strict';
-window.app = angular.module('edvances', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngFileSaver', 'ngFileUpload', 'angularMoment']);
+window.app = angular.module('edvances', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngFileSaver', 'ngFileUpload', 'angularMoment', 'uiRouterStyles']);
 
 app.config(function($urlRouterProvider, $locationProvider, $compileProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
@@ -47,7 +47,7 @@ app.run(function($rootScope, AuthService, $state) {
             if (user) {
                 $state.transitionTo(toState.name, toParams);
             } else {
-                $state.transitionTo('login');
+                $state.transitionTo('home');
             }
         });
 

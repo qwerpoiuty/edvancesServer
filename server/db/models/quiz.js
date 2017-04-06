@@ -23,11 +23,17 @@ module.exports = db.define('quiz', {
     description: {
         type: Sequelize.TEXT
     },
+    timeframe: {
+        type: Sequelize.INTEGER
+    },
     questions: {
         type: Sequelize.ARRAY(Sequelize.JSON)
     },
     participants: {
-        type: Sequelize.ARRAY(Sequelize.JSON)
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
+    },
+    thumbnail: {
+        type: Sequelize.STRING
     }
 }, {
     instanceMethods: {

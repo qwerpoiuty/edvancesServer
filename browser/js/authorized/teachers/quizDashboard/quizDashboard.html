@@ -31,10 +31,10 @@
                 <div class="col-md-12">
                     <form class="form-horizontal float-lt" method="get">
                         <div class="select-field clearfix">
-                            <label class="float-lt control-label">Sort by: </label>
+                            <label class="float-lt control-label">Select a classroom: </label>
                             <div class="sort-drop float-lt">
-                                <select name="carlist" form="carform" class="form-control ">
-                                    <option value="">Subject</option>
+                                <select name="carlist" form="carform" class="form-control" ng-model="selectedClassroom" ng-change="getQuiz(selectedClassroom.id)">
+                                    <option ng-repeat = "class in classrooms" value="{{class.id}}">{{class.title}}</option>
                                 </select>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
             <!-- / Quiz Listing controles end -->
             <!-- Quiz Listing start -->
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 quiz-block mar-btm-30">
+                <div class="col-lg-3 col-md-4 col-sm-6 quiz-block mar-btm-30" ng-repeat="quiz in quizes">
                     <img src="img/quiz-thumnail.jpg" alt="Quiz" title="Quiz">
                     <div class="outlined pad-20">
                         <div class="activity-title m-b-10a">Fractions 101-Quiz 1
@@ -64,108 +64,8 @@
                         </div>
                     </div>
                     <div class="outlined pad-10 clearfix no-top-border">
-                        <a href="" class="fill-btn float-lt slim-btn">Add Lesson</a>
                         <a href="" class="outlined-btn gray-btn float-rt"><i class="fa fa-pencil"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 quiz-block mar-btm-30">
-                    <img src="img/quiz-thumnail.jpg" alt="Quiz" title="Quiz">
-                    <div class="outlined pad-20">
-                        <div class="activity-title m-b-10a">Fractions 101-Quiz 1
-                            <br>
-                            <span class="desc-det">
-                                <span class="desc-lbl p-l-0">18 Completed</span>
-                            </span>
-                        </div>
-                        <div class="states">
-                            <span class="desc-det p-r-10"><i class="fa fa-question-circle"></i> 25 Q</span>
-                            <span class="desc-det p-r-10"><i class="fa fa-clock-o"></i> 15 min</span>
-                            <span class="desc-det"><i class="fa  fa-thumbs-up"></i> 25 pts</span>
-                        </div>
-                    </div>
-                    <div class="outlined pad-10 clearfix no-top-border">
-                        <a href="" class="fill-btn float-lt slim-btn">Add Lesson</a>
-                        <a href="" class="outlined-btn gray-btn float-rt"><i class="fa fa-pencil"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 quiz-block mar-btm-30">
-                    <img src="img/quiz-thumnail.jpg" alt="Quiz" title="Quiz">
-                    <div class="outlined pad-20">
-                        <div class="activity-title m-b-10a">Fractions 101-Quiz 1
-                            <br>
-                            <span class="desc-det">
-                                <span class="desc-lbl p-l-0">18 Completed</span>
-                            </span>
-                        </div>
-                        <div class="states">
-                            <span class="desc-det p-r-10"><i class="fa fa-question-circle"></i> 25 Q</span>
-                            <span class="desc-det p-r-10"><i class="fa fa-clock-o"></i> 15 min</span>
-                            <span class="desc-det"><i class="fa  fa-thumbs-up"></i> 25 pts</span>
-                        </div>
-                    </div>
-                    <div class="outlined pad-10 clearfix no-top-border">
-                        <a href="" class="fill-btn float-lt slim-btn">Add Lesson</a>
-                        <a href="" class="outlined-btn gray-btn float-rt"><i class="fa fa-pencil"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 quiz-block mar-btm-30">
-                    <img src="img/quiz-thumnail.jpg" alt="Quiz" title="Quiz">
-                    <div class="outlined pad-20">
-                        <div class="activity-title m-b-10a">Fractions 101-Quiz 1
-                            <br>
-                            <span class="desc-det">
-                                <span class="desc-lbl p-l-0">18 Completed</span>
-                            </span>
-                        </div>
-                        <div class="states">
-                            <span class="desc-det p-r-10"><i class="fa fa-question-circle"></i> 25 Q</span>
-                            <span class="desc-det p-r-10"><i class="fa fa-clock-o"></i> 15 min</span>
-                            <span class="desc-det"><i class="fa  fa-thumbs-up"></i> 25 pts</span>
-                        </div>
-                    </div>
-                    <div class="outlined pad-10 clearfix no-top-border">
-                        <a href="" class="fill-btn float-lt slim-btn">Add Lesson</a>
-                        <a href="" class="outlined-btn gray-btn float-rt"><i class="fa fa-pencil"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 quiz-block mar-btm-30">
-                    <img src="img/quiz-thumnail.jpg" alt="Quiz" title="Quiz">
-                    <div class="outlined pad-20">
-                        <div class="activity-title m-b-10a">Fractions 101-Quiz 1
-                            <br>
-                            <span class="desc-det">
-                                <span class="desc-lbl p-l-0">18 Completed</span>
-                            </span>
-                        </div>
-                        <div class="states">
-                            <span class="desc-det p-r-10"><i class="fa fa-question-circle"></i> 25 Q</span>
-                            <span class="desc-det p-r-10"><i class="fa fa-clock-o"></i> 15 min</span>
-                            <span class="desc-det"><i class="fa  fa-thumbs-up"></i> 25 pts</span>
-                        </div>
-                    </div>
-                    <div class="outlined pad-10 clearfix no-top-border">
-                        <a href="" class="fill-btn float-lt slim-btn">Add Lesson</a>
-                        <a href="" class="outlined-btn gray-btn float-rt"><i class="fa fa-pencil"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 quiz-block mar-btm-30">
-                    <img src="img/quiz-thumnail.jpg" alt="Quiz" title="Quiz">
-                    <div class="outlined pad-20">
-                        <div class="activity-title m-b-10a">Fractions 101-Quiz 1
-                            <br>
-                            <span class="desc-det">
-                                <span class="desc-lbl p-l-0">18 Completed</span>
-                            </span>
-                        </div>
-                        <div class="states">
-                            <span class="desc-det p-r-10"><i class="fa fa-question-circle"></i> 25 Q</span>
-                            <span class="desc-det p-r-10"><i class="fa fa-clock-o"></i> 15 min</span>
-                            <span class="desc-det"><i class="fa  fa-thumbs-up"></i> 25 pts</span>
-                        </div>
-                    </div>
-                    <div class="outlined pad-10 clearfix no-top-border">
-                        <a href="" class="fill-btn float-lt slim-btn">Add Lesson</a>
-                        <a href="" class="outlined-btn gray-btn float-rt"><i class="fa fa-pencil"></i></a>
+                        <a href="" class="fill-btn float-lt slim-btn">Delete</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 quiz-block mar-btm-30 add-quiz">

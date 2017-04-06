@@ -38,7 +38,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/:id', ensureAuthenticated, (req, res) => {
-    db.query(`select teacher.id as teacher_id, teacher.name as teacher_name, c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject 
+    db.query(`select c.id,teacher.id as teacher_id, teacher.name as teacher_name, c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject 
 from classrooms c
 inner join users as teacher
 on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom => {
@@ -47,7 +47,7 @@ on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom
 })
 router.get('/user/:id', (req, res) => {
     //remember to fetch prices here as well
-    db.query(`select c.description,c."startDate",c.times, c.subject,c.title from classrooms c inner join users u on u.id = c.teacher where u.id = ${req.params.id}`).then(classrooms => {
+    db.query(`select c.id,c.description,c."startDate",c.times, c.subject,c.title from classrooms c inner join users u on u.id = c.teacher where u.id = ${req.params.id}`).then(classrooms => {
         res.json(classrooms[0])
     })
 })

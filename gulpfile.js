@@ -98,20 +98,18 @@ gulp.task('testBrowserJS', function(done) {
     }, done);
 });
 
-gulp.task('buildCSS', function() {
+gulp.task('buildPublicCSS', function() {
 
-    var lessStream = gulp.src('./browser/theme/less/_main.less')
-        .pipe(less())
-        .pipe(concat('less-files.less'));
+
 
     var scssStream = gulp.src('./browser/scss/main.scss')
         .pipe(sass())
         .pipe(concat('scss-files.scss'));
 
-    var cssStream = gulp.src(['./browser/theme/app.css', './browser/theme/font.css', './browser/theme/jquery.e-calendar.css', './material-design-icons.css', './browser/theme/md.css', './browser/theme/custom.css'])
+    var cssStream = gulp.src(['./browser/theme/custom.css'])
         .pipe(concat('css-files.css'));
 
-    var mergedStream = merge(lessStream, scssStream, cssStream)
+    var mergedStream = merge(scssStream, cssStream)
         .pipe(concat('styles.css'))
         .pipe(gulp.dest('./public'));
 
@@ -130,6 +128,20 @@ gulp.task('buildCSS', function() {
     //     .pipe(rename('style.css'))
     //     .pipe(gulp.dest('./public'));
 });
+
+gulp.task('buildPrivateCSS', function() {
+    var lessStream = gulp.src('./browser/theme/less/_main.less')
+        .pipe(less())
+        .pipe(concat('less-files.less'));
+
+    var cssStream = gulp.src(['./browser/theme/app.css', './browser/theme/font.css', './browser/theme/jquery.e-calendar.css', './material-design-icons.css', './browser/theme/md.css', './browser/theme/private-custom.css'])
+
+    var mergedStream = merge(lessStream, cssStream)
+        .pipe(concat('private-styles.css'))
+        .pipe(gulp.dest('./public'))
+
+    return mergedStream
+})
 
 // Production tasks
 // --------------------------------------------------------------
@@ -162,7 +174,7 @@ gulp.task('build', function() {
     if (process.env.NODE_ENV === 'production') {
         runSeq(['buildJSProduction', 'buildCSSProduction']);
     } else {
-        runSeq(['buildJS', 'buildCSS']);
+        runSeq(['buildJS', 'buildPublicCSS', 'buildPrivateCSS']);
     }
 });
 

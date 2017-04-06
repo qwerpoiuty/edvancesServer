@@ -7,6 +7,15 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('quizDashboardCtrl', ($scope) => {
-
+app.controller('quizDashboardCtrl', ($scope, quizFactory, classroomFactory) => {
+    classroomFactory.getClassroomsByUser($scope.user.id).then(classrooms => {
+        $scope.classrooms = classrooms
+        $scope.selectedClassroom = $scope.classrooms[0]
+    })
+    $scope.getQuiz = (id) => {
+        console.log(id)
+        quizFactory.getQuizzesByClassroom(id).then(quizes => {
+            $scope.quizes = quizes
+        })
+    }
 })

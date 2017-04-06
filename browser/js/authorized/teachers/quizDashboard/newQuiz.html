@@ -28,20 +28,20 @@
                                 <!--Edit Profile Tab Start-->
                                 <div class="tab-pane active" id="tab-1">
                                     <div class="wrapper-md">
-                                        <form class="form-horizontal" method="get">
-                                            <div class="form-group mar-20">
+                                        <form class="form-horizontal" ng-submit="createQuiz(newQuiz)">
+                                            <!-- <div class="form-group mar-20">
                                                 <label class="col-sm-2 control-label">Quiz Image</label>
                                                 <div class="col-sm-8">
                                                     <div class="user-thumb"><img src="img/placeholder.png" title="John Doe" alt="John Doe" /></div>
                                                     <a href="" class="fill-btn change-pro slim-btn">Change</a>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Title</label>
                                                 <div class="col-sm-8">
                                                     <div class="row">
                                                         <div class="col-sm-12">
-                                                            <input type="text" class="form-control" placeholder="Enter Quiz Name">
+                                                            <input type="text" class="form-control" ng-model="newQuiz.title" placeholder="Enter Quiz Name">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -49,33 +49,51 @@
                                             <div class="form-group select-field">
                                                 <label class="col-sm-2 control-label">Course </label>
                                                 <div class="col-sm-4">
-                                                    <select name="carlist" form="carform" class="form-control">
-                                                        <option value="">Fractions 101 - GR10</option>
+                                                    <select name="carlist" form="carform" class="form-control" ng-model="selectedClassroom" ng-change="getClassroom(selectedClassroom)" placeholder="Choose a classroom">
+                                                        <option ng-repeat = "class in classrooms" value="{{class.id}}">{{class.title}}</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group select-field" ng-show="lessons">
+                                                <label class="col-sm-2 control-label">Lesson </label>
+                                                <div class="col-sm-4">
+                                                    <select name="carlist" form="carform" class="form-control" ng-model="newQuiz.lesson" placehold="Choose a lesson" >
+                                                        <option value="{{lesson.id}}" ng-repeat="lesson in lessons">{{lesson.title}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Start Date</label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" ng-model="newQuiz.open" class="form-control" placeholder="When does the quiz become available?">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">End Date</label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" ng-model="newQuiz.close" class="form-control" placeholder="When does the quiz finish?">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Timeframe</label>
                                                 <div class="col-sm-10">
                                                     <label class="i-switch i-switch-lg bg-dark m-t-xs m-r">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" ng-model="timeframe">
                                                         <i></i>
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="form-group select-field m-b-30">
+                                            <div class="form-group select-field m-b-30" ng-show="timeframe">
                                                 <label class="col-sm-2 control-label hide-767"></label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control special-input" placeholder="Hours" value="2">
-                                                    <select name="carlist" form="carform" class="form-control special-select">
-                                                        <option value="">Hours</option>
-                                                    </select>
+                                                    <input type="text" class="form-control special-input" ng-model="newQuiz.timeframe" placeholder="minutes" value="60">
+                                                    <h4>Minutes</h4>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label"></label>
                                                 <div class="col-sm-8">
-                                                    <button type="submit" class="fill-btn">Save Quiz</button>
+                                                    <button type="submit" class="fill-btn">Create Quiz</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -86,109 +104,40 @@
                                     <div class="wrapper-md">
                                         <div class="clearfix max-wid-920 small-title">
                                             <div class="title-box float-lt m-t-10">
-                                                <span class="main-title">5 Questions</span>
+                                                <span class="main-title"> Questions</span>
                                             </div>
                                             
-                                            <span ng-controller="ModalDemoCtrl">
-                                              <script type="text/ng-template" id="myModalContent.html">
-                                                <div ng-include="'tpl/add_question.html'"></div>
-                                              </script>
-                                              <button class="fill-btn float-rt slim-btn m-b-20" ng-click="open('md')">Add Question</button>
+                                            <span>
+                                              <button class="fill-btn float-rt slim-btn m-b-20" ng-click="addQuestion()">Add Question</button>
                                             </span>
                                         </div>
-                                        <ul ui-jq="sortable" class="list-group gutter list-group-lg list-group-sp max-wid-920">
-                                            <li class="list-group-item">
-                                                <div class="text-wrap">
-                                                    <span class="pull-right edit-btn">
-                                                        <span ng-controller="ModalDemoCtrl">
-                                                          <script type="text/ng-template" id="myModalContent.html">
-                                                            <div ng-include="'tpl/add_question.html'"></div>
-                                                          </script>
-                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
-                                                        </span>
-                                                    </span>
-                                                    <div class="clear">
-                                                        <span class="pro-img-list">
-                                                    <img src="img/ls1.jpg" title="User" alt="User"></span>
-                                                        <span class="activity-title">Introduction<br>  
-                                                    <span class="desc-det">updated 1 month ago</span>
-                                                        </span>
+                                        <ul>
+                                             <li class="list-group-item" ng-repeat="question in questions track by $index">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <label class="col-sm-2 control-label">Question {{$index +1}}</label>
+                                                        <input type="text" class="col-sm-8" placeholder="Quiz question" ng-model="questions[$index].title"/>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="text-wrap">
-                                                    <span class="pull-right edit-btn">
-                                                        <span ng-controller="ModalDemoCtrl">
-                                                          <script type="text/ng-template" id="myModalContent.html">
-                                                            <div ng-include="'tpl/add_question.html'"></div>
-                                                          </script>
-                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
-                                                        </span>
-                                                    </span>
-                                                    <div class="clear">
-                                                        <span class="pro-img-list">
-                                                    <img src="img/ls2.jpg" title="User" alt="User"></span>
-                                                        <span class="activity-title">Lesson Name Goes Here<br>  
-                                                    <span class="desc-det">updated 1 month ago</span>
-                                                        </span>
+                                                    <div class="row">
+                                                        <label class="col-sm-2 control-label">How many answers?</label>
+                                                        <div class="col-sm-1">
+                                                            <select ng-model="question.answerNumber" placehold="How many answers?" ng-change="addAnswers(question)">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="text-wrap">
-                                                    <span class="pull-right edit-btn">
-                                                        <span ng-controller="ModalDemoCtrl">
-                                                          <script type="text/ng-template" id="myModalContent.html">
-                                                            <div ng-include="'tpl/add_question.html'"></div>
-                                                          </script>
-                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
-                                                        </span>
-                                                    </span>
-                                                    <div class="clear">
-                                                        <span class="pro-img-list">
-                                                    <img src="img/ls3.jpg" title="User" alt="User"></span>
-                                                        <span class="activity-title">Lesson Name Goes Here<br>  
-                                                    <span class="desc-det">updated 1 month ago</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="text-wrap">
-                                                    <span class="pull-right edit-btn">
-                                                        <span ng-controller="ModalDemoCtrl">
-                                                          <script type="text/ng-template" id="myModalContent.html">
-                                                            <div ng-include="'tpl/add_question.html'"></div>
-                                                          </script>
-                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
-                                                        </span>
-                                                    </span>
-                                                    <div class="clear">
-                                                        <span class="pro-img-list">
-                                                    <img src="img/ls4.jpg" title="User" alt="User"></span>
-                                                        <span class="activity-title">Lesson Name Goes Here<br>  
-                                                    <span class="desc-det">updated 1 month ago</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="text-wrap">
-                                                    <span class="pull-right edit-btn">
-                                                        <span ng-controller="ModalDemoCtrl">
-                                                          <script type="text/ng-template" id="myModalContent.html">
-                                                            <div ng-include="'tpl/add_question.html'"></div>
-                                                          </script>
-                                                          <button class="outlined-btn gray-btn" ng-click="open('md')"><i class="fa fa-pencil"></i> Edit</button>
-                                                        </span>
-                                                    </span>
-                                                    <div class="clear">
-                                                        <span class="pro-img-list">
-                                                    <img src="img/ls5.jpg" title="User" alt="User"></span>
-                                                        <span class="activity-title">Lesson Name Goes Here<br>  
-                                                    <span class="desc-det">updated 1 month ago</span>
-                                                        </span>
+                                                    <div class="row">
+                                                        <ul class="col-sm-4">
+                                                            <li ng-repeat="answer in question.answers track by $index">
+                                                            <input type="radio" ng-model="question.correct" ng-value="$index"/>
+                                                            <label>Answer {{$index+1}}
+                                                            <input type="text" ng-model="$parent.question.answers[$index]"/>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </li>

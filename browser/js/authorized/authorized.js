@@ -8,6 +8,10 @@ app.config(function($stateProvider) {
                     return user
                 })
             }
+        },
+        data: {
+            css: ['./private-styles.css'],
+            authenticate: true
         }
     });
 });
