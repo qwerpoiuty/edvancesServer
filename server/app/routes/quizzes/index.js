@@ -40,10 +40,10 @@ router.get('/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/classroom/:id', (req, res) => {
-    db.query(`select * from classrooms
-  inner join lessons on classrooms.id = lessons.classroom
-  inner join quizes on quizes.lesson = lessons.id
-  where classrooms.id = ${req.params.id}`).then(quizzes => {
+    db.query(`select q.questions,q.open, q.close,q.timeframe,l.title as lesson_title,q.participants,q.quiz_title from classrooms c
+  inner join lessons l on c.id = l.classroom
+  inner join quizzes q on q.lesson = l.id
+  where c.id = ${req.params.id}`).then(quizzes => {
         res.json({
             status: 200,
             message: `Quizzes from ${req.params.id}`,
@@ -59,5 +59,23 @@ router.post('/', (req, res) => {
             message: `Quiz created`,
             data: quiz
         })
+    })
+})
+
+router.post('/delete/:id', ensureAuthenticated, (req, res) => {
+    Quiz.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(bool => {
+        var msg = {
+            header: 500,
+            payload: 'Unsuccesfully Deleted'
+        }
+        if (bool == true) {
+            msg.header = 200;
+            msg.payload = 'Successfuly Deleted';
+        }
+        res.json(msg)
     })
 })

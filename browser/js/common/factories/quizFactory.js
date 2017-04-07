@@ -15,7 +15,7 @@ app.factory('quizFactory', function($http) {
         })
     }
 
-    d.createquiz = quiz => {
+    d.createQuiz = quiz => {
         return $http.post('/api/quizzes/', quiz).then(response => {
             return response.data
         })
@@ -31,7 +31,6 @@ app.factory('quizFactory', function($http) {
     }
 
     d.deletequiz = (id) => {
-
         return $http.post('/api/quizzes/delete/' + id).then(response => {
             return response.data
         })

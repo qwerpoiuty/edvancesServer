@@ -41,7 +41,7 @@
                                                 <div class="col-sm-8">
                                                     <div class="row">
                                                         <div class="col-sm-12">
-                                                            <input type="text" class="form-control" ng-model="newQuiz.title" placeholder="Enter Quiz Name">
+                                                            <input type="text" class="form-control" ng-model="newQuiz.quiz_title" placeholder="Enter Quiz Name">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -78,7 +78,16 @@
                                                 <label class="col-sm-2 control-label">Timeframe</label>
                                                 <div class="col-sm-10">
                                                     <label class="i-switch i-switch-lg bg-dark m-t-xs m-r">
-                                                        <input type="checkbox" ng-model="timeframe">
+                                                        <input type="checkbox" ng-model="newQuiz.timeframe">
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Point Value</label>
+                                                <div class="col-sm-10">
+                                                    <label class="i-switch i-switch-lg bg-dark m-t-xs m-r">
+                                                        <input type="text" ng-model="newQuiz.pointValue">
                                                         <i></i>
                                                     </label>
                                                 </div>
@@ -117,6 +126,7 @@
                                                     <div class="row">
                                                         <label class="col-sm-2 control-label">Question {{$index +1}}</label>
                                                         <input type="text" class="col-sm-8" placeholder="Quiz question" ng-model="questions[$index].title"/>
+                                                        <button type="button" ng-click="removeQuestion($index)">Delete</button>
                                                     </div>
                                                     <div class="row">
                                                         <label class="col-sm-2 control-label">How many answers?</label>

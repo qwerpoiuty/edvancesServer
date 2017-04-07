@@ -22,9 +22,12 @@
          })
      }
 
+     $scope.removeQuestion = index => {
+         $scope.questions.splice(index, 1)
+     }
      $scope.createQuiz = (quiz) => {
          quiz.questions = $scope.questions
-         console.log(quiz)
+         quiz.owner = $scope.user.id
          quizFactory.createQuiz(quiz).then(response => {
              $state.go('quizDashboard')
          })

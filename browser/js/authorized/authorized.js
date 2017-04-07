@@ -10,8 +10,8 @@ app.config(function($stateProvider) {
             }
         },
         data: {
-            css: ['./private-styles.css'],
-            authenticate: true
+            css: ['./private-styles.css']
+                // authenticate: true
         }
     });
 });

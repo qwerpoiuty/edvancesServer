@@ -14,11 +14,17 @@ module.exports = db.define('quiz', {
     lesson: {
         type: Sequelize.INTEGER
     },
+    owner: {
+        type: Sequelize.INTEGER
+    },
     open: {
         type: Sequelize.DATE
     },
     close: {
         type: Sequelize.DATE
+    },
+    quiz_title: {
+        type: Sequelize.STRING
     },
     description: {
         type: Sequelize.TEXT
@@ -30,7 +36,8 @@ module.exports = db.define('quiz', {
         type: Sequelize.ARRAY(Sequelize.JSON)
     },
     participants: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        defaultValue: []
     },
     thumbnail: {
         type: Sequelize.STRING
