@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
     $stateProvider.state('quizDashboard', {
         url: '/quizDashboard',
-        templateUrl: 'js/authorized/teachers/quizDashboard/quizdashboard.html',
+        templateUrl: 'js/authorized/teachers/quizDashboard/quizDashboard.html',
         controller: 'quizDashboardCtrl',
         parent: 'authorized'
     });
