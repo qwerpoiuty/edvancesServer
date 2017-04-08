@@ -8,8 +8,14 @@ app.factory('classroomFactory', function($http) {
         })
     }
 
-    d.getClassroomsByUser = (id) => {
-        return $http.get('/api/classrooms/user/' + id).then(response => {
+    d.getClassroomsByTeacher = (id) => {
+        return $http.get('/api/classrooms/teacher/' + id).then(response => {
+
+            return response.data
+        })
+    }
+    d.getClassroomsByTeacher = (id) => {
+        return $http.get('/api/classrooms/student/' + id).then(response => {
 
             return response.data
         })
