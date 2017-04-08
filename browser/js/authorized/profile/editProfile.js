@@ -14,14 +14,15 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
     $scope.teacher = ($scope.user.role == 1)
     $scope.times = {}
     $scope.days = [, , , , , , , ]
-    Object.keys($scope.user.teacherOptions.times).forEach(time => {
-        $scope.times[time] = {}
-        $scope.times[time].start = new Date($scope.user.teacherOptions.times[time].start)
-        $scope.times[time].end = new Date($scope.user.teacherOptions.times[time].end)
-    })
-    console.log($scope.times)
-    for (let key in Object.keys($scope.times)) {
-        $scope.days[key] = true
+    if ($scope.user.teacherOptions) {
+        Object.keys($scope.user.teacherOptions.times).forEach(time => {
+            $scope.times[time] = {}
+            $scope.times[time].start = new Date($scope.user.teacherOptions.times[time].start)
+            $scope.times[time].end = new Date($scope.user.teacherOptions.times[time].end)
+        })
+        for (let key in Object.keys($scope.times)) {
+            $scope.days[key] = true
+        }
     }
 
     $scope.weekdays = {
