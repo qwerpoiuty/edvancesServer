@@ -17,6 +17,9 @@ module.exports = db.define('user', {
     salt: {
         type: Sequelize.STRING
     },
+    age: {
+        type: Sequelize.INTEGER
+    },
     role: {
         type: Sequelize.INTEGER
     },
