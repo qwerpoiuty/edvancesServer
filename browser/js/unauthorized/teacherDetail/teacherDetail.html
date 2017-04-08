@@ -1,3 +1,4 @@
+<div class="our-teachers">
 <div id="inner-banner" class="inner-page-head">
     <div class="item active">
         <div class="container">
@@ -17,8 +18,8 @@
             <div class="col-md-12">
                 <div class="teach-profile">
                     <div class="teacherpro"><img src="https://edvances.blob.core.windows.net/profile-pictures/{{teacher.profilePic}}"/></div>
-                    <div class="pro-degree">{{teacher.teacherOptions.title}} located in {{teacher.location}}</div>
-                    <div class="timeperiods"><span ng-repeat="(key,value) in teacher.teacherOptions.times"><span>{{weekdays[key]}} from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
+                   <div class="pro-degree">{{teacher.teacherOptions.title}} located in {{teacher.location}}</div>
+                    <div class="timeperiods"><span ng-repeat="(key,value) in teacher.teacherOptions.times">{{weekdays[key]}} from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
                     <hr class="clearfix">
                     <div class="teach-rate">
                         <p>Teacher Rating</p>
@@ -119,3 +120,4 @@
         </p>
     </div>
 </section>
+</div>
