@@ -3,11 +3,11 @@ app.controller('loginCtrl', function($scope, AuthService, $state, $uibModalInsta
 
     $scope.sendLogin = function(loginInfo) {
         $scope.authError = null;
-        AuthService.login(loginInfo).then(function() {
+        AuthService.login(loginInfo).then(function(response) {
             $uibModalInstance.close(false)
             $state.go('dashboard');
-        }).catch(function() {
-            $scope.authError = 'Invalid login credentials.';
+        }).catch(function(err) {
+            $scope.authError = err.message;
         });
     };
 

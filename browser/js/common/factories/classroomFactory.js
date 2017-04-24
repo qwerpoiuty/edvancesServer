@@ -14,7 +14,7 @@ app.factory('classroomFactory', function($http) {
             return response.data
         })
     }
-    d.getClassroomsByTeacher = (id) => {
+    d.getClassroomsByStudent = (id) => {
         return $http.get('/api/classrooms/student/' + id).then(response => {
 
             return response.data

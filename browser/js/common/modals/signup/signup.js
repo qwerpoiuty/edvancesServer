@@ -7,9 +7,9 @@ app.controller('signupCtrl', function($scope, $state, AuthService, userFactory, 
         $scope.authError = null;
         userFactory.createUser(user)
             .then(function(response) {
-                if (response) {
-                    $uibModalInstance.close(false)
+                if (response.header !== 401) {
                     return AuthService.login($scope.user).then(function(user) {
+                        $uibModalInstance.close(false)
                         $state.go('dashboard')
                     })
                 } else {

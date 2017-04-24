@@ -21,9 +21,18 @@ app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, cla
         6: 'Sunday'
     }
     $scope.createClass = (classroom) => {
-        console.log(classroom)
         classroom.teacher = $scope.user.id
-        classroom.times = $scope.times
+        classroom.times = {}
+        for (var key in Object.keys($scope.days)) {
+            if ($scope.days[key]) {
+                if ($scope.times[key].start == null || $scope.times[key].end == null) {
+                    return {
+                        message: 'Please fill in the times'
+                    }
+                }
+                classroom.times[key] = $scope.times[key]
+            }
+        }
         classroomFactory.createClassroom(classroom).then(classroom => {
             $state.go("classroom", {
                 id: classroom.id

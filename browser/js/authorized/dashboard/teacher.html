@@ -86,14 +86,12 @@
                     <div class="outlined clearfix pad-20">
                         <div class="title-box float-lt">
                             <span class="main-title">Upcoming Classes</span>
-                            <span class="reltd-title">Your upcoming classes for the day</span>
+                            <span class="reltd-title">Your upcoming classes for the Week</span>
                         </div>
                     </div>
                     <div class="outlined clearfix graph no-top-border">
                         <ul class="class-list">
-                            <li ng-repeat="class in userClasses"><span class="class-title">Fractions 101</span> <span class="class-time">10:00 AM - 11:30 AM</span></li>
-                            <li><span class="class-title">Fractions 101</span> <span class="class-time">10:00 AM - 11:30 AM</span></li>
-                            <li><span class="class-title">Fractions 101</span> <span class="class-time">10:00 AM - 11:30 AM</span></li>
+                            <li ng-repeat="class in classrooms"><span class="class-title">{{class.title}}</span> <span class="class-time" ng-repeat="(key,value) in class.times">{{weekdays[key]}}: {{value.start | date:'HH:MM'}} - {{value.end | date:'HH:MM'}}</span></li>
                         </ul>
                     </div>
                     <div class="outlined clearfix pad-20 no-top-border">

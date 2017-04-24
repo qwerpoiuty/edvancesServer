@@ -18,11 +18,11 @@ module.exports = function(app, db) {
                 }
             })
             .then(function(user) {
-                // user.correctPassword is a method from the User schema.
+                console.log(user)
+                    // user.correctPassword is a method from the User schema.
                 var notFound = {
                     notFound: true
                 }
-
                 if (!user) done(null, notFound)
                 else if (!bcrypt.compareSync(password, user.password, user.salt)) {
                     done(null, false);
