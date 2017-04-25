@@ -19,7 +19,7 @@ app.controller('profileCtrl', function($scope, $sce, $uibModal, classroomFactory
         6: 'Sunday'
     }
     console.log($scope.user)
-    classroomFactory.getClassroomsByUser($scope.user.id).then(classrooms => {
+    classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
         $scope.classrooms = classrooms
     })
 });
