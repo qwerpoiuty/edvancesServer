@@ -34,7 +34,7 @@
                                     <!--Edit Profile Tab Start-->
                                     <div class="tab-pane active" id="tab-1">
                                         <div class="wrapper-md">
-                                            <form class="form-horizontal" ng-submit="updateUser(user)">
+                                            <form class="form-horizontal" name="userform" ng-submit="updateUser(user)">
                                                 <div class="form-group mar-20">
                                                     <label class="col-sm-2 control-label">Avatar</label>
                                                     <div class="col-sm-8">
@@ -153,9 +153,9 @@
                                                     <div class="row" ng-repeat="day in days track by $index" ng-show="day ==true">
                                                         <label class="col-sm-2 control-label">{{weekdays[$index]}}: </label>
                                                         <div class="col-sm-8">
-                                                            <input type="time" id="exampleInput" name="input" ng-model="times[$index].start" placeholder="HH:mm:ss" required /> 
+                                                            <input type="time" id="exampleInput" ng-model="times[$index].start" placeholder="HH:mm:ss" /> 
                                                             to 
-                                                            <input type="time" id="exampleInput" name="input" ng-model="times[$index].end" placeholder="HH:mm:ss" required />
+                                                            <input type="time" id="exampleInput" ng-model="times[$index].end" placeholder="HH:mm:ss" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -266,7 +266,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Country </label>
                                                     <div class="col-sm-8">
-                                                        <select name="carlist" form="carform" class="form-control">
+                                                        <select class="form-control">
                                                             <option value="">Volvo</option>
                                                             <option value="">Saab</option>
                                                             <option value="">Opel</option>

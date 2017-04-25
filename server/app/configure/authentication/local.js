@@ -18,13 +18,12 @@ module.exports = function(app, db) {
                 }
             })
             .then(function(user) {
-                console.log(user)
-                    // user.correctPassword is a method from the User schema.
+                // user.correctPassword is a method from the User schema.
                 var notFound = {
                     notFound: true
                 }
                 if (!user) done(null, notFound)
-                else if (!bcrypt.compareSync(password, user.password, user.salt)) {
+                else if (user.correctPassword(password)) {
                     done(null, false);
                 } else {
                     // Properly authenticated.
@@ -44,7 +43,7 @@ module.exports = function(app, db) {
     app.post('/login', function(req, res, next) {
 
         var authCb = function(err, user) {
-
+            console.log(user)
             if (err) return next(err);
             if (user.notFound) {
                 var error = new Error('User not found')

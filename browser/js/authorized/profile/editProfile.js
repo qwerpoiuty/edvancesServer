@@ -42,6 +42,7 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
     }
     $scope.updateUser = user => {
         user.teacherOptions.times = $scope.times ? $scope.times : []
+        console.log(user)
         userFactory.updateUser(user).then(user => {
             $state.go('profile')
         })
