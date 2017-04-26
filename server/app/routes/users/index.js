@@ -123,7 +123,7 @@ router.post('/update', ensureAuthenticated, (req, res) => {
         return user.updateAttributes(updates)
             .then(updatedUser => {
                 res.send({
-                    updatedUser: _.omit(updatedUser.toJSON(), ['password', 'salt'])
+                    updatedUser: updatedUser.sanitize()
                 });
             })
     })
@@ -137,7 +137,7 @@ router.post('/profilePic/:id', ensureAuthenticated, upload.single('profilePic'),
             })
         }).then(function(updatedUser) {
             res.send({
-                updatedUser: _.omit(updatedUser.toJSON(), ['password', 'salt'])
+                updatedUser: updatedUser.sanitize()
             });
         })
 })

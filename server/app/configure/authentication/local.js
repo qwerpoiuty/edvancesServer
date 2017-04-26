@@ -23,7 +23,7 @@ module.exports = function(app, db) {
                     notFound: true
                 }
                 if (!user) done(null, notFound)
-                else if (user.correctPassword(password)) {
+                else if (!user.correctPassword(password)) {
                     done(null, false);
                 } else {
                     // Properly authenticated.
@@ -43,7 +43,6 @@ module.exports = function(app, db) {
     app.post('/login', function(req, res, next) {
 
         var authCb = function(err, user) {
-            console.log(user)
             if (err) return next(err);
             if (user.notFound) {
                 var error = new Error('User not found')

@@ -37,11 +37,6 @@ module.exports = db.define('classroom', {
         type: Sequelize.TEXT
     }
 }, {
-    classMethods: {
-        associate: (db) => {
-            this.belongsTo(db.model('teacher'))
-        }
-    },
     instanceMethods: {
 
     },

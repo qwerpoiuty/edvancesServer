@@ -12,7 +12,7 @@ app.config(function($stateProvider) {
             },
             lessons: (classroomFactory, $stateParams) => {
                 return classroomFactory.getClassroomLessons($stateParams.id).then(lessons => {
-                    return lessons.payload
+                    return lessons.data
                 })
             }
         }

@@ -9,7 +9,8 @@ app.config(function($stateProvider) {
 
 app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, classroomFactory, moment) {
     // $("#editor").wysiwyg()
-    $scope.days, $scope.times = {}
+    $scope.days = [, , , , , , , ]
+    $scope.times = {}
     $scope.classroomTimes = {}
     $scope.weekdays = {
         0: 'Monday',

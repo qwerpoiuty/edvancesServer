@@ -14,7 +14,8 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
     $scope.teacher = ($scope.user.role == 1)
     $scope.times = {}
     $scope.days = [, , , , , , , ]
-    if ($scope.user.teacherOptions) {
+    console.log($scope.user)
+    if ($scope.user.teacherOptions.times) {
         Object.keys($scope.user.teacherOptions.times).forEach(time => {
             $scope.times[time] = {}
             $scope.times[time].start = new Date($scope.user.teacherOptions.times[time].start)
@@ -41,8 +42,12 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
         })
     }
     $scope.updateUser = user => {
-        user.teacherOptions.times = $scope.times ? $scope.times : []
-        console.log(user)
+        let times = {}
+        for (var i = 0; i < $scope.days.length; i++) {
+            console.log('hello')
+            if ($scope.days[i]) times[i] = $scope.times[i]
+        }
+        user.teacherOptions.times = times
         userFactory.updateUser(user).then(user => {
             $state.go('profile')
         })

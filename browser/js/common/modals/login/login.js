@@ -7,7 +7,7 @@ app.controller('loginCtrl', function($scope, AuthService, $state, $uibModalInsta
             $uibModalInstance.close(false)
             $state.go('dashboard');
         }).catch(function(err) {
-            $scope.authError = err.message;
+            $scope.authError = err.message.data;
         });
     };
 
