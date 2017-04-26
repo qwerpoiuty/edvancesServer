@@ -24,14 +24,12 @@ app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, cla
     $scope.createClass = (classroom) => {
         classroom.teacher = $scope.user.id
         classroom.times = {}
-        for (var key in Object.keys($scope.days)) {
-            if ($scope.days[key]) {
-                if ($scope.times[key].start == null || $scope.times[key].end == null) {
-                    return {
-                        message: 'Please fill in the times'
-                    }
+        for (var i = 0; i < $scope.days.length; i++) {
+            if ($scope.days[i]) {
+                if ($scope.times[i].start == null || $scope.times[i].end == null) {
+                    return alert('please fill out the times')
                 }
-                classroom.times[key] = $scope.times[key]
+                classroom.times[i] = $scope.times[i]
             }
         }
         classroomFactory.createClassroom(classroom).then(classroom => {

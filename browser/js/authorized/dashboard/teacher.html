@@ -91,7 +91,7 @@
                     </div>
                     <div class="outlined clearfix graph no-top-border">
                         <ul class="class-list">
-                            <li ng-repeat="class in classrooms"><span class="class-title">{{class.title}}</span> <span class="class-time" ng-repeat="(key,value) in class.times">{{weekdays[key]}}: {{value.start | date:'HH:MM'}} - {{value.end | date:'HH:MM'}}</span></li>
+                            <li ng-repeat="class in classrooms"><span class="class-title"><a ng-click="transition(class.id)">{{class.title}}</a></span> <span class="class-time" ng-repeat="(key,value) in class.times">{{weekdays[key]}}: {{value.start | date:'HH:MM'}} - {{value.end | date:'HH:MM'}}</span></li>
                         </ul>
                     </div>
                     <div class="outlined clearfix pad-20 no-top-border">

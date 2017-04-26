@@ -21,6 +21,7 @@ app.config(function($stateProvider) {
 
 app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, classroomFactory, $stateParams, lessons, documentFactory, moment) {
     $scope.classroom = classroom[0]
+    console.log($scope.classroom)
     $scope.weekdays = {
         0: 'Monday',
         1: 'Tuesday',

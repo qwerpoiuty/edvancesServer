@@ -1,4 +1,4 @@
-app.directive('aside', function($state) {
+app.directive('aside', function($state, AuthService) {
 
     return {
         restrict: 'E',
@@ -10,6 +10,12 @@ app.directive('aside', function($state) {
             scope.templateUrl = () => {
                 if (scope.user.role == 1) return 'js/authorized/teachers/aside.html'
                 else return "js/authorized/students/aside.html"
+            }
+
+            scope.logout = () => {
+                AuthService.logout().then(function() {
+                    $state.go('home');
+                });
             }
 
         }

@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFactory) {
+app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFactory, $state) {
     $scope.dashboards = []
     $scope.weekdays = {
         0: 'Monday',
@@ -30,6 +30,12 @@ app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFac
     } else {
         $scope.dashboards.push({
             url: "js/authorized/dashboard/student.html"
+        })
+    }
+
+    $scope.transition = classroomId => {
+        $state.go('classroom', {
+            id: classroomId
         })
     }
 });

@@ -15,7 +15,7 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
     $scope.times = {}
     $scope.days = [, , , , , , , ]
     console.log($scope.user)
-    if ($scope.user.teacherOptions.times) {
+    if ($scope.user.teacherOptions) {
         Object.keys($scope.user.teacherOptions.times).forEach(time => {
             $scope.times[time] = {}
             $scope.times[time].start = new Date($scope.user.teacherOptions.times[time].start)
