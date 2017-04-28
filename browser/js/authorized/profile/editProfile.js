@@ -43,11 +43,13 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
     }
     $scope.updateUser = user => {
         let times = {}
-        for (var i = 0; i < $scope.days.length; i++) {
-            console.log('hello')
-            if ($scope.days[i]) times[i] = $scope.times[i]
+        if ($scope.user.role == 1) {
+            for (var i = 0; i < $scope.days.length; i++) {
+                console.log('hello')
+                if ($scope.days[i]) times[i] = $scope.times[i]
+            }
+            user.teacherOptions.times = times
         }
-        user.teacherOptions.times = times
         userFactory.updateUser(user).then(user => {
             $state.go('profile')
         })

@@ -171,8 +171,10 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         })
     }
 
-    $scope.uploadFiles = function(file, index) {
-
+    $scope.uploadClassroomResources = doc => {
+        classroomFactory.addDocument(doc).then(response => {
+            // $scope.getUpdatedUser(response.data.id)
+        })
     }
 
     $scope.test = () => {

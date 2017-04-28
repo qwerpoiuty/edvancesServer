@@ -31,6 +31,9 @@ app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFac
         $scope.dashboards.push({
             url: "js/authorized/dashboard/student.html"
         })
+        classroomFactory.getClassroomsByStudent($scope.user.id).then(classrooms => {
+            $scope.classrooms = classrooms
+        })
     }
 
     $scope.transition = classroomId => {

@@ -51,7 +51,9 @@
                                 </div>
                                 <!--Assignments start-->
                                 <div class="assignments-col m-t-20" ng-repeat="lesson in lessons track by $index">
-                                    <span class="reltd-title semisect">{{lesson.title}} Start Date:{{lesson.startDate | date:'yyyy-mm-dd'}} End Date:{{lesson.endDate | date:'yyyy-mm-dd'}}</span> <button ng-click="editLesson(lesson, $index)" class="btn">Edit Lesson</button>
+                                    <h4 class="reltd-title semisect">{{lesson.title}} Start Date:{{lesson.startDate | date:'yyyy-mm-dd'}} End Date:{{lesson.endDate | date:'yyyy-mm-dd'}}</h4> <button ng-click="editLesson(lesson, $index)" class="btn">Edit Lesson</button>
+                                    <div class="row"><h4>Sections</h4></div>
+                                    <div class="row">
                                     <uib-accordion close-others="oneAtATime">
                                         <div uib-accordion-group class="panel-default" heading="{{$index +1}}. {{section.title}}" ng-repeat="section in lesson.sections track by $index">
                                             <div class="row">
@@ -72,7 +74,8 @@
                                              <button ng-if="teacher" type="file" ngf-select="addLessonDoc($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB">Upload File</button>
                                         </div>
                                         </div>
-                                </uib-accordion>
+                                    </uib-accordion>
+                                    </div>
                                 </div>
                                 
                                 <div class="clearfix">

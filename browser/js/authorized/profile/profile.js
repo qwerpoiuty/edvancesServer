@@ -9,6 +9,10 @@ app.config(function($stateProvider) {
 
 app.controller('profileCtrl', function($scope, $sce, $uibModal, classroomFactory, userFactory) {
     $scope.teacher = ($scope.user.role == 1)
+    $scope.templateUrl = () => {
+        if ($scope.teacher) return 'js/authorized/profile/teacher.html'
+        else return "js/authorized/profile/student.html"
+    }
     $scope.weekdays = {
         0: 'Monday',
         1: 'Tuesday',
