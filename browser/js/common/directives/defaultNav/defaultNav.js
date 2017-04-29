@@ -3,7 +3,7 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, 
     return {
         restrict: 'E',
         scope: {},
-        templateUrl: '<div ng-incliude="templateUrl()"></div>',
+        templateUrl: 'js/common/directives/defaultNav/defaultNav.html',
         link: function(scope) {
 
             scope.user = null;
@@ -26,11 +26,13 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, 
             scope.fold = function() {
                 document.getElementById('app').classList.toggle('app-aside-folded')
             }
-
+            scope.dropdown = function(node) {
+                console.log(node.target)
+            }
             setUser();
 
             scope.templateUrl = () => {
-                if (!scope.user) return 'js/common/directives/defaultNav/defaultNav.html'
+                if (!scope.user) return 'js/common/directives/defaultNav/non-authorized.html'
                 else return "js/common/directives/defaultNav/authorizedNav.html"
             }
 
