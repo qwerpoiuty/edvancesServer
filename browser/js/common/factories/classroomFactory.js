@@ -1,9 +1,7 @@
 app.factory('classroomFactory', function($http) {
     var d = {}
-    d.findClassrooms = (query) => {
-        return $http.get('/api/classrooms/', {
-            params: query
-        }).then(response => {
+    d.findAllClassrooms = (query) => {
+        return $http.get('/api/classrooms/').then(response => {
             return response.data
         })
     }
@@ -33,8 +31,12 @@ app.factory('classroomFactory', function($http) {
             return response.data
         })
     }
-    d.updateClassroom = (classroom) => {
-        return $http.post('/api/classrooms/update', classroom).then(response => {
+    d.updateClassroom = (classroomId, updates) => {
+        var updates = {
+            id: classroomId,
+            updates: updates
+        }
+        return $http.post('/api/classrooms/update', updates).then(response => {
             return response.data
         })
     }

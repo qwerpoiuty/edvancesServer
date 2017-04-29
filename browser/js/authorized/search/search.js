@@ -6,7 +6,7 @@ app.config(function($stateProvider) {
         parent: 'authorized',
         resolve: {
             classrooms: (classroomFactory) => {
-                return classroomFactory.findAllClassroom().then(classrooms => {
+                return classroomFactory.findAllClassrooms().then(classrooms => {
                     return classrooms
                 })
             }
@@ -14,8 +14,14 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('searchCtrl', function($scope, $sce, $uibModal, classroomFactory, userFactory, clasrooms) {
+app.controller('searchCtrl', function($scope, $uibModal, classroomFactory, userFactory, classrooms, $state) {
     $scope.classrooms = classrooms
     $scope.teacher = ($scope.user.role == 1)
+    console.log(classrooms)
 
+    $scope.transition = (id) => {
+        $state.go('classroom', {
+            id: id
+        })
+    }
 });

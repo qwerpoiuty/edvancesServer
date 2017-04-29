@@ -21,7 +21,13 @@ app.config(function($stateProvider) {
 
 app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, classroomFactory, $stateParams, lessons, documentFactory, moment) {
     $scope.classroom = classroom[0]
-    console.log($scope.classroom)
+
+    $scope.lessons = lessons
+    $scope.teacher = $scope.user.id == $scope.classroom.teacher_id
+    $scope.member = $scope.classroom.students.indexOf($scope.user.id) != -1
+    console.log($scope.member, $scope.classroom, $scope.user.id)
+
+
     $scope.weekdays = {
         0: 'Monday',
         1: 'Tuesday',
@@ -31,7 +37,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         5: 'Saturday',
         6: 'Sunday'
     }
-    console.log($scope.classroom.class_times)
     $scope.getNextLesson = function(times) {
         var today = new moment()
         var times = $scope.classroom.class_times
@@ -53,9 +58,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         }
     }
 
-    $scope.getNextLesson()
-    $scope.lessons = lessons
-    $scope.teacher = $scope.user.id == $scope.classroom.teacher_id
     $scope.getDocuments = () => {
         $scope.lessons.forEach(lesson => {
             classroomFactory.getLessonDocuments(lesson.materials).then(materials => {
@@ -63,7 +65,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             })
         })
     }
-    $scope.getDocuments()
 
     $scope.getClassNotes = () => {
         classroomFactory.getClassroomNotes($stateParams.id).then(notes => {
@@ -77,7 +78,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     var width = 740;
     var height = 422;
     $scope.joined = false
-    $scope.room = `${$scope.user.id}${$scope.classroom.id}`
+    $scope.room = `${$scope.classroom.teacher}${$scope.classroom.id}`
 
     $scope.addLesson = () => {
         var modalInstance = $uibModal.open({
@@ -151,7 +152,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     }
 
     $scope.removeDoc = (materialIndex, lesson) => {
-        console.log(lesson.materials)
         lesson.materials.splice(materialIndex, 1)
         var materials = lesson.materials.map(e => {
             return e.id
@@ -161,7 +161,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
                 materials: materials
             }
         }
-        console.log(updates)
         classroomFactory.updateLesson(lesson.id, updates).then(response => {
             if (response.status == 200) {
 
@@ -190,6 +189,22 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             $uibModalInstance.close()
         })
     }
+
+    $scope.addStudent = (studentId) => {
+        $scope.classroom.students.push(studentId)
+        console.log($scope.classroom.students)
+        classroomFactory.updateClassroom($stateParams.id, {
+            students: $scope.classroom.students
+        }).then(response => {
+            if (response.data = true) {
+                $scope.member = true
+            }
+        })
+    }
+
+    $scope.getNextLesson()
+    $scope.getDocuments()
+
     jQuery('#calendar').eCalendar({
         firstDayOfWeek: 1,
         weekDays: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],

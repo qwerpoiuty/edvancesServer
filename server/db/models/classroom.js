@@ -12,7 +12,8 @@ module.exports = db.define('classroom', {
         type: Sequelize.INTEGER
     },
     students: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        defaultValue: []
     },
     title: {
         type: Sequelize.STRING

@@ -38,7 +38,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/:id', ensureAuthenticated, (req, res) => {
-    db.query(`select c.id,teacher.id as teacher_id, teacher.name as teacher_name, c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject 
+    db.query(`select c.id,teacher.id as teacher_id, teacher.name as teacher_name, c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject, c.students 
 from classrooms c
 inner join users as teacher
 on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom => {
@@ -84,11 +84,11 @@ router.post('/delete', ensureAuthenticated, (req, res) => {
 })
 
 router.post('/update', ensureAuthenticated, (req, res) => {
-    console.log(chalk.blue.bgYellow.bold("UPDATE ROUTE"))
     const updates = req.body.updates;
+    console.log(updates)
     Classroom.findOne({
         where: {
-            title: req.body.title
+            id: req.body.id
         }
     }).then(classroom => {
         return classroom.updateAttributes(updates)

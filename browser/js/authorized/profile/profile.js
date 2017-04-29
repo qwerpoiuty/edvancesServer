@@ -9,6 +9,15 @@ app.config(function($stateProvider) {
 
 app.controller('profileCtrl', function($scope, $sce, $uibModal, classroomFactory, userFactory) {
     $scope.teacher = ($scope.user.role == 1)
+    if ($scope.teacher) {
+        classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
+            $scope.classrooms = classrooms
+        })
+    } else {
+        classroomFactory.getClassroomsByStudent($scope.user.id).then(classrooms => {
+            $scope.classrooms = classrooms
+        })
+    }
     $scope.templateUrl = () => {
         if ($scope.teacher) return 'js/authorized/profile/teacher.html'
         else return "js/authorized/profile/student.html"
@@ -23,7 +32,5 @@ app.controller('profileCtrl', function($scope, $sce, $uibModal, classroomFactory
         6: 'Sunday'
     }
     console.log($scope.user)
-    classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
-        $scope.classrooms = classrooms
-    })
+
 });
