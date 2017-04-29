@@ -189,10 +189,16 @@ gulp.task('default', function() {
 
     // Run when anything inside of browser/scss changes.
     gulp.watch('browser/scss/**', function() {
-        runSeq('buildCSS', 'reloadCSS');
+        runSeq('buildPublicCSS', 'reloadCSS');
+    });
+    gulp.watch('browser/scss/**', function() {
+        runSeq('buildPrivateCSS', 'reloadCSS');
     });
     gulp.watch('browser/theme/**', function() {
         runSeq('buildCSS', 'reloadCSS');
+    });
+    gulp.watch('browser/theme/**', function() {
+        runSeq('buildPrivateCSS', 'reloadCSS');
     });
 
     gulp.watch('server/**/*.js', ['lintJS']);
