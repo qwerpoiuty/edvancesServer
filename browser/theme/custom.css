@@ -692,6 +692,14 @@ img.blogplay-btn{width: 60px; height: 60px; position: absolute; top: 0; bottom: 
 /*Star Rating start*/
 .star-rate i { color: #ffa409; }
 /*Star Rating end*/
+
+
+/*Coding Adjustements Start*/
+.navbar-btn.btn{background: transparent;}
+/*Coding Adjustements End*/
+
+
+
 @media (max-width:1199px) {
  ul.banner-social-buttons { float: left; margin-top: 15px; }
  .fe-list:after { max-width: 120px; }
