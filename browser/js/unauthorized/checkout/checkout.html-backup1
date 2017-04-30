@@ -1,0 +1,244 @@
+<div class="checkout shopping-cart">
+<div id="inner-banner" class="inner-page-head">
+    <div class="item active">
+        <div class="container">
+            <h1>Checkout</h1>
+        </div>
+    </div>
+</div>
+<!-- Page Content -->
+<!-- /.search-section -->
+<!--shopping cart start-->
+<section class="inner-section-search m-b-30">
+    <div class="container">
+        <div class="max-width">
+            <h2 class="sec-title b m-t-0">Checkout Information <span class="linedi m-l-0"></span></h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Country
+                            <select>
+                                <option>Select</option>
+                                <option>United States</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label>Student First Name
+                            <input type="text" name="">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label>Student Last Name
+                            <input type="text" name="">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Company Name <small>(optional)</small>
+                            <input type="text" name="">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Address
+                            <input type="text" name="" placeholder="Address line 1">
+                            <input type="text" name="" placeholder="Address line 2">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Town/City
+                            <input type="text" name="">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label>State/Province
+                            <input type="text" name="">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label>Post/Zip Code
+                            <input type="text" name="">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label>Email
+                            <input type="text" name="">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label>Phone
+                            <input type="text" name="">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="checkbox checkbox-primary">
+                        <input id="paid" type="checkbox">
+                        <label for="paid" class="checkbox"> Create An Account? </label>
+                    </div>
+                </div>
+                <div class="create-account">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Password
+                                <input type="text" name="">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Confirm Password
+                                <input type="text" name="">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                    <div class="form-radiocheckbox">
+                        <div class="radio radio-primary">
+                            <input id="creditcard" type="radio" name="cardtype">
+                            <label for="creditcard" class="checkbox"> Credit Card </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="creditcard-form">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Card Number
+                                        <input type="text" name="">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 ">
+                                <div class="form-group payment-cards clearfix">
+                                    <img src="img/payment-cart1.jpg" alt="payment card">
+                                    <img src="img/payment-cart2.jpg" alt="payment card">
+                                    <img src="img/payment-cart3.jpg" alt="payment card">
+                                    <img src="img/payment-cart4.jpg" alt="payment card">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 col-xs-6">
+                                <div class="form-group">
+                                    <label>Expiry Date
+                                        <div class="row">
+                                            <div class="col-md-6 col-xs-6 siderpad-left">
+                                                <input type="text" name="" placeholder="DD">
+                                            </div>
+                                            <div class="col-md-6 col-xs-6 siderpad-right">
+                                                <input type="text" name="" placeholder="YY">
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-6">
+                                <div class="form-group">
+                                    <label>CVV
+                                        <input type="text" name="">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>Name On Card
+                                        <input type="text" name="">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-radiocheckbox">
+                        <div class="radio radio-primary">
+                            <input id="paypal" type="radio" name="cardtype">
+                            <label for="paypal" class="checkbox"> PayPal </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="paypal-button">
+                    <div class="col-md-12">
+                        <span href="" class="playpalbutton"> 
+                            <img src="img/paypal-logo.png" alt="PayPal" /> Continue with checkout to complete payment via PayPal.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-12 m-t-20">
+                    <input type="submit" name="" value="Place Order" class="btn submit">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--shopping cart end-->
+
+
+<!--calculate shipping and total start-->
+<section class="cal-ship">
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-sm-6 m-b-30">
+                <h3 class="sec-title b m-t-0">Calculate Shipping  <span class="linedi"></span></h3>
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+                        <div class="form-group">
+                            <select id="country">
+                                <option>United States</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <select id="country">
+                                <option>State / Country</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <input type="text" name="" placeholder="Post / Zip Code">
+                        </div>
+                       </div>
+                        <div class="col-md-12">
+                        <div class="form-group"><a href="#" class="btn update-cart blue">Update Shipping</a></div>
+                        </div>
+                    </div>
+                </form>
+            </div> -->
+            <div class="col-sm-6 pull-right">
+                <h3 class="sec-title b m-t-0">Cart Totals  <span class="linedi"></span></h3>
+                <div class="cart-total">
+                    <div class="sub-cost clearfix"><span class="cart-lbl">Cart Subtotal</span> <span class="cart-value">$36.00</span></div>
+                    <div class="shp-cost clearfix"><span class="cart-lbl">Shipping and Handling</span> <span class="cart-value">Free Shipping</span></div>
+                    <div class="ord-cost clearfix"><span class="cart-lbl">Order Total</span> <span class="cart-value">$36.00</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
