@@ -194,6 +194,9 @@ gulp.task('default', function() {
     gulp.watch('browser/theme/**', function() {
         runSeq('buildPublicCSS','buildPrivateCSS', 'reloadCSS');
     });
+    gulp.watch('browser/theme/**', function() {
+        runSeq('buildPrivateCSS', 'reloadCSS');
+    });
 
     gulp.watch('server/**/*.js', ['lintJS']);
 
