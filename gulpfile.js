@@ -28,7 +28,7 @@ gulp.task('reload', function() {
 });
 
 gulp.task('reloadCSS', function() {
-    return gulp.src('./public/style.css').pipe(livereload());
+    return gulp.src('./public/style.css', '/public/student.css', '/public/teacher.css', '/public/frontend.css').pipe(livereload());
 });
 
 gulp.task('lintJS', function() {
@@ -106,7 +106,7 @@ gulp.task('buildPublicCSS', function() {
         .pipe(sass())
         .pipe(concat('scss-files.scss'));
 
-    var cssStream = gulp.src(['./browser/theme/custom.css'])
+    var cssStream = gulp.src(['./browser/theme/custom.css', './browser/theme/frontend.css'])
         .pipe(concat('css-files.css'));
 
     var mergedStream = merge(scssStream, cssStream)
@@ -130,17 +130,28 @@ gulp.task('buildPublicCSS', function() {
 });
 
 gulp.task('buildPrivateCSS', function() {
-    var lessStream = gulp.src('./browser/theme/less/_main.less')
-        .pipe(less())
-        .pipe(concat('less-files.less'));
 
     var cssStream = gulp.src(['./browser/theme/app.css', './browser/theme/font.css', './browser/theme/jquery.e-calendar.css', './material-design-icons.css', './browser/theme/md.css', './browser/theme/private-custom.css'])
-
-    var mergedStream = merge(lessStream, cssStream)
         .pipe(concat('private-styles.css'))
         .pipe(gulp.dest('./public'))
 
-    return mergedStream
+    return cssStream
+})
+gulp.task('buildStudentCSS', function() {
+
+    var cssStream = gulp.src(['./browser/theme/student.css'])
+        .pipe(concat('student.css'))
+        .pipe(gulp.dest('./public'))
+
+    return cssStream
+})
+gulp.task('buildTeacherCSS', function() {
+
+    var cssStream = gulp.src(['./browser/theme/teacher.css'])
+        .pipe(concat('teacher.css'))
+        .pipe(gulp.dest('./public'))
+
+    return cssStream
 })
 
 // Production tasks
@@ -174,7 +185,7 @@ gulp.task('build', function() {
     if (process.env.NODE_ENV === 'production') {
         runSeq(['buildJSProduction', 'buildCSSProduction']);
     } else {
-        runSeq(['buildJS', 'buildPublicCSS', 'buildPrivateCSS']);
+        runSeq(['buildJS', 'buildPublicCSS', 'buildStudentCSS', 'buildTeacherCSS', 'buildPrivateCSS']);
     }
 });
 
@@ -189,10 +200,10 @@ gulp.task('default', function() {
 
     // Run when anything inside of browser/scss changes.
     gulp.watch('browser/scss/**', function() {
-        runSeq('buildPublicCSS','buildPrivateCSS', 'reloadCSS');
+        runSeq('buildPublicCSS', 'buildPrivateCSS', 'reloadCSS');
     });
     gulp.watch('browser/theme/**', function() {
-        runSeq('buildPublicCSS','buildPrivateCSS', 'reloadCSS');
+        runSeq('buildPublicCSS', 'buildPrivateCSS', 'reloadCSS');
     });
     gulp.watch('browser/theme/**', function() {
         runSeq('buildPrivateCSS', 'reloadCSS');

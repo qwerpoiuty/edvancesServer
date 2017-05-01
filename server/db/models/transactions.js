@@ -15,7 +15,7 @@ module.exports = db.define('transaction', {
         type: Sequelize.INTEGER
     },
     details: {
-        type: Sequelize.JSON
+        type: Sequelize.JSONJSON
     }
 }, {
     instanceMethods: {

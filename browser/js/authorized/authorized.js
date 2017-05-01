@@ -10,14 +10,22 @@ app.config(function($stateProvider) {
             }
         },
         data: {
-            css: ['./private-styles.css']
-                // authenticate: true
+            authenticate: true
         }
     });
 });
 
-app.controller('authorizedCtrl', function($scope, user, $state, userFactory) {
+app.controller('authorizedCtrl', function($scope, user, $state, userFactory, $css) {
     $scope.user = user
+    $css.bind({
+        href: '/private-styles.css'
+    }, $scope);
+    if (user.role = 1) {
+        console.log('hello')
+        $css.add('/teacher.css');
+    } else {
+        $css.add('/student.css');
+    }
     $scope.getUpdatedUser = (id) => {
         userFactory.findSingleUser(id).then(user => {
             $scope.user = user

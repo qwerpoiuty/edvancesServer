@@ -17,6 +17,7 @@
     "bootstrap-wysiwyg": "*",
     "jquery.hotkeys": "*",
     "angular-moment": "^1.0.1",
-    "angular-ui-router-styles": "^1.1.0"
+    "angular-ui-router-styles": "^1.1.0",
+    "angular-css": "^1.0.8"
   }
 }

@@ -6,6 +6,8 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('unauthorizedCtrl', function($scope, $state) {
-
+app.controller('unauthorizedCtrl', function($scope, $state, $css) {
+    $css.bind({
+        href: 'frontend.css'
+    }, $scope)
 });
