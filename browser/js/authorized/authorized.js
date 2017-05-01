@@ -17,16 +17,14 @@ app.config(function($stateProvider) {
 
 app.controller('authorizedCtrl', function($scope, user, $state, userFactory, $css) {
     $scope.user = user
+    $css.bind({
+        href: '/common.css'
+    }, $scope)
     if (user.role = 1) {
-        $css.bind({
-            href: '/teacher.css'
-        }, $scope);
+        $css.add('/teacher.css')
     } else {
-        $css.bind({
-            href: '/student.css'
-        }, $scope);
+        $css.add('/student.css')
     }
-    $css.add('/common.css')
     $scope.getUpdatedUser = (id) => {
         userFactory.findSingleUser(id).then(user => {
             $scope.user = user
