@@ -26,6 +26,7 @@ app.controller('authorizedCtrl', function($scope, user, $state, userFactory, $cs
             href: '/student.css'
         }, $scope);
     }
+    $css.add('/common.css')
     $scope.getUpdatedUser = (id) => {
         userFactory.findSingleUser(id).then(user => {
             $scope.user = user
