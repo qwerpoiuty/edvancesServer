@@ -98,36 +98,36 @@ gulp.task('testBrowserJS', function(done) {
     }, done);
 });
 
-gulp.task('buildPublicCSS', function() {
+// gulp.task('buildPublicCSS', function() {
 
 
 
-    var scssStream = gulp.src('./browser/scss/main.scss')
-        .pipe(sass())
-        .pipe(concat('scss-files.scss'));
+//     var scssStream = gulp.src('./browser/scss/main.scss')
+//         .pipe(sass())
+//         .pipe(concat('scss-files.scss'));
 
-    var cssStream = gulp.src(['./browser/theme/app.css'])
-        .pipe(concat('css-files.css'));
+//     var cssStream = gulp.src(['./browser/theme/app.css'])
+//         .pipe(concat('css-files.css'));
 
-    var mergedStream = merge(scssStream, cssStream)
-        .pipe(concat('styles.css'))
-        .pipe(gulp.dest('./public'));
+//     var mergedStream = merge(scssStream, cssStream)
+//         .pipe(concat('styles.css'))
+//         .pipe(gulp.dest('./public'));
 
-    return mergedStream;
+//     return mergedStream;
 
-    // var sassCompilation = sass();
-    // sassCompilation.on('error', console.error.bind(console));
+//     // var sassCompilation = sass();
+//     // sassCompilation.on('error', console.error.bind(console));
 
-    // return gulp.src('./browser/scss/main.scss')
-    //     .pipe(plumber({
-    //         errorHandler: notify.onError('SASS processing failed! Check your gulp process.')
-    //     }))
-    //     .pipe(sourcemaps.init())
-    //     .pipe(sassCompilation)
-    //     .pipe(sourcemaps.write())
-    //     .pipe(rename('style.css'))
-    //     .pipe(gulp.dest('./public'));
-});
+//     // return gulp.src('./browser/scss/main.scss')
+//     //     .pipe(plumber({
+//     //         errorHandler: notify.onError('SASS processing failed! Check your gulp process.')
+//     //     }))
+//     //     .pipe(sourcemaps.init())
+//     //     .pipe(sassCompilation)
+//     //     .pipe(sourcemaps.write())
+//     //     .pipe(rename('style.css'))
+//     //     .pipe(gulp.dest('./public'));
+// });
 
 
 gulp.task('buildFrontendCSS', function() {
@@ -194,7 +194,7 @@ gulp.task('build', function() {
     if (process.env.NODE_ENV === 'production') {
         runSeq(['buildJSProduction', 'buildCSSProduction']);
     } else {
-        runSeq(['buildJS', 'buildPublicCSS', 'buildStudentCSS', 'buildTeacherCSS', 'buildFrontendCSS', 'buildCommonCSS']);
+        runSeq(['buildJS', 'buildStudentCSS', 'buildTeacherCSS', 'buildFrontendCSS', 'buildCommonCSS']);
     }
 });
 
