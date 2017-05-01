@@ -139,7 +139,7 @@ gulp.task('buildFrontendCSS', function() {
     return cssStream
 })
 gulp.task('buildCommonCSS', function() {
-    var cssStream = gulp.src(['./browser/theme/font.css', './browser/theme/app.css', './browser/theme/jquery.e-calendar.css', ]).pipe(gulp.dest('./publics'))
+    var cssStream = gulp.src(['./browser/theme/font.css', './browser/theme/app.css', './browser/theme/jquery.e-calendar.css']).concat('common.css').pipe(gulp.dest('./publics'))
     return cssStream
 })
 
