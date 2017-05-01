@@ -106,7 +106,7 @@ gulp.task('buildPublicCSS', function() {
         .pipe(sass())
         .pipe(concat('scss-files.scss'));
 
-    var cssStream = gulp.src(['./browser/theme/app.css', './browser/theme/font.css', './browser/theme/jquery.e-calendar.css', './material-design-icons.css', './browser/theme/md.css'])
+    var cssStream = gulp.src(['./browser/theme/app.css'])
         .pipe(concat('css-files.css'));
 
     var mergedStream = merge(scssStream, cssStream)
@@ -129,12 +129,17 @@ gulp.task('buildPublicCSS', function() {
     //     .pipe(gulp.dest('./public'));
 });
 
+
 gulp.task('buildFrontendCSS', function() {
 
     var cssStream = gulp.src('./browser/theme/frontend.css')
         .pipe(concat('frontend.css'))
         .pipe(gulp.dest('./public'))
 
+    return cssStream
+})
+gulp.task('buildCommonCSS', function() {
+    var cssStream = gulp.src(['./browser/theme/font.css', './browser/theme/app.css', './browser/theme/jquery.e-calendar.css', ]).pipe(gulp.dest('./publics'))
     return cssStream
 })
 
@@ -187,7 +192,7 @@ gulp.task('build', function() {
     if (process.env.NODE_ENV === 'production') {
         runSeq(['buildJSProduction', 'buildCSSProduction']);
     } else {
-        runSeq(['buildJS', 'buildPublicCSS', 'buildStudentCSS', 'buildTeacherCSS', 'buildFrontendCSS']);
+        runSeq(['buildJS', 'buildPublicCSS', 'buildStudentCSS', 'buildTeacherCSS', 'buildFrontendCSS', 'buildCommonCSS']);
     }
 });
 
