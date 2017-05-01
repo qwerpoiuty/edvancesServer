@@ -2,7 +2,11 @@ app.config(function($stateProvider) {
     $stateProvider.state('unauthorized', {
         templateUrl: 'js/unauthorized/unauthorized.html',
         controller: 'unauthorizedCtrl',
-        resolve: {}
+        resolve: {
+            user: (AuthService, $state) => {
+                return AuthService.getLoggedInUser
+            }
+        }
     });
 });
 

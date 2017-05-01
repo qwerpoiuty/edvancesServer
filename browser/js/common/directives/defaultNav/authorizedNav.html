@@ -31,10 +31,10 @@
     </div>
     <!-- buttons -->
     <div class="nav navbar-nav hidden-xs">
-        <a class="btn no-shadow navbar-btn" href="" ng-click="fold()">
+        <a class="btn no-shadow navbar-btn" >
             <span class="mainmenu-icon"><img title="menu" alt="menu" src="img/menu-icon.png"></span>
         </a>
-        <a class="edvance-logo" ui-sref="app.dashboard">
+        <a class="edvance-logo" ui-sref="dashboard">
             <img title="edvance logo" alt="edvance logo" src="img/logo.png">
         </a>
     </div>
@@ -133,8 +133,8 @@
             </div>
             <!-- / dropdown -->
         </li>
-        <li class="dropdown profile-li" dropdown>
-            <a href class="dropdown-toggle clear profile-icon" dropdown-toggle>
+        <li class="dropdown profile-li" >
+            <a href class="dropdown-toggle clear profile-icon" toggle-parent-class="open">
                 <span class="profile-user"><span class="hidden-sm hidden-md">John.Smith </span><b class="caret"></b></span>
                 <span class="thumb-sm avatar  m-t-n-sm m-b-n-sm m-l-sm">
                 <img src="img/a0.jpg" alt="...">
@@ -150,7 +150,7 @@
                     </a>
                 </li>
                 <li>
-                    <a ui-sref="app.page.profile">Profile</a>
+                    <a ui-sref="profile">Profile</a>
                 </li>
                 <li>
                     <a ui-sref="app.docs">
