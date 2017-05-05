@@ -14,7 +14,7 @@
             <!-- / main header -->
             <div class="wrapper-md ">
                 <div class="row">
-                    <div class="col-lg-8 mar-btm-30 stream-col">
+                    <div class="col-lg-9 mar-btm-30 stream-col">
                         <!--left section start-->
                         <div class="outlined clearfix pad-20">
                             <div class="title-box float-lt">
@@ -23,13 +23,13 @@
                                 <div class="clearfix">
                                     <hr class="bold-hr" />
                                 </div>
-                                <span class="light-text">Taught By: </span> {{classroom.teacher_name}} <span class="light-text">in: </span> {{classroom.subject}}
+                                <span class="light-text">Taught By: </span> {{classroom.firstName}} {{classroom.lastName}} <span class="light-text">in: </span> {{classroom.subject}}
                             </div>
                         </div>
                         <!--Video Stream start-->
                         <div class="video-streem outlined clearfix no-top-border">
-                            <img ng-hide="joined" src="img/video-streem.jpg" alt="video stream" class="img-responsive w-full" ng-click="launch()"/>
-                            <div id="jitsi" ng-show="joined"></div>
+                            <img ng-hide="joined" src="img/video-streem.jpg" alt="video stream" class="img-responsive w-full" ng-click="launch()" id="jitsi-placeholder"/>
+                            <div id="jitsi" class="img-responsive w-full" ng-show="joined"></div>
                         </div>
                         <!--Video Stream end-->
                         <div class="no-top-border outlined clearfix courseclock pad-20">
@@ -54,7 +54,7 @@
                                 </div>
                                 <!--Assignments start-->
                                 <div class="assignments-col m-t-20" ng-repeat="lesson in lessons track by $index">
-                                    <h4 class="reltd-title semisect">{{lesson.title}} Start Date:{{lesson.startDate | date:'yyyy-mm-dd'}} End Date:{{lesson.endDate | date:'yyyy-mm-dd'}}</h4> <button ng-click="editLesson(lesson, $index)" class="btn">Edit Lesson</button>
+                                    <h4 class="reltd-title semisect">{{lesson.title}} Start Date:{{lesson.startDate | date:'yyyy-MM-dd'}} End Date:{{lesson.endDate | date:'yyyy-MM-dd'}}</h4> <button ng-click="editLesson(lesson, $index)" class="btn">Edit Lesson</button>
                                     <div class="row"><h4>Sections</h4></div>
                                     <div class="row">
                                     <uib-accordion close-others="oneAtATime">
@@ -68,7 +68,7 @@
                                                 <ul class="material-list">
                                                     <li ng-repeat="material in lesson.materials track by $index">
                                                     <a ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L_{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
-                                                    <p>Date Uploaded: {{material.createdAt | date:'yyyy-mm-dd'}}</p>
+                                                    <p>Date Uploaded: {{material.createdAt | date:'yyyy-Mm-dd'}}</p>
                                                     <button ng-click="removeDoc($index,lesson)" class="btn btn-sm">Delete File</button>
                                                 </li>
                                             </ul>
@@ -96,7 +96,7 @@
                                     <div class="innercont clearfix m-b-10a">
                                         <a href="" class="thumb-lg pull-left m-r"><img src="img/a8.jpg" class="img-circle"></a>
                                         <div class="instructor-info reltd-title">
-                                            <div class="trname">{{classroom.teacher_name}}</div>
+                                            <div class="trname">{{classroom.firstName}} {{classroom.lastName}}</div>
                                             <div class="trexp">{{classroom.teacher_title}}</div>
                                             <div class="trsocial">
                                                 <a href="" target="_blank" class="red-text"><i class="fa fa-envelope"></i></a>
@@ -126,7 +126,7 @@
                         </div>
                         <!--left section end-->
                     </div>
-                    <div class="col-lg-4 support-col">
+                    <div class="col-lg-3 support-col">
                         <div class="secondery-title">
                             Tools
                         </div>
@@ -157,7 +157,7 @@
                         <!-- / Calender end-->
 
                         <!--Teacher Notes Start-->
-                        <div>
+                        <!-- <div>
                             <div class="secondery-title">
                                 Teacher Notes
                             </div>
@@ -166,30 +166,20 @@
                             </div>
                             <div class="outlined m-t-10 pad-20">
                                 <ul class="notes-list">
-                                    <li ng-repeat = "note in classNotes">
+                                    <li ng-repeat = "note in classNotes track by $index">
                                         <span class="course-img"><img src="img/notes-img.jpg" alt="..."></span>
                                         <span class="notes-text">
-                                            <span class="reltd-title">Document Title Goes Here</span><br>
-                                            <span class="light-text">March 15, 2017</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="course-img"><img src="img/notes-img.jpg" alt="..."></span>
-                                        <span class="notes-text">
-                                            <span class="reltd-title">Document Title Goes Here</span><br>
-                                            <span class="light-text">March 15, 2017</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="course-img"><img src="img/notes-img.jpg" alt="..."></span>
-                                        <span class="notes-text">
-                                            <span class="reltd-title">Document Title Goes Here</span><br>
-                                            <span class="light-text">March 15, 2017</span>
+                                            <span class="reltd-title"><a ng-href="https://edvances.blob.core.windows.net/edvances-classroom-docs/C_{{classroom.id}} + '-' + {{note.name}}" download="note.name">{{note.name}}</a></span><br>
+                                            <span class="light-text">{{note.createdAt | date'yyyy-mm-dd'}}</span>
+                                            <button ng-if="teacher" ng-click="removeDoc($index,notes)" class="btn btn-sm">Delete</button>
                                         </span>
                                     </li>
                                 </ul>
+                                <div class="row">
+                                     <button ng-if="teacher" type="file" ngf-select="addClassroomNote($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB">Upload File</button>
+                                </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!--Teacher Notes End-->
                     </div>
                 </div>
@@ -207,7 +197,7 @@
             <li>
                 <a class="light-text active">
                     <span class="pull-left thumb-sm avatar m-l-n-md"><img src="img/a8.jpg" class="img-circle" alt="user"></span>
-                    <span class="activity-title pad-12 p-r-0">{{classroom.teacher_name}}</span>
+                    <span class="activity-title pad-12 p-r-0">{{classroom.firstName}} {{classroom.lastName}}</span>
                 </a>
             </li>
         </ul>

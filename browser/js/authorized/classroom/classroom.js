@@ -22,10 +22,10 @@ app.config(function($stateProvider) {
 
 app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, classroomFactory, $stateParams, lessons, documentFactory, moment) {
     $scope.classroom = classroom[0]
-    console.log($scope.user, $scope.classroom)
     $scope.lessons = lessons
     $scope.teacher = $scope.user.id == $scope.classroom.teacher_id
     $scope.member = $scope.classroom.students.indexOf($scope.user.id) != -1 || $scope.teacher
+
 
     $scope.weekdays = {
         0: 'Monday',
@@ -65,11 +65,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         })
     }
 
-    $scope.getClassNotes = () => {
-        classroomFactory.getClassroomNotes($stateParams.id).then(notes => {
-            $scope.classNotes = notes
-        })
-    }
     $scope.checkQuizes = () => {
         classroomFactory.checkQuizes($stateParams.id).then()
     }
@@ -186,20 +181,23 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         })
     }
 
-    $scope.uploadClassroomResources = doc => {
-        classroomFactory.addDocument(doc).then(response => {
-            // $scope.getUpdatedUser(response.data.id)
+    $scope.addClassroomNote = doc => {
+        documentFactory.createClassroomDoc(doc, $scope.classroom.id).then(response => {
+            $scope.classNotes.push(response.data)
         })
     }
     var domain = "meet.jit.si";
-    var width = document.getElementById("jitsi").width
-    var height = document.getElementById("jitsi").height
+    var width = 500
+    var height = 300
+    console.log(jQuery("#jitsi-placeholder").width())
+
     $scope.joined = false
     $scope.room = `${$scope.classroom.teacher}${$scope.classroom.id}`
     $scope.test = () => {
         $scope.joined = true
-        $scope.videoApi = new JitsiMeetExternalAPI(domain, "test", width, height, document.getElementById("jitsi"));
+        $scope.videoApi = new JitsiMeetExternalAPI(domain, $scope.room, 650, 422, document.getElementById("jitsi"));
         $scope.videoApi.executeCommand('toggleFilmStrip')
+        $scope.videoApi.executeCommand('toggleFullScreen')
     }
 
     $scope.close = () => {

@@ -39,6 +39,9 @@ module.exports = db.define('quiz', {
         type: Sequelize.ARRAY(Sequelize.INTEGER),
         defaultValue: []
     },
+    pointValue: {
+        type: Sequelize.INTEGER
+    },
     thumbnail: {
         type: Sequelize.STRING
     }

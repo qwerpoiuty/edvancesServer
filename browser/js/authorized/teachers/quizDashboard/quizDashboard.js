@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
 });
 
 app.controller('quizDashboardCtrl', ($scope, quizFactory, classroomFactory) => {
-    classroomFactory.getClassroomsByUser($scope.user.id).then(classrooms => {
+    classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
         $scope.classrooms = classrooms
     })
     $scope.getQuiz = (id) => {

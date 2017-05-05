@@ -9,9 +9,8 @@
 
  })
  app.controller('newQuizCtrl', function($scope, $state, quizFactory, classroomFactory) {
-     classroomFactory.getClassroomsByUser($scope.user.id).then(classrooms => {
+     classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
          $scope.classrooms = classrooms
-         console.log($scope.classrooms)
          $scope.selectedClassroom = $scope.classrooms[0]
      })
      $scope.questions = []
