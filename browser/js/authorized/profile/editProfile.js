@@ -21,11 +21,11 @@ app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory,
             $scope.times[time].start = new Date($scope.user.teacherOptions.times[time].start)
             $scope.times[time].end = new Date($scope.user.teacherOptions.times[time].end)
         })
-        for (let key in Object.keys($scope.times)) {
+        for (let key of Object.keys($scope.times)) {
             $scope.days[key] = true
         }
     }
-
+    $scope.interests = {}
     $scope.weekdays = {
         0: 'Monday',
         1: 'Tuesday',

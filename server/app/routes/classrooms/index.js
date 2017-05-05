@@ -5,6 +5,8 @@ var _ = require('lodash');
 var chalk = require('chalk')
 var db = require('../../../db');
 var Classroom = db.model('classroom')
+var User = db.model('user')
+var Transaction = db.model('transaction')
 var multer = require('multer')
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -38,7 +40,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/:id', ensureAuthenticated, (req, res) => {
-    db.query(`select c.id,teacher.id as teacher_id, teacher.name as teacher_name, c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject, c.students 
+    db.query(`select c.id,teacher.id as teacher_id, teacher.name as teacher_name, c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject, c.students,c.cost 
 from classrooms c
 inner join users as teacher
 on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom => {
@@ -65,6 +67,65 @@ router.post('/', ensureAuthenticated, (req, res) => {
     })
 })
 
+router.post('/update', ensureAuthenticated, (req, res) => {
+    const updates = req.body.updates;
+    console.log(updates)
+    Classroom.findOne({
+        where: {
+            id: req.body.id
+        }
+    }).then(classroom => {
+        return classroom.updateAttributes(updates)
+            .then(updatedClassroom => {
+                res.json({
+                    header: 200,
+                    data: updatedClassroom
+                })
+            }).catch(() => {
+                var error = new Error('Edit Error');
+                error.status = 401;
+                return next(error);
+            })
+    })
+})
+
+router.post('/addStudent', ensureAuthenticated, (req, res) => {
+    console.log('hello')
+    var classSearch = Classroom.findOne({
+        where: {
+            id: req.body.classroom_id
+        }
+    })
+    var userSearch = User.findOne({
+        where: {
+            id: req.body.student_id
+        }
+    })
+    Promise.all([classSearch, userSearch]).then(values => {
+        var classroom = values[0]
+        var user = values[1]
+        Transaction.create({
+            owner: user.id,
+            type: 'purchase',
+            amount: classroom.cost,
+            description: classroom
+        }).then(transaction => {
+            user.credits = user.credits - classroom.cost
+            var students = classroom.students
+            students.push(user.id)
+            console.log(students)
+            return Promise.all([classroom.update({
+                students: students
+            }), user.save()])
+        }).then(values => {
+            console.log('made it too')
+            res.json(values)
+        })
+    }).catch(reason => {
+        res.json('failed')
+    })
+})
+
 router.post('/delete', ensureAuthenticated, (req, res) => {
     Classroom.destroy({
         where: {
@@ -80,21 +141,5 @@ router.post('/delete', ensureAuthenticated, (req, res) => {
             msg.payload = 'Successfuly Deleted';
         }
         res.json(msg)
-    })
-})
-
-router.post('/update', ensureAuthenticated, (req, res) => {
-    const updates = req.body.updates;
-    console.log(updates)
-    Classroom.findOne({
-        where: {
-            id: req.body.id
-        }
-    }).then(classroom => {
-        return classroom.updateAttributes(updates)
-            .then(updatedClassroom => {
-                console.log(chalk.red.bgYellow.bold(JSON.stringify(updatedClassroom)))
-                res.json(updatedClassroom)
-            })
     })
 })

@@ -1,0 +1,76 @@
+<div class="modal-header">
+	<h3 class="modal-title">Update this Classroom</h3>
+</div>
+<form class="form horizontal" ng-submit="updateClassroom(temp_classroom)" id="lessonForm">
+<div class="modal-body">
+	<div class="form-group">
+		<div class="row">
+	    	<label class="col-sm-2 control-label">Classroom Title</label>
+        	<div class="col-sm-6">
+            	<input type="text" class="form-control" placeholder="Classroom Title" ng-model="temp_classroom.classroom_title">
+        	</div>
+        </div>
+	</div>
+	<div class="form-group">
+		<div class="row">
+            <label class="col-sm-2 control-label">Start Date</label>
+            <div class="col-sm-6">
+            	<input type="date" class="form-control" ng-model="temp_classroom.startDate" required/>
+            </div>
+        </div>
+	</div>
+	<div class="form-group">
+		<div class="row">
+            <lable class="col-sm-2 control-label">End Date</lable>
+            <div class="col-sm-6">
+            	<input type="date" class="form-control" ng-model="temp_classroom.endDate" required/>
+            </div>
+        </div>
+	</div>
+	<div class="form-group">
+		<div class="row">
+            <lable class="col-sm-2 control-label">Cost</lable>
+            <div class="col-sm-6">
+            	<input type="integer" class="form-control" ng-model="temp_classroom.clost" required/>
+            </div>
+        </div>
+	</div>
+    <div class="form-group">
+    	<div class="row">
+        <label class="col-sm-2 control-label">Course Days </label>
+        <div class="col-sm-8">
+            <div class="weekDays-selector">
+              <input type="checkbox" id="weekday-mon" ng-model="days[0]" class="weekday" />
+              <label for="weekday-mon">M</label>
+              <input type="checkbox" id="weekday-tue" ng-model="days[1]" class="weekday" />
+              <label for="weekday-tue">T</label>
+              <input type="checkbox" id="weekday-wed" ng-model="days[2]" class="weekday" />
+              <label for="weekday-wed">W</label>
+              <input type="checkbox" id="weekday-thu" ng-model="days[3]" class="weekday" />
+              <label for="weekday-thu">T</label>
+              <input type="checkbox" id="weekday-fri" ng-model="days[4]" class="weekday" />
+              <label for="weekday-fri">F</label>
+              <input type="checkbox" id="weekday-sat" ng-model="days[5]" class="weekday" />
+              <label for="weekday-sat">S</label>
+              <input type="checkbox" id="weekday-sun" ng-model="days[6]" class="weekday" />
+              <label for="weekday-sun">S</label>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row" ng-repeat="day in days track by $index" ng-show="day ==true">
+            <label class="col-sm-2 control-label">{{weekdays[$index]}}: </label>
+            <div class="col-sm-8">
+                <input type="time" id="exampleInput" name="input" ng-model="temp_times[$index].start" placeholder="HH:mm:ss" /> 
+                to 
+                <input type="time" id="exampleInput" name="input" ng-model="temp_times[$index].end" placeholder="HH:mm:ss" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+	<button type="submit" class="btn btn-pimary" >Save</button>
+	<button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+</div>
+</form>

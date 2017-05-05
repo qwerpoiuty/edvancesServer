@@ -11,11 +11,17 @@ module.exports = db.define('transaction', {
     owner: {
         type: Sequelize.INTEGER
     },
+    type: {
+        type: Sequelize.ENUM('credit', 'purchase')
+    },
     amount: {
         type: Sequelize.INTEGER
     },
-    details: {
-        type: Sequelize.JSONJSON
+    currency: {
+        type: Sequelize.STRING
+    },
+    description: {
+        type: Sequelize.JSON
     }
 }, {
     instanceMethods: {

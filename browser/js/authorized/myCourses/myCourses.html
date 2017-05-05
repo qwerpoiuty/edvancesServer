@@ -1,0 +1,83 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+    <!-- column -->
+    <div class="col">
+        <div class="content-wrapper mycourses quiz-manager">
+            <!-- main header -->
+            <div class=" lter wrapper-md bredcrumb">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">My Courses</small>
+                    </div>
+                </div>
+            </div>
+            <!-- / main header -->
+            <div class="wrapper-md">
+                <!-- info bar -->
+                <div class="row m-b-3em">
+                    <div class="col-md-12">
+                        <div class="clearfix">
+                            <div class="info-wrap m-t--5 p-l-0">
+                                <div class="title-box">
+                                    <span class="main-title">You are {{teacher ? 'teaching the courses below.' : 'taking the courses below'}}</span>
+                                   <!--  <span class="reltd-title">Lorem ipsum dolor sit amet, consectetur adipiscing</span> -->
+                                </div>
+                            </div>
+                            <div class="info-btn">
+                                <a class="outlined-btn red-btn cancel-payroll" ui-sref="newClassroom">+ New Course</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / info bar -->
+                <!-- Quiz Listing controles start -->
+                <div class="row m-b-3em">
+                    <div class="col-md-12">
+                        <form class="form-horizontal float-lt" method="get">
+                            <div class="select-field clearfix">
+                                <label class="float-lt control-label">Sort by: </label>
+                                <div class="sort-drop float-lt">
+                                    <select name="carlist" form="carform" class="form-control ">
+                                        <option value="">Most Recent</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- <div class="view-as float-rt clearfix">
+                            <a class="view float-rt" href=""><i class="fa fa-bars"></i></a>
+                            <a class="view float-rt active" href=""><i class="fa fa-th"></i></a>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- / Quiz Listing controles end -->
+                <!-- Quiz Listing start -->
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6 quiz-block mar-btm-30" ng-repeat = "class in classrooms">
+                        <img src="img/quiz-thumnail.jpg" alt="Quiz" title="Quiz">
+                        <div class="outlined pad-20">
+                            <div class="activity-title">{{class.title}}<i class="fa fa-check-circle geen-text pull-right"></i>
+                                <br>
+                                <div class="row">
+                                <span class="desc-det">
+                                    <span class="desc-lbl p-l-0">{{class.description}}</span>
+                                </span>
+                                </div>
+                                <div class="row" ng-repeat="(key,value) in class.times">
+                                    <span class="label label-primary" >{{weekdays[key]}} from {{value.start | date:'HH:mm a'}} to {{value.end | date:'HH:mm a'}}</span>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="outlined pad-10 clearfix no-top-border">
+                            <a href="" class="fill-btn yello-btn float-lt slim-btn" ng-click="transition(class.id)">View Course</a>
+                            <!-- <a href="" class="outlined-btn gray-btn float-rt"><i class="fa fa-comment-o"></i></a> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- / Quiz Listing end -->
+            </div>
+        </div>
+        <!-- /column -->
+    </div>
+</div>
+<!-- /hbox layout -->

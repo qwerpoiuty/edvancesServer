@@ -5,8 +5,9 @@ app.config(function($stateProvider) {
         controller: 'classroomCtrl',
         parent: 'authorized',
         resolve: {
-            classroom: (classroomFactory, $stateParams) => {
+            classroom: (classroomFactory, $stateParams, $state) => {
                 return classroomFactory.findSingleClassroom($stateParams.id).then(classroom => {
+                    if (classroom.length == 0) $state.go('dashboard')
                     return classroom
                 })
             },
@@ -21,12 +22,10 @@ app.config(function($stateProvider) {
 
 app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, classroomFactory, $stateParams, lessons, documentFactory, moment) {
     $scope.classroom = classroom[0]
-
+    console.log($scope.user, $scope.classroom)
     $scope.lessons = lessons
     $scope.teacher = $scope.user.id == $scope.classroom.teacher_id
-    $scope.member = $scope.classroom.students.indexOf($scope.user.id) != -1
-    console.log($scope.member, $scope.classroom, $scope.user.id)
-
+    $scope.member = $scope.classroom.students.indexOf($scope.user.id) != -1 || $scope.teacher
 
     $scope.weekdays = {
         0: 'Monday',
@@ -74,11 +73,27 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     $scope.checkQuizes = () => {
         classroomFactory.checkQuizes($stateParams.id).then()
     }
-    var domain = "meet.jit.si";
-    var width = 740;
-    var height = 422;
-    $scope.joined = false
-    $scope.room = `${$scope.classroom.teacher}${$scope.classroom.id}`
+
+
+    $scope.editClassroom = () => {
+        var modalInstance = $uibModal.open({
+            templateUrl: "js/common/modals/editClassroom/editClassroom.html",
+            controller: 'editClassroomCtrl',
+            size: 'md',
+            resolve: {
+                classroom: () => {
+                    return $scope.classroom
+                }
+            }
+        })
+        modalInstance.result.then(result => {
+            if (result) {
+                classroomFactory.findSingleClassroom($stateParams.id).then(classroom => {
+                    $scope.classroom = classroom
+                })
+            }
+        })
+    }
 
     $scope.addLesson = () => {
         var modalInstance = $uibModal.open({
@@ -92,9 +107,10 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             }
         })
         modalInstance.result.then(result => {
-            if (result) {
-                console.log(result)
+            if (result.data) {
                 $scope.lessons.push(result.payload)
+            } else {
+                alert('edit error')
             }
         })
     }
@@ -175,7 +191,11 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             // $scope.getUpdatedUser(response.data.id)
         })
     }
-
+    var domain = "meet.jit.si";
+    var width = document.getElementById("jitsi").width
+    var height = document.getElementById("jitsi").height
+    $scope.joined = false
+    $scope.room = `${$scope.classroom.teacher}${$scope.classroom.id}`
     $scope.test = () => {
         $scope.joined = true
         $scope.videoApi = new JitsiMeetExternalAPI(domain, "test", width, height, document.getElementById("jitsi"));
@@ -191,15 +211,16 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     }
 
     $scope.addStudent = (studentId) => {
-        $scope.classroom.students.push(studentId)
-        console.log($scope.classroom.students)
-        classroomFactory.updateClassroom($stateParams.id, {
-            students: $scope.classroom.students
-        }).then(response => {
-            if (response.data = true) {
-                $scope.member = true
-            }
-        })
+        if ($scope.user.credits >= $scope.classroom.cost) {
+            classroomFactory.addStudent($stateParams.id, studentId).then(response => {
+                console.log(response)
+                if (response.data = true) {
+                    $scope.member = true
+                }
+            })
+        } else {
+            alert('Not enough credits')
+        }
     }
 
     $scope.getNextLesson()

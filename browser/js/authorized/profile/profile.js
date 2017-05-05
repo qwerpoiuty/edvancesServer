@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('profileCtrl', function($scope, $sce, $uibModal, classroomFactory, userFactory) {
+app.controller('profileCtrl', function($scope, $sce, $uibModal, classroomFactory, userFactory, transactionFactory) {
     $scope.teacher = ($scope.user.role == 1)
     if ($scope.teacher) {
         classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
@@ -31,6 +31,30 @@ app.controller('profileCtrl', function($scope, $sce, $uibModal, classroomFactory
         5: 'Saturday',
         6: 'Sunday'
     }
-    console.log($scope.user)
+    $scope.addCredits = () => {
+        var cc = {
+            "currency": "usd",
+            "total": 100,
+            "description": 'hello world',
+            "method": 'credit_card',
+            "type": "visa",
+            "number": "4417119669820331",
+            "expire_month": "11",
+            "expire_year": "2018",
+            "cvv2": "874",
+            "first_name": "Joe",
+            "last_name": "Shopper",
+            "billing_address": {
+                "line1": "52 N Main ST",
+                "city": "Johnstown",
+                "state": "OH",
+                "postal_code": "43210",
+                "country_code": "US"
+            }
+        }
+        transactionFactory.createSale(cc, $scope.user).then(result => {
+            console.log(result)
+        })
+    }
 
 });

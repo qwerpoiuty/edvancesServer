@@ -18,7 +18,7 @@
                         <!--left section start-->
                         <div class="outlined clearfix pad-20">
                             <div class="title-box float-lt">
-                                <span class="main-title">{{classroom.classroom_title}}</span>
+                                <span class="main-title">{{classroom.classroom_title}} <button ng-if="teacher" class="btn btn-primary white-brd" ng-click="editClassroom()">Edit Classroom</button></span>
                                 <span class="light-text">next lesson:</span> <span class="reltd-title">{{nextLessonDay}}</span> <span class="light-text">start time:</span> <span class="reltd-title">{{nextLessonTime}}</span>
                                 <div class="clearfix">
                                     <hr class="bold-hr" />

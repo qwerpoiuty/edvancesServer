@@ -19,7 +19,7 @@
         </span>
         <span href class="dropdown-toggle hidden-folded no-border" dropdown-toggle>
           <span class="clear">
-            <span class="block user-pro-name">{{user.name}}</span>
+            <span class="block user-pro-name">{{user.firstName}} {{user.lastName}}</span>
           </span>
         </span>
       </span>
@@ -44,15 +44,15 @@
         <i class="fa fa-fw fa-plus text"></i>
         <i class="fa fa-fw fa-minus text-active"></i>
       </span>
-      <span class="font-bold">My Courses</span>
+      <span class="font-bold">Courses</span>
     </a>
     <ul class="nav nav-sub dk">
-      <!-- <li ui-sref-active="active">
-        <a ui-sref="app.dashboard">
-          <span>Upcoming Classes</span>
+      <li ui-sref-active="active">
+        <a ui-sref="myCourses">
+          <span>My Courses</span>
         </a>
       </li>
-      <li ui-sref-active="active">
+<!--       <li ui-sref-active="active">
         <a ui-sref="app.dashboard">
           <span>Assignments Due</span>
         </a>

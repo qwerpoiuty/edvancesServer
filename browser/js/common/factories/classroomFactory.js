@@ -41,6 +41,16 @@ app.factory('classroomFactory', function($http) {
         })
     }
 
+    d.addStudent = (classroomId, studentId) => {
+        var transaction = {
+            student_id: studentId,
+            classroom_id: classroomId
+        }
+        return $http.post('/api/classrooms/addStudent', transaction).then(response => {
+            return response.data
+        })
+    }
+
     d.deleteClassroom = (classroomId) => {
         var query = {
             id: classroomId

@@ -23,7 +23,14 @@ module.exports = db.define('user', {
     role: {
         type: Sequelize.INTEGER
     },
-    name: {
+    credits: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    },
+    firstName: {
+        type: Sequelize.STRING
+    },
+    lastName: {
         type: Sequelize.STRING
     },
     profilePic: {
@@ -33,10 +40,13 @@ module.exports = db.define('user', {
         type: Sequelize.STRING
     },
     interests: {
-        type: Sequelize.STRING
+        type: Sequelize.JSON
     },
     location: {
         type: Sequelize.STRING
+    },
+    subscribed: {
+        type: Sequelize.BOOLEAN
     },
     teacherOptions: {
         type: Sequelize.JSON

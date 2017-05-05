@@ -4,7 +4,9 @@ app.config(function($stateProvider) {
         controller: 'unauthorizedCtrl',
         resolve: {
             user: (AuthService, $state) => {
-                return AuthService.getLoggedInUser
+                return AuthService.getLoggedInUser().then(user => {
+                    if (user) $state.go('dashboard')
+                })
             }
         }
     });
