@@ -11,7 +11,7 @@ app.config(function($stateProvider) {
                 })
             },
             classes: function(classroomFactory, $stateParams) {
-                return classroomFactory.getClassroomsByUser($stateParams.id).then(classrooms => {
+                return classroomFactory.getClassroomsByTeacher($stateParams.id).then(classrooms => {
                     return classrooms
                 })
             }
