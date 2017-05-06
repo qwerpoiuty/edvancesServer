@@ -39,16 +39,23 @@ router.get('/', ensureAuthenticated, (req, res) => {
 
 })
 
-router.get('/classroom/:id', (req, res) => {
+router.get('/classroom/:id', ensureAuthenticated, (req, res) => {
     db.query(`select q.questions,q.open, q.close,q.timeframe,l.title as lesson_title,q.participants,q.quiz_title from classrooms c
   inner join lessons l on c.id = l.classroom
   inner join quizzes q on q.lesson = l.id
   where c.id = ${req.params.id}`).then(quizzes => {
-        res.json({
-            status: 200,
-            message: `Quizzes from ${req.params.id}`,
-            data: quizzes
-        })
+        res.json(quizzes)
+    })
+})
+
+router.get('/student/:id', ensureAuthenticated, (req, res) => {
+    db.query(`select q.questions, q.open,q.close,q.timeframe, l.title as lesson_title, c.title as classroom_title,c.id as classroom_id
+        from quizzes q
+        inner join lessons l on q.lesson = l.id
+        inner join classrooms c on c.id = l.classroom
+        where ${req.params.id} = any(c.students)
+        `).then(quizzes => {
+        res.json(quizzes)
     })
 })
 

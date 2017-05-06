@@ -187,17 +187,12 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         })
     }
     var domain = "meet.jit.si";
-    var width = 500
-    var height = 300
-    console.log(jQuery("#jitsi-placeholder").width())
-
     $scope.joined = false
     $scope.room = `${$scope.classroom.teacher}${$scope.classroom.id}`
     $scope.test = () => {
         $scope.joined = true
-        $scope.videoApi = new JitsiMeetExternalAPI(domain, $scope.room, 650, 422, document.getElementById("jitsi"));
+        $scope.videoApi = new JitsiMeetExternalAPI(domain, $scope.room, jQuery("#jitsi-placeholder").width(), jQuery("#jitsi-placeholder").height(), document.getElementById("jitsi"));
         $scope.videoApi.executeCommand('toggleFilmStrip')
-        $scope.videoApi.executeCommand('toggleFullScreen')
     }
 
     $scope.close = () => {

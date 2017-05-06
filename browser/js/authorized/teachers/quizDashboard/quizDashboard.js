@@ -13,7 +13,7 @@ app.controller('quizDashboardCtrl', ($scope, quizFactory, classroomFactory) => {
     })
     $scope.getQuiz = (id) => {
         quizFactory.getQuizzesByClassroom(id).then(quizzes => {
-            $scope.quizzes = quizzes.data[0]
+            $scope.quizzes = quizzes
         })
     }
 

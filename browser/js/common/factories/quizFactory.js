@@ -14,7 +14,11 @@ app.factory('quizFactory', function($http) {
             return response.data
         })
     }
-
+    d.getQuizzesByStudent = (studentID) => {
+        return $http.get('/api/quizzes/student/' + studentID).then(response => {
+            return response.data
+        })
+    }
     d.createQuiz = quiz => {
         return $http.post('/api/quizzes/', quiz).then(response => {
             return response.data

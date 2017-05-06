@@ -3,10 +3,10 @@ app.factory('transactionFactory', function($http) {
         //remember to make a success/failure screen
     d.createSale = (ccinfo, userID) => {
 
-        $http.get('/api/transactions/create', {
+        return $http.get('/api/transactions/create/' + userID, {
             params: ccinfo
         }).then(result => {
-            console.log(result)
+            return result.data
         })
     }
 

@@ -107,18 +107,16 @@ router.post('/addStudent', ensureAuthenticated, (req, res) => {
         Transaction.create({
             owner: user.id,
             type: 'purchase',
-            amount: classroom.cost,
+            amount: "-" + classroom.cost,
             description: classroom
         }).then(transaction => {
             user.credits = user.credits - classroom.cost
             var students = classroom.students
             students.push(user.id)
-            console.log(students)
             return Promise.all([classroom.update({
                 students: students
             }), user.save()])
         }).then(values => {
-            console.log('made it too')
             res.json(values)
         })
     }).catch(reason => {

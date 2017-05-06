@@ -8,6 +8,25 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('myAssignmentsCtrl', ($scope) => {
+app.controller('myAssignmentsCtrl', ($scope, quizFactory, $state) => {
+    $scope.inProgress = false
+    quizFactory.getQuizzesByStudent($scope.user.id).then(quizzes => {
+        $scope.quizzes = quizzes[0]
+    })
+    $scope.takeQuiz = (index) => {
+        $scope.quizInProgress = $scope.quizzes[index]
+        $scope.inProgress = true
+    }
+    $scope.submitQuiz = () => {
+        quizFactory.submitQuiz($scope.user.id, $scope.quiz.id).then(quiz => {
+
+        })
+    }
+
+    $scope.transition = (id) => {
+        $state.go('classroom', {
+            id: id
+        })
+    }
 
 })

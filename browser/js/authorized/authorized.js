@@ -20,7 +20,7 @@ app.controller('authorizedCtrl', function($scope, user, $state, userFactory, $cs
     $css.bind({
         href: '/common.css'
     }, $scope)
-    if (user.role = 1) {
+    if (user.role == 1) {
         $css.add('/teacher.css')
     } else {
         $css.add('/student.css')

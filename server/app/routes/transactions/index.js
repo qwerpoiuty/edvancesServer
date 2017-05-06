@@ -4,10 +4,8 @@ module.exports = router;
 var _ = require('lodash');
 var chalk = require('chalk')
 var db = require('../../../db');
-var Lesson = db.model('lesson')
-var Classroom = db.model('classroom')
-var Document = db.model('document')
-var Quiz = db.model('quiz')
+var Transaction = db.model('transaction')
+var User = db.model('user')
 var multer = require('multer')
 var azure = require('azure-storage');
 var blobSvc = azure.createBlobService('DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net')
@@ -25,90 +23,70 @@ paypal.configure({
     'client_secret': 'EGcLrMqnndLZuT8pdpv0_aBVigffRDNrPJdmMrBfbHhGOyMIV--8rGXNy_4kpxmFY2K1EMWn3IAiDgi7'
 })
 
-router.get('/create', (req, res) => {
+router.get('/create/:id', (req, res) => {
     var method = req.query['method'];
-
-    // var payment = {
-    //     "intent": "sale",
-    //     "payer": {},
-    //     "transactions": [{
-    //         "amount": {
-    //             "currency": req.query['currency'],
-    //             "total": req.query['amount']
-    //         },
-    //         "description": req.query['description']
-    //     }]
-    // };
-
+    var amount = JSON.parse(req.query.amount)
     var payment = {
-            "intent": "sale",
-            "payer": {
-                "payment_method": "credit_card",
-                "funding_instruments": [{
-                    "credit_card": {
-                        "number": "4883057219875543",
-                        "type": "visa",
-                        "expire_month": 11,
-                        "expire_year": 2018,
-                        "cvv2": "874",
-                        "first_name": "Betsy",
-                        "last_name": "Buyer",
-                        "billing_address": {
-                            "line1": "111 First Street",
-                            "city": "Saratoga",
-                            "state": "CA",
-                            "postal_code": "95070",
-                            "country_code": "US"
-                        }
-                    }
-                }]
+        "intent": "sale",
+        "payer": {},
+        "transactions": [{
+            "amount": {
+                "currency": amount.currency,
+                "total": amount.total
             },
-            "transactions": [{
-                "amount": {
-                    "total": "7.47",
-                    "currency": "USD",
-                    "details": {
-                        "subtotal": "7.41",
-                        "tax": "0.03",
-                        "shipping": "0.03"
-                    }
-                },
-                "description": "The payment transaction description."
-            }]
-        }
-        // if (method === 'paypal') {
-        //     payment.payer.payment_method = 'paypal';
-        //     payment.redirect_urls = {
-        //         "return_url": "http://yoururl.com/execute",
-        //         "cancel_url": "http://yoururl.com/cancel"
-        //     };
-        // } else if (method === 'credit_card') {
-        //     var funding_instruments = [{
-        //         "credit_card": {
-        //             "type": req.query.type.toLowerCase(),
-        //             "number": req.query.number,
-        //             "expire_month": req.query['expire_month'],
-        //             "expire_year": req.query['expire_year'],
-        //             "first_name": req.query['first_name'],
-        //             "last_name": req.query['last_name']
-        //         }
-        //     }];
-        //     payment.payer.payment_method = 'credit_card';
-        //     payment.payer.funding_instruments = funding_instruments;
-        // }
-    console.log(payment)
+            "description": req.query.description
+        }]
+    }
+    if (method === 'paypal') {
+        payment.payer.payment_method = 'paypal';
+        payment.redirect_urls = {
+            "return_url": "http://yoururl.com/execute",
+            "cancel_url": "http://yoururl.com/cancel"
+        };
+    } else if (method === 'credit_card') {
+        var ccInfo = JSON.parse(req.query.ccInfo)
+        var funding_instruments = [{
+            "credit_card": {
+                "type": ccInfo['type'].toLowerCase(),
+                "number": ccInfo['number'],
+                "expire_month": ccInfo['expire_month'],
+                "expire_year": ccInfo['expire_year'],
+                "first_name": ccInfo['first_name'],
+                "last_name": ccInfo['last_name'],
+                "billing_address": ccInfo.billing_address
+            }
+        }];
+        payment.payer.payment_method = 'credit_card';
+        payment.payer.funding_instruments = funding_instruments;
+
+    }
     paypal.payment.create(payment, function(error, payment) {
-        console.log('hello?')
         if (error) {
-            console.log(error);
             res.json({
-                'error': error
+                status: 400,
+                error: error
             });
         } else {
-            console.log('hello')
-            res.json({
-                'payment': payment
-            });
+            User.findOne({
+                where: {
+                    id: req.params.id
+                }
+            }).then(user => {
+                Transaction.create({
+                    owner: user.id,
+                    type: 'purchase',
+                    amount: req.query.credits,
+                    description: req.query.description
+                }).then(transaction => {
+                    user.credits = user.credits + Number(req.query.credits)
+                    return user.save()
+                }).then(user => {
+                    res.json({
+                        status: 200,
+                        data: user
+                    })
+                })
+            })
         }
     });
 })

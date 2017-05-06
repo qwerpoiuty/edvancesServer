@@ -28,7 +28,7 @@ app.controller('myCourseCtrl', function($scope, user, userFactory, classroomFact
         })
     } else {
         classroomFactory.getClassroomsByStudent($scope.user.id).then(result => {
-            $scope.classrooms = result.data
+            $scope.classrooms = result
         })
     }
     $scope.transition = classroomId => {

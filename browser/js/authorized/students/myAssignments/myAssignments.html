@@ -1,5 +1,5 @@
 <div class="col">
-    <div class="content-wrapper mycourses quiz-manager">
+    <div class="content-wrapper mycourses quiz-manager" ng-show="!inProgress">
         <!-- main header -->
         <div class=" lter wrapper-md bredcrumb">
             <div class="row">
@@ -15,11 +15,8 @@
                 <div class="col-md-12">
                     <div class="clearfix">
                         <div class="m-t--5 no-pad">
-                            <div class="activity-title">Assignments Due for Today
+                            <div class="activity-title">Assignments Due
                                 <br>
-                                <span class="desc-det">
-                                <span class="desc-lbl p-l-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</span>
-                                </span>
                                 <div class="clearfix">
                                     <hr class="bold-hr">
                                 </div>
@@ -31,54 +28,23 @@
             <!-- / info bar -->
             <!--Upcoming Classes Start-->
             <div class="row courselist">
-                <div class="col-md-12 col-sm-6 complet-course quiz-block mar-btm-30">
+                <div class="col-md-12 col-sm-6 complet-course quiz-block mar-btm-30" ng-repeat="quiz in quizzes">
                     <div class="outlined clearfix">
-                        <a class="list-thumb" href=""class="link" href="#/app/classroom"><img src="img/course-thumnail.jpg" alt="Course" title="Course"></a>
+                        <a class="list-thumb" href="" class="link" ><img src="img/course-thumnail.jpg" alt="Course" title="Course"></a>
                         <div class="list-details pad-20 b-l-0">
                             <div class="normal-text complet-info">
-                                <a href=""href="#/app/classroom" class="w-full activity-title">Fractions 101 </a>
-                                <strong>Type:</strong> Essay
+                                <a ng-click="transition(quiz.classroom_id)" class="w-full activity-title">Fractions 101 </a>
                                 <br>
-                                <strong>Duration:</strong> 05 Sep 2016 – 12 Dec 2016
+                                <strong>Duration:</strong> {{quiz.timeframe}}
                                 <br>
-                                <strong>Due Date: </strong> Thursday January 26, 2017
+                                <strong>Due Date: </strong> {{quiz.close | date:'dd/MM/YYYY'}}
                                 <br>
-                                <strong>Time Due: </strong> 10:00 EST
-                                <br>
-                                <strong>Value:</strong> 100 pts
+                                <strong>Value:</strong> {{quiz.pointValue}}
                             </div>
                             <div class="action-btn float-rt text-right">
-                                <a href="" class="outlined-btn gray-btn m-b-20"><i class="fa fa-calendar"></i></a>
                                 <div class="clearfix"></div>
-                                <a href=""class="fill-btn m-b-10a slim-btn" href="#/app/classroom">Submit Assignment</a>
+                                <button ng-click="takeQuiz($index)" class="fill-btn m-b-10a slim-btn" href="#/app/classroom">Take Quiz</button>
                                 <div class="clearfix"></div>
-                                <a href="" class="light-text">Download Files</a> | <a href="">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-6 complet-course quiz-block mar-btm-30">
-                    <div class="outlined clearfix">
-                        <a class="list-thumb" href=""class="link" href="#/app/classroom"><img src="img/course-thumnail.jpg" alt="Course" title="Course"></a>
-                        <div class="list-details pad-20 b-l-0">
-                            <div class="normal-text complet-info">
-                                <a href=""href="#/app/classroom" class="w-full activity-title">Fractions 101 </a>
-                                <strong>Type:</strong> Essay
-                                <br>
-                                <strong>Duration:</strong> 05 Sep 2016 – 12 Dec 2016
-                                <br>
-                                <strong>Due Date: </strong> Thursday January 26, 2017
-                                <br>
-                                <strong>Time Due: </strong> 10:00 EST
-                                <br>
-                                <strong>Value:</strong> 100 pts
-                            </div>
-                            <div class="action-btn float-rt text-right">
-                                <a href="" class="outlined-btn gray-btn m-b-20"><i class="fa fa-calendar"></i></a>
-                                <div class="clearfix"></div>
-                                <a href=""class="fill-btn m-b-10a slim-btn" href="#/app/classroom">Submit Assignment</a>
-                                <div class="clearfix"></div>
-                                <a href="" class="light-text">Download Files</a> | <a href="">View Details</a>
                             </div>
                         </div>
                     </div>

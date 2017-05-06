@@ -1,3 +1,47 @@
-<ul>
-	<li ng-repeat= "class in classrooms"><a ng-click="transition(class.id)">{{class.title}}</a></li>
-</ul>
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+    <!-- column -->
+    <div class="col">
+        <div class="content-wrapper mycourses quiz-manager">
+            <!-- main header -->
+            <div class=" lter wrapper-md bredcrumb">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Browse Courses</small>
+                    </div>
+                </div>
+            </div>
+            <!-- / main header -->
+            <div class="wrapper-md">
+                <!-- / Quiz Listing controles end -->
+                <!-- Quiz Listing start -->
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6 quiz-block mar-btm-30" ng-repeat = "class in classrooms">
+                        <img src="img/quiz-thumnail.jpg" alt="Quiz" title="Quiz">
+                        <div class="outlined pad-20">
+                            <div class="activity-title">{{class.title}}<i class="fa fa-check-circle geen-text pull-right"></i>
+                                <br>
+                                <div class="row">
+                                <span class="desc-det">
+                                    <span class="desc-lbl p-l-0">{{class.description}}</span>
+                                </span>
+                                </div>
+                                <div class="row" ng-repeat="(key,value) in class.times">
+                                    <span class="label label-primary" >{{weekdays[key]}} from {{value.start | date:'HH:mm a'}} to {{value.end | date:'HH:mm a'}}</span>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="outlined pad-10 clearfix no-top-border">
+                            <a href="" class="fill-btn yello-btn float-lt slim-btn" ng-click="transition(class.id)">View Course</a>
+                            <!-- <a href="" class="outlined-btn gray-btn float-rt"><i class="fa fa-comment-o"></i></a> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- / Quiz Listing end -->
+            </div>
+        </div>
+        <!-- /column -->
+    </div>
+</div>
+<!-- /hbox layout -->

@@ -36,7 +36,7 @@ module.exports = db.define('quiz', {
         type: Sequelize.ARRAY(Sequelize.JSON)
     },
     participants: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        type: Sequelize.ARRAY(Sequelize.JSON),
         defaultValue: []
     },
     pointValue: {
