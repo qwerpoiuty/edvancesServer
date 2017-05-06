@@ -9,7 +9,7 @@
 <!-- Page Content -->
 <!-- Page Content -->
 <div class="breadcrumbs container">
-    <a href="index.html">Home</a> <i class="fa fa-angle-right"></i> <a class="current">{{teacher.name}}</a>
+    <a href="index.html">Home</a> <i class="fa fa-angle-right"></i> <a class="current">{{teacher.firstName}} {{teacher.lastName}}</a>
 </div>
 <!-- /.search-section -->
 <section class="inner-section-search teacher-detail-page p-t-35 m-b-30">
@@ -34,7 +34,7 @@
                 <h2 class="sec-title b m-t-0">About Me <span class="linedi m-l-0"></span></h2>
                 <ul class="aboutteach-info row">
                     <li class="clearfix">
-                        <label class="col-md-3">Full Name</label><span class="col-md-9">{{teacher.name}}</span>
+                        <label class="col-md-3">Full Name</label><span class="col-md-9">{{teacher.firstName}} {{teacher.lastName}}</span>
                     </li>
                     <li class="clearfix">
                         <label class="col-md-3">Teaching Level</label><span class="col-md-9">{{teacher.teacherOptions.teachingLevel}}</span>
@@ -66,32 +66,16 @@
             <div class="col-md-6">
                 <h2 class="sec-title b m-t-0">My Courses <span class="linedi m-l-0"></span></h2>
                 <div class="row course-view view-list teach-course-list">
-                    <div class="col-md-12">
-                        <div class="course-img-wrap">
-                            <a href="course-detail.html" class="event-img"><img src="img/course1.jpg" alt="Course Image"></a>
-                        </div>
-                        <div class="course-det">
-                            <a href="course-detail.html" class="event-tit"><h3 class="second-tit">Fractions 101 <span class="course-cost">$18</span></h3></a>
-                            <p> <span class="g-t">in:</span> <strong>Mathematics</strong></p>
-                            
-                            <div class="course-ctrl clearfix">
-                                <span class="pull-left course-schedule">Mon 10:00AM - 11:00AM</span>
-                                <span class="pull-right course-rating">
-                                       <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i>
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-12" ng-repeat="class in classes">
                         <div class="course-img-wrap">
                             <a class="event-img"><img src="img/course2.jpg" alt="Course Image"></a>
                         </div>
                         <div class="course-det">
-                            <a href="course-detail.html" class="event-tit"><h3 class="second-tit">{{class.title}} <span class="course-cost">$18</span></h3></a>
+                            <a href="course-detail.html" class="event-tit"><h3 class="second-tit">{{class.title}} <span class="course-cost">{{class.cost || 0}} credits</span></h3></a>
                             <p> <span class="g-t">in:</span> <strong>{{class.subject}}</strong></p>
                             
                             <div class="course-ctrl clearfix">
-                                <span ng-repeat="time in class.times" class="pull-left course-schedule">{{time | date:'HH:mm'}}</span>
+                                <span ng-repeat="(key,value) in class.times" class="pull-left course-schedule">{{weekdays[key]}} from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span>
                                 <span class="pull-right course-control">
                                        <a href=""><img src="img/view.png" alt="view" title="View"></a>
                                         <a href=""><img src="img/favourite.png" alt="view" title="View"></a>

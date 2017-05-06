@@ -22,5 +22,13 @@ app.config(function($stateProvider) {
 app.controller('teacherDetailCtrl', function($scope, userFactory, classroomFactory, documentFactory, teacher, classes) {
     $scope.teacher = teacher
     $scope.classes = classes
-    console.log($scope.classes)
+    $scope.weekdays = {
+        0: 'Monday',
+        1: 'Tuesday',
+        2: 'Wednesday',
+        3: 'Thursday',
+        4: 'Friday',
+        5: 'Saturday',
+        6: 'Sunday'
+    }
 })
