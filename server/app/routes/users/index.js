@@ -40,7 +40,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
     })
 })
 
-router.get('/single', ensureAuthenticated, (req, res) => {
+router.get('/single', (req, res) => {
     User.findOne({
         where: {
             id: req.query.id

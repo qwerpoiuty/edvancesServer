@@ -33,6 +33,9 @@ module.exports = db.define('classroom', {
     cost: {
         type: Sequelize.INTEGER
     },
+    image: {
+        type: Sequelize.STRING
+    },
     lessons: {
         type: Sequelize.ARRAY(Sequelize.INTEGER),
         defaultValue: []

@@ -38,6 +38,11 @@ app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, cla
             })
         })
     }
+
+    $scope.changeClassroomImage = ($file) => {
+        console.log($file)
+        $scope.classroomThumbnail = $file
+    }
     $scope.openBrowse = function(target, tabSelection) {
         // Declare all variables
         var i, tabcontent, tablinks;

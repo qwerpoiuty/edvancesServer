@@ -16,6 +16,7 @@ app.controller('myAssignmentsCtrl', ($scope, quizFactory, $state) => {
     $scope.takeQuiz = (index) => {
         $scope.quizInProgress = $scope.quizzes[index]
         $scope.inProgress = true
+        console.log($scope.quizInProgress)
     }
     $scope.submitQuiz = () => {
         quizFactory.submitQuiz($scope.user.id, $scope.quiz.id).then(quiz => {

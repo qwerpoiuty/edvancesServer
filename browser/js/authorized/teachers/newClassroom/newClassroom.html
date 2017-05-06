@@ -23,9 +23,6 @@
                             <li id="meta-tab" class="tablinks" labe>
                                 <a ng-disabled="basicInfo.$invalid" class="light-text tablinks"><i class="fa fa-credit-card"></i> Meta</a>
                             </li>
-<!--                             <li id='lessons-tab' class="tablinks" ng-click="openBrowse('lessons-tab','tab-3')">
-                                <a data-target="#tab-3" role="tab" data-toggle="tab" class="light-text tablinks"><i class="fa fa-file-text-o"></i> Lessons</a>
-                            </li> -->
                         </ul>
                     </div>
                     <!--Bredcrumb End-->
@@ -38,6 +35,13 @@
                                         <div class="wrapper-md">
                                             <form name = "basicInfo" class="form-horizontal" ng-submit="openBrowse('meta-tab','tab-2')">
                                                 <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Class Icon</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="user-thumb"><img ng-src="{{classroomThumbnail}}"/></div>
+                                                        <button type="file" ngf-select="changeClassroomImage($file)" accept="image/*" ng-f-max-height="1000" ngf-max-size="2mb" class="change-pro slim-btn outlined-btn gray-btn float-rt">Change</button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label class="col-sm-2 control-label">Title</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control" placeholder="Enter course name" ng-model="newClassroom.title" required>
@@ -46,28 +50,6 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Description</label>
                                                     <div class="col-sm-8">
-<!--                                                         <div class="btn-toolbar m-b-sm btn-editor outlined pad-10" data-role="editor-toolbar" data-target="#editor">
-                                                            <div class="btn-group">
-                                                                <a class="btn btn-default" data-edit="bold" tooltip="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
-                                                                <a class="btn btn-default" data-edit="italic" tooltip="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-                                                                <a class="btn btn-default" data-edit="strikethrough" tooltip="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-                                                                <a class="btn btn-default" data-edit="underline" tooltip="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
-                                                            </div>
-                                                            <div class="btn-group">
-                                                                <a class="btn btn-default" data-edit="insertunorderedlist" tooltip="Bullet list"><i class="fa fa-list-ul"></i></a>
-                                                                <a class="btn btn-default" data-edit="insertorderedlist" tooltip="Number list"><i class="fa fa-list-ol"></i></a>
-                                                                <a class="btn btn-default" data-edit="outdent" tooltip="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
-                                                                <a class="btn btn-default" data-edit="indent" tooltip="Indent (Tab)"><i class="fa fa-indent"></i></a>
-                                                            </div>
-                                                            <div class="btn-group">
-                                                                <a class="btn btn-default" data-edit="justifyleft" tooltip="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
-                                                                <a class="btn btn-default" data-edit="justifycenter" tooltip="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
-                                                                <a class="btn btn-default" data-edit="justifyright" tooltip="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
-                                                                <a class="btn btn-default" data-edit="justifyfull" tooltip="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <div id="editor" class="form-control text-editor" ng-model="newClassroom.description">
-                                                        </div>-->
                                                         <textarea class="form-control text-editor" ng-model="newClassroom.description"></textarea>
                                                     </div>
                                                 </div>

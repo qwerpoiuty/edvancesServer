@@ -1,0 +1,15 @@
+<div class="row courselist">
+    <div class="col-md-12 col-sm-6 complet-course quiz-block mar-btm-30" ng-repeat="question in quiz.questions">
+    	<div class="list-details pad-20 b-l-0">
+    		<h5>{{question.title}}</h5>
+    		<br>
+    		<ol class="answers">
+				<li ng-repeat="answer in question track by $index">
+	                <input type="radio" ng-model="" ng-value="$index"/>
+	                <label>Answer {{$index+1}}</label>
+	                <input type="text" ng-model="$parent.question.answers[$index]"/>
+	            </li>
+    		</ol>
+    	</div>
+    </div>
+</div>

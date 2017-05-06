@@ -40,7 +40,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/:id', ensureAuthenticated, (req, res) => {
-    db.query(`select c.id,teacher.id as teacher_id, teacher."firstName", teacher."lastName", c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject, c.students,c.cost 
+    db.query(`select c.id,teacher.id as teacher_id, teacher."firstName", teacher."lastName", c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject, c.students,c.cost,teacher."profilePic", teacher."teacherOptions" 
 from classrooms c
 inner join users as teacher
 on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom => {

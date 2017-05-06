@@ -1,5 +1,5 @@
 <div class="col">
-    <div class="content-wrapper mycourses quiz-manager" ng-show="!inProgress">
+    <div class="content-wrapper mycourses quiz-manager">
         <!-- main header -->
         <div class=" lter wrapper-md bredcrumb">
             <div class="row">
@@ -27,7 +27,7 @@
             </div>
             <!-- / info bar -->
             <!--Upcoming Classes Start-->
-            <div class="row courselist">
+            <div class="row courselist" ng-if="!inProgress">
                 <div class="col-md-12 col-sm-6 complet-course quiz-block mar-btm-30" ng-repeat="quiz in quizzes">
                     <div class="outlined clearfix">
                         <a class="list-thumb" href="" class="link" ><img src="img/course-thumnail.jpg" alt="Course" title="Course"></a>
@@ -51,6 +51,7 @@
                 </div>
             </div>
             <!--Upcoming Classes End-->
+            <ng-include ng-if="inProgress" src="'js/authorized/students/myAssignments/quiz.html'"></ng-include>
         </div>
     </div>
     <!-- /column -->
