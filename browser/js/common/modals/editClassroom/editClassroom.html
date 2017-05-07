@@ -3,7 +3,13 @@
 </div>
 <form class="form horizontal" ng-submit="updateClassroom(temp_classroom)" id="lessonForm">
 <div class="modal-body">
-	<div class="form-group">
+  <div class="form-group">
+    <div class="row">
+      <div class="user-thumb"><img ngf-thumbnail="classThumbnail"/></div>
+      <button type="file" ngf-select="changeClassroomImage($file)" ng-model="classThumbnail" accept="image/*" ng-f-max-height="1000" ngf-max-size="2mb" class="change-pro slim-btn outlined-btn gray-btn float-rt">Change</button>
+    </div>
+  </div>
+  <div class="form-group">
 		<div class="row">
 	    	<label class="col-sm-2 control-label">Classroom Title</label>
         	<div class="col-sm-6">

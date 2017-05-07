@@ -26,17 +26,47 @@ app.factory('classroomFactory', function($http) {
         })
     }
 
-    d.createClassroom = classroom => {
-        return $http.post('/api/classrooms/', classroom).then(response => {
-            return response.data
-        })
+    d.createClassroom = (classroom, thumbnail) => {
+        if (thumbnail) {
+            var file = thumbnail;
+            var fd = new FormData();
+            fd.append('thumbnail', file);
+            fd.append('classroom', angular.toJson(classroom))
+            return $http.post('/api/classrooms/withImage', fd, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Content-Type': undefined
+                }
+            }).then(response => {
+                return response.data
+            })
+        } else {
+            return $http.post('/api/classrooms/', classroom).then(response => {
+                return response.data
+            })
+        }
     }
+
     d.updateClassroom = (classroomId, updates) => {
         var updates = {
             id: classroomId,
             updates: updates
         }
         return $http.post('/api/classrooms/update', updates).then(response => {
+            return response.data
+        })
+    }
+
+    d.changeImage = (classroomId, picture) => {
+        var file = picture;
+        var fd = new FormData();
+        fd.append('image', file);
+        return $http.post('/api/classrooms/image/' + classroomId, fd, {
+            transformRequest: angular.identity,
+            headers: {
+                'Content-Type': undefined
+            }
+        }).then(response => {
             return response.data
         })
     }

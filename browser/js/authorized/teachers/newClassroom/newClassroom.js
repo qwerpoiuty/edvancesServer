@@ -7,9 +7,21 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, classroomFactory, moment) {
-    // $("#editor").wysiwyg()
+app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, classroomFactory, moment, Socket) {
+
+    Socket.on('post', function(sockComment) {
+        console.log(sockComment)
+    })
+
+    $scope.test = () => {
+        console.log(Socket)
+        Socket.emit('comment', {
+            'test': 'test'
+        })
+    }
+
     $scope.days = [, , , , , , , ]
+    $scope.classThumbnail = null
     $scope.times = {}
     $scope.classroomTimes = {}
     $scope.weekdays = {
@@ -32,17 +44,13 @@ app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, cla
                 classroom.times[i] = $scope.times[i]
             }
         }
-        classroomFactory.createClassroom(classroom).then(classroom => {
+        classroomFactory.createClassroom(classroom, $scope.classThumbnail).then(classroom => {
             $state.go("classroom", {
                 id: classroom.id
             })
         })
     }
 
-    $scope.changeClassroomImage = ($file) => {
-        console.log($file)
-        $scope.classroomThumbnail = $file
-    }
     $scope.openBrowse = function(target, tabSelection) {
         // Declare all variables
         var i, tabcontent, tablinks;

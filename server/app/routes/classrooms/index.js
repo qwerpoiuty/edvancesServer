@@ -8,16 +8,10 @@ var Classroom = db.model('classroom')
 var User = db.model('user')
 var Transaction = db.model('transaction')
 var multer = require('multer')
-var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './server/uploads/classrooms')
-    },
-    filename: function(req, file, cb) {
-        if (req.owner !== null) {
-            cb(null, 'C_' + req.params.id + '-' + file.originalname + '-')
-        }
-    }
-})
+var azure = require('azure-storage');
+var blobSvc = azure.createBlobService('DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net')
+var storage = multer.memoryStorage();
+var streamifier = require('streamifier');
 var upload = multer({
     storage: storage
 })
@@ -60,11 +54,31 @@ router.get('/student/:id', (req, res) => {
         res.json(classrooms[0])
     })
 })
-
-router.post('/', ensureAuthenticated, (req, res) => {
+router.post('/', ensureAuthenticated, upload.single('thumbnail'), (req, res, next) => {
     Classroom.create(req.body).then(classroom => {
         res.json(classroom)
+    }).catch(() => {
+        var error = new Error('upload error')
+        return next(error)
     })
+})
+router.post('/withImage', ensureAuthenticated, upload.single('thumbnail'), (req, res, next) => {
+    var stream = streamifier.createReadStream(req.file.buffer)
+    var classroom = JSON.parse(req.body.classroom)
+    var thumbnail = classroom.title + '-' + req.file.originalname + '-' + Date.now()
+    blobSvc.createBlockBlobFromStream('class-thumbnails', thumbnail, stream, req.file.size,
+        function(error, result, response) {
+            if (!error) {
+                classroom.image = thumbnail
+                Classroom.create(classroom).then(classroom => {
+                    res.json(classroom)
+                }).catch(() => {
+                    var error = new Error('upload error')
+                    return next(error)
+                })
+
+            }
+        })
 })
 
 router.post('/update', ensureAuthenticated, (req, res) => {
@@ -87,6 +101,28 @@ router.post('/update', ensureAuthenticated, (req, res) => {
                 return next(error);
             })
     })
+})
+router.post('/image/:id', upload.single('image'), (req, res) => {
+    var stream = streamifier.createReadStream(req.file.buffer)
+    var thumbnail = classroom.title + '-' + req.file.originalname + '-' + Date.now()
+    blobSvc.createBlockBlobFromStream('class-thumbnails', thumbnail, stream, req.file.size,
+        function(error, result, response) {
+            if (!error) {
+                Classroom.findOne({
+                    where: {
+                        id: req.params.id
+                    }
+                }).then(classroom => {
+                    classroom.image = thumbnail
+                    return classroom.save()
+                }).then(classroom => {
+                    res.json(classroom)
+                })
+
+            } else {
+                res.json(new Error('upload problem'))
+            }
+        })
 })
 
 router.post('/addStudent', ensureAuthenticated, (req, res) => {

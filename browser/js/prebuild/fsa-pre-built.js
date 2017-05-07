@@ -7,10 +7,31 @@
 
     var app = angular.module('fsaPreBuilt', []);
 
-    // app.factory('Socket', function() {
-    //     if (!window.io) throw new Error('socket.io not found!');
-    //     return window.io(window.location.origin);
-    // });
+    app.factory('Socket', function($rootScope) {
+        if (!window.io) throw new Error('socket.io not found!');
+        var socket = io.connect(window.location.origin);
+
+        return {
+            on: function(eventName, callback) {
+                socket.on(eventName, function() {
+                    var args = arguments;
+                    $rootScope.$apply(function() {
+                        callback.apply(socket, args);
+                    });
+                });
+            },
+            emit: function(eventName, data, callback) {
+                socket.emit(eventName, data, function() {
+                    var args = arguments;
+                    $rootScope.$apply(function() {
+                        if (callback) {
+                            callback.apply(socket, args);
+                        }
+                    });
+                });
+            }
+        };
+    });
 
     // AUTH_EVENTS is used throughout our app to
     // broadcast and listen from and to the $rootScope

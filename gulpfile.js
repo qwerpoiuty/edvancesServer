@@ -209,13 +209,10 @@ gulp.task('default', function() {
 
     // Run when anything inside of browser/scss changes.
     gulp.watch('browser/scss/**', function() {
-        runSeq('buildPublicCSS', 'buildPrivateCSS', 'reloadCSS');
+        runSeq('buildFrontendCSS', 'buildCommonCSS', 'buildStudentCSS', 'buildTeacherCSS', 'reloadCSS');
     });
     gulp.watch('browser/theme/**', function() {
-        runSeq('buildPublicCSS', 'buildPrivateCSS', 'reloadCSS');
-    });
-    gulp.watch('browser/theme/**', function() {
-        runSeq('buildPrivateCSS', 'reloadCSS');
+        runSeq('buildFrontendCSS', 'buildCommonCSS', 'buildStudentCSS', 'buildTeacherCSS', 'reloadCSS');
     });
 
     gulp.watch('server/**/*.js', ['lintJS']);

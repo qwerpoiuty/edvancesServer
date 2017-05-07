@@ -8,8 +8,13 @@ module.exports = function(server) {
 
     io = socketio(server);
 
-    io.on('connection', function() {
-        // Now have access to socket, wowzers!
+    io.on('connection', function(Socket) {
+        console.log('HELLO SOCKET')
+            // Now have access to socket, wowzers!
+        Socket.on('comment', function(comment) {
+            console.log("HELLO I MADE IT")
+            Socket.broadcast.emit('post', comment)
+        })
     });
 
     return io;

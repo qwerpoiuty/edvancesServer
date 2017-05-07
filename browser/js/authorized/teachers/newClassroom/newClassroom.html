@@ -1,5 +1,5 @@
 <!-- hbox layout -->
-<div class="hbox hbox-auto-xs hbox-auto-sm create-courses" ng-init="app.settings.asideFolded = false;app.settings.asideDock = false;">
+<div class="hbox hbox-auto-xs hbox-auto-sm create-courses">
     <!-- column -->
     <div class="col">
         <div class="content-wrapper mycourses">
@@ -37,8 +37,8 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Class Icon</label>
                                                     <div class="col-sm-8">
-                                                        <div class="user-thumb"><img ng-src="{{classroomThumbnail}}"/></div>
-                                                        <button type="file" ngf-select="changeClassroomImage($file)" accept="image/*" ng-f-max-height="1000" ngf-max-size="2mb" class="change-pro slim-btn outlined-btn gray-btn float-rt">Change</button>
+                                                        <div class="user-thumb"><img ngf-thumbnail="classThumbnail"/></div>
+                                                        <button type="file" ngf-select="changeClassroomImage($file)" ng-model="classThumbnail" accept="image/*" ng-f-max-height="1000" ngf-max-size="2mb" class="change-pro slim-btn outlined-btn gray-btn float-rt">Change</button>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

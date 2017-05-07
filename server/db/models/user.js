@@ -45,6 +45,10 @@ module.exports = db.define('user', {
     location: {
         type: Sequelize.STRING
     },
+    // power_level: {
+    //     type: Sequelize.INTEGER,
+    //     defaultValue: 0
+    // },
     subscribed: {
         type: Sequelize.BOOLEAN
     },
@@ -69,6 +73,4 @@ module.exports = db.define('user', {
             user.password = hash;
         }
     }
-}, {
-    timestamps: false
 });

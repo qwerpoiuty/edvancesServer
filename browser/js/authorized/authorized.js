@@ -20,11 +20,14 @@ app.controller('authorizedCtrl', function($scope, user, $state, userFactory, $cs
     $css.bind({
         href: '/common.css'
     }, $scope)
-    if (user.role == 1) {
-        $css.add('/teacher.css')
-    } else {
-        $css.add('/student.css')
+    $scope.getCss = () => {
+        if (user.role == 1) {
+            $css.add('/teacher.css')
+        } else {
+            $css.add('/student.css')
+        }
     }
+    $scope.getCss()
     $scope.getUpdatedUser = (id) => {
         userFactory.findSingleUser(id).then(user => {
             $scope.user = user
