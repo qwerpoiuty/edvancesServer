@@ -21,7 +21,7 @@ app.controller('teacherCtrl', function($scope, userFactory, teachers, $state) {
     $scope.teachers = teachers
     console.log($scope.teachers)
     $scope.transition = (teacherId) => {
-        $state.go('teacher', {
+        $state.go('teacher-details', {
             id: teacherId
         })
     }
