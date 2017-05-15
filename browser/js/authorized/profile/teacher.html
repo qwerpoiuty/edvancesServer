@@ -3,9 +3,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="teach-profile">
-                    <div class="teacherpro"><img src="https://edvances.blob.core.windows.net/profile-pictures/{{user.profilePic}}" alt="teacher detail" /></div>
-                    <div class="pro-degree">{{user.teacherOptions.title}} <span ng-if="user.locations">located in {{user.location}}</span></div>
-                    <div class="timeperiods"><span ng-repeat="(key,value) in user.teacherOptions.times"><span>{{weekdays[key]}} from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
+                    <div class="teacherpro"><img src="https://edvances.blob.core.windows.net/profile-pictures/{{user.profilePic}}" /></div>
+                    <h1 class="sec-title">{{user.firstName}} {{user.lastName}}</h1>
+                    <div class="pro-degree">{{user.teacherOptions.title}}</div>
+                    <div class="timeperiods"><span ng-repeat="(key,value) in user.teacherOptions.times">{{weekdays[key]}}  from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
                     <hr class="clearfix">
                     <div class="teach-rate">
                         <p>Teacher Rating</p>
@@ -17,38 +18,44 @@
         </div>
         <div class="row m-t-10">
             <div class="col-md-6">
-                <h2 class="sec-title b m-t-0">About Me <span class="linedi m-l-0"></span></h2>
                 <ul class="aboutteach-info row">
                     <li class="clearfix">
-                        <label class="col-md-3">Full Name</label><span class="col-md-9">{{user.name}}</span>
+                        <label class="col-md-3"><strong>Full Name</strong></label><span class="col-md-9">{{user.firstName}} {{user.lastName}}</span>
                     </li>
                     <li class="clearfix">
-                        <label class="col-md-3">Teaching Level</label><span class="col-md-9">{{user.teacherOptions.teachingLevel}}</span>
+                        <label class="col-md-3"><strong>Teaching Level</strong></label><span class="col-md-9">{{user.teacherOptions.teachingLevel}}</span>
                     </li>
                     <li class="clearfix">
-                        <label class="col-md-3">Experience</label><span class="col-md-9">{{user.teacherOptions.experience}}</span>
+                        <label class="col-md-3"><strong>Experience</strong></label><span class="col-md-9">{{user.teacherOptions.experience}}</span>
                     </li>
                     <li class="clearfix">
-                        <label class="col-md-3">Credentials</label><span class="col-md-9">{{user.teacherOptions.credentials}}</span>
+                        <label class="col-md-3"><strong>Credentials</strong></label><span class="col-md-9">{{user.teacherOptions.credentials}}</span>
                     </li>
-                    <li class="clearfix teach-bio">
-                        <label class="col-md-3">Bio</label>
+                    <li class="clearfix">
+                        <label class="col-md-3"><strong>Courses</strong></label><span class="col-md-9"><a href="" class="link"> <i class="fa fa-mortar-board"></i> {{classrooms.length}}</a></span>
+                    </li>
+                    <li class="clearfix">
+                        <label class="col-md-3"><strong>Follow Me</strong></label>
                         <span class="col-md-9">
-                            <p>{{user.teacherOptions.bio}}</p>
-                            <p>
-                                <p class="t-phone"><i class="fa fa-mortar-board"></i> Courses <span class="course-count">{{classrooms.length}}</span></p>
-                        </p>
-                        <p class="trsocial">
-<!--                             <a href="" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="" target="_blank"><i class="fa fa-google-plus"></i></a>
-                            <a href="" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="" target="_blank"><i class="fa fa-linkedin"></i></a> -->
-                            <a mailto="{{user.email}}" target="_blank" class="red-text"><i class="fa fa-envelope"></i></a>
-                        </p>
+                            <p class="trsocial">
+                                <!-- <a href="" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="" target="_blank"><i class="fa fa-google-plus"></i></a>
+                                <a href="" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a href="" target="_blank"><i class="fa fa-linkedin"></i></a> -->
+                                <a mailto="{{user.email}}" target="_blank" class="red-text"><i class="fa fa-envelope"></i></a>
+                            </p>
                         </span>
                     </li>
                 </ul>
             </div>
+            <div class="col-md-6">
+                <label class="col-md-12"><strong>About Me</strong></label>
+                        <span class="col-md-12">
+                                <p>{{user.teacherOptions.bio}}</p>
+                        <p></p>
+                        </span>
+            </div>
         </div>
+        <hr class="clearfix">
     </div>
 </section>
