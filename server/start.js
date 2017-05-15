@@ -17,7 +17,14 @@ require('babel-register');
 var chalk = require('chalk');
 var db = require('./db');
 
-var server = require('http').createServer();
+var server = require('http').createServer(function(request, response) {
+
+    response.writeHead(200, {
+        "Content-Type": "text/plain"
+    });
+    response.end("Hello Azure!");
+
+});
 
 var createApplication = function() {
     var app = require('./app')(db);

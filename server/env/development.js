@@ -1,5 +1,5 @@
 module.exports = {
-    "DATABASE_URI": "postgres://edvances:3dvanc3d@localhost:5432/edvancesdb",
+    "DATABASE_URI": "postgres://edvances:3dvanc3d@52.187.73.126:5432/edvancesdb",
     "SESSION_SECRET": "Optimus Prime is my real dad",
     "LOGGING": true,
     "AZURE_STORAGE_ACCOUNT": 'edvances',
