@@ -192,7 +192,7 @@ gulp.task('buildProduction', ['buildCSSProduction', 'buildJSProduction']);
 
 gulp.task('build', function() {
     if (process.env.NODE_ENV === 'production') {
-        runSeq(['buildJSProduction', 'buildCSSProduction']);
+        runSeq(['buildJS', 'buildStudentCSS', 'buildTeacherCSS', 'buildFrontendCSS', 'buildCommonCSS']);
     } else {
         runSeq(['buildJS', 'buildStudentCSS', 'buildTeacherCSS', 'buildFrontendCSS', 'buildCommonCSS']);
     }
