@@ -34,8 +34,10 @@ var ensureAuthenticated = function(req, res, next) {
     }
 };
 
-router.get('/', ensureAuthenticated, (req, res) => {
-    User.findAll().then(users => {
+router.get('/', (req, res) => {
+    User.findAll({
+        where: req.query
+    }).then(users => {
         res.json(users)
     })
 })

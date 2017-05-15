@@ -94,7 +94,7 @@
                                         <hr class="bold-hr" />
                                     </div>
                                     <div class="innercont clearfix m-b-10a">
-                                        <a href="" class="thumb-lg pull-left m-r"><img src="classroom.profilePic" class="img-circle"></a>
+                                        <a href="" class="thumb-lg pull-left m-r"><img src="{{classroom.image}}" class="img-circle"></a>
                                         <div class="instructor-info reltd-title">
                                             <div class="trname">{{classroom.firstName}} {{classroom.lastName}}</div>
                                             <div class="trexp">{{classroom.teacher_title}}</div>
@@ -135,7 +135,7 @@
                                 <div class="secondery-title">Whiteboard</div>
                                 <div class="plusicon float-rt"><img src="img/add-icon.png" alt="..." /></div>
                             </div>
-                            <div class="outlined no-top-border whiteboard-area"></div>
+                            <whiteboard room="room"></whiteboard>
                             <div class="outlined no-top-border clearfix pad-10"> 
                             <a href="" class="user-chat float-rt"><img src="img/wb-download.jpg" alt="..." /></a>
                             <a href="" class="user-chat float-rt"><img src="img/wb-share.jpg" alt="..." /></a>

@@ -20,13 +20,12 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, classroomFactory, $stateParams, lessons, documentFactory, moment) {
+app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, classroomFactory, $stateParams, lessons, documentFactory, moment, Socket) {
+    //inits
     $scope.classroom = classroom[0]
     $scope.lessons = lessons
     $scope.teacher = $scope.user.id == $scope.classroom.teacher_id
     $scope.member = $scope.classroom.students.indexOf($scope.user.id) != -1 || $scope.teacher
-
-
     $scope.weekdays = {
         0: 'Monday',
         1: 'Tuesday',
@@ -56,7 +55,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             $scope.nextLesson = 'This class is over'
         }
     }
-
     $scope.getDocuments = () => {
         $scope.lessons.forEach(lesson => {
             classroomFactory.getLessonDocuments(lesson.materials).then(materials => {
@@ -64,12 +62,13 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             })
         })
     }
-
     $scope.checkQuizes = () => {
         classroomFactory.checkQuizes($stateParams.id).then()
     }
+    $scope.getNextLesson()
+    $scope.getDocuments()
 
-
+    //edits
     $scope.editClassroom = () => {
         var modalInstance = $uibModal.open({
             templateUrl: "js/common/modals/editClassroom/editClassroom.html",
@@ -89,7 +88,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             }
         })
     }
-
     $scope.addLesson = () => {
         var modalInstance = $uibModal.open({
             templateUrl: "js/common/modals/lesson/lesson.html",
@@ -109,7 +107,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             }
         })
     }
-
     $scope.editLesson = (lesson, lessonIndex) => {
         console.log('hello')
         var modalInstance = $uibModal.open({
@@ -128,7 +125,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             }
         })
     }
-
     $scope.removeLesson = (lessonIndex) => {
         //be sure to update the next lesson variabl if it's the closest lesson
         classroomFactory.removeLesson($stateParams.id, lessonIndex).then(response => {
@@ -137,7 +133,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             } else alert('nope')
         })
     }
-
     $scope.addTime = (lessonIndex, time) => {
         //remember to do a check to see if there's gonna be any scheduling conflicts
         classroomFactory.addTime($scope.lessons[lessonIndex], time).then(response => {
@@ -146,7 +141,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             } else alert('nice try')
         })
     }
-
     $scope.removeTime = (lessonIndex, timeIndex) => {
         classroomFactory.removeTime($scope.lessons[lessonIndex], timeIndex).then(response => {
             if (response.status == 200) {
@@ -154,14 +148,12 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             } else alert('try again')
         })
     }
-
     $scope.addLessonDoc = (doc, lessonIndex) => {
         documentFactory.createLessonDocument(doc, $scope.lessons[lessonIndex].id).then(response => {
             $scope.lessons[lessonIndex].materials.push(response.data)
             console.log($scope.lessons)
         })
     }
-
     $scope.removeDoc = (materialIndex, lesson) => {
         lesson.materials.splice(materialIndex, 1)
         var materials = lesson.materials.map(e => {
@@ -180,15 +172,17 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             }
         })
     }
-
     $scope.addClassroomNote = doc => {
         documentFactory.createClassroomDoc(doc, $scope.classroom.id).then(response => {
             $scope.classNotes.push(response.data)
         })
     }
+
+    //jitsi
     var domain = "meet.jit.si";
     $scope.joined = false
     $scope.room = `${$scope.classroom.teacher}${$scope.classroom.id}`
+    console.log($scope.room)
     $scope.test = () => {
         $scope.joined = true
         $scope.videoApi = new JitsiMeetExternalAPI(domain, $scope.room, jQuery("#jitsi-placeholder").width(), jQuery("#jitsi-placeholder").height(), document.getElementById("jitsi"));
@@ -203,6 +197,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         })
     }
 
+    //student management
     $scope.addStudent = (studentId) => {
         if ($scope.user.credits >= $scope.classroom.cost) {
             classroomFactory.addStudent($stateParams.id, studentId).then(response => {
@@ -216,8 +211,9 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         }
     }
 
-    $scope.getNextLesson()
-    $scope.getDocuments()
+    //socket
+
+
 
     jQuery('#calendar').eCalendar({
         firstDayOfWeek: 1,
