@@ -181,11 +181,10 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     //jitsi
     var domain = "meet.jit.si";
     $scope.joined = false
-    $scope.room = `${$scope.classroom.teacher}${$scope.classroom.id}`
-    console.log($scope.room)
+    $scope.room = `${$scope.classroom.id}`
     $scope.test = () => {
         $scope.joined = true
-        $scope.videoApi = new JitsiMeetExternalAPI(domain, $scope.room, jQuery("#jitsi-placeholder").width(), jQuery("#jitsi-placeholder").height(), document.getElementById("jitsi"));
+        $scope.videoApi = new JitsiMeetExternalAPI(domain, $scope.room, 715, 420, document.getElementById("jitsi"));
         $scope.videoApi.executeCommand('toggleFilmStrip')
     }
 
@@ -195,6 +194,14 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
 
             $uibModalInstance.close()
         })
+    }
+
+    //hide video stream, show whiteboad
+    $scope.videoFrame = true
+    $scope.whiteboard = false
+    $scope.toggleActiveFrame = () => {
+        $scope.videoFrame = !$scope.videoFrame
+        $scope.whiteboard = !$scope.whiteboard
     }
 
     //student management

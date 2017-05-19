@@ -139,10 +139,15 @@ gulp.task('buildFrontendCSS', function() {
     return cssStream
 })
 gulp.task('buildCommonCSS', function() {
+    var scssStream = gulp.src('./browser/scss/main.scss')
+        .pipe(sass())
+        .pipe(concat('scss-files.scss'));
     var cssStream = gulp.src(['./browser/theme/font.css', './browser/theme/app.css', './browser/theme/jquery.e-calendar.css'])
+
+    return merge(scssStream, cssStream)
         .pipe(concat('common.css'))
         .pipe(gulp.dest('./public'))
-    return cssStream
+
 })
 
 

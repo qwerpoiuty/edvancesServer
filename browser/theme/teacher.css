@@ -418,3 +418,47 @@ a.link { color: #0583e4 !important; }
  .nav-tabs-alt ul.nav-tabs.nav-justified.profile-tab { height: 121px; }
 }
 /*media query end*/
+/*Classroom start*/
+.cat-title { background: #0583e4; color: #fff; padding: 8px 13px; font-size: 18px; width: 100%; display: block; }
+.conversation { padding: 20px 15px; }
+.conversation { height: 558px; overflow: scroll; overflow-x: hidden; }
+.chat-text { margin-left: 55px; font-size: 13px; padding: 5px 10px; border-radius: 3px; background: #f7f8fc; border: 1px solid #dddfe4; }
+.conversation img { max-width: 100%; max-height: 100%; }
+.chat-user { width: 45px; height: 45px; overflow: hidden; border-radius: 50px; text-align: center; position: absolute; }
+.class-me small, .chat-text small { color: #a2a2a2; margin-top: 5px; display: block; margin-bottom: 5px; }
+.conversation li { margin-bottom: 20px; }
+.class-me { flex: left; margin-left: 55px; font-size: 13px; border: 1px solid; padding: 5px 10px; border-radius: 3px; border: 1px solid #dddfe4; }
+.chat-window { border: 1px solid #e4e8ee; }
+.chat-input { width: 100%; padding: 10px; border: 1px solid #dddce0; }
+.chat-footer { background: #262c38; padding: 5px; color: #fff; font-weight: bold; }
+.chat-footer a { float: right; padding: 0px 8px; }
+.course-timer { display: inline-block; text-align: center; margin-right: 20px; }
+.course-timer .red-text { font-size: 22px; font-weight: 600; }
+.video-btn.line-btn { border: 1px solid #0278d2; color: #0278d2; background: transparent; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 15px; padding: 12px 27px 11px; font-weight: bold; display: inline-block; }
+.video-btn.active { background: #0278d2 !important; color: #fff !important; }
+.forum-icons { font-size: 23px; margin: 3px; }
+.bold-hr { border-top: 2px solid #0583e4; width: 40px; float: left; margin: 13px 0; }
+.innertab.active-tab, .innercont.active-cont { background: #f7f8fb; }
+div.accordion.course-documents { padding: 20px 40px; }
+.innertab.active-tab, .innercont.active-cont { background: #f7f8fb; }
+.accordion-content.default { display: block; }
+.accordion-toggle { cursor: pointer; display: block; margin: 0px; }
+.innertab { font-size: 15px; font-weight: bold; }
+.assignments-col { border-bottom: 1px solid #dddce0; }
+.accordion-content { display: none; }
+.instructor-info { float: left; padding: 15px; }
+.reltd-title { color: #657184; }
+.trsocial a { padding: 2px 6px; font-size: 17px; margin-top: 9px; display: inline-block; border: 1px solid #dcdcdc; }
+.reltitle { font-size: 15px; font-weight: bold; color: #262c38; }
+.semisect { margin-bottom: 15px; display: block; margin-top: 10px; }
+.wb-wrapper { padding: 10px; text-align: center; }
+.wb-wrapper div { display: inline-block; }
+.wb-wrapper .secondery-title { margin: 2px 0 0 0; }
+.secondery-title { font-size: 20px; font-weight: bold; }
+.no-top-border { border-top: 0 !important; }
+.whiteboard-area { min-height: 307px; }
+.user-chat { border: 1px solid #cdcdcd; display: inline-block; border-radius: 3px; padding: 10px 12px 11px; vertical-align: middle; margin-left: 10px; }
+.user-chat:hover { border-color: #ea605e; }
+.whiteboard-wrap, .video-streem { display: none; }
+.active-frame { display: block; }
+/*Classroom end*/

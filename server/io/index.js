@@ -8,14 +8,16 @@ module.exports = function(server) {
 
     io = socketio(server);
     var draws = {}
+    var chats = {}
     io.on('connection', function(Socket) {
         //whiteboard events
         console.log('hello', Socket.id)
         Socket.on('join classroom', roomName => {
-            console.log('hello i got this far', roomName)
             Socket.join(roomName)
             if (!draws[roomName]) draws[roomName] = []
-            else socket.emit('board', draws[roomName])
+            else Socket.emit('board', draws[roomName])
+            if (!draws[roomName]) draws[roomName] = []
+            else Socket.emit('board', draws[roomName])
 
             Socket.on('drawing', function(start, end, color) {
                 console.log('hello')
@@ -24,10 +26,13 @@ module.exports = function(server) {
                     end: end,
                     color: color
                 })
-                socket.broadcast.to(roomName).emit('collaboratorDraw', start, end, color)
+                Socket.broadcast.to(roomName).emit('collaboratorDraw', start, end, color)
             })
 
-            // Socket.on()
+            // chat
+            Socket.on('chat', function(user, message) {
+                Socket.broadcast.to(roomName).emit('message incoming', user, message)
+            })
 
         })
 

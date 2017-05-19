@@ -29,6 +29,16 @@
           <span>Edit Profile</span>
         </a>
       </li>
+      <li ui-sref-active="active">
+        <a ui-sref="edit" class="editpro">
+          <span>Payroll Options</span>
+        </a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="edit" class="editpro">
+          <span>Credentials</span>
+        </a>
+      </li>
     </ul>
   </li>
   <li ui-sref-active="active" class="active">
@@ -52,17 +62,17 @@
           <span>My Courses</span>
         </a>
       </li>
-<!--       <li ui-sref-active="active">
+      <li ui-sref-active="active">
         <a ui-sref="app.dashboard">
           <span>Assignments Due</span>
         </a>
-      </li> -->
+      </li>
       <li ui-sref-active="active">
         <a ui-sref="quizDashboard">
           <span>Quiz Manager</span>
         </a>
       </li>
-      <!-- <li ui-sref-active="active">
+      <li ui-sref-active="active">
         <a ui-sref="app.dashboard">
           <span>Course Forum</span>
         </a>
@@ -71,7 +81,7 @@
         <a ui-sref="app.dashboard">
           <span>Course Forum Thread</span>
         </a>
-      </li> -->
+      </li>
       <li ui-sref-active="active">
         <a ui-sref="newClassroom">
           <span>Create Course</span>
@@ -80,10 +90,10 @@
     </ul>
   </li>
 
-<!--   <li>
-    <a ui-sref="app.dashboard">
+  <li>
+    <a ui-sref="dashboard">
      <span class="nav-img"><img src="img/nav-calendar.png"/></span>
-      <span class="font-bold" translate="aside.nav.CALENDAR">Forum</span>
+      <span class="font-bold" translate="aside.nav.CALENDAR">Calendar</span>
     </a>
   </li>
 
@@ -95,7 +105,7 @@
   </li>
 
   <li>
-    <a href class="auto">      
+    <a ui-sref="forum" ui-sref-active="active" class="auto" toggle-parent-class="active">      
     <span class="nav-img"><img src="img/nav-forum.png"/></span>
       <span class="pull-right text-muted">
         <i class="fa fa-fw fa-plus text"></i>
@@ -120,11 +130,11 @@
         </a>
       </li>
     </ul>
-  </li> -->
+  </li>
 
-<!-- 
+
   <li>
-    <a href class="auto">      
+    <a href class="auto" toggle-parent-class="active">      
     <span class="nav-img"><img src="img/nav-report.png"/></span>
       <span class="pull-right text-muted">
         <i class="fa fa-fw fa-plus text"></i>
@@ -145,7 +155,7 @@
       </li>
     </ul>
   </li>
- -->
+
   <li>
     <a ng-click="logout()">
       <span class="nav-img"><img src="img/nav-logout.png"/></span>
