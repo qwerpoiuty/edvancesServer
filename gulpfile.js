@@ -28,7 +28,7 @@ gulp.task('reload', function() {
 });
 
 gulp.task('reloadCSS', function() {
-    return gulp.src('./public/style.css', '/public/student.css', '/public/teacher.css', '/public/frontend.css').pipe(livereload());
+    return gulp.src(['./public/style.css', '/public/student.css', '/public/teacher.css', '/public/frontend.css']).pipe(livereload());
 });
 
 gulp.task('lintJS', function() {

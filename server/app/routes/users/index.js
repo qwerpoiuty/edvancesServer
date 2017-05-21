@@ -38,6 +38,23 @@ router.get('/', (req, res) => {
     User.findAll({
         where: req.query
     }).then(users => {
+        users.forEach(e => {
+            return _.omit(e.toJSON(), ['password', 'salt'])
+        })
+        res.json(users)
+
+    })
+})
+
+router.get('/allTeachers', (req, res) => {
+    db.query(`select users.*, count(classrooms.id) as number_of_courses from users
+inner join classrooms on users.id = classrooms.teacher
+where users.role = 1
+group by users.id
+`).then(users => {
+        users[0].forEach(e => {
+            return _.omit(e, ['password', 'salt'])
+        })
         res.json(users)
     })
 })

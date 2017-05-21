@@ -29,19 +29,17 @@
                 </div>
                 <div class="courseli-wrap">
                     <div class="row course-view">
-                        <div class="col-md-6">
+                        <div class="col-md-6" ng-repeat="classroom in classrooms">
                             <div class="course-img-wrap">
-                                <a href="course-detail.html" class="event-img"><img src="img/course1.jpg" alt="Course Image" /></a>
+                                <a href="course-detail.html" class="event-img"><img ng-src="https://edvances.blob.core.windows.net/class-thumbnails/{{classroom.image}}" alt="Course Image" /></a>
                             </div>
                             <div class="course-det">
-                                <a href="course-detail.html" class="event-tit"><h3 class="second-tit">Fractions 101 <span class="course-cost">$18</span></h3></a>
-                                <p class="m-b-0"><span class="g-t">by:</span> <strong> Greg Crestman</strong> <span class="g-t">in:</span> <strong>Mathematics</strong></p>
-                                <p class="block-des">Lorem ipsum dolor sit amet, consectetur eiusmod tempor incididunt ut labore et dolore magna aliq adipisicing elit, sed...</p>
+                                <a href="course-detail.html" class="event-tit"><h3 class="second-tit">{{classroom.title}} <span class="course-cost">{{classroom.cost}}</span></h3></a>
+                                <p class="m-b-0"><span class="g-t">by:</span> <strong> {{classroom.firstName}} {{classroom.lastName}}</strong> <span class="g-t">in:</span> <strong>{{classroom.subject}}</strong></p>
+                                <p class="block-des">{{classroom.description}}</p>
                                 <div class="course-ctrl clearfix">
-                                    <span class="pull-right course-rating">
-                                       <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i>
-                                    </span>
-                                    <span class="pull-left course-schedule">Mon 10:00AM - 11:00AM</span>
+
+                                    <div class="pull-left course-schedule"><span class="" ng-repeat="(key,value) in classroom.times">{{weekdays[key]}} from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
                                 </div>
                             </div>
                         </div>

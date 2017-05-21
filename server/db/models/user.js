@@ -34,7 +34,8 @@ module.exports = db.define('user', {
         type: Sequelize.STRING
     },
     profilePic: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "facebook-default-no-profile-pic-400x400.jpg"
     },
     grade: {
         type: Sequelize.STRING

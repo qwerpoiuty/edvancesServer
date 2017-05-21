@@ -9,6 +9,12 @@ app.factory('userFactory', function($http) {
         })
     }
 
+    d.findAllTeachers = () => {
+        return $http.get('/api/users/allTeachers').then(response => {
+            return response.data
+        })
+    }
+
     d.findSingleUser = (id) => {
         var query = {
             id: id

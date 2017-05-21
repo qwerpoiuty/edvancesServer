@@ -27,9 +27,9 @@ var ensureAuthenticated = function(req, res, next) {
     }
 };
 
-router.get('/', ensureAuthenticated, (req, res) => {
-    Classroom.findAll().then(classrooms => {
-        res.json(classrooms)
+router.get('/', (req, res) => {
+    db.query(`select c.*, u."firstName",u."lastName" from classrooms c inner join users u on u.id = c.teacher`).then(classrooms => {
+        res.json(classrooms[0])
     })
 })
 

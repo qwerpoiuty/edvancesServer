@@ -34,7 +34,8 @@ module.exports = db.define('classroom', {
         type: Sequelize.INTEGER
     },
     image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "classroom-placeholder.png"
     },
     lessons: {
         type: Sequelize.ARRAY(Sequelize.INTEGER),

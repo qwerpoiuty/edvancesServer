@@ -37,7 +37,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Class Icon</label>
                                                     <div class="col-sm-8">
-                                                        <div class="user-thumb"><img ngf-thumbnail="classThumbnail"/></div>
+                                                        <div class="user-thumb"><img ng-if="!classThumbnail" src="https://edvances.blob.core.windows.net/class-thumbnails/classroom-placeholder.png"/><img ng-if="classThumbnail" ngf-thumbnail="classThumbnail"/></div>
                                                         <button type="file" ngf-select="changeClassroomImage($file)" ng-model="classThumbnail" accept="image/*" ng-f-max-height="1000" ngf-max-size="2mb" class="change-pro slim-btn outlined-btn gray-btn float-rt">Change</button>
                                                     </div>
                                                 </div>
@@ -70,7 +70,7 @@
                                                 <div class="form-group select-field">
                                                     <label class="col-sm-2 control-label">Category </label>
                                                     <div class="col-sm-4">
-                                                        <input ng-model = "newClassroom.subject"/>
+                                                        <input class="form-control" ng-model = "newClassroom.subject"/>
                                                         <!-- <select name="carlist" form="carform" class="form-control" ng-model="newClassroom.subject">
                                                             <option selected="selected" value="Mathematics">Mathematics</option>
                                                             <option value="English">English</option>
@@ -81,13 +81,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Start Date</label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-4">
                                                         <input type="date" ng-model="newClassroom.startDate" class="form-control" placeholder="What is the course start date?">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">End Date</label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-4">
                                                         <input type="date" ng-model="newClassroom.endDate" class="form-control" placeholder="When does the course finish?">
                                                     </div>
                                                 </div>

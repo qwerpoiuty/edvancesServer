@@ -298,6 +298,7 @@ ul.aboutteach-info li .t-phone { margin: 20px 0 0; border-bottom: 0; }
 .teach-course-list div.course-img-wrap { width: 200px; }
 .teach-course-list div.course-det { padding-left: 218px !important; }
 .teach-profile .teacherpro { width: 153px; height: 153px; margin: 0 auto; border-radius: 100%; overflow: hidden; }
+.teacherpro > img{max-width:100%;}
 .teach-profile .sec-title.b { text-align: center; margin-bottom: 10px; }
 .teach-profile div { text-align: center; }
 .teach-profile .pro-degree { color: #657184; font-family: 'Montserrat', sans-serif; font-size: 18px; margin-bottom: 15px; }
@@ -689,7 +690,8 @@ form.leave-comment textarea { width: 100%; padding: 5px 9px; max-width: 750px; m
   .course-ctrl > span.pull-right { float: right !important; margin-top: 0px; }
  }
  @media (max-width:500px) {
- .teacher-pro { width: 100%; }
+ .teacher-pro { width: 100%; img{max-width:100%;}}
   .course-info span.valued, .course-info span.labeld { display: block; }
  }
 }
+

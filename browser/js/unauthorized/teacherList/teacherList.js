@@ -6,10 +6,7 @@ app.config(function($stateProvider) {
         controller: 'teacherCtrl',
         resolve: {
             teachers: (userFactory) => {
-                var query = {
-                    role: 1
-                }
-                return userFactory.findUsers(query).then(teachers => {
+                return userFactory.findAllTeachers().then(teachers => {
                     return teachers
                 })
             }
@@ -18,7 +15,7 @@ app.config(function($stateProvider) {
 });
 
 app.controller('teacherCtrl', function($scope, userFactory, teachers, $state) {
-    $scope.teachers = teachers
+    $scope.teachers = teachers[0]
     console.log($scope.teachers)
     $scope.transition = (teacherId) => {
         $state.go('teacher-details', {
