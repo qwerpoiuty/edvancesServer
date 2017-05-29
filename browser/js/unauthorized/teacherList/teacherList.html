@@ -15,7 +15,7 @@
                 <div class="col-md-4 col-xs-6 teacher-pro" ng-repeat="teacher in teachers">
                     <div class="row">
                         <div class="col-md-5 col-sm-5 full-img">
-                            <a href="teacher-detail.html" class="event-img"><img ng-src="https://edvances.blob.core.windows.net/profile-pictures/{{teacher.profilePic}}" alt="Course Image" /></a>
+                            <a href="teacher-detail.html" class="event-img"><img ng-src="{{teacher.profilePic}}" alt="Course Image" /></a>
                         </div>
                         <div class="col-md-7 col-sm-7">
                             <a href="teacher-detail.html" class="event-tit"><h3 class="second-tit m-b-0">{{teacher.firstName}} {{teacher.lastName}}</h3></a>

@@ -7,7 +7,8 @@ app.config(function($stateProvider) {
 });
 
 app.controller('settingsCtrl', function($scope, userFactory, transactionFactory, $state) {
-    $scope.teacher = ($scope.user.role == 1)
+    $scope.teacher = ($scope.user.role === 1)
+    console.log($scope.teacher)
     $scope.times = {}
     $scope.days = [, , , , , , , ]
     console.log($scope.user)
