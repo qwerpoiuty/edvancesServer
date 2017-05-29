@@ -215,7 +215,9 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
 
     //socket
     Socket.emit('join classroom', $scope.room)
-
+    $scope.clearWhiteboard = () => {
+        Socket.emit('erase all', true)
+    }
 
     jQuery('#calendar').eCalendar({
         firstDayOfWeek: 1,

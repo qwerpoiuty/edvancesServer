@@ -10,7 +10,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('myCourseCtrl', function($scope, user, userFactory, classroomFactory, $state) {
+app.controller('myCourseCtrl', function($scope, user, userFactory, classroomFactory, $state, $uibModal) {
     $scope.teacher = $scope.user.role == 1
     console.log($scope.user)
     $scope.weekdays = {
@@ -25,10 +25,33 @@ app.controller('myCourseCtrl', function($scope, user, userFactory, classroomFact
     if ($scope.teacher) {
         classroomFactory.getClassroomsByTeacher($scope.user.id).then(result => {
             $scope.classrooms = result
+            console.log($scope.classrooms)
         })
     } else {
         classroomFactory.getClassroomsByStudent($scope.user.id).then(result => {
             $scope.classrooms = result
+        })
+    }
+    $scope.editClassroom = (classId) => {
+        var modalInstance = $uibModal.open({
+            templateUrl: "js/common/modals/editClassroom/editClassroom.html",
+            controller: 'editClassroomCtrl',
+            size: 'md',
+            resolve: {
+                classroom: () => {
+                    console.log(classId)
+                    return classroomFactory.findSingleClassroom(classId).then(classroom => {
+                        return classroom[0]
+                    })
+                }
+            }
+        })
+        modalInstance.result.then(result => {
+            if (result) {
+                classroomFactory.findSingleClassroom($stateParams.id).then(response => {
+                    $scope.classroom = response
+                })
+            }
         })
     }
     $scope.transition = classroomId => {

@@ -3,6 +3,7 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
     $scope.temp_classroom.startDate = new Date($scope.temp_classroom.startDate)
     $scope.temp_classroom.endDate = new Date($scope.temp_classroom.endDate)
     $scope.days = [, , , , , , , ]
+    console.log($scope.temp_classroom)
     $scope.temp_times = $scope.temp_classroom.class_times
     $scope.weekdays = {
         0: 'Monday',
@@ -13,7 +14,7 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
         5: 'Saturday',
         6: 'Sunday'
     }
-
+    console.log($scope.temp_classroom)
     for (var key of Object.keys($scope.temp_classroom.class_times)) {
         $scope.days[key] = true
         $scope.temp_times[key].start = new Date($scope.temp_classroom.class_times[key].start)
@@ -23,7 +24,7 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
     $scope.cancel = () => {
         $uibModalInstance.close(false)
     }
-
+    $scope.classThumbnail = $scope.temp_classroom.image
 
     $scope.updateClassroom = classroom => {
         classroom.times = {}
@@ -38,7 +39,7 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
         }
         console.log($scope.temp_times, classroom)
         classroomFactory.updateClassroom($stateParams.id, classroom).then(classroom => {
-            classroomFactory.changeImage(classThumbnail).then(classroom => {
+            classroomFactory.changeImage($scope.temp_classroom.id, $scope.classThumbnail).then(classroom => {
                 $uibModalInstance.close(classroom)
             })
         })

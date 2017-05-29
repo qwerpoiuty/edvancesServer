@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    db.query(`select c.id,teacher.id as teacher_id, teacher."teacherOptions" , teacher."firstName", teacher."lastName", c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject, c.students,c.cost,teacher."profilePic",c.description
+    db.query(`select c.id,teacher.id as teacher_id, teacher."teacherOptions" , teacher."firstName", teacher."lastName", c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject, c.students,c.cost,teacher."profilePic",c.description,c.image
 from classrooms c
 inner join users as teacher
 on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom => {
@@ -44,18 +44,18 @@ on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom
 })
 router.get('/teacher/:id', (req, res) => {
     //remember to fetch prices here as well
-    db.query(`select c.id,c.description,c."startDate",c.times, c.subject,c.title from classrooms c inner join users u on u.id = c.teacher where u.id = ${req.params.id}`).then(classrooms => {
+    db.query(`select c.* from classrooms c inner join users u on u.id = c.teacher where u.id = ${req.params.id}`).then(classrooms => {
         res.json(classrooms[0])
     })
 })
 
 router.get('/student/:id', (req, res) => {
     //remember to fetch prices here as well
-    db.query(`select c.id,c.description,c."startDate",c.times, c.subject,c.title from classrooms c inner join users u on u.id = any(c.students) where u.id = ${req.params.id}`).then(classrooms => {
+    db.query(`select c.* from classrooms c inner join users u on u.id = any(c.students) where u.id = ${req.params.id}`).then(classrooms => {
         res.json(classrooms[0])
     })
 })
-router.post('/', ensureAuthenticated, upload.single('thumbnail'), (req, res, next) => {
+router.post('/', ensureAuthenticated, (req, res, next) => {
     Classroom.create(req.body)
         .then(classroom => {
             console.log(classroom)
@@ -75,11 +75,12 @@ router.post('/', ensureAuthenticated, upload.single('thumbnail'), (req, res, nex
 router.post('/withImage', ensureAuthenticated, upload.single('thumbnail'), (req, res, next) => {
     var stream = streamifier.createReadStream(req.file.buffer)
     var classroom = JSON.parse(req.body.classroom)
-    var thumbnail = classroom.title + '-' + req.file.originalname + '-' + Date.now()
+    var thumbnail = 'C-' + classroom.id + '-' + req.file.originalname
+
     blobSvc.createBlockBlobFromStream('class-thumbnails', thumbnail, stream, req.file.size,
         function(error, result, response) {
             if (!error) {
-                classroom.image = thumbnail
+                classroom.image = `https://edvances.blob.core.windows.net/class-thumbnails/${thumbnail}`
                 Classroom.create(classroom).then(classroom => {
                     res.json(classroom)
                 }).catch(() => {
@@ -93,10 +94,9 @@ router.post('/withImage', ensureAuthenticated, upload.single('thumbnail'), (req,
 
 router.post('/update', ensureAuthenticated, (req, res) => {
     const updates = req.body.updates;
-    console.log(updates)
     Classroom.findOne({
         where: {
-            id: req.body.id
+            id: req.body.updates.id
         }
     }).then(classroom => {
         return classroom.updateAttributes(updates)
@@ -114,7 +114,7 @@ router.post('/update', ensureAuthenticated, (req, res) => {
 })
 router.post('/image/:id', upload.single('image'), (req, res) => {
     var stream = streamifier.createReadStream(req.file.buffer)
-    var thumbnail = classroom.title + '-' + req.file.originalname + '-' + Date.now()
+    var thumbnail = 'C-' + req.params.id + '-' + req.file.originalname
     blobSvc.createBlockBlobFromStream('class-thumbnails', thumbnail, stream, req.file.size,
         function(error, result, response) {
             if (!error) {
@@ -123,7 +123,7 @@ router.post('/image/:id', upload.single('image'), (req, res) => {
                         id: req.params.id
                     }
                 }).then(classroom => {
-                    classroom.image = thumbnail
+                    classroom.image = `https://edvances.blob.core.windows.net/class-thumbnails/${thumbnail}`
                     return classroom.save()
                 }).then(classroom => {
                     res.json(classroom)

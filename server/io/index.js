@@ -28,6 +28,11 @@ module.exports = function(server) {
                 Socket.broadcast.to(roomName).emit('collaboratorDraw', start, end, color)
             })
 
+            Socket.on('erase all', function(bool) {
+                draws[roomName] = []
+                io.sockets.in(roomName).emit('erasing', true)
+            })
+
             // chat
             Socket.on('chat', function(message) {
                 io.sockets.in(roomName).emit('message incoming', message)

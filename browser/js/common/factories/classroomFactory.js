@@ -61,6 +61,7 @@ app.factory('classroomFactory', function($http) {
         var file = picture;
         var fd = new FormData();
         fd.append('image', file);
+        console.log(picture)
         return $http.post('/api/classrooms/image/' + classroomId, fd, {
             transformRequest: angular.identity,
             headers: {

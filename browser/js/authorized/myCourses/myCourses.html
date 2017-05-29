@@ -52,8 +52,8 @@
                 <!-- / Quiz Listing controles end -->
                 <!-- Quiz Listing start -->
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 quiz-block mar-btm-30" ng-repeat = "class in classrooms">
-                        <img ng-src="{{classroom.image}}" alt="Course" title="Course">
+                    <div class="col-lg-4 col-md-4 col-sm-6 quiz-block my-course-block mar-btm-30" ng-repeat = "class in classrooms track by $index">
+                        <img class="course-thumbnails" ng-src="{{class.image}}" alt="Course" title="Course">
                         <div class="outlined pad-20">
                             <div class="activity-title">{{class.title}}<i class="fa fa-check-circle geen-text pull-right"></i>
                                 <br>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="outlined pad-10 clearfix no-top-border">
                             <a href="" class="fill-btn yello-btn float-lt slim-btn" ng-click="transition(class.id)">View Course</a>
-                            <!-- <a href="" class="outlined-btn gray-btn float-rt"><i class="fa fa-comment-o"></i></a> -->
+                            <a ng-if="teacher" class="fill-btn btn-danger float-lt slim-btn" ng-click="editClassroom(class.id)">Edit Course</a>
                         </div>
                     </div>
                 </div>

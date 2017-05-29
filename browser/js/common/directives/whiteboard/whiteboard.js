@@ -105,6 +105,9 @@
              Socket.on('collaboratorDraw', function(start, end, color) {
                  whiteboard.draw(start, end, color);
              });
+             Socket.on('erasing', function(bool) {
+                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+             })
          }
      };
  })
