@@ -6,7 +6,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('settingsCtrl', function($scope, userFactory, transactionFactory) {
+app.controller('settingsCtrl', function($scope, userFactory, transactionFactory, $state) {
     $scope.teacher = ($scope.user.role == 1)
     $scope.times = {}
     $scope.days = [, , , , , , , ]
@@ -20,6 +20,8 @@ app.controller('settingsCtrl', function($scope, userFactory, transactionFactory)
         for (let key of Object.keys($scope.times)) {
             $scope.days[key] = true
         }
+    } else {
+        $scope.user.teacherOptions = {}
     }
     $scope.interests = {}
     $scope.weekdays = {
@@ -41,7 +43,6 @@ app.controller('settingsCtrl', function($scope, userFactory, transactionFactory)
         let times = {}
         if ($scope.user.role == 1) {
             for (var i = 0; i < $scope.days.length; i++) {
-                console.log('hello')
                 if ($scope.days[i]) times[i] = $scope.times[i]
             }
             user.teacherOptions.times = times
