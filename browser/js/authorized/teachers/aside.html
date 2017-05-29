@@ -10,11 +10,11 @@
       <span class="font-bold">Profile</span>
     </a>
     <ul class="nav nav-sub dk">
-      <li ui-sref="profile" class="user-thum-lg" ui-sref-active="active">
+      <li ui-sref="profile" class="user-thum-lg" ui-sref-active="active-sref">
         <span class="dropdown wrapper" >
         <span class="no-border">
           <span class="thumb-lg w-auto-folded avatar m-t-sm">
-            <img src="https://edvances.blob.core.windows.net/profile-pictures/{{user.profilePic}}" class="img-full" alt="...">
+            <img ng-src="{{user.profilePic}}" class="img-full" alt="...">
           </span>
         </span>
         <span href class="dropdown-toggle hidden-folded no-border" dropdown-toggle>
@@ -24,24 +24,24 @@
         </span>
       </span>
       </li>
-      <li ui-sref-active="active">
-        <a ui-sref="edit" class="editpro">
+      <li ui-sref-active="active-sref">
+        <a ui-sref="settings" class="editpro">
           <span>Edit Profile</span>
         </a>
       </li>
-      <li ui-sref-active="active">
-        <a ui-sref="edit" class="editpro">
+      <li ui-sref-active="active-sref">
+        <a ui-sref="payroll" class="editpro">
           <span>Payroll Options</span>
         </a>
       </li>
-      <li ui-sref-active="active">
-        <a ui-sref="edit" class="editpro">
+      <li ui-sref-active="active-sref">
+        <a ui-sref="credentials" class="editpro">
           <span>Credentials</span>
         </a>
       </li>
     </ul>
   </li>
-  <li ui-sref-active="active" class="active">
+  <li ui-sref-active="active-sref" class="active">
     <a ui-sref="dashboard">
        <span class="nav-img"><img src="img/nav-dashboard.png"/></span>
       <span class="font-bold" translate="aside.nav.DASHBOARD">Dashboard</span>
@@ -57,32 +57,22 @@
       <span class="font-bold">Courses</span>
     </a>
     <ul class="nav nav-sub dk">
-      <li ui-sref-active="active">
+      <li ui-sref-active="active-sref">
         <a ui-sref="myCourses">
           <span>My Courses</span>
         </a>
       </li>
-      <li ui-sref-active="active">
+<!--       <li ui-sref-active="active-sref">
         <a ui-sref="app.dashboard">
           <span>Assignments Due</span>
         </a>
-      </li>
-      <li ui-sref-active="active">
+      </li> -->
+      <li ui-sref-active="active-sref">
         <a ui-sref="quizDashboard">
           <span>Quiz Manager</span>
         </a>
       </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.dashboard">
-          <span>Course Forum</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.dashboard">
-          <span>Course Forum Thread</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
+      <li ui-sref-active="active-sref">
         <a ui-sref="newClassroom">
           <span>Create Course</span>
         </a>
@@ -90,22 +80,22 @@
     </ul>
   </li>
 
-  <li>
+<!--   <li>
     <a ui-sref="dashboard">
      <span class="nav-img"><img src="img/nav-calendar.png"/></span>
       <span class="font-bold" translate="aside.nav.CALENDAR">Calendar</span>
     </a>
-  </li>
+  </li> -->
 
-  <li>
+<!--   <li>
     <a ui-sref="dashboard">
      <span class="nav-img"><img src="img/nav-message.png"/></span>
       <span class="font-bold" translate="Messages">Messages</span>
     </a>
-  </li>
+  </li> -->
 
-  <li>
-    <a ui-sref="forum" ui-sref-active="active" class="auto" toggle-parent-class="active">      
+ <!--  <li>
+    <a ui-sref-active="active-sref" class="auto" toggle-parent-class="active">      
     <span class="nav-img"><img src="img/nav-forum.png"/></span>
       <span class="pull-right text-muted">
         <i class="fa fa-fw fa-plus text"></i>
@@ -114,23 +104,23 @@
       <span class="font-bold">Forums</span>
     </a>
     <ul class="nav nav-sub dk">
-      <li ui-sref-active="active">
-        <a ui-sref="app.dashboard">
+      <li ui-sref-active="active-sref">
+        <a ui-sref="forums">
           <span>Home</span>
         </a>
       </li>
-      <li ui-sref-active="active">
+      <li ui-sref-active="active-sref">
         <a ui-sref="app.dashboard">
           <span>Category</span>
         </a>
       </li>
-      <li ui-sref-active="active">
+      <li ui-sref-active="active-sref">
         <a ui-sref="app.dashboard">
           <span>Thread</span>
         </a>
       </li>
     </ul>
-  </li>
+  </li> -->
 
 
   <li>
@@ -143,13 +133,13 @@
       <span class="font-bold">Reports</span>
     </a>
     <ul class="nav nav-sub dk">
-      <li ui-sref-active="active">
-        <a ui-sref="app.dashboard">
+      <li ui-sref-active="active-sref">
+        <a ui-sref="earnings">
           <span>Earnings</span>
         </a>
       </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.dashboard">
+      <li ui-sref-active="active-sref">
+        <a ui-sref="transactions">
           <span>Transactions</span>
         </a>
       </li>

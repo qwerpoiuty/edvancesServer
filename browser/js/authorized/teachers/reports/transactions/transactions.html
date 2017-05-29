@@ -1,0 +1,149 @@
+<div class=" lter wrapper-md bredcrumb">
+    <div class="row">
+        <div class="col-sm-6 col-xs-12">
+            <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Reports</small> <i class="fa fa-angle-right"></i> <small class="text-muted">Transactions</small>
+        </div>
+    </div>
+</div>
+<!-- / main header -->
+<div class="wrapper-md">
+    <!-- info bar -->
+    <div class="row mar-btm-30">
+        <div class="col-md-12">
+            <div class="outlined pad-20 info-bar clearfix earnings-head">
+                <div class="info-wrap m-t--5 p-l-0">
+                    <div class="title-box">
+                        <span class="main-title">Your account transactions</span>
+                    </div>
+                </div>
+                <!-- <div class="btn-group dropdown export">
+                    <button class="btn fill-btn" data-toggle="dropdown" aria-expanded="true">Export <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href=""><i class="fa fa-file-excel-o"></i> csv</a></li>
+                        <li><a href=""><i class="fa fa-file-text-o"></i> txt</a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- / info bar -->
+    <div class="row">
+        <!-- Earnings this month -->
+        <div class="col-md-12 mar-btm-30">
+            <div class="outlined clearfix pad-20 no-bottom-border">
+                <div class="row">
+                    <div class="col-md-6 col-xs-12 mobile-center">
+                        <div id="reportrange" class="pull-left">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                            <span></span> <b class="caret"></b>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <h3 class="geen-text comp-tra"><i class="fa fa-check-circle"></i> Completed Transactions</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th data-breakpoints="xs">Date</th>
+                                <th>Type</th>
+                                <th>Transaction ID</th>
+                                <th data-breakpoints="xs">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-expanded="true" ng-repeat="transaction in transactions">
+                                <td>{{transaction.createdAt | date:'longDate'}}</td>
+                                <td>{{transaction.type | capitalize}} {{transaction.title}}</td>
+                                <td>#{{transaction.id}}</td>
+                                <td>${{transaction.amount}}</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                            <tr data-expanded="true">
+                                <td>January 7, 2017</td>
+                                <td>Fractions 101 - GR10</td>
+                                <td>#461</td>
+                                <td>$106</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- / Earnings this month -->
+    </div>
+</div>

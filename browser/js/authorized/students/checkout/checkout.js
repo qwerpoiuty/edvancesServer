@@ -11,11 +11,11 @@ app.config(function($stateProvider) {
 app.controller('checkoutCtrl', ($scope, transactionFactory, notificationService) => {
     $scope.shopping = true
     $scope.cardInfoForm = {}
-    $scope.checkout = (credits, price, discount) => {
+    $scope.checkout = (credits, price, ppc) => {
         $scope.shopping = false
         $scope.credits = credits
         $scope.price = price
-        $scope.discount = discount
+        $scope.ppc = ppc
         $scope.transactionFee = 1
         $scope.total = $scope.price + $scope.transactionFee
     }

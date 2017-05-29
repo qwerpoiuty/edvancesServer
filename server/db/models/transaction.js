@@ -12,13 +12,16 @@ module.exports = db.define('transaction', {
         type: Sequelize.INTEGER
     },
     type: {
-        type: Sequelize.ENUM('credit', 'purchase')
+        type: Sequelize.ENUM('credit', 'purchase', 'payout')
     },
     amount: {
         type: Sequelize.INTEGER
     },
     currency: {
         type: Sequelize.STRING
+    },
+    classroom: {
+        type: Sequelize.INTEGER
     },
     description: {
         type: Sequelize.JSON

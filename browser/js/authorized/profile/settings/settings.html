@@ -1,0 +1,162 @@
+<div class="tab-pane active" id="tab-1">
+    <div class="wrapper-md">
+        <form class="form-horizontal" ng-submit="updateUser(user)">
+            <div class="form-group mar-20">
+                <label class="col-sm-2 control-label">Avatar</label>
+                <div class="col-sm-8">
+                    <div class="user-thumb"><img ng-src="{{user.profilePic}}" title="John Doe" alt="John Doe" /></div>
+                    <button type="file" ngf-select="changeProfilePic($file)" accept="image/*" ng-f-max-height="1000" ngf-max-size="2mb" class="change-pro slim-btn outlined-btn gray-btn float-rt">Change</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Full Name</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input ng-model ="user.firstName" type="text" class="form-control" placeholder="First Name">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" ng-model="user.lastName" class="form-control" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-show="teacher">
+                <label class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="user.teacherOptions.title" placeholder="Your preferred title">
+                </div>
+            </div>
+            <div class="form-group" ng-show="user.role!=1">
+                <label class="col-sm-2 control-label">Grade Level</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Highest Grade Level" ng-model="user.grade">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Location</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="user.location" placeholder="Location">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Age</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="user.age" placeholder="your Current Age">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="user.email" placeholder="Email Address">
+                </div>
+            </div>
+            <div class="form-group" ng-show="teacher">
+                <label class="col-sm-2 control-label">Experience</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="user.teacherOptions.experience" placeholder="Years of experience">
+                </div>
+            </div>
+            <div class="form-group" ng-show="teacher">
+                <label class="col-sm-2 control-label">Teaching Level</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="user.teacherOptions.teachingLevel" placeholder="Your preferred teaching level">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Interests</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-6 checkbox">
+                            <label class="i-checks">
+                                <input type="checkbox" checked="" ng-model="interests['math']">
+                                <i></i> Mathematics
+                            </label>
+                        </div>
+                        <div class="col-sm-6 checkbox">
+                            <label class="i-checks">
+                                <input type="checkbox" checked="" ng-model="interests['science']">
+                                <i></i> Science
+                            </label>
+                        </div>
+                        <div class="col-sm-6 checkbox">
+                            <label class="i-checks">
+                                <input type="checkbox" ng-model="exam">
+                                <i></i> Exam Prep
+                            </label>
+                        </div>
+                        <div class="col-sm-6 checkbox">
+                            <label class="i-checks">
+                                <input type="checkbox" ng-model="tutoring">
+                                <i></i> Tutoring
+                            </label>
+                        </div>
+                        <div class="col-sm-6 checkbox">
+                            <label class="i-checks">
+                                <input type="checkbox" checked="" ng-model="languages">
+                                <i></i> Languages
+                            </label>
+                        </div>
+                        <div class="col-sm-6 checkbox">
+                            <label class="i-checks">
+                                <input type="checkbox" ng-model="technology">
+                                <i></i> Technology
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group" ng-show="teacher">
+                <label class="col-sm-2 control-label">Availability</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-6 checkbox" ng-repeat="day in days track by $index">
+                            <label class="i-checks">
+                                <input type="checkbox" checked="" ng-model="days[$index]">
+                                <i></i> {{weekdays[$index]}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="row" ng-repeat="day in days track by $index" ng-show="day ==true">
+                    <label class="col-sm-2 control-label">{{weekdays[$index]}}: </label>
+                    <div class="col-sm-8">
+                        <input type="time" id="exampleInput" name="input" ng-model="times[$index].start" placeholder="HH:mm:ss" /> 
+                        to 
+                        <input type="time" id="exampleInput" name="input" ng-model="times[$index].end" placeholder="HH:mm:ss" />
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="row" ng-show="teacher">
+                    <label class="col-sm-2 control-label">Your Bio</label>
+                    <div class="col-sm-8">
+                        <textarea ng-model="user.teacherOptions.bio"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mar-btm-30">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-8">
+                    <div class="checkbox">
+                        <label class="i-checks">
+                            <input type="checkbox" checked="" ng-model="user.subscribed">
+                            <i></i> Subscribe to our Newsletter
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-8">
+                    <button type="submit" class="fill-btn">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

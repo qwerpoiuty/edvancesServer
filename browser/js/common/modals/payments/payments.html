@@ -1,0 +1,18 @@
+<form ng-submit="createPayout()">
+<div id="loginmodal" class=" loginmodal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close(false)" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Paypal Info</h4>
+        <h4 class="erorr" ng-show="response">{{response}}</h4>
+        <span class="login-instruction">Please Enter Your Paypal Information</span>
+    </div>
+    <div class="modal-body" ng-if="!response">
+            <input type="text" name="login" class="login-signup" ng-model="paypal.email" placeholder="Email" required/>
+            <input type="number" name="login" class="login-signup" ng-model="paypal.amount" placeholder="Amount" required/>
+    </div>
+    <div class="modal-footer">
+        <input ng-if="!response" type="submit" name="submit" class="btn" value="Submit" style="width: 100%" />
+        <input ng-if="response" type="button" class="btn" value="Close" ng-click="close()" style="width:100%"/>
+    </div>
+</div>  
+</form>

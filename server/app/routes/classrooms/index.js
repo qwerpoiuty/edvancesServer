@@ -7,6 +7,7 @@ var db = require('../../../db');
 var Classroom = db.model('classroom')
 var User = db.model('user')
 var Transaction = db.model('transaction')
+var Forum = db.model('forum')
 var multer = require('multer')
 var azure = require('azure-storage');
 var blobSvc = azure.createBlobService('DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net')
@@ -33,12 +34,11 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', ensureAuthenticated, (req, res) => {
-    db.query(`select c.id,teacher.id as teacher_id, teacher."teacherOptions" , teacher."firstName", teacher."lastName", c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject, c.students,c.cost,teacher."profilePic"
+router.get('/:id', (req, res) => {
+    db.query(`select c.id,teacher.id as teacher_id, teacher."teacherOptions" , teacher."firstName", teacher."lastName", c."startDate",c."endDate", c."lessons", c."times" as class_times, teacher.email as teacher_email, teacher.location as teacher_location, c.title as classroom_title,c.subject, c.students,c.cost,teacher."profilePic",c.description
 from classrooms c
 inner join users as teacher
 on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom => {
-        console.log(classroom[0])
         res.json(classroom[0])
     })
 })
@@ -56,12 +56,21 @@ router.get('/student/:id', (req, res) => {
     })
 })
 router.post('/', ensureAuthenticated, upload.single('thumbnail'), (req, res, next) => {
-    Classroom.create(req.body).then(classroom => {
-        res.json(classroom)
-    }).catch(() => {
-        var error = new Error('upload error')
-        return next(error)
-    })
+    Classroom.create(req.body)
+        .then(classroom => {
+            console.log(classroom)
+            Forum.create({
+                name: classroom.title,
+                teacher: classroom.teacher,
+                classroom: classroom.id,
+                thumbnail: classroom.image
+            }).then(forum => {
+                res.json(classroom)
+            })
+        }).catch(() => {
+            var error = new Error('upload error')
+            return next(error)
+        })
 })
 router.post('/withImage', ensureAuthenticated, upload.single('thumbnail'), (req, res, next) => {
     var stream = streamifier.createReadStream(req.file.buffer)
@@ -127,7 +136,6 @@ router.post('/image/:id', upload.single('image'), (req, res) => {
 })
 
 router.post('/addStudent', ensureAuthenticated, (req, res) => {
-    console.log('hello')
     var classSearch = Classroom.findOne({
         where: {
             id: req.body.classroom_id
@@ -144,15 +152,24 @@ router.post('/addStudent', ensureAuthenticated, (req, res) => {
         Transaction.create({
             owner: user.id,
             type: 'purchase',
-            amount: "-" + classroom.cost,
-            description: classroom
+            amount: classroom.cost,
+            classroom: classroom.id,
+            description: classroom.id
         }).then(transaction => {
             user.credits = user.credits - classroom.cost
             var students = classroom.students
             students.push(user.id)
+            var teacherUpdate = User.findOne({
+                where: {
+                    id: classroom.teacher
+                }
+            }).then(teacher => {
+                teacher.balance += classroom.cost
+                return teacher.save()
+            })
             return Promise.all([classroom.update({
                 students: students
-            }), user.save()])
+            }), user.save(), teacherUpdate])
         }).then(values => {
             res.json(values)
         })

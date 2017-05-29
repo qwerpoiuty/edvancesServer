@@ -1,6 +1,6 @@
 app.factory('classroomFactory', function($http) {
     var d = {}
-    d.findAllClassrooms = (query) => {
+    d.findAllClassrooms = () => {
         return $http.get('/api/classrooms/').then(response => {
             return response.data
         })
@@ -48,11 +48,11 @@ app.factory('classroomFactory', function($http) {
     }
 
     d.updateClassroom = (classroomId, updates) => {
-        var updates = {
+        let updatedClassroom = {
             id: classroomId,
             updates: updates
         }
-        return $http.post('/api/classrooms/update', updates).then(response => {
+        return $http.post('/api/classrooms/update', updatedClassroom).then(response => {
             return response.data
         })
     }

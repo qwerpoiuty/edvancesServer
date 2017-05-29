@@ -42,6 +42,10 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, 
                     controller: 'loginCtrl',
                     size: 'md'
                 })
+                modalInstance.result.then(bool => {
+                    if (bool) $state.go('dashboard')
+
+                })
             }
 
             scope.signup = () => {

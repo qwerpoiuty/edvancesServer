@@ -35,7 +35,7 @@ module.exports = db.define('classroom', {
     },
     image: {
         type: Sequelize.STRING,
-        defaultValue: "classroom-placeholder.png"
+        defaultValue: "https://edvances.blob.core.windows.net/class-thumbnails/classroom-placeholder.png"
     },
     lessons: {
         type: Sequelize.ARRAY(Sequelize.INTEGER),

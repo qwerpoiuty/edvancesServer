@@ -1,17 +1,31 @@
 app.factory('transactionFactory', function($http) {
     var d = {}
         //remember to make a success/failure screen
+
+    d.getTransactionsByTeacher = (teacherID) => {
+        console.log('made it too')
+        return $http.get('/api/transactions/teacher/' + teacherID).then(response => {
+            return response.data
+        })
+    }
+
+    d.getTransactionsByStudent = (studentID) => {
+
+    }
     d.createSale = (ccinfo, userID) => {
 
         return $http.get('/api/transactions/create/' + userID, {
             params: ccinfo
-        }).then(result => {
-            return result.data
+        }).then(response => {
+            return response.data
         })
     }
 
-    d.createPayout = (amount, userId) => {
+    d.createPayout = (userID, paymentInfo) => {
 
+        return $http.post('/api/transactions/payout/' + userID, paymentInfo).then(response => {
+            return response.data
+        })
     }
 
     return d

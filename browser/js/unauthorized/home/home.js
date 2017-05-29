@@ -19,9 +19,6 @@ app.controller('homeCtrl', function($scope) {
         assignNewIndexesToSlides(indexes);
     };
 
-    for (var i = 0; i < 4; i++) {
-        $scope.addSlide();
-    }
 
     // Randomize logic below
 

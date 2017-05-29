@@ -9,8 +9,6 @@
              window.whiteboard = new window.EventEmitter();
              // Ultimately, the color of our stroke;
              var color;
-             console.log(scope.room)
-             Socket.emit('join classroom', scope.roomName)
 
              // The color selection elements on the DOM.
              var colorElements = [].slice.call(document.querySelectorAll('.marker'));

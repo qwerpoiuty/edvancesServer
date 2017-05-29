@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3 class="modal-title">Create a new thread</h3>
+</div>
+<form class="form horizontal" ng-submit="createNewThread()" id="lessonForm">
+<div class="modal-body">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-2 control-label">Thread Title</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Thread Title" ng-model="thread.title">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <lable class="col-sm-2 control-label">First Post</lable>
+                <div class="col-sm-6">
+                    <textarea class="form-control" ng-model="thread.text"></textarea>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-pimary" >Submit</button>
+    <button type="button" class="btn btn-danger" ng-click="close()">Cancel</button>
+</div>
+</form>

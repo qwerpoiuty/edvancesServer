@@ -1,28 +1,17 @@
-<ul class="conversation">
-    <li class="classmate">
-        <div class="chat-user"><img src="img/a5.jpg"></div>
-        <div class="chat-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor<br>
-            <small>Adam Grant - 2hr ago</small>
-        </div>
-    </li>
-    <li class="class-me">
-        Consectetur adipiscing elit, sed do eiusmod tempor
-        <small>You Grant - 2hr ago</small>
-    </li>
-    <li class="classmate">
-        <div class="chat-user"><img src="img/a5.jpg"></div>
-        <div class="chat-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            <small>Adam Grant - 2hr ago</small>
-        </div>
-    </li>
-    <li class="class-me">Consectetur adipiscing elit, sed do eiusmod tempor
-    <small>You Grant - 2hr ago</small></li>
-    <li class="classmate">
-        <div class="chat-user"><img src="img/a2.jpg"></div>
-        <div class="chat-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor<br>
-            <small>Adam Grant - 2hr ago</small>
-        </div>
-    </li>
-</ul>
+<div class="chat-window b-b-0">
+    <div class="cat-title"><span>{{title}}</span></div> 
+    <ul class="conversation">
+        <li class="classmate" ng-repeat="chat in chats track by $index">
+            <div class="chat-user"><img ng-src="{{chat.sender.profilePic}}"></div>
+            <div class="chat-text">
+                {{chat.message}}<br>
+                <small>{{chat.sender.name}} - {{chat.time | date:'HH:mm a'}}</small>
+            </div>
+        </li>
+    </ul>
+</div>
+<input type="text" name="" placeholder="Type message here..." class="chat-input b-t-0" ng-model="message" chat-enter="sendChat(message)">
+<div class="chat-footer">
+    <span>ABC
+    <a href=""><i clas="fa fa-paperclip"></i></a>
+</div>

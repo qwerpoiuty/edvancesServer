@@ -29,20 +29,12 @@
             <div class="title-w-line">
                 <h6>Latest Courses</h6>
             </div>
-            <div class="course">
-                <a href=""> <img class="media-object img-responsive" src="img/place-80.png"></a>
+            <div class="course" ng-repeat="classroom in classrooms">
+                <a ng-click="transition(classroom.id)"> <img style="max-width:80px" class="media-object img-responsive" ng-src="{{classroom.image}}"></a>
                 <div class="cname clearfix">
                     <a href="">
-                        <h6>Math – Grade 8</h6></a>
-                    <p class="m-b-0">Prof. Richard Peng</p>
-                </div>
-            </div>
-            <div class="course clearfix">
-                <a href=""> <img class="media-object img-responsive" src="img/place-80.png"></a>
-                <div class="cname">
-                    <a href="">
-                        <h6>English – Grade 10</h6></a>
-                    <p class="m-b-0">Prof. Raj Talwar</p>
+                        <h6>{{classroom.title}}</h6></a>
+                    <p class="m-b-0">{{classroom.firstName}} {{classroom.lastName}}</p>
                 </div>
             </div>
         </div>

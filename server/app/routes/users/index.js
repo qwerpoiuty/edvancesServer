@@ -97,9 +97,10 @@ router.post('/profilePic/:id', upload.single('profilePic'), (req, res) => {
     var picName = req.params.id + '-' + req.file.originalname
     blobSvc.createBlockBlobFromStream('profile-pictures', req.params.id + '-' + req.file.originalname, stream, req.file.size,
         function(error, result, response) {
+            console.log(result, response)
             if (!error) {
                 User.findById(req.params.id).then(user => {
-                    user.profilePic = picName
+                    user.profilePic = `https://edvances.blob.core.windows.net/profile-pictures/${picName}`
                     return user.save()
                 }).then((user) => {
                     res.json({
@@ -108,6 +109,8 @@ router.post('/profilePic/:id', upload.single('profilePic'), (req, res) => {
                         data: _.omit(user.toJSON(), ['password', 'salt'])
                     })
                 })
+            } else {
+                res.json(new error('Upload unsuccessful'))
             }
         })
 })

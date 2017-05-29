@@ -24,8 +24,8 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     //inits
     $scope.classroom = classroom[0]
     $scope.lessons = lessons
-    $scope.teacher = $scope.user.id == $scope.classroom.teacher_id
-    $scope.member = $scope.classroom.students.indexOf($scope.user.id) != -1 || $scope.teacher
+    $scope.teacher = $scope.user.id === $scope.classroom.teacher_id
+    $scope.member = $scope.classroom.students.indexOf($scope.user.id) !== -1 || $scope.teacher
     $scope.weekdays = {
         0: 'Monday',
         1: 'Tuesday',
@@ -35,7 +35,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         5: 'Saturday',
         6: 'Sunday'
     }
-    $scope.getNextLesson = function(times) {
+    $scope.getNextLesson = function() {
         var today = new moment()
         var times = $scope.classroom.class_times
         for (var key of Object.keys(times)) {
@@ -43,7 +43,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
                 $scope.nextLessonDay = $scope.weekdays[key]
                 $scope.nextLessonTime = moment(times[key].start).format("hh:mm a")
                 break
-            } else if (today.isoWeekday() == key) {
+            } else if (today.isoWeekday() === key) {
                 $scope.nextLessonDay = "Today"
                 $scope.nextLessonTime = moment(times[key].start).format("hh:mm a")
                 break
@@ -82,8 +82,8 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         })
         modalInstance.result.then(result => {
             if (result) {
-                classroomFactory.findSingleClassroom($stateParams.id).then(classroom => {
-                    $scope.classroom = classroom
+                classroomFactory.findSingleClassroom($stateParams.id).then(response => {
+                    $scope.classroom = response
                 })
             }
         })
@@ -108,7 +108,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         })
     }
     $scope.editLesson = (lesson, lessonIndex) => {
-        console.log('hello')
         var modalInstance = $uibModal.open({
             templateUrl: 'js/common/modals/lesson/lesson.html',
             controller: 'lessonCtrl',
@@ -128,7 +127,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     $scope.removeLesson = (lessonIndex) => {
         //be sure to update the next lesson variabl if it's the closest lesson
         classroomFactory.removeLesson($stateParams.id, lessonIndex).then(response => {
-            if (response.status == 200) {
+            if (response.status === 200) {
                 $scope.lessons.splice(lessonIndex, 1)
             } else alert('nope')
         })
@@ -136,14 +135,14 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     $scope.addTime = (lessonIndex, time) => {
         //remember to do a check to see if there's gonna be any scheduling conflicts
         classroomFactory.addTime($scope.lessons[lessonIndex], time).then(response => {
-            if (response.status == 200) {
+            if (response.status === 200) {
                 $scope.lessons[lessonIndex].times.push(time)
             } else alert('nice try')
         })
     }
     $scope.removeTime = (lessonIndex, timeIndex) => {
         classroomFactory.removeTime($scope.lessons[lessonIndex], timeIndex).then(response => {
-            if (response.status == 200) {
+            if (response.status === 200) {
                 $scope.lessons[lessonIndex].times.splice(timeIndex, 1)
             } else alert('try again')
         })
@@ -166,7 +165,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         }
         classroomFactory.updateLesson(lesson.id, updates).then(response => {
             if (response.status == 200) {
-
+                alert('success')
             } else {
                 alert('failed')
             }
@@ -190,10 +189,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
 
     $scope.close = () => {
         $scope.joined = false
-        $scope.videoApi.dispose().then(() => {
-
-            $uibModalInstance.close()
-        })
+        $scope.videoApi.dispose()
     }
 
     //hide video stream, show whiteboad
@@ -208,7 +204,6 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     $scope.addStudent = (studentId) => {
         if ($scope.user.credits >= $scope.classroom.cost) {
             classroomFactory.addStudent($stateParams.id, studentId).then(response => {
-                console.log(response)
                 if (response.data = true) {
                     $scope.member = true
                 }
@@ -219,7 +214,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     }
 
     //socket
-
+    Socket.emit('join classroom', $scope.room)
 
 
     jQuery('#calendar').eCalendar({

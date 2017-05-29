@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="teach-profile">
-                    <div class="teacherpro"><img src="https://edvances.blob.core.windows.net/profile-pictures/{{user.profilePic}}" /></div>
+                    <div class="teacherpro"><img ng-src="{{user.profilePic}}" /></div>
                     <h1 class="sec-title">{{user.firstName}} {{user.lastName}}</h1>
                     <div class="pro-degree">{{user.teacherOptions.title}}</div>
                     <div class="timeperiods"><span ng-repeat="(key,value) in user.teacherOptions.times">{{weekdays[key]}}  from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>

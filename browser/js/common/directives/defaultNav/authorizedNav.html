@@ -15,7 +15,7 @@
 <!-- / navbar header -->
 <!-- navbar collapse -->
 <div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
-    <div class="row">
+<!--     <div class="row">
         <div class="col-md-12 top-bar">
             <div class="content-wrapper">
                 <div class="fixed-div"></div>
@@ -27,7 +27,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- buttons -->
     <div class="nav navbar-nav hidden-xs">
         <a class="btn no-shadow navbar-btn" >
@@ -101,38 +101,11 @@
                 </div>
             </div>
         </li>
-        <li class="dropdown" dropdown>
-            <a href class="dropdown-toggle icons-info" dropdown-toggle>
-                <img src="img/cart.png" alt="cart" title="cart">
-                <span class="visible-xs-inline">Notifications</span>
-                <span class="badge badge-sm up bg-danger pull-right-xs">2</span>
-            </a>
-            <div class="dropdown-menu w-xl">
-                <div class="panel bg-white">
-                    <div class="list-group">
-                        <a href class="list-group-item">
-                            <span class="clear block m-b-none">
-                      Fractions 101
-                    </span>
-                        </a>
-                        <a href class="list-group-item">
-                            <span class="clear block m-b-none">
-                      Fractions 101
-                    </span>
-                        </a>
-                    </div>
-                    <div class="panel-footer text-sm">
-                        <a href class="pull-right link"><i class="fa fa-shopping-cart"></i></a>
-                        <a href="#notes" data-toggle="class:show animated fadeInRight" class="link">View my shopping cart</a>
-                    </div>
-                </div>
-            </div>
-        </li>
         <li class="dropdown profile-li" >
             <a href class="dropdown-toggle clear profile-icon" toggle-parent-class="open">
                 <span class="profile-user"><span class="hidden-sm hidden-md">{{user.firstName}} {{user.lastName}} </span><b class="caret"></b></span>
                 <span class="thumb-sm avatar  m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="https://edvances.blob.core.windows.net/profile-pictures/{{user.profilePic}}" alt="...">
+                <img ng-src="{{user.profilePic}}" alt="...">
               </span>
                 <span class=" fa fa-angle-down"></span>
             </a>

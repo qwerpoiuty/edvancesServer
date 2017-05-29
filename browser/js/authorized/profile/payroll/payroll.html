@@ -1,0 +1,123 @@
+<div class="tab-pane" id="tab-2">
+    <!--Payroll Options Tab Start-->
+    <div class="wrapper-md payment-methods">
+        <div class="clearfix max-wid-920">
+            <div class="title-box float-lt">
+                <span class="main-title">Payment Methods</span>
+                <span class="reltd-title">Lorem ipsum dolor sit amet, consectetur adipiscing </span>
+            </div>
+            <a href="" class="outlined-btn gray-btn float-rt">Message a Moderator</a>
+        </div>
+        <div class="outlined clearfix graph no-top-border pay-detl max-wid-920">
+        <div class="info-wrap"><span class="info-text">Your current balance is <strong>$ {{user.balance}}</strong>.</span></div>
+            <ul class="class-list">
+<!--                 <li>
+                    <div class="col-md-6 no-pad"> <span class="pro-img-list">
+                        <img src="img/bank-icon.png" title="User" alt="User"></span>
+                        <span class="activity-title">Bank Wire Transfer<br>  
+                        <span class="desc-det">updated 2 months ago</span>
+                        </span>
+                    </div>
+                    <div class="col-md-6 pad-left-0 text-right action-contl"><span class="act-num pad-right-20">**** **** **** 1356</span> <span class="act-num red-text pad-right-20">Default</span> <a href=""><i class="fa fa-edit"></i> Edit</a></div>
+                </li> -->
+                <li>
+                    <a >
+                        <div class="col-md-6 no-pad"> <span class="pro-img-list">
+                        <img src="img/paypal-icon.png" title="User" alt="User"></span>
+                            <span class="activity-title">PayPal<br>
+                            </span>
+                        </div>
+                        <div class="col-md-6 pad-left-0 text-right action-contl"><span class="act-num pad-right-20">(SGD)</span></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix pad-20 no-side-pad max-wid-920">
+            <a ng-click="createPayout()" class="fill-btn float-rt add-payroll">Withdraw Funds</a>
+        </div>
+    </div>
+    <!--Payroll Options Tab Start-->
+    <!--Add Payroll Start-->
+    <div class="wrapper-md add-paroll-method">
+        <form class="form-horizontal" method="get">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Bank Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Full Bank Institution Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Account Number</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Enter Your Bank Account Number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">IBAN/SWIFT Code</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Enter The Account IBAN or SWIFT Code">
+                </div>
+            </div>
+            <div class="form-group help-text">
+                <label class="col-sm-2 control-label">Full Name</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="help-block m-b-none">Name on Bank Account</span>
+                            <input type="text" class="form-control" placeholder="First Name">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group help-text">
+                <label class="col-sm-2 control-label">Address </label>
+                <div class="col-sm-8 ">
+                    <span class="help-block m-b-none">Address Linked to Bank Account</span>
+                    <input type="text" class="form-control" placeholder="Street Number, Street Name, Unit Number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">City </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="City Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Zip/Postal Code </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Zip Code">
+                </div>
+            </div>
+            <div class="form-group select-field">
+                <label class="col-sm-2 control-label">Country </label>
+                <div class="col-sm-4">
+                    <select name="carlist" form="carform" class="form-control">
+                        <option value="">Select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group mar-btm-30">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-8">
+                    <div class="checkbox">
+                        <label class="i-checks">
+                            <input type="checkbox" checked="" value="">
+                            <i></i> Make Default Payout Method
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-8">
+                    <button type="submit" class="fill-btn mar-right-10">Save changes</button>
+                    <button type="submit" class="outlined-btn red-btn cancel-payroll">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--Add Payroll End-->
+</div>

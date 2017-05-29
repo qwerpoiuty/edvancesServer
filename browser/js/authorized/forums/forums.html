@@ -1,6 +1,4 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
-    app.settings.asideFolded = false; 
-    app.settings.asideDock = false;
+<div class="hbox hbox-auto-xs hbox-auto-sm"
   ">
     <!-- main -->
     <div class="col">
@@ -22,40 +20,22 @@
                             <div class="col-md-12 mar-btm-30 recent-activity">
                                 <div class="outlined clearfix pad-20 for-head">
                                     <div class="title-box float-lt">
-                                        <span class="main-title">General</span>
-                                        <span class="reltd-title">Lorem ipsum dolor sit amet, consectetur</span>
+                                        <span class="main-title">Classes You Teach</span>
+                                        <span class="reltd-title">Forums For Classes you Teach</span>
                                     </div>
-                                    <a href="" class="outlined-btn red-btn float-rt fr-newtop">+ New Topic </a>
                                 </div>
                                 <div class="outlined clearfix graph no-top-border">
                                     <ul class="class-list">
-                                        <li>
+                                        <li ng-repeat="forum in teacherForums track by forum.id">
                                             <span class="pro-img-list">
-                                      <img src="img/forum-thum.jpg" title="User" alt="User" />
-                                    </span>
-                                            <span class="activity-title">Can someone help with Fractions?<br>
-                                        <span class="desc-det"><span class="desc-lbl no-pad">By:</span> <a href="" class="link"> John Doe</a> | 1hr ago</span>
+                                            <img src="img/forum-thum.jpg" title="User" alt="User" />
                                             </span>
-                                            <a ui-sref="app.forums-thread" class="outlined-btn gray-btn float-rt p-l-r-20 forumcount"><i class="fa fa-comments"></i> 15</a>
-                                        </li>
-                                        <li>
-                                            <span class="pro-img-list">
-                  <img src="img/forum-thum.jpg" title="User" alt="User" />
-                </span>
-                                            <span class="activity-title">Can someone help with Fractions?<br>
-                                        <span class="desc-det"><span class="desc-lbl no-pad">By:</span> <a href="" class="link">John Doe</a> | 1hr ago</span>
+                                            <span class="activity-title">{{forum.name}}<br>
+                                            <span class="desc-det"><span class="desc-lbl no-pad">By:</span> <a href="" class="link"> John Doe</a> | 1hr ago</span>
                                             </span>
-                                            <a ui-sref="app.forums-thread" class="outlined-btn gray-btn float-rt p-l-r-20 forumcount"><i class="fa fa-comments"></i> 15</a>
+                                            <a ng-click="transition(forum.id)" class="outlined-btn gray-btn float-rt p-l-r-20 forumcount"><i class="fa fa-comments"></i> 15</a>
                                         </li>
-                                        <li>
-                                            <span class="pro-img-list">
-                  <img src="img/forum-thum.jpg" title="User" alt="User" />
-                </span>
-                                            <span class="activity-title">Can someone help with Fractions?<br>
-                                        <span class="desc-det"><span class="desc-lbl no-pad">By:</span> <a href="" class="link">John Doe</a> | 1hr ago</span>
-                                            </span>
-                                            <a ui-sref="app.forums-thread" class="outlined-btn gray-btn float-rt p-l-r-20 forumcount"><i class="fa fa-comments"></i> 15</a>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </div>

@@ -14,7 +14,7 @@
         <span class="dropdown wrapper" >
         <span class="no-border">
           <span class="thumb-lg w-auto-folded avatar m-t-sm">
-            <img src="https://edvances.blob.core.windows.net/profile-pictures/{{user.profilePic}}" class="img-full" alt="...">
+            <img ng-src="{{user.profilePic}}" class="img-full" alt="...">
           </span>
         </span>
         <span href class="dropdown-toggle hidden-folded no-border" dropdown-toggle>
@@ -28,7 +28,7 @@
       </span>
       </li>
       <li ui-sref-active="active">
-        <a ui-sref="edit" class="editpro">
+        <a ui-sref="settings" class="editpro">
           <span>Edit Profile</span>
         </a>
       </li>

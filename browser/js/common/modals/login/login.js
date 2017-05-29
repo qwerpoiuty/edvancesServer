@@ -4,8 +4,7 @@ app.controller('loginCtrl', function($scope, AuthService, $state, $uibModalInsta
     $scope.sendLogin = function(loginInfo) {
         $scope.authError = null;
         AuthService.login(loginInfo).then(function(response) {
-            $uibModalInstance.close(false)
-            $state.go('dashboard');
+            $uibModalInstance.close(true)
         }).catch(function(err) {
             $scope.authError = err.message.data;
         });
