@@ -68,12 +68,13 @@
                     <div class="col-lg-8 mar-btm-30 stream-col">                        
                         <div class="course-documents accordion pad-20 outlined p-b-35">
                             <!--Resources start-->
-                            <h4 class="accordion-toggle resources activity-title active-tab m-t-20 clearfix">Lessons <i class="fa fa-angle-down"></i></h4>
+                            <h4 class="accordion-toggle resources activity-title active-tab m-t-20 clearfix">Lessons <i class="fa fa-angle-down"></i> </h4>
                             <div class="accordion-content default resources-content">
                                 <div class="clearfix">
                                     <hr class="bold-hr" />
                                 </div>
                                 <!--Assignments start-->
+                                <button ng-if="teacher" ng-click="addLesson()"" class="btn-btn-primary">Add Lesson</button>
                                 <div class="assignments-col m-t-20" ng-repeat="lesson in lessons track by $index">
                                     <span class="reltd-title semisect reltitle"><h3>{{lesson.title}}</h3> Start Date: <span style="color:red">{{lesson.startDate | date:'yyyy-MM-dd'}}</span> End Date: <span style="color:red">{{lesson.endDate | date:'yyyy-MM-dd'}}</span> <button ng-if="teacher" ng-click="editLesson(lesson, $index)" class="btn btn btn-primary">Edit Lesson</button></span>
                                     <div class="acc-tab" ng-repeat ="section in lesson.sections track by $index" >

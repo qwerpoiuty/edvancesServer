@@ -95,7 +95,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             size: 'md',
             resolve: {
                 lesson: () => {
-                    return null
+                    return
                 }
             }
         })
@@ -103,7 +103,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             if (result.data) {
                 $scope.lessons.push(result.payload)
             } else {
-                alert('edit error')
+
             }
         })
     }
