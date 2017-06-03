@@ -34,7 +34,7 @@
              var sketch = document.querySelector('#sketch');
              var sketchStyle = getComputedStyle(sketch);
 
-             canvas.width = 715
+             canvas.width = 800
              canvas.height = 415
 
              var rect = canvas.getBoundingClientRect()
@@ -57,9 +57,9 @@
              var drawing = false;
              canvas.addEventListener('mousedown', function(e) {
                  drawing = true;
-
-                 currentMousePosition.x = (e.pageX - rect.left) - 330
-                 currentMousePosition.y = (e.pageY - rect.top) - 60
+                 currentMousePosition.x = (e.pageX - rect.left) - 365
+                 currentMousePosition.y = (e.pageY - rect.top) - 120
+                 console.log(currentMousePosition)
              });
 
              canvas.addEventListener('mouseup', function() {
@@ -73,8 +73,8 @@
                  lastMousePosition.x = currentMousePosition.x;
                  lastMousePosition.y = currentMousePosition.y;
 
-                 currentMousePosition.x = (e.pageX - rect.left) - 330
-                 currentMousePosition.y = (e.pageY - rect.top) - 60
+                 currentMousePosition.x = (e.pageX - rect.left) - 365
+                 currentMousePosition.y = (e.pageY - rect.top) - 120
 
                  whiteboard.draw(lastMousePosition, currentMousePosition, color, true);
 

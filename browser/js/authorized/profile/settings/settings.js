@@ -21,8 +21,6 @@ app.controller('settingsCtrl', function($scope, userFactory, transactionFactory,
         for (let key of Object.keys($scope.times)) {
             $scope.days[key] = true
         }
-    } else {
-        $scope.user.teacherOptions = {}
     }
     $scope.interests = {}
     $scope.weekdays = {
@@ -46,6 +44,7 @@ app.controller('settingsCtrl', function($scope, userFactory, transactionFactory,
             for (var i = 0; i < $scope.days.length; i++) {
                 if ($scope.days[i]) times[i] = $scope.times[i]
             }
+            if (!user.teacherOptions) user.teacherOptions = {}
             user.teacherOptions.times = times
         }
         userFactory.updateUser(user).then(user => {

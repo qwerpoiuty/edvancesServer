@@ -18,10 +18,13 @@ app.config(function($stateProvider) {
 app.controller('authorizedCtrl', function($scope, user, $state, userFactory, $css) {
     $scope.user = user
     $css.bind({
-        href: '/common.css'
+        href: '/common.css',
+        preload: true,
+        persist: true
     }, $scope)
     $scope.getCss = () => {
         if (user.role === 1) {
+            console.log('hello')
             $css.add('/teacher.css')
         } else {
             $css.add('/student.css')

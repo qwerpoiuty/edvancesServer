@@ -19,8 +19,8 @@ var upload = multer({
 var paypal = require('paypal-rest-sdk');
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
-    'client_id': 'AXHqgix21a6wIwAdA6pjHVPu8Uk2qMczHJSDzAaf1u6RHKRecO-jsmM9ylhpzwBkxpQyA3frJOPuqBFc',
-    'client_secret': 'EGcLrMqnndLZuT8pdpv0_aBVigffRDNrPJdmMrBfbHhGOyMIV--8rGXNy_4kpxmFY2K1EMWn3IAiDgi7'
+    'client_id': 'ASX33ivFRB2yIssPe0uh9jD9OHzBspfG5k2aU1lTqCkrMRSb65iv49geLnnkjU-xNG-EBuE0-FiecLXr',
+    'client_secret': 'EP-GAGKEoyrXCPwasTDi9sfxkX6MUYL_7HCuJ5IRsv5e3Uskt-TXWEOL9cvoW_NPHG1hsPUCGGHE7_BD'
 })
 var ensureAuthenticated = function(req, res, next) {
     var err;
@@ -61,8 +61,8 @@ router.get('/create/:id', ensureAuthenticated, (req, res) => {
     if (method === 'paypal') {
         payment.payer.payment_method = 'paypal';
         payment.redirect_urls = {
-            "return_url": "http://yoururl.com/execute",
-            "cancel_url": "http://yoururl.com/cancel"
+            "return_url": "http://localhost:1337/checkout",
+            "cancel_url": "http://localhost:1337/checkout"
         };
     } else if (method === 'credit_card') {
         var ccInfo = JSON.parse(req.query.ccInfo)
@@ -79,9 +79,10 @@ router.get('/create/:id', ensureAuthenticated, (req, res) => {
         }];
         payment.payer.payment_method = 'credit_card';
         payment.payer.funding_instruments = funding_instruments;
-
     }
+
     paypal.payment.create(payment, function(error, payment) {
+        console.log(JSON.stringify(payment), JSON.stringify(error))
         if (error) {
             res.json({
                 status: 400,
@@ -125,7 +126,7 @@ router.post('/payout/:id', ensureAuthenticated, (req, res) => {
             "recipient_type": "EMAIL",
             "amount": {
                 "value": req.body.amount,
-                "currency": "USD"
+                "currency": "SGD"
             },
             "receiver": req.body.email,
             "sender_item_id": "item_3"
@@ -161,7 +162,7 @@ router.post('/payout/:id', ensureAuthenticated, (req, res) => {
                     currency: req.body.currency,
                     description: `${Date.now()} ${sender_batch_id} payout`
                 })
-                user.balance -= req.body.amount
+                user.balance = user.balance - req.body.amount
                 user.save().then(user => {
                     res.json(user)
                 })

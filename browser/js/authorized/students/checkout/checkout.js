@@ -24,7 +24,7 @@ app.controller('checkoutCtrl', ($scope, transactionFactory, notificationService)
     $scope.submitPayment = (paymentType) => {
         $scope.ammount = {
             total: $scope.total,
-            currency: "USD"
+            currency: "SGD"
         }
         if (paymentType == "cc") {
             var paypalInfo = {
@@ -55,7 +55,32 @@ app.controller('checkoutCtrl', ($scope, transactionFactory, notificationService)
 
             })
         } else if (paymentType == "pp") {
+            var paypalInfo = {
+                method: "paypal",
+                amount: $scope.ammount,
+                credits: $scope.credits,
+                description: 'Credit Purchase'
+            }
+            transactionFactory.createSale(paypalInfo, $scope.user.id).then(result => {
+                //notification for success and redirect to dashboard
+                if (result.status == 200) {
+                    var modal = notificationService.displayNotification('Payment Successful')
+                    modal.result.then(result => {
+                        // $state.go('dashboard')
+                    })
+                } else {
+                    var modal = notificationService.displayNotification('Payment Error')
+                    modal.result.then(result => {
+                        $scope.shopping = true
+                        $scope.ccInfo = {}
+                        $scope.credits = null
+                        $scope.price = null
+                        $scope.discount = null
+                        $scope.total = null
+                    })
+                }
 
+            })
         }
     }
 })

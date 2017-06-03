@@ -16,7 +16,6 @@ app.config(function($stateProvider) {
 
 app.controller('teacherCtrl', function($scope, userFactory, teachers, $state) {
     $scope.teachers = teachers[0]
-    console.log($scope.teachers)
     $scope.transition = (teacherId) => {
         $state.go('teacher-details', {
             id: teacherId
