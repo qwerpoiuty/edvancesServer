@@ -1,200 +1,145 @@
-<div class="checkout shopping-cart">
-    <div id="inner-banner" class="inner-page-head">
-        <div class="item active">
-            <div class="container">
-                <h1>Purchase Credits</h1>
-            </div>
-        </div>
-    </div>
-    <!-- Page Content -->
-    <!-- /.search-section -->
-    <!--shopping cart start-->
-    <section ng-if="!shopping" class="inner-section-search m-b-30">
-        <div class="container">
-            <div class="cal-ship">
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+    <!-- column -->
+    <div class="col">
+        <div class="content-wrapper mycourses quiz-manager">
+            <!-- main header -->
+            <div class=" lter wrapper-md bredcrumb">
                 <div class="row">
-                    <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h2 class="sec-title b m-t-0">Checkout Information <span class="linedi m-l-0"></span></h2>
-                            </div>
-                        <div class="clearfix"></div>
-                        <div class="col-md-12">
-                            <div class="form-radiocheckbox">
-                                <div class="radio radio-primary">
-                                    <input id="creditcard" type="radio" ng-model="paymentType" value = "credit_card" name="cardtype">
-                                    <label for="creditcard" class="checkbox"> Credit Card </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="creditcard-form" ng-show="paymentType=='credit_card'">
-                        <form name="cardInfoForm">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Card Type
-                                                <select name='type' id='expireYY' ng-model="ccInfo.type" required>
-                                                    <option value='visa'>Visa</option>
-                                                    <option value='amex'>American Express</option>
-                                                    <option value='mastercard'>Mastercard</option>
-                                                    <option value='discover'>Discover</option>
-                                                </select> 
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Card Number
-                                                <input type="text" ng-model="ccInfo.number" required>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <div class="form-group payment-cards clearfix">
-                                            <img src="img/payment-cart1.jpg" alt="payment card">
-                                            <img src="img/payment-cart2.jpg" alt="payment card">
-                                            <img src="img/payment-cart3.jpg" alt="payment card">
-                                            <img src="img/payment-cart4.jpg" alt="payment card">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label>Expiry Date
-                                                <div class="row">
-                                                    <div class="col-md-6 col-xs-6 siderpad-left">
-                                                        <select name='expireMM' id='expireMM' ng-model="ccInfo.expire_month" required>
-                                                            <option value='01'>January</option>
-                                                            <option value='02'>February</option>
-                                                            <option value='03'>March</option>
-                                                            <option value='04'>April</option>
-                                                            <option value='05'>May</option>
-                                                            <option value='06'>June</option>
-                                                            <option value='07'>July</option>
-                                                            <option value='08'>August</option>
-                                                            <option value='09'>September</option>
-                                                            <option value='10'>October</option>
-                                                            <option value='11'>November</option>
-                                                            <option value='12'>December</option>
-                                                        </select> 
-                                                    </div>
-                                                    <div class="col-md-6 col-xs-6 siderpad-right">
-                                                        <select name='expireYY' id='expireYY' ng-model="ccInfo.expire_year" required>
-                                                            <option value='2017'>2017</option>
-                                                            <option value='2018'>2018</option>
-                                                            <option value='2019'>2019</option>
-                                                            <option value='2020'>2020</option>
-                                                            <option value='2021'>2021</option>
-                                                            <option value='2022'>2022</option>
-                                                        </select> 
-                                                    </div>
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label>CVV
-                                                <input type="text" name="" only-numbers maxlength="3" required>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label>First Name
-                                                <input type="text" ng-model="ccInfo.first_name" required>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Last Name
-                                                <input type="text" ng-model="ccInfo.last_name" required>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Country
-                                            <select ng-model="ccInfo.billing_address.country_code" required>
-                                                <option>Select</option>
-                                                <option value="US">United States</option>
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Address
-                                            <input type="text" name="" placeholder="Address line 1" ng-model="ccInfo.billing_address.line1" required>
-                                            <input type="text" name="" placeholder="Address line 2" ng-model="ccInfo.billing_address.line2">
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Town/City
-                                            <input type="text" name="" ng-model="ccInfo.billing_address.city" required>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>State/Province
-                                            <input type="text" name="" ng-model="ccInfo.billing_address.state" required>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Post/Zip Code
-                                            <input type="text" name="" ng-model="ccInfo.billing_address.postal_code" required>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-radiocheckbox">
-                                <div class="radio radio-primary">
-                                    <input id="paypal" ng-model="paymentType" value = "paypal" type="radio" name="cardtype" required>
-                                    <label for="paypal" class="checkbox"> PayPal </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="paypal-button">
-                            <div class="col-md-12">
-                                <span class="playpalbutton"> 
-                                    <img src="img/paypal-logo.png" alt="PayPal" /> Continue with checkout to complete payment via PayPal.
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-12 m-t-20">
-                            <button ng-if="paymentType=='credit_card'" ng-click="submitPayment('cc')" name="" class="btn submit">Submit</button>
-                            <button ng-if="paymentType=='paypal'" ng-click="submitPayment('pp')" name="" class="btn submit">Submit Paypal</button>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 pull-right">
-                        <h2 class="sec-title b m-t-0">Price Breakdown  <span class="linedi"></span></h2>
-                        <div class="cart-total">
-                            <div class="shp-cost clearfix"><span class="cart-lbl">Credit Ammount</span> <span class="cart-value">{{credits}}</span></div>
-                            <div class="sub-cost clearfix"><span class="cart-lbl">Total Cost</span> <span class="cart-value">{{price}}</span></div>
-                            <div class="sub-cost clearfix"><span class="cart-lbl">Price per credit</span> <span class="cart-value">{{ppc}}</span></div>
-                            <div class="sub-cost clearfix"><span class="cart-lbl">Transaction Fee</span> <span class="cart-value">{{transactionFee}}</span></div>
-                            <div class="ord-cost clearfix"><span class="cart-lbl">Order Total</span> <span class="cart-value">{{price + transactionFee}}</span></div>
-                        </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Purchase Credits</small>
                     </div>
                 </div>
             </div>
+            <!-- / main header -->
+            <div class="wrapper-md">
+                <!--head title start-->
+                <div class="row m-b-3em">
+                    <div class="col-md-12">
+                        <div class="clearfix">
+                            <div class="info-wrap m-t--5 p-l-0">
+                                <div class="title-box">
+                                    <span class="main-title ng-binding">Purchase Credits</span>
+                                    <!--  <span class="reltd-title">Lorem ipsum dolor sit amet, consectetur adipiscing</span> -->
+                                </div>
+                            </div>
+                            <!-- ngIf: teacher -->
+                        </div>
+                    </div>
+                </div>
+                <!--head title end-->
+                <div class="checkout shopping-cart">
+                    <div class="row" ng-if="!shopping">
+                    <div class="col-md-4 cartdetials">
+                            <div class="cart-total ">
+                                <div class="shp-cost clearfix "><span class="cart-lbl ">Credit Ammount</span> <span class="cart-value ng-binding ">3</span></div>
+                                <div class="sub-cost clearfix "><span class="cart-lbl ">Total Cost</span> <span class="cart-value ng-binding ">30</span></div>
+                                <div class="sub-cost clearfix "><span class="cart-lbl ">Price per credit</span> <span class="cart-value ng-binding ">10</span></div>
+                                <div class="sub-cost clearfix "><span class="cart-lbl ">Transaction Fee</span> <span class="cart-value ng-binding ">1</span></div>
+                                <div class="ord-cost clearfix " style="background: #eee"><span class="cart-lbl" >Order Total</span> <span class="cart-value ng-binding ">31</span></div>
+                            </div>
+                            <br>
+
+                            <div class="pay-logo">
+                                <img src="img/payment-cart1.jpg" alt="payment card">
+                                <img src="img/payment-cart2.jpg" alt="payment card">
+                                <img src="img/payment-cart3.jpg" alt="payment card">
+                                <img src="img/payment-cart4.jpg" alt="payment card">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6 paypalblock">
+                                    <a href="" class="paypal-pay">Pay With <img src="img/paywith-paypal.png" alt="PayPal" /></a>
+                                </div>
+                                <div class="or">OR</div>
+                                <div class="col-md-6">
+                                    <div class="creditcard-pay"> Credit Card</div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="cc-payform">
+                                        <form class="form-horizontal ng-pristine ng-valid" ng-submit="updateUser(user)">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Card Type</label>
+                                                <div class="col-sm-8">
+                                                    <select name='type' id='expireYY' class="form-control ng-pristine ng-valid ng-empty ng-touched" required>
+                                                        <option value='visa'>Visa</option>
+                                                        <option value='amex'>American Express</option>
+                                                        <option value='mastercard'>Mastercard</option>
+                                                        <option value='discover'>Discover</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Name on Card</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="ccInfo.first_name" required placeholder="Name on Card">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Card Number</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" ng-model="ccInfo.number" required placeholder="Card Number">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Expiry Date</label>
+                                                <div class="col-sm-5">
+                                                    <select name='expireMM' id='expireMM' ng-model="ccInfo.expire_month" required class="form-control ng-pristine ng-valid ng-empty ng-touched">
+                                                        <option value=''>Month</option>
+                                                        <option value='01'>January</option>
+                                                        <option value='02'>February</option>
+                                                        <option value='03'>March</option>
+                                                        <option value='04'>April</option>
+                                                        <option value='05'>May</option>
+                                                        <option value='06'>June</option>
+                                                        <option value='07'>July</option>
+                                                        <option value='08'>August</option>
+                                                        <option value='09'>September</option>
+                                                        <option value='10'>October</option>
+                                                        <option value='11'>November</option>
+                                                        <option value='12'>December</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select name='expireMM' id='expireMM' ng-model="ccInfo.expire_month" required class="form-control ng-pristine ng-valid ng-empty ng-touched">
+                                                        <option value=''>Year</option>
+                                                        <option value='2017'>2017</option>
+                                                        <option value='2018'>2018</option>
+                                                        <option value='2019'>2019</option>
+                                                        <option value='2020'>2020</option>
+                                                        <option value='2021'>2021</option>
+                                                        <option value='2022'>2022</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">CVV</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="" only-numbers maxlength="3" required placeholder="CVV">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">&nbsp;</label>
+                                                <div class="col-sm-10">
+                                                    <button type="submit" class="fill-btn">Pay Now</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!--shopping cart end-->
+                    <ng-include src=" 'js/authorized/students/checkout/shoppingGallery.html' " ng-if="shopping "></ng-include>
+                </div>
+            </div>
         </div>
-    </section>
-    <!--shopping cart end-->
-    <ng-include src="'js/authorized/students/checkout/shoppingGallery.html'" ng-if="shopping"></ng-include>
+        <!-- /column -->
+    </div>
 </div>
+<!-- /hbox layout -->

@@ -1,13 +1,15 @@
 <!-- Page Content -->
 <!-- /.search-section -->
 <!--shopping cart start-->
-<table id="cart" class="table table-hover table-condensed">
+<section class="inner-section-search">
+    <div class="container">
+        <table id="cart" class="table table-hover table-condensed">
             <thead>
                 <tr>
-                    <th style="width:30%">Product</th>
-                    <th style="width:25%">Price per credit</th>
-                    <th style="width:25%">Price</th>
-                    <th style="width:20%"></th>
+                    <th style="width:50%">Product</th>
+                    <th style="width:10%">Price</th>
+                    <th style="width:8%">Price per credit</th>
+                    <th style="width:10%"></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,10 +23,11 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">$10</td>
                     <td data-th="Price" class="price">$30</td>
+                    <td data-th="Price" class="price">$10</td>
                     <td class="actions clearfix" data-th="">
-                        <button ng-click="checkout(3,30,10)" class="fill-btn m-b-10a slim-btn yello-btn">Select</button>
+                        <td class="actions clearfix" data-th="">
+                        <button ng-click="checkout(3,30,10)" class="btn">Select</button>
                     </td>
                 </tr>
                 <!--First product end-->
@@ -38,10 +41,11 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">$9.17</td>
                     <td data-th="Price" class="price">$55</td>
+                    <td data-th="Price" class="price">$9.17</td>
                     <td class="actions clearfix" data-th="">
-                        <button ng-click="checkout(6,55,9.17)" class="fill-btn m-b-10a slim-btn yello-btn">Select</button>
+                        <td class="actions clearfix" data-th="">
+                        <button ng-click="checkout(6,55,9.17)" class="btn">Select</button>
                     </td>
                     </td>
                 </tr>
@@ -56,10 +60,11 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">$8.75</td>
                     <td data-th="Price" class="price">$105.00</td>
+                    <td data-th="Price" class="price">$8.75</td>
                     <td class="actions clearfix" data-th="">
-                        <button ng-click="checkout(12,105,8.75)" class="fill-btn m-b-10a slim-btn yello-btn">Select</button>
+                        <td class="actions clearfix" data-th="">
+                        <button ng-click="checkout(12,105,8.75)" class="btn">Select</button>
                     </td>
                     </td>
                 </tr>
@@ -72,10 +77,11 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">$8.33</td>
                     <td data-th="Price" class="price">$200.00</td>
+                    <td data-th="Price" class="price">$8.33</td>
                     <td class="actions clearfix" data-th="">
-                        <button ng-click="checkout(24,200,8.33)" class="fill-btn m-b-10a slim-btn yello-btn">Select</button>
+                        <td class="actions clearfix" data-th="">
+                        <button ng-click="checkout(24,200,8.33)" class="btn">Select</button>
                     </td>
                     </td>
                 </tr>
@@ -88,15 +94,18 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">$8.05</td>
                     <td data-th="Price" class="price">$290.00</td>
+                    <td data-th="Price" class="price">$8.05</td>
                     <td class="actions clearfix" data-th="">
-                        <button ng-click="checkout(36,290,8.05)" class="fill-btn m-b-10a slim-btn yello-btn">Select</button>
+                        <td class="actions clearfix" data-th="">
+                        <button ng-click="checkout(36,290,8.05)" class="btn">Select</button>
                     </td>
                     </td>
                 </tr>
                 <!-- Third product end -->
             </tbody>
         </table>
+    </div>
+</section>
 <!--shopping cart end-->
 </div>
