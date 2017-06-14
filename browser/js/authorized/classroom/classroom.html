@@ -87,9 +87,9 @@
                                         <h4 accordion class="innertab accordion-toggle active-tab outlined pad-20 no-bottom-border clearfix"><i class="fa fa-file"></i> Lesson Documents <i class="fa fa-angle-down"></i></h4>
                                         <div class="innercont accordion-content default active-cont outlined pad-20 no-pad-top no-top-border no-bottom-border">
                                             <div ng-repeat="material in lesson.materials track by $index">
-                                            <a ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L_{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
+                                            <a ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L-{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
                                             <p>Date Uploaded: {{material.createdAt | date:'yyyy-Mm-dd'}}</p>
-                                            <button ng-click="removeDoc($index,lesson)" class="btn btn-sm">Delete File</button>
+                                            <button ng-click="removeLessonDoc($index,lesson)" class="btn btn-sm">Delete File</button>
                                             </div>
                                             <a ng-if="teacher" type="file" ngf-select="addLessonDoc($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB">Upload File</a>
                                         </div>
@@ -115,10 +115,6 @@
                                             </div>
                                             <div class="trexp">{{classroom.teacherOptions.title}}</div>
                                             <div class="trsocial">
-                                                <a href="" target="_blank"><i class="fa fa-twitter"></i></a>
-                                                <a href="" target="_blank"><i class="fa fa-facebook"></i></a>
-                                                <a href="" target="_blank"><i class="fa fa-linkedin"></i></a>
-                                                <a href="" target="_blank"><i class="fa fa-youtube"></i></a>
                                                 <a href="" target="_blank" class="red-text"><i class="fa fa-envelope"></i></a>
                                             </div>
                                         </div>
@@ -150,31 +146,19 @@
                             </div>
                             <div class="outlined m-t-10 pad-20">
                                 <ul class="notes-list">
-                                    <li>
-                                        <span class="course-img"><i class="fa fa-4x fa-list-ol" aria-hidden="true"></i></span>
+                                    <li ng-repeat="note in classroomNotes track by $index">
+                                        <a ng-href="https://edvances.blob.core.windows.net/class-documents/C-{{classroom.id + '-' + note.name}}" download="{{note.name}}" target="_self">
                                         <span class="notes-text">
-                                            <span class="reltd-title reltitle">Syllabus</span>
-                                        <br>
-                                        <span class="light-text"> May 15, 2017</span>
+                                            <span class="reltd-title reltitle">{{note.name}}</span>
                                         </span>
-                                    </li>
-                                    <li>
-                                        <span class="course-img"><i class="fa fa-4x fa-graduation-cap" aria-hidden="true"></i></span>
-                                        <span class="notes-text">
-                                            <span class="reltd-title reltitle">Grading Strategies</span>
+                                        </a>
                                         <br>
-                                        <span class="light-text">May 15, 2017</span>
+                                        <span class="light-text">{{note.createdAt | date:'longDate'}}</span>
                                         </span>
-                                    </li>
-                                    <li>
-                                        <span class="course-img"><i class="fa fa-book fa-4x" aria-hidden="true"></i></span>
-                                        <span class="notes-text">
-                                            <span class="reltd-title reltitle">Optional Reading</span>
-                                        <br>
-                                        <span class="light-text">May 15, 2017</span>
-                                        </span>
+                                        <a ng-click="removeClassroomNote(note.id,$index)" class="btn btn-sm">Delete File</a>
                                     </li>
                                 </ul>
+                                <button ng-if="teacher" type="file" ngf-select="addClassroomNote($file)" accept="*" ngf-max-height="1000" ngf-max-size="10MB">Add Class Document</button>
                             </div>
                         </div>
                         <!-- notes end -->

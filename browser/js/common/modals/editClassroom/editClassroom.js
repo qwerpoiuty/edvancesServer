@@ -14,7 +14,6 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
         5: 'Saturday',
         6: 'Sunday'
     }
-    console.log($scope.temp_classroom)
     for (var key of Object.keys($scope.temp_classroom.class_times)) {
         $scope.days[key] = true
         $scope.temp_times[key].start = new Date($scope.temp_classroom.class_times[key].start)

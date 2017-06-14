@@ -64,7 +64,7 @@ router.get('/classroomLessons/:id', ensureAuthenticated, (req, res) => {
 router.post('/materials/:id', upload.single('material'), (req, res) => {
 
     var stream = streamifier.createReadStream(req.file.buffer)
-    blobSvc.createBlockBlobFromStream('edvances-lesson-docs', 'L_' + req.params.id + '-' + req.file.originalname, stream, req.file.size,
+    blobSvc.createBlockBlobFromStream('edvances-lesson-docs', 'L-' + req.params.id + '-' + req.file.originalname, stream, req.file.size,
         function(error, result, response) {
             if (!error) {
                 var material = {

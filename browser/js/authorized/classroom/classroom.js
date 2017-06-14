@@ -23,6 +23,7 @@ app.config(function($stateProvider) {
 app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, classroomFactory, $stateParams, lessons, documentFactory, moment, Socket) {
     //inits
     $scope.classroom = classroom[0]
+    console.log($scope.classroom)
     $scope.lessons = lessons
     $scope.teacher = $scope.user.id === $scope.classroom.teacher_id
     $scope.member = $scope.classroom.students.indexOf($scope.user.id) !== -1 || $scope.teacher
@@ -60,6 +61,10 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             classroomFactory.getLessonDocuments(lesson.materials).then(materials => {
                 lesson.materials = materials
             })
+        })
+        documentFactory.getClassroomNotes($stateParams.id).then(notes => {
+            console.log(notes)
+            $scope.classroomNotes = notes
         })
     }
     $scope.checkQuizes = () => {
@@ -150,10 +155,9 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     $scope.addLessonDoc = (doc, lessonIndex) => {
         documentFactory.createLessonDocument(doc, $scope.lessons[lessonIndex].id).then(response => {
             $scope.lessons[lessonIndex].materials.push(response.data)
-            console.log($scope.lessons)
         })
     }
-    $scope.removeDoc = (materialIndex, lesson) => {
+    $scope.removeLessonDoc = (materialIndex, lesson) => {
         lesson.materials.splice(materialIndex, 1)
         var materials = lesson.materials.map(e => {
             return e.id
@@ -172,13 +176,19 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         })
     }
     $scope.addClassroomNote = doc => {
-        documentFactory.createClassroomDoc(doc, $scope.classroom.id).then(response => {
-            $scope.classNotes.push(response.data)
+        documentFactory.createClassroomDoc(doc, $scope.classroom.id).then(note => {
+            console.log($scope.classNotes, note)
+            $scope.classroomNotes.push(note)
+        })
+    }
+    $scope.removeClassroomNote = (docId, index) => {
+        documentFactory.deleteDoc(docId).then(response => {
+            $scope.classnotes.splice(index, 1)
         })
     }
 
     //jitsi
-    var domain = "meet.jit.si";
+    var domain = "humantics.build";
     $scope.joined = false
     $scope.room = `${$scope.classroom.id}`
     $scope.test = () => {

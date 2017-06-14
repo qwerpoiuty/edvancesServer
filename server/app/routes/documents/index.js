@@ -44,7 +44,6 @@ router.get('/', ensureAuthenticated, (req, res) => {
 })
 
 router.get('/array', ensureAuthenticated, (req, res) => {
-    console.log(req.query)
     Document.findAll({
         where: {
             id: req.query.array
@@ -73,6 +72,40 @@ router.get('/credentials/:id', (req, res) => {
     }).then(credentials => {
         res.json(credentials)
     })
+})
+
+router.get('/classroom/:id', (req, res) => {
+    Document.findAll({
+        where: {
+            classroom: req.params.id
+        }
+    }).then(notes => {
+        res.json(notes)
+    })
+})
+
+router.post('/classroom/:id', upload.single('note'), (req, res) => {
+    var stream = streamifier.createReadStream(req.file.buffer)
+    var fileName = `C-${req.params.id}-${req.file.originalname}`
+    blobSvc.createBlockBlobFromStream('class-documents', fileName, stream, req.file.size, function(err, result, response) {
+        if (!err) {
+            var note = {
+                name: req.file.originalname,
+                type: req.file.mimetype,
+                size: req.file.size,
+                classroom: req.params.id
+            }
+            Document.create(note).then(document => {
+                console.log(document)
+                res.json(document)
+            })
+
+        }
+    })
+})
+
+router.post('/assignment/:id', upload.single('assigment'), (req, res) => {
+
 })
 
 router.post('/user/:id', ensureAuthenticated, upload.single('credential'), (req, res) => {
