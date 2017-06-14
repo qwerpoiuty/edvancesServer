@@ -8,5 +8,5 @@ if (process.env.NODE_ENV === 'production') {
 } else if (process.env.NODE_ENV === 'testing') {
     module.exports = require(testConfigPath);
 } else {
-module.exports = require(devConfigPath);
+    module.exports = require(devConfigPath);
 }
