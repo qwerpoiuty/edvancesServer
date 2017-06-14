@@ -1,0 +1,54 @@
+<section class="inner-section-search teacher-detail-page p-t-35 m-b-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="teach-profile">
+                    <div class="teacherpro"><img src="https://edvances.blob.core.windows.net/profile-pictures/{{user.profilePic}}" alt="teacher detail" /></div>
+                    <div class="pro-degree">{{user.teacherOptions.title}} <span ng-if="user.locations">located in {{user.location}}</span></div>
+                    <div class="timeperiods"><span ng-repeat="(key,value) in user.teacherOptions.times"><span>{{weekdays[key]}} from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
+                    <hr class="clearfix">
+                    <div class="teach-rate">
+                        <p>Teacher Rating</p>
+                        <span class="aside-stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i></span>
+                    </div>
+                    <hr class="clearfix">
+                </div>
+            </div>
+        </div>
+        <div class="row m-t-10">
+            <div class="col-md-6">
+                <h2 class="sec-title b m-t-0">About Me <span class="linedi m-l-0"></span></h2>
+                <ul class="aboutteach-info row">
+                    <li class="clearfix">
+                        <label class="col-md-3">Full Name</label><span class="col-md-9">{{user.name}}</span>
+                    </li>
+                    <li class="clearfix">
+                        <label class="col-md-3">Teaching Level</label><span class="col-md-9">{{user.teacherOptions.teachingLevel}}</span>
+                    </li>
+                    <li class="clearfix">
+                        <label class="col-md-3">Experience</label><span class="col-md-9">{{user.teacherOptions.experience}}</span>
+                    </li>
+                    <li class="clearfix">
+                        <label class="col-md-3">Credentials</label><span class="col-md-9">{{user.teacherOptions.credentials}}</span>
+                    </li>
+                    <li class="clearfix teach-bio">
+                        <label class="col-md-3">Bio</label>
+                        <span class="col-md-9">
+                            <p>{{user.teacherOptions.bio}}</p>
+                            <p>
+                                <p class="t-phone"><i class="fa fa-mortar-board"></i> Courses <span class="course-count">{{classrooms.length}}</span></p>
+                        </p>
+                        <p class="trsocial">
+<!--                             <a href="" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="" target="_blank"><i class="fa fa-google-plus"></i></a>
+                            <a href="" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="" target="_blank"><i class="fa fa-linkedin"></i></a> -->
+                            <a mailto="{{user.email}}" target="_blank" class="red-text"><i class="fa fa-envelope"></i></a>
+                        </p>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
