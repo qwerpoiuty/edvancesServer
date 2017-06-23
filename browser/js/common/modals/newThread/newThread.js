@@ -6,8 +6,8 @@ app.controller('newThreadCtrl', function($scope, $state, $uibModalInstance, foru
     $scope.createNewThread = function() {
         $scope.authError = null;
         $scope.thread.user = $scope.user.id
-        forumFactory.createNewThread($scope.forum, $scope.thread).then(response => {
-            $uibModalInstance.close()
+        forumFactory.createNewThread($scope.forum, $scope.thread).then(thread => {
+            $uibModalInstance.close(thread)
         })
 
     };

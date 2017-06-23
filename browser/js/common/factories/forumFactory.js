@@ -18,14 +18,20 @@ app.factory('forumFactory', function($http) {
         })
     }
 
+    d.getSingleThread = (id) => {
+        return $http.get('api/forums/threads/single/' + id).then(response => {
+            return response.data
+        })
+    }
+
     d.createNewThread = (forumID, thread) => {
         return $http.post('/api/forums/threads/' + forumID, thread).then(response => {
             return response.data
         })
     }
 
-    d.respondToThread = (threadID, message) => {
-        return $http.post('/api/forums/threads/' + threadID, message).then(response => {
+    d.postComment = (comment) => {
+        return $http.post('/api/forums/comment', comment).then(response => {
             return response.data
         })
     }
