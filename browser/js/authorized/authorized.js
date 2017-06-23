@@ -22,15 +22,12 @@ app.controller('authorizedCtrl', function($scope, user, $state, userFactory, $cs
         preload: true,
         persist: true
     }, $scope)
-    $scope.getCss = () => {
-        if (user.role === 1) {
-            console.log('hello')
-            $css.add('/teacher.css')
-        } else {
-            $css.add('/student.css')
-        }
+    if (user.role === 1) {
+        $css.add('/teacher.css')
+    } else {
+        $css.add('/student.css')
     }
-    $scope.getCss()
+
     $scope.getUpdatedUser = (id) => {
         userFactory.findSingleUser(id).then(member => {
             $scope.user = member

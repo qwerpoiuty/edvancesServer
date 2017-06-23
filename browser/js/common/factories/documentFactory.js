@@ -7,6 +7,12 @@ app.factory('documentFactory', function($http) {
         })
     }
 
+    d.getClassroomNotes = classroomId => {
+        return $http.get('/api/documents/classroom/' + classroomId).then(response => {
+            return response.data
+        })
+    }
+
     d.getDocumentById = (id) => {
         return $http.get('/api/documents/single/' + id).then(response => {
             return response.data
@@ -22,6 +28,20 @@ app.factory('documentFactory', function($http) {
                 'Content-Type': undefined
             }
         }).then(response => {
+            return response.data
+        })
+    }
+    d.createClassroomDoc = (doc, classroomId) => {
+        var file = doc
+        var fd = new FormData();
+        fd.append('note', file);
+        console.log(doc)
+        return $http.post('/api/documents/classroom/' + classroomId, fd, {
+            headers: {
+                'Content-Type': undefined
+            }
+        }).then(response => {
+            console.log(response)
             return response.data
         })
     }

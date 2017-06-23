@@ -1,0 +1,58 @@
+<div class="col">
+    <div class="content-wrapper  quiz-manager pos-rlt">
+        <!-- main header -->
+        <div class=" lter wrapper-md bredcrumb">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <a ui-sref="app.forums"><small class="text-muted">Forums</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Forums Thread</small>
+                </div>
+            </div>
+        </div>
+        <!-- / main header -->
+        <div class="wrapper-md">
+            <!--Forum Tread Start-->
+            <button ng-click="backToForum()">Return to Forum</button>
+            <div class="outlined clearfix pad-20 m-b-20">
+                <div class="title-box float-lt">
+                    <span class="main-title">{{comments[0].thread_title}}</span>
+                    <span class="desc-det"><span class="desc-lbl no-pad">Posted by:</span> <a href="" class="link">{{comments[0].thread_author}}</a> | {{comments[0].thread_created | date:'longDate'}}</span>
+                </div>
+            </div>
+            <div class="message-feed">
+                <div class="comment" ng-repeat="comment in comments track by comment.id">
+                    <a class="pull-left thumb-md avatar">
+                        <img ng-src="{{comment.profilePic}}" alt="...">
+                    </a>
+                    <div class="m-l-80 panel b-a">
+                        <div class="panel-heading pos-rlt pad-20" >
+                            <span class="username-wro">{{comment.comment_author}}</span> <span class="light-text">| {{comment.createdAt | date:'longDate'}}</span>
+                            <br>
+                            <span class="message-text">{{comment.content}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Forum Tread End-->
+<!--             <div class="btn-group m-b-sm paginatoin m-b-30 clearfix">
+                <button type="button" class="btn btn-success">1</button>
+                <button type="button" class="btn btn-default">2</button>
+                <button type="button" class="btn btn-default">3</button>
+                <button type="button" class="btn btn-default">Next</button>
+            </div> -->
+            <div class="clearfix"></div>
+            <div class="reply-block clearfix">
+                <div class="outlined clearfix pad-10-20 no-bottom-border">
+                    <div class="title-box float-lt">
+                        <span class="main-title">Post a comment</span>
+                    </div>
+                </div>
+                <div class="postcommentbox outlined clearfix pad-20 no-top-border m-b-20">
+                    <form ng-submit="postComment(newComment)">
+                        <textarea ng-model="newComment.content" placeholder="Type your comment here" rows="3" required></textarea>
+                        <button type="submit" class="fill-btn yello-btn float-rt m-t-20">Add Comment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->

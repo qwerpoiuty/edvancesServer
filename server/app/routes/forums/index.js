@@ -8,6 +8,7 @@ var Forum = db.model('document')
 var Classroom = db.model('classroom')
 var User = db.model('user')
 var Thread = db.model('thread')
+var Comment = db.model('comment')
 var Message = db.model('message')
 var multer = require('multer')
 var azure = require('azure-storage');
@@ -63,12 +64,26 @@ router.get('/student/:id', ensureAuthenticated, (req, res, next) => {
 })
 
 router.get('/threads/:id', ensureAuthenticated, (req, res, next) => {
-    Thread.findAll({
-        where: {
-            forum: req.params.id
-        }
-    }).then(threads => {
-        res.json(threads)
+    db.query(`select t.*, u."firstName", u."lastName" from threads t
+        inner join users u
+        on u.id = t.author
+        where t.forum = ${req.params.id}`)
+        .then(threads => {
+            res.json(threads)
+        }).catch(err => {
+            next(err)
+        })
+})
+
+router.get('/threads/single/:id', ensureAuthenticated, (req, res, next) => {
+    db.query(`select c.*, CONCAT(u."firstName",' ', u."lastName") as comment_author, u."profilePic",t.title as thread_title ,t."createdAt" as thread_created, CONCAT(u2."firstName",' ',u2."lastName") as thread_author
+        from comments c
+        inner join users u on c.author = u.id 
+        inner join threads t on t.id = c.thread
+        inner join users u2 on t.author = u2.id
+        where c.thread= ${req.params.id}
+        order by c."createdAt" asc`).then(comments => {
+        res.json(comments)
     }).catch(err => {
         next(err)
     })
@@ -80,7 +95,7 @@ router.post('/threads/:id', ensureAuthenticated, (req, res, next) => {
         forum: req.params.id,
         author: req.body.user
     }).then(thread => {
-        Message.create({
+        Comment.create({
             content: req.body.text,
             author: req.body.user,
             thread: thread.id
@@ -90,4 +105,8 @@ router.post('/threads/:id', ensureAuthenticated, (req, res, next) => {
     }).catch(err => {
         next(err)
     })
+})
+
+router.post('/comment', ensureAuthenticated, (req, res, next) => {
+    Comment.create(req.body).then(comment => res.json(comment)).catch(err => next(err))
 })

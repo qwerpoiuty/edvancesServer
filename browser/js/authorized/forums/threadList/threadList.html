@@ -1,67 +1,65 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm">
-    <!-- main -->
-    <div class="col">
-        <div class="content-wrapper">
-            <!-- main header -->
-            <div class=" lter wrapper-md bredcrumb">
-                <div class="row">
-                    <div class="col-sm-6 col-xs-12">
-                        <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <a ui-sref="app.forums"><small class="text-muted">Forums</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Threads</small>
-                    </div>
-                </div>
-            </div>
-            <!-- / main header -->
-            <div class="wrapper-md">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="row">
-                            <!--General Forums Start-->
-                            <div class="col-md-12 mar-btm-30 recent-activity">
-                                <div class="outlined clearfix pad-20 for-head">
-                                    <div class="title-box float-lt">
-                                        <span class="main-title">Classes</span>
-                                        <span class="reltd-title">Lorem ipsum dolor sit amet, consectetur</span>
-                                    </div>
-                                    <a ng-click="newThread()" class="outlined-btn red-btn float-rt fr-newtop">+ New Thread </a>
-                                </div>
-                                <div class="outlined clearfix graph no-top-border">
-                                    <ul class="class-list">
-                                        <li ng-repeat ="thread in threads track by $index">
-                                            <span class="pro-img-list">
-                                            <img src="img/forum-thum.jpg" title="User" alt="User" />
-                                            </span>
-                                            <span class="activity-title">Can someone help with Fractions?<br>
-                                            <span class="desc-det"><span class="desc-lbl no-pad">By:</span> <a href="" class="link"> John Doe</a> | 1hr ago</span>
-                                            </span>
-                                            <a ui-sref="app.forums-thread" class="outlined-btn gray-btn float-rt p-l-r-20 forumcount"><i class="fa fa-comments"></i> 15</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="btn-group m-t-20 paginatoin">
-                                </div>
-                            </div>
-                            <!--General Forums End-->
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="forum-search">
-                            <form>
-                                <input type="text" name="" placeholder="Search Forums" class="search-for">
-                                <button type="button" class="forum-search-btn"><img src="img/search.png"></button>
-                            </form>
-                        </div>
-                        <span class="activity-title forum-cattitl">Category</span>
-                        <span class="dashed"></span>
-                        <ul class="forum-category">
-                            <li><a ui-sref="app.forums-category">All (07)</a></li>
-                            <li><a ui-sref="app.forums-category">General (08)</a></li>
-                            <li><a ui-sref="app.forums-category" class="active">Classes (09)</a></li>
-                            <li><a ui-sref="app.forums-category">Support (04)</a></li>
-                        </ul>
-                    </div>
+<div class="col">
+    <div class="content-wrapper">
+        <!-- main header -->
+        <div class=" lter wrapper-md bredcrumb">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <a ui-sref="app.forums"><small class="text-muted">Forums</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Threads</small>
                 </div>
             </div>
         </div>
+        <!-- / main header -->
+        <div class="wrapper-md">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <button ng-click="returnToForumList()">Back</button>
+                        <!--General Forums Start-->
+                        <div class="col-md-12 mar-btm-30 recent-activity">
+                            <div class="outlined clearfix pad-20 for-head">
+                                <div class="title-box float-lt">
+                                    <span class="main-title">{{classroom.classroom_title}}</span>
+                                    <span class="reltd-title">Taught by {{classroom.firstName}} {{classroom.lastName}}</span>
+                                </div>
+                                <a ng-click="newThread()" class="outlined-btn red-btn float-rt fr-newtop">+ New Thread </a>
+                            </div>
+                            <div class="outlined clearfix graph no-top-border">
+                                <ul class="class-list">
+                                    <li ng-repeat ="thread in threads track by thread.id">
+                                        <span class="pro-img-list">
+                                        <img src="img/forum-thum.jpg" title="User" alt="Thread" />
+                                        </span>
+                                        <span class="activity-title">{{thread.title}}<br>
+                                        <span class="desc-det"><span class="desc-lbl no-pad">By:</span> <a href="" class="link"> {{thread.firstName}} {{thread.lastName}}</a> | {{thread.createdAt | date:'longDate'}}</span>
+                                        </span>
+                                        <a ng-click="transition(thread.id)" class="outlined-btn gray-btn float-rt p-l-r-20 forumcount"><i class="fa fa-comments"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="btn-group m-t-20 paginatoin">
+                            </div>
+                        </div>
+                        <!--General Forums End-->
+                    </div>
+                </div>
+                <!-- <div class="col-md-3">
+                    <div class="forum-search">
+                        <form>
+                            <input type="text" name="" placeholder="Search Forums" class="search-for">
+                            <button type="button" class="forum-search-btn"><img src="img/search.png"></button>
+                        </form>
+                    </div>
+                    <span class="activity-title forum-cattitl">Category</span>
+                    <span class="dashed"></span>
+                    <ul class="forum-category">
+                        <li><a ui-sref="app.forums-category">All (07)</a></li>
+                        <li><a ui-sref="app.forums-category">General (08)</a></li>
+                        <li><a ui-sref="app.forums-category" class="active">Classes (09)</a></li>
+                        <li><a ui-sref="app.forums-category">Support (04)</a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
     </div>
-    <!-- / main -->
 </div>
+
