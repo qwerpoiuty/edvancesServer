@@ -4,7 +4,7 @@
         <div class=" lter wrapper-md bredcrumb">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
-                    <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <a ui-sref="app.quizmanager"><small class="text-muted">Quiz Manager</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">New Quiz</small>
+                    <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <a ui-sref="app.quizmanager"><small class="text-muted">Quiz Manager</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Edit Quiz</small>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                                 <!--Edit Profile Tab Start-->
                                 <div class="tab-pane active" id="tab-1">
                                     <div class="wrapper-md">
-                                        <form class="form-horizontal" ng-submit="createQuiz(newQuiz)">
+                                        <form class="form-horizontal" ng-submit="updateQuiz(newQuiz)">
                                             <!-- <div class="form-group mar-20">
                                                 <label class="col-sm-2 control-label">Quiz Image</label>
                                                 <div class="col-sm-8">
@@ -44,22 +44,6 @@
                                                             <input type="text" class="form-control" ng-model="newQuiz.quiz_title" placeholder="Enter Quiz Name">
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group select-field">
-                                                <label class="col-sm-2 control-label">Course </label>
-                                                <div class="col-sm-4">
-                                                    <select name="carlist" form="carform" class="form-control" ng-model="selectedClassroom" ng-change="getClassroom(selectedClassroom)" placeholder="Choose a classroom">
-                                                        <option ng-repeat = "class in classrooms" value="{{class.id}}">{{class.title}}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group select-field" ng-show="lessons">
-                                                <label class="col-sm-2 control-label">Lesson </label>
-                                                <div class="col-sm-4">
-                                                    <select name="carlist" form="carform" class="form-control" ng-model="newQuiz.lesson" placehold="Choose a lesson" >
-                                                        <option value="{{lesson.id}}" ng-repeat="lesson in lessons">{{lesson.title}}</option>
-                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -78,7 +62,7 @@
                                                 <label class="col-sm-2 control-label">Timeframe</label>
                                                 <div class="col-sm-10">
                                                     <label class="i-switch i-switch-lg bg-dark m-t-xs m-r">
-                                                        <input type="checkbox" ng-model="newQuiz.timeframe">
+                                                        <input type="checkbox" ng-model="timeframe">
                                                         <i></i>
                                                     </label>
                                                 </div>

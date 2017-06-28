@@ -3,7 +3,7 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
     $scope.temp_classroom.startDate = new Date($scope.temp_classroom.startDate)
     $scope.temp_classroom.endDate = new Date($scope.temp_classroom.endDate)
     $scope.days = [, , , , , , , ]
-    console.log($scope.temp_classroom)
+    $scope.changeImage = false
     $scope.temp_times = $scope.temp_classroom.class_times
     $scope.weekdays = {
         0: 'Monday',
@@ -24,7 +24,10 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
         $uibModalInstance.close(false)
     }
     $scope.classThumbnail = $scope.temp_classroom.image
-
+    $scope.changeClassroomImage = ($file) => {
+        $scope.changeImage = true
+        $scope.classroomImage = $file
+    }
     $scope.updateClassroom = classroom => {
         classroom.times = {}
         classroom.class_times = null
@@ -36,11 +39,14 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
                 classroom.times[i] = $scope.temp_times[i]
             }
         }
-        console.log($scope.temp_times, classroom)
         classroomFactory.updateClassroom($stateParams.id, classroom).then(classroom => {
-            classroomFactory.changeImage($scope.temp_classroom.id, $scope.classThumbnail).then(classroom => {
+            if ($scope.changeImage) {
+                classroomFactory.changeImage($scope.temp_classroom.id, $scope.classroomImage).then(classroom => {
+                    $uibModalInstance.close(classroom)
+                })
+            } else {
                 $uibModalInstance.close(classroom)
-            })
+            }
         })
     }
 })

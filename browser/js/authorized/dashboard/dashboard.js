@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFactory, $state) {
+app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFactory, $state, transactionFactory) {
     $scope.dashboards = []
     $scope.weekdays = {
         0: 'Monday',
@@ -25,7 +25,9 @@ app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFac
         })
         classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
             $scope.classrooms = classrooms
-            console.log($scope.classrooms)
+        })
+        transactionFactory.getLatestTransactions($scope.user.id).then(transactions => {
+            $scope.transactions = transactions[0]
         })
     } else {
         $scope.dashboards.push({

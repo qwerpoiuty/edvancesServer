@@ -33,14 +33,25 @@ var ensureAuthenticated = function(req, res, next) {
     }
 };
 
-router.get('/teacher/:id', ensureAuthenticated, (req, res) => {
-    console.log('hello')
+router.get('/teacher/:id', ensureAuthenticated, (req, res, next) => {
     db.query(`select t.*, c.title, u.id as teacher_id from transactions t 
 left join classrooms c on c.id = t.classroom
 left join users u on u.id = c.teacher
 where owner = ${req.params.id} or u.id = ${req.params.id}`).then(transactions => {
-        console.log('i finished')
         res.json(transactions)
+    }).catch(err => {
+        next(err)
+    })
+})
+
+router.get('/latest/:id', ensureAuthenticated, (req, res, next) => {
+    db.query(`select t.*, c.title as classroom_title, u.id as teacher_id from transactions t 
+left join classrooms c on c.id = t.classroom
+left join users u on u.id = c.teacher
+where type='purchase' and u.id = 1 order by t."createdAt" asc limit 5`).then(transactions => {
+        res.json(transactions)
+    }).catch(err => {
+        next()
     })
 })
 

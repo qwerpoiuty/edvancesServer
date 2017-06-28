@@ -7,7 +7,7 @@
             <div class=" lter wrapper-md bredcrumb">
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
-                        <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">My Courses</small> <i class="fa fa-angle-right"></i> <small class="text-muted">{{classroom.classroom_title}}</small>
+                        <a ui-sref="dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <a ui-sref="myCourses"><small class="text-muted">My Courses</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">{{classroom.classroom_title}}</small>
                     </div>
                 </div>
             </div>
@@ -74,9 +74,9 @@
                                     <hr class="bold-hr" />
                                 </div>
                                 <!--Assignments start-->
-                                <button ng-if="teacher" ng-click="addLesson()"" class="btn-btn-primary">Add Lesson</button>
+                                <button ng-if="teacher" ng-click="addLesson()"" class="btn btn-primary">Add Lesson</button>
                                 <div class="assignments-col m-t-20" ng-repeat="lesson in lessons track by $index">
-                                    <span class="reltd-title semisect reltitle"><h3>{{lesson.title}}</h3> Start Date: <span style="color:red">{{lesson.startDate | date:'yyyy-MM-dd'}}</span> End Date: <span style="color:red">{{lesson.endDate | date:'yyyy-MM-dd'}}</span> <button ng-if="teacher" ng-click="editLesson(lesson, $index)" class="btn btn btn-primary">Edit Lesson</button></span>
+                                    <span class="reltd-title semisect reltitle"><h3>{{lesson.title}}</h3> Start Date: <span style="color:red">{{lesson.startDate | date:'longDate'}}</span> End Date: <span style="color:red">{{lesson.endDate | date:'longDate'}}</span> <button ng-if="teacher" ng-click="editLesson(lesson, $index)" class="btn btn btn-primary">Edit Lesson</button></span>
                                     <div class="acc-tab" ng-repeat ="section in lesson.sections track by $index" >
                                         <h4 accordion class="innertab accordion-toggle active-tab outlined pad-20 no-bottom-border clearfix">{{$index+1}}. <i class="fa fa-file"></i> {{section.title}} <i class="fa fa-angle-down"></i></h4>
                                         <div class="innercont accordion-content default active-cont outlined pad-20 no-pad-top no-top-border no-bottom-border">
@@ -91,7 +91,7 @@
                                             <p>Date Uploaded: {{material.createdAt | date:'yyyy-Mm-dd'}}</p>
                                             <button ng-click="removeLessonDoc($index,lesson)" class="btn btn-sm">Delete File</button>
                                             </div>
-                                            <a ng-if="teacher" type="file" ngf-select="addLessonDoc($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB">Upload File</a>
+                                            <a ng-if="teacher" type="file" ngf-select="addLessonDoc($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><i class="fa fa-upload" aria-hidden="true"></i>Upload File</a>
                                         </div>
                                     </div>
                                 </div>

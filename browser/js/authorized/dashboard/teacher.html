@@ -121,31 +121,10 @@
                     </div>
                     <div class="outlined clearfix graph no-top-border">
                         <ul class="class-list">
-                            <li>
-                                <span class="class-title">Fractions 101</span>
-                                <span class="trns-date float-lt light-text">Jan 20, 2017</span>
-                                <span class="trans-detail light-text">#7854 <span class="trans-amt red-text">$79.00</span>
-                                <br>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="class-title">Fractions 101</span>
-                                <span class="trns-date float-lt light-text">Jan 20, 2017</span>
-                                <span class="trans-detail light-text">#7854 <span class="trans-amt red-text">$79.00</span>
-                                <br>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="class-title">Fractions 101</span>
-                                <span class="trns-date float-lt light-text">Jan 20, 2017</span>
-                                <span class="trans-detail light-text">#7854 <span class="trans-amt red-text">$79.00</span>
-                                <br>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="class-title">Fractions 101</span>
-                                <span class="trns-date float-lt light-text">Jan 20, 2017</span>
-                                <span class="trans-detail light-text">#7854 <span class="trans-amt red-text">$79.00</span>
+                            <li ng-repeat="transaction in transactions track by $index">
+                                <span class="class-title">{{transaction.classroom_title}}</span>
+                                <span class="trns-date float-lt light-text">{{transaction.createdAt | date:'longDate'}}</span>
+                                <span class="trans-detail light-text"><span class="trans-amt red-text">{{transaction.amount}} Credits</span>
                                 <br>
                                 </span>
                             </li>
@@ -168,7 +147,7 @@
                         </ul>
                     </div>
                     <div class="outlined clearfix pad-20 no-top-border">
-                        <a href="" class="outlined-btn gray-btn float-rt">View All</a> <a ui-sref="newClassroom" class="btn red-btn float-rt">Create Course </a>
+                        <a href="" class="outlined-btn gray-btn float-rt">View All</a> <a ui-sref="newClassroom" class="outlined-btn gray-btn float-rt">Create Course </a>
                     </div>
                 </div>
                 <!-- / Courses -->

@@ -87,6 +87,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         })
         modalInstance.result.then(result => {
             if (result) {
+                console.log(result)
                 classroomFactory.findSingleClassroom($stateParams.id).then(response => {
                     $scope.classroom = response
                 })
@@ -223,11 +224,17 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         }
     }
 
+    $scope.submitAssignment = ($file, studentId) => {
+
+    }
+
     //socket
     Socket.emit('join classroom', $scope.room)
     $scope.clearWhiteboard = () => {
         Socket.emit('erase all', true)
     }
+
+
 
     jQuery('#calendar').eCalendar({
         firstDayOfWeek: 1,

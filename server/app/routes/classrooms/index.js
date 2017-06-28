@@ -101,10 +101,7 @@ router.post('/update', ensureAuthenticated, (req, res) => {
     }).then(classroom => {
         return classroom.updateAttributes(updates)
             .then(updatedClassroom => {
-                res.json({
-                    header: 200,
-                    data: updatedClassroom
-                })
+                res.json(updatedClassroom)
             }).catch(() => {
                 var error = new Error('Edit Error');
                 error.status = 401;

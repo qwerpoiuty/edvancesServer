@@ -7,7 +7,7 @@
             <div class=" lter wrapper-md bredcrumb">
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
-                        <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">My Courses</small>
+                        <a ui-sref="dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">My Courses</small>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                 </div>
                 <!-- / info bar -->
                 <!-- Quiz Listing controles start -->
-                <div class="row m-b-3em">
+<!--                 <div class="row m-b-3em">
                     <div class="col-md-12">
                         <form class="form-horizontal float-lt" method="get">
                             <div class="select-field clearfix">
@@ -43,34 +43,37 @@
                                 </div>
                             </div>
                         </form>
-                        <!-- <div class="view-as float-rt clearfix">
+                        <div class="view-as float-rt clearfix">
                             <a class="view float-rt" href=""><i class="fa fa-bars"></i></a>
                             <a class="view float-rt active" href=""><i class="fa fa-th"></i></a>
-                        </div> -->
+                        </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- / Quiz Listing controles end -->
                 <!-- Quiz Listing start -->
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 quiz-block my-course-block mar-btm-30" ng-repeat = "class in classrooms track by $index">
+                    <div class="col-lg-3 col-md-3 col-sm-4 quiz-block my-course-block mar-btm-30" ng-repeat = "class in classrooms track by $index">
                         <img class="course-thumbnails" ng-src="{{class.image}}" alt="Course" title="Course">
                         <div class="outlined pad-20">
                             <div class="activity-title">{{class.title}}<i class="fa fa-check-circle geen-text pull-right"></i>
                                 <br>
                                 <div class="row">
-                                <span class="desc-det">
+<!--                                 <span class="desc-det">
                                     <span class="desc-lbl p-l-0">{{class.description}}</span>
-                                </span>
+                                </span> -->
                                 </div>
                                 <div class="row" ng-repeat="(key,value) in class.times">
-                                    <span class="label label-primary" >{{weekdays[key]}} from {{value.start | date:'HH:mm a'}} to {{value.end | date:'HH:mm a'}}</span>
+                                    <span class="label label-primary" >{{weekdays[key]}}: {{value.start | date:'HH:mm a'}}-{{value.end | date:'HH:mm a'}}</span>
+
                                 </span>
                                 </div>
                             </div>
                         </div>
                         <div class="outlined pad-10 clearfix no-top-border">
-                            <a href="" class="fill-btn yello-btn float-lt slim-btn" ng-click="transition(class.id)">View Course</a>
-                            <a ng-if="teacher" class="fill-btn btn-danger float-lt slim-btn" ng-click="editClassroom(class.id)">Edit Course</a>
+                            <div class="row">
+                            <a href="" class="fill-btn yello-btn slim-btn col-sm-5" ng-click="transition(class.id)">View</a>
+                            <a ng-if="teacher" class="fill-btn btn-danger slim-btn col-sm-5" ng-click="editClassroom(class.id)">Edit</a>
+                            </div>
                         </div>
                     </div>
                 </div>

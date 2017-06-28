@@ -7,19 +7,26 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('quizDashboardCtrl', ($scope, quizFactory, classroomFactory) => {
+app.controller('quizDashboardCtrl', ($scope, quizFactory, classroomFactory, $state) => {
     classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
         $scope.classrooms = classrooms
     })
     $scope.getQuiz = (id) => {
         quizFactory.getQuizzesByClassroom(id).then(quizzes => {
-            $scope.quizzes = quizzes
+            $scope.quizzes = quizzes[0]
+            console.log($scope.quizzes)
         })
     }
 
     $scope.deleteQuiz = (id) => {
         quizFactory.deleteQuiz(id).then(response => {
             console.log('deleted')
+        })
+    }
+    $scope.editQuiz = (id) => {
+        console.log(id)
+        $state.go('editQuiz', {
+            id: id
         })
     }
 })

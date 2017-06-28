@@ -101,7 +101,6 @@ router.post('/:classroomID', ensureAuthenticated, (req, res) => {
         },
         defaults: req.body
     }).spread(function(lesson, created) {
-        console.log(created)
         if (created) {
             res.json({
                 status: 200,

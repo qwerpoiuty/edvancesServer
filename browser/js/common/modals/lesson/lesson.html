@@ -30,7 +30,7 @@
 		<div class="section-container">
 			<div class="section" ng-repeat="section in sections track by $index">
 
-				<h3 class="section-title">Section {{$index + 1}} <button href="#" class="remove-link"><i class="fa fa-trash-o"></i></a></h3>
+				<h3 class="section-title">Section {{$index + 1}} <button type="button" ng-click="deleteSection($index)" class="remove-link"><i class="fa fa-trash-o"></i></a></h3>
 				<div class="row form-group">
 					<lable class="col-sm-3 control-label">Section Title</lable>
 					<div class="col-sm-8">

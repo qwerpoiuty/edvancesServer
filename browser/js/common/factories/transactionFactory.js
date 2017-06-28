@@ -3,10 +3,16 @@ app.factory('transactionFactory', function($http) {
         //remember to make a success/failure screen
 
     d.getTransactionsByTeacher = (teacherID) => {
-        console.log('made it too')
         return $http.get('/api/transactions/teacher/' + teacherID).then(response => {
             return response.data
         })
+    }
+
+    d.getLatestTransactions = (teacherID) => {
+        return $http.get('/api/transactions/latest/' + teacherID)
+            .then(response => {
+                return response.data
+            })
     }
 
     d.getTransactionsByStudent = (studentID) => {

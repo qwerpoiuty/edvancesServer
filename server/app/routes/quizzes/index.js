@@ -35,20 +35,28 @@ var ensureAuthenticated = function(req, res, next) {
         next(err);
     }
 };
-router.get('/', ensureAuthenticated, (req, res) => {
-
+router.get('/', ensureAuthenticated, (req, res, next) => {
+    Quiz.findAll({
+        where: req.query
+    }).then(quizzes => {
+        res.json(quizzes)
+    }).catch(err => {
+        next(err)
+    })
 })
 
-router.get('/classroom/:id', ensureAuthenticated, (req, res) => {
-    db.query(`select q.questions,q.open, q.close,q.timeframe,l.title as lesson_title,q.participants,q.quiz_title from classrooms c
+router.get('/classroom/:id', ensureAuthenticated, (req, res, next) => {
+    db.query(`select q.id,q.questions,q.open, q.close,q.timeframe,l.title as lesson_title,q.participants,q.quiz_title from classrooms c
   inner join lessons l on c.id = l.classroom
   inner join quizzes q on q.lesson = l.id
   where c.id = ${req.params.id}`).then(quizzes => {
         res.json(quizzes)
+    }).catch(err => {
+        next(err)
     })
 })
 
-router.get('/student/:id', ensureAuthenticated, (req, res) => {
+router.get('/student/:id', ensureAuthenticated, (req, res, next) => {
     db.query(`select q.questions, q.open,q.close,q.timeframe, l.title as lesson_title, c.title as classroom_title,c.id as classroom_id
         from quizzes q
         inner join lessons l on q.lesson = l.id
@@ -56,20 +64,24 @@ router.get('/student/:id', ensureAuthenticated, (req, res) => {
         where ${req.params.id} = any(c.students)
         `).then(quizzes => {
         res.json(quizzes)
+    }).catch(err => {
+        next(err)
     })
 })
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     Quiz.create(req.body).then(quiz => {
         res.json({
             status: 200,
             message: `Quiz created`,
             data: quiz
         })
+    }).catch(err => {
+        next(err)
     })
 })
 
-router.post('/delete/:id', ensureAuthenticated, (req, res) => {
+router.post('/delete/:id', ensureAuthenticated, (req, res, next) => {
     Quiz.destroy({
         where: {
             id: req.params.id
@@ -84,5 +96,7 @@ router.post('/delete/:id', ensureAuthenticated, (req, res) => {
             msg.payload = 'Successfuly Deleted';
         }
         res.json(msg)
+    }).catch(err => {
+        next(err)
     })
 })

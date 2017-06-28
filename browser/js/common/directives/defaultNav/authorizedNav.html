@@ -42,7 +42,7 @@
     <div class="content-wrapper">
         <!-- nabar right -->
         <ul class="nav navbar-nav navbar-right mobile">
-            <li class="dropdown" dropdown>
+            <!-- <li class="dropdown" dropdown>
                 <a href class="dropdown-toggle icons-info" dropdown-toggle>
                     <img src="img/notifications.png" alt="cart" title="cart">
                     <span class="visible-xs-inline">Notifications</span>
@@ -102,14 +102,14 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </li> -->
             <li class="dropdown profile-li">
-                <a href class="dropdown-toggle clear profile-icon" toggle-parent-class="open">
-                    <span class="profile-user"><span class="hidden-sm hidden-md">{{user.firstName}} {{user.lastName}} </span><b class="caret"></b></span>
+                <a ui-sref="profile" class="dropdown-toggle clear profile-icon">
+                    <span class="profile-user"><span class="hidden-sm hidden-md">{{user.firstName}} {{user.lastName}} </span></span>
                     <span class="thumb-sm avatar  m-t-n-sm m-b-n-sm m-l-sm">
                 <img ng-src="{{user.profilePic}}" alt="...">
               </span>
-                    <span class=" fa fa-angle-down"></span>
+                    <!-- <span class=" fa fa-angle-down"></span> -->
                 </a>
                 <ul class="dropdown-menu">
                     <li>

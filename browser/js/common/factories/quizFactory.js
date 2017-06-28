@@ -1,7 +1,8 @@
 app.factory('quizFactory', function($http) {
     var d = {}
         //teachers
-    d.findquizs = (query) => {
+    d.findQuizzes = (query) => {
+        console.log(query)
         return $http.get('/api/quizzes/', {
             params: query
         }).then(response => {
@@ -39,6 +40,7 @@ app.factory('quizFactory', function($http) {
             return response.data
         })
     }
+
 
     return d
 })
