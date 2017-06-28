@@ -17,8 +17,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="teach-profile">
-                    <div class="teacherpro"><img src="https://edvances.blob.core.windows.net/profile-pictures/{{teacher.profilePic}}"/></div>
-                   <div class="pro-degree">{{teacher.teacherOptions.title}} located in {{teacher.location}}</div>
+                    <div class="teacherpro"><img src="{{teacher.profilePic}}"/></div>
+                    <h1 class="sec-title">{{teacher.firstName}} {{teacher.lastName}}</h1>
+                    <div class="pro-degree">{{teacher.teacherOptions.title}} located in {{teacher.location}}</div>
                     <div class="timeperiods"><span ng-repeat="(key,value) in teacher.teacherOptions.times">{{weekdays[key]}} from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
                     <hr class="clearfix">
                     <div class="teach-rate">

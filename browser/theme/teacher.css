@@ -183,6 +183,25 @@ ul.profile-tab > li.active a { position: relative; }
 .act-stat { font-size: 20px; margin-top: 5px; }
 .add-paroll-method { display: none; margin-top: 15px;}
 /*Edit Profile End*/
+/*Teacher Profile Start*/
+ul.aboutteach-info { padding: 0; list-style: none; }
+ul.aboutteach-info li { width: 100%; margin-bottom: 20px; }
+ul.aboutteach-info li label { font-family: 'Montserrat', sans-serif; }
+.teach-bio { position: relative; }
+ul.aboutteach-info li > span { color: #657184; display: block; }
+ul.aboutteach-info li .course-count { font-size: 18px; padding: 5px 11px; margin-left: 5px; }
+ul.aboutteach-info li .t-phone { margin: 20px 0 0; border-bottom: 0; }
+.teach-course-list div.course-img-wrap { width: 200px; }
+.teach-course-list div.course-det { padding-left: 218px !important; }
+.teach-profile .teacherpro { width: 153px; height: 153px; margin: 0 auto; border-radius: 100%; overflow: hidden; }
+.teacherpro > img{max-width:100%;}
+.teach-profile .sec-title.b { text-align: center; margin-bottom: 10px; }
+.teach-profile div { text-align: center; }
+.teach-profile .pro-degree { color: #657184; font-family: 'Montserrat', sans-serif; font-size: 18px; margin-bottom: 15px; }
+.teach-profile .timeperiods span { background: #0583e4; color: #fff; padding: 6px 10px; border-radius: 3px; margin-right: 10px; display: inline-block; }
+.teach-profile .timeperiods { margin-bottom: 30px; }
+.teach-profile .timeperiods span:last-child { margin-right: 0; }
+/*Teacher Profile End*/
 /*My Cources Start*/
 .btn-toolbar .btn-group:first-child { margin-left: 0; }
 .btn-toolbar { margin-bottom: 0; margin-left: 0; }
