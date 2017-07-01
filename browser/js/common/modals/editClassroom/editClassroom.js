@@ -19,7 +19,7 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
         $scope.temp_times[key].start = new Date($scope.temp_classroom.class_times[key].start)
         $scope.temp_times[key].end = new Date($scope.temp_classroom.class_times[key].end)
     }
-
+    $scope.submitting = false
     $scope.cancel = () => {
         $uibModalInstance.close(false)
     }
@@ -29,8 +29,10 @@ app.controller('editClassroomCtrl', function($scope, classroomFactory, $statePar
         $scope.classroomImage = $file
     }
     $scope.updateClassroom = classroom => {
+        $scope.submitting = true
         classroom.times = {}
         classroom.class_times = null
+        classroom.title = classroom.classroom_title
         for (var i = 0; i < $scope.days.length; i++) {
             if ($scope.days[i]) {
                 if ($scope.temp_times[i].start == null || $scope.temp_times[i].end == null) {

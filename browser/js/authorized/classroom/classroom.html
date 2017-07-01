@@ -50,8 +50,9 @@
                             </div>                            
                         </div>
                         <div class="outlined clearfix pad-20 mar-btm-30">
+                            <button ng-if="teacher" class="fill-btn yello-btn white-brd pull-right" ng-click="editClassroom()">Edit Classroom</button>
                             <div class="title-box float-lt">
-                                <span class="main-title">{{classroom.classroom_title}} <button ng-if="teacher" class="btn btn-primary white-brd" ng-click="editClassroom()">Edit Classroom</button></span>
+                                <span class="main-title">{{classroom.classroom_title}} </span>
                                 <span class="light-text">next lesson:</span> <span class="reltd-title">{{nextLessonDay}}</span> <span class="light-text">start time:</span> <span class="reltd-title">{{nextLessonTime}}</span>
                                 <div class="clearfix">
                                     <hr class="bold-hr" />
@@ -68,17 +69,25 @@
                     <div class="col-lg-8 mar-btm-30 stream-col">                        
                         <div class="course-documents accordion pad-20 outlined p-b-35">
                             <!--Resources start-->
-                            <h4 class="accordion-toggle resources activity-title active-tab m-t-20 clearfix">Lessons <i class="fa fa-angle-down"></i> </h4>
+                            <h4 class="accordion-toggle resources activity-title active-tab m-t-20 clearfix">Lessons <i class="fa fa-angle-down"></i> <button ng-if="teacher" ng-click="addLesson()"" class="fill-btn yello-btn pull-right"><i class="fa fa-plus"></i> Lesson</button></h4>
                             <div class="accordion-content default resources-content">
                                 <div class="clearfix">
                                     <hr class="bold-hr" />
                                 </div>
                                 <!--Assignments start-->
-                                <button ng-if="teacher" ng-click="addLesson()"" class="btn btn-primary">Add Lesson</button>
                                 <div class="assignments-col m-t-20" ng-repeat="lesson in lessons track by $index">
-                                    <span class="reltd-title semisect reltitle"><h3>{{lesson.title}}</h3> Start Date: <span style="color:red">{{lesson.startDate | date:'longDate'}}</span> End Date: <span style="color:red">{{lesson.endDate | date:'longDate'}}</span> <button ng-if="teacher" ng-click="editLesson(lesson, $index)" class="btn btn btn-primary">Edit Lesson</button></span>
+                                    <div class="lesson-title row">
+                                        <h3 class="activity-title">{{lesson.title}}
+                                        <small><a ng-if="teacher" ng-click="editLesson(lesson, $index)" class="link"><i class="fa fa-pencil"></i>Edit</a> | 
+                                        <a ng-if="teacher" ng-click="deleteLesson(lesson.id, $index)" class="link"><i class="fa fa-trash"></i>Delete</a></small>
+                                        </h3>
+                                    </div>
+                                    <div class="row">
+                                    <span class="reltd-title semisect reltitle">
+                                    Start Date: <span style="color:red">{{lesson.startDate | date:'longDate'}}</span> End Date: <span style="color:red">{{lesson.endDate | date:'longDate'}}</span></span>
+                                    </div>
                                     <div class="acc-tab" ng-repeat ="section in lesson.sections track by $index" >
-                                        <h4 accordion class="innertab accordion-toggle active-tab outlined pad-20 no-bottom-border clearfix">{{$index+1}}. <i class="fa fa-file"></i> {{section.title}} <i class="fa fa-angle-down"></i></h4>
+                                        <h4 accordion class="innertab accordion-toggle active-tab outlined pad-20 no-bottom-border clearfix">{{$index+1}}. {{section.title}} <i class="fa fa-angle-down"></i></h4>
                                         <div class="innercont accordion-content default active-cont outlined pad-20 no-pad-top no-top-border no-bottom-border">
                                             <p>{{section.description}}</p>
                                         </div>
@@ -87,11 +96,15 @@
                                         <h4 accordion class="innertab accordion-toggle active-tab outlined pad-20 no-bottom-border clearfix"><i class="fa fa-file"></i> Lesson Documents <i class="fa fa-angle-down"></i></h4>
                                         <div class="innercont accordion-content default active-cont outlined pad-20 no-pad-top no-top-border no-bottom-border">
                                             <div ng-repeat="material in lesson.materials track by $index">
-                                            <a ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L-{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
-                                            <p>Date Uploaded: {{material.createdAt | date:'yyyy-Mm-dd'}}</p>
+                                            <a class="link" ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L-{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
+                                            <p>Date Uploaded: {{material.createdAt | date:'longDate'}}</p>
                                             <button ng-click="removeLessonDoc($index,lesson)" class="btn btn-sm">Delete File</button>
                                             </div>
-                                            <a ng-if="teacher" type="file" ngf-select="addLessonDoc($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><i class="fa fa-upload" aria-hidden="true"></i>Upload File</a>
+                                            <div>
+                                                <br>
+                                                <button type="button" class="fill-btn" ng-if="teacher && !submitting" type="file" ngf-select="addLessonDoc($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><i class="fa fa-upload" aria-hidden="true"></i> Upload File</button>
+                                                <button type="button" class="fill-btn" ng-if="teacher && submitting"><img src="img/spinner.gif"/></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +128,7 @@
                                             </div>
                                             <div class="trexp">{{classroom.teacherOptions.title}}</div>
                                             <div class="trsocial">
-                                                <a href="" target="_blank" class="red-text"><i class="fa fa-envelope"></i></a>
+                                                <a class="red-text"><i class="fa fa-envelope"></i> {{classroom.teacher_email}}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -125,13 +138,13 @@
                                 </div>
                             </div>
                             <!--About Instructor End-->
-                            <script type="text/javascript">
+<!--                             <script type="text/javascript">
                             $('.accordion').find('.accordion-toggle').click(function() {
                                 $(this).next().slideToggle('fast');
                                 $(this).next().toggleClass('active-cont');
                                 $(this).toggleClass("active-tab");
                             });
-                            </script>
+                            </script> -->
                         </div>
                         <!--left section end-->
                     </div>
@@ -155,10 +168,11 @@
                                         <br>
                                         <span class="light-text">{{note.createdAt | date:'longDate'}}</span>
                                         </span>
-                                        <a ng-click="removeClassroomNote(note.id,$index)" class="btn btn-sm">Delete File</a>
+                                        <a ng-click="removeClassroomNote(note.id,$index)" ng-if="teacher" class="btn btn-sm">Delete File</a>
                                     </li>
                                 </ul>
-                                <button ng-if="teacher" type="file" ngf-select="addClassroomNote($file)" accept="*" ngf-max-height="1000" ngf-max-size="10MB">Add Class Document</button>
+                                <button class="fill-btn" ng-if="teacher && !submitting" type="file" ngf-select="addClassroomNote($file)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><i class="fa fa-upload" aria-hidden="true"></i> Add Class Document</button>
+                                <button ng-if="teacher &&submitting" type="file" ngf-select="addClassroomNote($file)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><img src="img/spinner.gif"/></button>
                             </div>
                         </div>
                         <!-- notes end -->

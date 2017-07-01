@@ -1,32 +1,20 @@
-app.directive('onlyNumbers', function() {
+app.directive('numbersOnly', function() {
     return {
-        restrict: 'A',
-        link: function(scope, elm, attrs, ctrl) {
-            elm.on('keydown', function(event) {
-                if (event.shiftKey) {
-                    event.preventDefault();
-                    return false;
+        require: 'ngModel',
+        link: function(scope, element, attr, ngModelCtrl) {
+            function fromUser(text) {
+                if (text) {
+                    var transformedInput = text.replace(/[^0-9]/g, '');
+
+                    if (transformedInput !== text) {
+                        ngModelCtrl.$setViewValue(transformedInput);
+                        ngModelCtrl.$render();
+                    }
+                    return transformedInput;
                 }
-                //console.log(event.which);
-                if ([8, 13, 27, 37, 38, 39, 40].indexOf(event.which) > -1) {
-                    // backspace, enter, escape, arrows
-                    return true;
-                } else if (event.which >= 49 && event.which <= 57) {
-                    // numbers
-                    return true;
-                } else if (event.which >= 96 && event.which <= 105) {
-                    // numpad number
-                    return true;
-                }
-                // else if ([110, 190].indexOf(event.which) > -1) {
-                //     // dot and numpad dot
-                //     return true;
-                // }
-                else {
-                    event.preventDefault();
-                    return false;
-                }
-            });
+                return undefined;
+            }
+            ngModelCtrl.$parsers.push(fromUser);
         }
-    }
+    };
 });

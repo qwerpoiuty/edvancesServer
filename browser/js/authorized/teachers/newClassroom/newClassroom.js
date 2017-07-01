@@ -7,18 +7,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, classroomFactory, moment, Socket) {
-
-    Socket.on('post', function(sockComment) {
-        console.log(sockComment)
-    })
-
-    $scope.test = () => {
-        console.log(Socket)
-        Socket.emit('comment', {
-            'test': 'test'
-        })
-    }
+app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, classroomFactory, moment, notificationService) {
 
     $scope.days = [, , , , , , , ]
     $scope.classThumbnail = null
@@ -33,7 +22,10 @@ app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, cla
         5: 'Saturday',
         6: 'Sunday'
     }
+    $scope.submitting = false
     $scope.createClass = (classroom) => {
+        if ($scope.submitting) return
+        $scope.submitting = true
         classroom.teacher = $scope.user.id
         classroom.times = {}
         for (var i = 0; i < $scope.days.length; i++) {
@@ -48,6 +40,9 @@ app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, cla
             $state.go("classroom", {
                 id: classroom.id
             })
+        }).catch(err => {
+            $scope.submitting = false
+            notificationService.displayNotification('Error creating class, please try again')
         })
     }
 

@@ -120,5 +120,11 @@ app.factory('classroomFactory', function($http) {
         })
     }
 
+    d.deleteLesson = (lessonId) => {
+        return $http.post('/api/lessons/delete/' + lessonId).then(response => {
+            return response.data
+        })
+    }
+
     return d
 })

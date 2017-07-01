@@ -14,7 +14,7 @@ app.directive('chat', function(Socket) {
                 var chat = {
                     message: message,
                     sender: {
-                        name: (scope.user.firstName + scope.user.lastName),
+                        name: (scope.user.firstName),
                         profilePic: scope.user.profilePic
                     },
                     time: Date.now()
@@ -24,6 +24,7 @@ app.directive('chat', function(Socket) {
             }
             Socket.on('message incoming', (message) => {
                 scope.chats.push(message)
+                document.getElementById('chat-history').scrollTop = document.getElementById('chat-history').scrollHeight - 500
             })
 
         }

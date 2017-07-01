@@ -48,14 +48,9 @@ router.get('/classroomLessons/:id', ensureAuthenticated, (req, res) => {
             classroom: req.params.id
         }
     }).then(lessons => {
-        res.json({
-            status: 200,
-            message: 'fetched',
-            data: lessons
-        })
+        res.json(lessons)
     }).catch(() => {
         res.json({
-            status: 300,
             message: 'Something went wrong'
         })
     })
@@ -82,11 +77,7 @@ router.post('/materials/:id', upload.single('material'), (req, res) => {
                         lesson.materials.push(document.id)
                         lesson.changed('materials', true)
                         lesson.save()
-                        res.json({
-                            status: 200,
-                            message: 'Successfully uploaded',
-                            data: document
-                        })
+                        res.json(document)
                     })
                 })
             }
@@ -102,27 +93,20 @@ router.post('/:classroomID', ensureAuthenticated, (req, res) => {
         defaults: req.body
     }).spread(function(lesson, created) {
         if (created) {
-            res.json({
-                status: 200,
-                data: lesson
-            })
+            res.json(lesson)
         } else {
             lesson.update(req.body).then(lesson => {
-                res.json({
-                    status: 200,
-                    data: lesson
-                })
+                res.json(lesson)
             })
         }
     }).catch(() => {
         res.json({
-            status: 300,
             message: 'Something went wrong'
         })
     })
 })
 
-router.post('/update/:lessonId', ensureAuthenticated, (req, res) => {
+router.post('/update/:lessonId', ensureAuthenticated, (req, res, next) => {
     const updates = req.body.updates
     console.log(updates)
     Lesson.find({
@@ -131,10 +115,17 @@ router.post('/update/:lessonId', ensureAuthenticated, (req, res) => {
         }
     }).then(lesson => {
         lesson.updateAttributes(updates).then(updatedLesson => {
-            res.json({
-                status: 200,
-                data: updatedLesson
-            })
+            res.json(updatedLesson)
         })
+    }).catch(err => next(err))
+})
+
+router.post('/delete/:lessonId', ensureAuthenticated, (req, res, next) => {
+    Lesson.destroy({
+        where: {
+            id: req.params.lessonId
+        }
+    }).then(result => {
+        res.sendStatus(200)
     })
 })

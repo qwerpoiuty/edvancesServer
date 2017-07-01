@@ -82,7 +82,14 @@ router.post('/withImage', ensureAuthenticated, upload.single('thumbnail'), (req,
             if (!error) {
                 classroom.image = `https://edvances.blob.core.windows.net/class-thumbnails/${thumbnail}`
                 Classroom.create(classroom).then(classroom => {
-                    res.json(classroom)
+                    Forum.create({
+                        name: classroom.title,
+                        teacher: classroom.teacher,
+                        classroom: classroom.id,
+                        thumbnail: classroom.image
+                    }).then(forum => {
+                        res.json(classroom)
+                    })
                 }).catch(() => {
                     var error = new Error('upload error')
                     return next(error)

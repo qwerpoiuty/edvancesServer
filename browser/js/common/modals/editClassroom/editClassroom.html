@@ -79,6 +79,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="outlined-btn gray-btn" ng-click="cancel()">Cancel</button>
-        <button type="submit" class="fill-btn yello-btn">Save</button>
+        <button type="submit" ng-if="!submitting" class="fill-btn yello-btn">Save</button>
+        <button type="submit" ng-if="submitting" class="fill-btn "><img src="/img/spinner.gif"/></button>
     </div>
 </form>

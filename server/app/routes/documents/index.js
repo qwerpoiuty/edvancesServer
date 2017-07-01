@@ -108,7 +108,7 @@ router.post('/assignment/:id', upload.single('assigment'), (req, res) => {
 
 })
 
-router.post('/user/:id', ensureAuthenticated, upload.single('credential'), (req, res) => {
+router.post('/user/:id', ensureAuthenticated, upload.single('credential'), (req, res, next) => {
     console.log(req.file)
     var credential = {
         name: req.file.originalname,
@@ -117,9 +117,6 @@ router.post('/user/:id', ensureAuthenticated, upload.single('credential'), (req,
         owner: req.params.id
     }
     Document.create(credential).then(updated => {
-        res.json({
-            status: 200,
-            message: 'Successfully uploaded'
-        })
-    })
+        res.sendStatus(200)
+    }).catch(err => next(err))
 })

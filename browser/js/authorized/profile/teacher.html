@@ -4,8 +4,9 @@
             <div class="col-md-12">
                 <div class="teach-profile">
                     <div class="teacherpro"><img ng-src="{{user.profilePic}}" /></div>
-                    <h1 class="sec-title">{{user.firstName}} {{user.lastName}}</h1>
+                    <h1 class="sec-title b">{{user.firstName}} {{user.lastName}}</h1>
                     <div class="pro-degree">{{user.teacherOptions.title}}</div>
+                    <div class="pro-degree"><span ng-if="user.location">Located in {{user.location}}</span></div>
                     <div class="timeperiods"><span ng-repeat="(key,value) in user.teacherOptions.times">{{weekdays[key]}}  from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
                     <hr class="clearfix">
 <!--                     <div class="teach-rate">
@@ -42,7 +43,7 @@
                                 <a href="" target="_blank"><i class="fa fa-google-plus"></i></a>
                                 <a href="" target="_blank"><i class="fa fa-twitter"></i></a>
                                 <a href="" target="_blank"><i class="fa fa-linkedin"></i></a> -->
-                                <a mailto="{{user.email}}" target="_blank" class="red-text"><i class="fa fa-envelope"></i></a>
+                                <a target="_blank" class="red-text"><i class="fa fa-envelope"></i> {{user.email}}</a>
                             </p>
                         </span>
                     </li>

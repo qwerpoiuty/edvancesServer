@@ -7,7 +7,7 @@
             <div class=" lter wrapper-md bredcrumb">
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
-                        <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">My Courses</small> <i class="fa fa-angle-right"></i> <small class="text-muted">Create Course</small>
+                        <a ui-sref="dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">My Courses</small> <i class="fa fa-angle-right"></i> <small class="text-muted">Create Course</small>
                     </div>
                 </div>
             </div>
@@ -131,7 +131,8 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"></label>
                                                     <div class="col-sm-8">
-                                                        <button type="submit" class="fill-btn ">Create Class</button>
+                                                        <button type="submit" ng-if="!submitting" class="fill-btn ">Create Class</button>
+                                                        <button type="submit" ng-if="submitting" class="fill-btn "><img src="/img/spinner.gif"/></button>
                                                     </div>
                                                 </div>
                                             </form>

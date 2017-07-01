@@ -1,11 +1,14 @@
 app.controller('lessonCtrl', function($scope, classroomFactory, $stateParams, $uibModalInstance, lesson) {
-    $scope.lesson = jQuery.extend(true, {}, lesson)
-    if ($scope.lesson == null) $scope.sections = []
-    else {
+    if (lesson === null) {
+        $scope.sections = []
+        $scope.lesson = {}
+    } else {
+        $scope.lesson = jQuery.extend(true, {}, lesson)
         $scope.sections = $scope.lesson.sections
         $scope.lesson.startDate = new Date($scope.lesson.startDate)
         $scope.lesson.endDate = new Date($scope.lesson.endDate)
     }
+    console.log($scope.sections)
     $scope.addSection = () => {
         $scope.sections.push({})
     }

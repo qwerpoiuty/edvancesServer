@@ -1,6 +1,6 @@
 <div class="chat-window b-b-0">
     <div class="cat-title"><span>{{title}}</span></div> 
-    <ul class="conversation">
+    <ul class="conversation" id="chat-history" scroll-glue>
         <li class="classmate" ng-repeat="chat in chats track by $index">
             <div class="chat-user"><img ng-src="{{chat.sender.profilePic}}"></div>
             <div class="chat-text">
