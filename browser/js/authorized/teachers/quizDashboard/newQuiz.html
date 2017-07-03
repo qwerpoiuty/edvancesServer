@@ -50,14 +50,14 @@
                                                 <label class="col-sm-2 control-label">Course </label>
                                                 <div class="col-sm-4">
                                                     <select name="carlist" form="carform" class="form-control" ng-model="selectedClassroom" ng-change="getClassroom(selectedClassroom)" placeholder="Choose a classroom">
-                                                        <option ng-repeat = "class in classrooms" value="{{class.id}}">{{class.title}}</option>
+                                                        <option ng-repeat="class in classrooms" value="{{class.id}}">{{class.title}}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group select-field" ng-show="lessons">
                                                 <label class="col-sm-2 control-label">Lesson </label>
                                                 <div class="col-sm-4">
-                                                    <select name="carlist" form="carform" class="form-control" ng-model="newQuiz.lesson" placehold="Choose a lesson" >
+                                                    <select name="carlist" form="carform" class="form-control" ng-model="newQuiz.lesson" placehold="Choose a lesson">
                                                         <option value="{{lesson.id}}" ng-repeat="lesson in lessons">{{lesson.title}}</option>
                                                     </select>
                                                 </div>
@@ -83,7 +83,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-<!--                                             <div class="form-group">
+                                            <!--                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Point Value</label>
                                                 <div class="col-sm-10">
                                                     <label class="i-switch i-switch-lg bg-dark m-t-xs m-r">
@@ -111,27 +111,28 @@
                                 <!--Edit Quiz Question Start-->
                                 <div class="tab-pane" id="tab-3">
                                     <div class="wrapper-md">
-                                        <div class="clearfix max-wid-920 small-title">
-                                            <div class="title-box float-lt m-t-10">
-                                                <span class="main-title"> Questions</span>
+                                        <div class="clearfix max-wid-920">
+                                            <div class="title-box float-lt">
+                                                <span class="main-title">Questions</span>
                                             </div>
-                                            
-                                            <span>
-                                              <button class="fill-btn float-rt slim-btn m-b-20" ng-click="addQuestion()">Add Question</button>
-                                            </span>
-                                        </div>
-                                        <ul>
-                                             <li class="list-group-item" ng-repeat="question in questions track by $index">
+                                            <button class="outlined-btn gray-btn float-rt" ng-click="addQuestion()">Add Question</button>
+                                            <div class="clearfix"></div>
+                                            <div class="qutn form-horizontal" ng-repeat="question in questions track by $index">
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <label class="col-sm-2 control-label">Question {{$index +1}}</label>
-                                                        <input type="text" class="col-sm-8" placeholder="Quiz question" ng-model="questions[$index].title"/>
-                                                        <button type="button" ng-click="removeQuestion($index)">Delete</button>
+                                                        <label class="col-sm-3 control-label"><strong> Question {{$index +1}}</strong></label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control p-r-70" placeholder="Quiz question" ng-model="questions[$index].title" />
+                                                            <button class="outlined-btn gray-btn float-rt delete-qtn" type="button" ng-click="removeQuestion($index)">Delete</button>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="form-group">
                                                     <div class="row">
-                                                        <label class="col-sm-2 control-label">How many answers?</label>
-                                                        <div class="col-sm-1">
-                                                            <select ng-model="question.answerNumber" placehold="How many answers?" ng-change="addAnswers(question)">
+                                                        <label class="col-sm-3 control-label">How many answers?</label>
+                                                        <div class="col-sm-3">
+                                                            <select class="form-control" ng-model="question.answerNumber" placehold="How many answers?" ng-change="addAnswers(question)">
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
@@ -140,18 +141,19 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="form-group" ng-repeat="answer in question.answers track by $index">
                                                     <div class="row">
-                                                        <ul class="col-sm-4">
-                                                            <li ng-repeat="answer in question.answers track by $index">
-                                                            <input type="radio" ng-model="question.correct" ng-value="$index"/>
-                                                            <label>Answer {{$index+1}}
-                                                            <input type="text" ng-model="$parent.question.answers[$index]"/>
-                                                            </li>
-                                                        </ul>
+                                                        <label class="col-sm-3 control-label fo-no">
+                                                            <input type="radio" ng-model="question.correct" ng-value="$index" /> Answer {{$index+1}}</label>
+                                                            <div class="col-sm-6">
+                                                            <input class="form-control" type="text" ng-model="$parent.question.answers[$index]" placeholder="Answer"/>
+                                                            </div>
                                                     </div>
                                                 </div>
-                                            </li>
-                                        </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

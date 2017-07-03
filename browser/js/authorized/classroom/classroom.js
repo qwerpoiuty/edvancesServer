@@ -22,7 +22,7 @@ app.config(function($stateProvider) {
 
 app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, classroomFactory, $stateParams, lessons, documentFactory, moment, Socket, notificationService) {
     //inits
-    console.log(classroom)
+    console.log(lessons)
     $scope.classroom = classroom[0]
     $scope.lessons = lessons
     $scope.teacher = $scope.user.id === $scope.classroom.teacher_id

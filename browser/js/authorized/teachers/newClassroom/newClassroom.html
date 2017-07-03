@@ -33,11 +33,11 @@
                                     <!--Create Course Start-->
                                     <div class="tab-pane active" id="tab-1">
                                         <div class="wrapper-md">
-                                            <form name = "basicInfo" class="form-horizontal" ng-submit="openBrowse('meta-tab','tab-2')">
+                                            <form name="basicInfo" class="form-horizontal" ng-submit="openBrowse('meta-tab','tab-2')">
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Class Icon</label>
+                                                    <label class="col-sm-2 control-label">Course Icon</label>
                                                     <div class="col-sm-8">
-                                                        <div class="user-thumb"><img ng-if="!classThumbnail" src="https://edvances.blob.core.windows.net/class-thumbnails/classroom-placeholder.png"/><img ng-if="classThumbnail" ngf-thumbnail="classThumbnail"/></div>
+                                                        <div class="user-thumb"><img ng-if="!classThumbnail" src="https://edvances.blob.core.windows.net/class-thumbnails/classroom-placeholder.png" /><img ng-if="classThumbnail" ngf-thumbnail="classThumbnail" /></div>
                                                         <button type="file" ngf-select="changeClassroomImage($file)" ng-model="classThumbnail" accept="image/*" ng-f-max-height="1000" ngf-max-size="2mb" class="change-pro slim-btn outlined-btn gray-btn float-rt">Change</button>
                                                     </div>
                                                 </div>
@@ -50,7 +50,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Description</label>
                                                     <div class="col-sm-8">
-                                                        <textarea class="form-control text-editor" ng-model="newClassroom.description"></textarea>
+                                                        <textarea class="form-control" ng-model="newClassroom.description" placeholder="Add your course description here" rows="5"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -70,7 +70,7 @@
                                                 <div class="form-group select-field">
                                                     <label class="col-sm-2 control-label">Category </label>
                                                     <div class="col-sm-4">
-                                                        <input class="form-control" ng-model = "newClassroom.subject"/>
+                                                        <input class="form-control" ng-model="newClassroom.subject" />
                                                         <!-- <select name="carlist" form="carform" class="form-control" ng-model="newClassroom.subject">
                                                             <option selected="selected" value="Mathematics">Mathematics</option>
                                                             <option value="English">English</option>
@@ -82,7 +82,7 @@
                                                 <div class="form-group select-field">
                                                     <label class="col-sm-2 control-label">Credit Cost </label>
                                                     <div class="col-sm-4">
-                                                        <input type="number" onlyNumbers class="form-control" ng-model = "newClassroom.cost"/>
+                                                        <input type="number" onlyNumbers class="form-control" ng-model="newClassroom.cost" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -98,33 +98,32 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Course Days </label>
-                                                    <div class="col-sm-8">
-                                                        <div class="weekDays-selector">
-                                                          <input type="checkbox" id="weekday-mon" ng-model="days[0]" class="weekday" />
-                                                          <label for="weekday-mon">M</label>
-                                                          <input type="checkbox" id="weekday-tue" ng-model="days[1]" class="weekday" />
-                                                          <label for="weekday-tue">T</label>
-                                                          <input type="checkbox" id="weekday-wed" ng-model="days[2]" class="weekday" />
-                                                          <label for="weekday-wed">W</label>
-                                                          <input type="checkbox" id="weekday-thu" ng-model="days[3]" class="weekday" />
-                                                          <label for="weekday-thu">T</label>
-                                                          <input type="checkbox" id="weekday-fri" ng-model="days[4]" class="weekday" />
-                                                          <label for="weekday-fri">F</label>
-                                                          <input type="checkbox" id="weekday-sat" ng-model="days[5]" class="weekday" />
-                                                          <label for="weekday-sat">S</label>
-                                                          <input type="checkbox" id="weekday-sun" ng-model="days[6]" class="weekday" />
-                                                          <label for="weekday-sun">S</label>
+                                                        <label class="col-sm-2 control-label">Course Days </label>
+                                                        <div class="col-sm-4">
+                                                            <div class="weekDays-selector">
+                                                                <input type="checkbox" id="weekday-mon" ng-model="days[0]" class="weekday" />
+                                                                <label for="weekday-mon">M</label>
+                                                                <input type="checkbox" id="weekday-tue" ng-model="days[1]" class="weekday" />
+                                                                <label for="weekday-tue">T</label>
+                                                                <input type="checkbox" id="weekday-wed" ng-model="days[2]" class="weekday" />
+                                                                <label for="weekday-wed">W</label>
+                                                                <input type="checkbox" id="weekday-thu" ng-model="days[3]" class="weekday" />
+                                                                <label for="weekday-thu">T</label>
+                                                                <input type="checkbox" id="weekday-fri" ng-model="days[4]" class="weekday" />
+                                                                <label for="weekday-fri">F</label>
+                                                                <input type="checkbox" id="weekday-sat" ng-model="days[5]" class="weekday" />
+                                                                <label for="weekday-sat">S</label>
+                                                                <input type="checkbox" id="weekday-sun" ng-model="days[6]" class="weekday" />
+                                                                <label for="weekday-sun">S</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="row" ng-repeat="day in days track by $index" ng-show="day ==true">
                                                         <label class="col-sm-2 control-label">{{weekdays[$index]}}: </label>
                                                         <div class="col-sm-8">
-                                                            <input type="time" id="exampleInput" name="input" ng-model="times[$index].start" placeholder="HH:mm:ss" /> 
-                                                            to 
-                                                            <input type="time" id="exampleInput" name="input" ng-model="times[$index].end" placeholder="HH:mm:ss" />
+                                                            <input class="form-control time-input m-r-20 ng-pristine ng-untouched ng-valid ng-not-empty" type="time" id="exampleInput" name="input" ng-model="times[$index].start" placeholder="HH:mm:ss"> to
+                                                            <input class="form-control time-input m-l-20 ng-pristine ng-untouched ng-valid ng-not-empty" type="time" id="exampleInput" name="input" ng-model="times[$index].end" placeholder="HH:mm:ss">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -132,7 +131,7 @@
                                                     <label class="col-sm-2 control-label"></label>
                                                     <div class="col-sm-8">
                                                         <button type="submit" ng-if="!submitting" class="fill-btn ">Create Class</button>
-                                                        <button type="submit" ng-if="submitting" class="fill-btn "><img src="/img/spinner.gif"/></button>
+                                                        <button type="submit" ng-if="submitting" class="fill-btn "><img src="/img/spinner.gif" /></button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -141,8 +140,8 @@
                                     <!--Create Course Meta End-->
                                     <!--Create Course Lessons Start-->
                                     <!-- <div class="tab-pane" id="tab-3"> -->
-                                        <!--Lessons list Start-->
-                                        <!-- <div class="wrapper-md lessons-list">
+                                    <!--Lessons list Start-->
+                                    <!-- <div class="wrapper-md lessons-list">
                                             <div class="clearfix max-wid-920">
                                                 <div class="title-box float-lt m-t-10">
                                                     <span class="main-title">5 Lessons</span>
@@ -222,9 +221,9 @@
                                                 </li>
                                             </ul>
                                         </div> -->
-                                        <!--Lessons list End-->
-                                        <!--Add Edit Lesson Start-->
-                         <!--                <div class="wrapper-md edit-lesson">
+                                    <!--Lessons list End-->
+                                    <!--Add Edit Lesson Start-->
+                                    <!--                <div class="wrapper-md edit-lesson">
                                             <form class="form-horizontal" method="get">
                                                 <div class="form-group mar-20">
                                                     <label class="col-sm-2 control-label">Preview</label>
@@ -286,7 +285,7 @@
                                                 </div>
                                             </form>
                                         </div> -->
-                                        <!--Add Edit Lesson End-->
+                                    <!--Add Edit Lesson End-->
                                     <!-- </div> -->
                                     <!-- <script type="text/javascript">
                                     $('.add-lesson').click(function() {

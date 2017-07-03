@@ -4,7 +4,7 @@
         <div class=" lter wrapper-md bredcrumb">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
-                    <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <a ui-sref="app.forums"><small class="text-muted">Forums</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Threads</small>
+                    <a ui-sref="app.dashboard"><small class="text-muted">Dashboard</small></a> <i class="fa fa-angle-right"></i> <a ng-click="returnToForumList()"><small class="text-muted">Forums</small></a> <i class="fa fa-angle-right"></i> <small class="text-muted">Threads</small>
                 </div>
             </div>
         </div>
@@ -13,7 +13,6 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="row">
-                        <button ng-click="returnToForumList()">Back</button>
                         <!--General Forums Start-->
                         <div class="col-md-12 mar-btm-30 recent-activity">
                             <div class="outlined clearfix pad-20 for-head">
@@ -22,6 +21,7 @@
                                     <span class="reltd-title">Taught by {{classroom.firstName}} {{classroom.lastName}}</span>
                                 </div>
                                 <a ng-click="newThread()" class="outlined-btn red-btn float-rt fr-newtop">+ New Thread </a>
+                                <a ng-click="returnToForumList()" class="outlined-btn gray-btn float-rt fr-newtop">Back</a>
                             </div>
                             <div class="outlined clearfix graph no-top-border">
                                 <ul class="class-list">

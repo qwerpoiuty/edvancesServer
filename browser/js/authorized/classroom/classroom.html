@@ -15,95 +15,91 @@
             <div class="wrapper-md ">
                 <div class="row">
                     <div class="col-lg-8">
-                        <!--left section start-->
-                         <!--whiteboard start-->
-                        <div class="whiteboard-wrap" ng-class="{'active-frame':whiteboard}">
-                            <div class="outlined wb-wrapper clearfix">
-                                <div class="tbl-icon float-lt"></div>
-                                <div class="secondery-title">Whiteboard</div>
-                                <div class="plusicon float-rt"></div>
-                            </div>
-                            <div class="outlined no-top-border whiteboard-area frame-container">
-                                <whiteboard></whiteboard>
-                            </div>
-                            <div class="outlined no-top-border clearfix pad-10">
-                                <a ng-click="clearWhiteboard()" class="btn btn-danger float-rt">Erase</a>
-                            </div>
-                        </div>
-                        <!--whiteboard end-->
-                        <!--Video Stream start-->
-                        <div class="video-streem outlined clearfix no-top-border" ng-class="{'active-frame':videoFrame}">
-                            <img ng-hide="joined" src="img/video-streem.jpg" alt="video stream" class="img-responsive w-full" id="jitsi-placeholder"/>
-                            <div id="frame-container">
-                                <div id="jitsi" class="img-responsive w-full" ng-show="joined"></div>
-                            </div>
-                        </div>
-                        <div class="no-top-border outlined clearfix courseclock pad-20">
-                            <div class="timeperiods"><span class="badge badge-default" ng-repeat="(key,value) in classroom.class_times">{{weekdays[key]}} from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
-                            <div class="float-rt joincls" ng-if="member">
-                                <a ng-click="test()" ng-hide="joined" class="outlined-btn red-btn v-a-m">Join Class</a>
-                                <a ng-click="close()" ng-show="joined" class="outlined-btn red-btn v-a-m">Leave Class</a>
-                                <a ng-click="toggleActiveFrame()" class="user-chat v-a-m"><img src="img/user-chat.jpg" alt="user chat" /></a>
-                            </div>
-                            <div class="float-rit joincls" ng-if="!member">
-                                <a ng-click="addStudent(user.id)" class="outlined-btn red-btn v-a-m">Purchase Class</a>
-                            </div>                            
-                        </div>
-                        <div class="outlined clearfix pad-20 mar-btm-30">
-                            <button ng-if="teacher" class="fill-btn yello-btn white-brd pull-right" ng-click="editClassroom()">Edit Classroom</button>
-                            <div class="title-box float-lt">
-                                <span class="main-title">{{classroom.classroom_title}} </span>
-                                <span class="light-text">next lesson:</span> <span class="reltd-title">{{nextLessonDay}}</span> <span class="light-text">start time:</span> <span class="reltd-title">{{nextLessonTime}}</span>
-                                <div class="clearfix">
-                                    <hr class="bold-hr" />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!--left section start-->
+                                <!--whiteboard start-->
+                                <div class="whiteboard-wrap" ng-class="{'active-frame':whiteboard}">
+                                    <div class="outlined wb-wrapper clearfix">
+                                        <div class="tbl-icon float-lt"></div>
+                                        <div class="secondery-title">Whiteboard</div>
+                                        <div class="plusicon float-rt"></div>
+                                    </div>
+                                    <div class="outlined no-top-border whiteboard-area frame-container">
+                                        <whiteboard></whiteboard>
+                                    </div>
+                                    <div class="outlined no-top-border clearfix pad-10">
+                                        <a ng-click="clearWhiteboard()" class="btn btn-danger float-rt">Erase</a>
+                                    </div>
                                 </div>
-                                <span class="light-text">Taught By: </span> {{classroom.firstName}} {{classroom.lastName}} <span class="light-text">in: </span> {{classroom.subject}}
+                                <!--whiteboard end-->
+                                <!--Video Stream start-->
+                                <div class="video-streem outlined clearfix no-top-border" ng-class="{'active-frame':videoFrame}">
+                                    <img ng-hide="joined" src="img/video-streem.jpg" alt="video stream" class="img-responsive w-full" id="jitsi-placeholder" />
+                                    <div id="frame-container">
+                                        <div id="jitsi" class="img-responsive w-full" ng-show="joined"></div>
+                                    </div>
+                                </div>
+                                <div class="no-top-border outlined clearfix courseclock pad-20">
+                                    <div class="timeperiods"><span class="badge badge-default" ng-repeat="(key,value) in classroom.class_times">{{weekdays[key]}} from {{value.start | date:'HH:mm'}} - {{value.end | date:'HH:mm'}}</span></div>
+                                    <div class="float-rt joincls" ng-if="member">
+                                        <a ng-click="test()" ng-hide="joined" class="outlined-btn red-btn v-a-m">Join Class</a>
+                                        <a ng-click="close()" ng-show="joined" class="outlined-btn red-btn v-a-m">Leave Class</a>
+                                        <a ng-click="toggleActiveFrame()" class="user-chat v-a-m"><img src="img/user-chat.jpg" alt="user chat" /></a>
+                                    </div>
+                                    <div class="float-rit joincls" ng-if="!member">
+                                        <a ng-click="addStudent(user.id)" class="outlined-btn red-btn v-a-m">Purchase Class</a>
+                                    </div>
+                                </div>
+                                <div class="outlined clearfix pad-20 mar-btm-30">
+                                    <button ng-if="teacher" class="outlined-btn gray-btn float-rt m-r-0" ng-click="editClassroom()">Edit Classroom</button>
+                                    <div class="title-box float-lt">
+                                        <span class="main-title">{{classroom.classroom_title}} </span>
+                                        <span class="light-text">next lesson:</span> <span class="reltd-title">{{nextLessonDay}}</span> <span class="light-text">start time:</span> <span class="reltd-title">{{nextLessonTime}}</span>
+                                        <div class="clearfix">
+                                            <hr class="bold-hr" />
+                                        </div>
+                                        <span class="light-text">Taught By: </span> {{classroom.firstName}} {{classroom.lastName}} <span class="light-text">in: </span> {{classroom.subject}}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mar-btm-30">
-                        <chat title="classroom.classroom_title" user="user"></chat>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8 mar-btm-30 stream-col">                        
+                            <div class="col-lg-12 stream-col">
                         <div class="course-documents accordion pad-20 outlined p-b-35">
                             <!--Resources start-->
-                            <h4 class="accordion-toggle resources activity-title active-tab m-t-20 clearfix">Lessons <i class="fa fa-angle-down"></i> <button ng-if="teacher" ng-click="addLesson()"" class="fill-btn yello-btn pull-right"><i class="fa fa-plus"></i> Lesson</button></h4>
+                            <h4 class="accordion-toggle resources activity-title active-tab m-t-20 clearfix">Lessons <i class="fa fa-angle-down"></i> <button ng-if="teacher" ng-click="addLesson()"" class="outlined-btn gray-btn float-rt m-r-0"><i class="fa fa-plus"></i> Lesson</button></h4>
                             <div class="accordion-content default resources-content">
                                 <div class="clearfix">
                                     <hr class="bold-hr" />
                                 </div>
                                 <!--Assignments start-->
                                 <div class="assignments-col m-t-20" ng-repeat="lesson in lessons track by $index">
-                                    <div class="lesson-title row">
-                                        <h3 class="activity-title">{{lesson.title}}
+                                    <div class="lesson-title">
+                                        <h3 class="activity-title m-t-0">{{lesson.title}}
                                         <small><a ng-if="teacher" ng-click="editLesson(lesson, $index)" class="link"><i class="fa fa-pencil"></i>Edit</a> | 
                                         <a ng-if="teacher" ng-click="deleteLesson(lesson.id, $index)" class="link"><i class="fa fa-trash"></i>Delete</a></small>
                                         </h3>
-                                    </div>
-                                    <div class="row">
-                                    <span class="reltd-title semisect reltitle">
+
+                                        <span class="reltd-title semisect reltitle">
                                     Start Date: <span style="color:red">{{lesson.startDate | date:'longDate'}}</span> End Date: <span style="color:red">{{lesson.endDate | date:'longDate'}}</span></span>
                                     </div>
-                                    <div class="acc-tab" ng-repeat ="section in lesson.sections track by $index" >
+                                    <div class="acc-tab" ng-repeat="section in lesson.sections track by $index">
                                         <h4 accordion class="innertab accordion-toggle active-tab outlined pad-20 no-bottom-border clearfix">{{$index+1}}. {{section.title}} <i class="fa fa-angle-down"></i></h4>
                                         <div class="innercont accordion-content default active-cont outlined pad-20 no-pad-top no-top-border no-bottom-border">
                                             <p>{{section.description}}</p>
                                         </div>
                                     </div>
-                                    <div class="acc-tab" >
+                                    <div class="acc-tab">
                                         <h4 accordion class="innertab accordion-toggle active-tab outlined pad-20 no-bottom-border clearfix"><i class="fa fa-file"></i> Lesson Documents <i class="fa fa-angle-down"></i></h4>
                                         <div class="innercont accordion-content default active-cont outlined pad-20 no-pad-top no-top-border no-bottom-border">
                                             <div ng-repeat="material in lesson.materials track by $index">
-                                            <a class="link" ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L-{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
-                                            <p>Date Uploaded: {{material.createdAt | date:'longDate'}}</p>
-                                            <button ng-click="removeLessonDoc($index,lesson)" class="btn btn-sm">Delete File</button>
+                                                <a class="link" ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L-{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
+                                                <p>Date Uploaded: {{material.createdAt | date:'longDate'}}</p>
+                                                <button ng-click="removeLessonDoc($index,lesson)" class="btn btn-sm">Delete File</button>
                                             </div>
                                             <div>
                                                 <br>
                                                 <button type="button" class="fill-btn" ng-if="teacher && !submitting" type="file" ngf-select="addLessonDoc($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><i class="fa fa-upload" aria-hidden="true"></i> Upload File</button>
-                                                <button type="button" class="fill-btn" ng-if="teacher && submitting"><img src="img/spinner.gif"/></button>
+                                                <button type="button" class="fill-btn" ng-if="teacher && submitting"><img src="img/spinner.gif" /></button>
                                             </div>
                                         </div>
                                     </div>
@@ -138,7 +134,7 @@
                                 </div>
                             </div>
                             <!--About Instructor End-->
-<!--                             <script type="text/javascript">
+                            <!--                             <script type="text/javascript">
                             $('.accordion').find('.accordion-toggle').click(function() {
                                 $(this).next().slideToggle('fast');
                                 $(this).next().toggleClass('active-cont');
@@ -148,34 +144,43 @@
                         </div>
                         <!--left section end-->
                     </div>
-                    <div class="col-lg-4 support-col">
-                        <!--notes-->
-                        <div>
-                            <div class="secondery-title">
-                                Teacher Notes
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-12 mar-btm-30">
+                                <chat title="classroom.classroom_title" user="user"></chat>
                             </div>
-                            <div class="clearfix">
-                                <hr class="bold-hr">
-                            </div>
-                            <div class="outlined m-t-10 pad-20">
-                                <ul class="notes-list">
-                                    <li ng-repeat="note in classroomNotes track by $index">
-                                        <a ng-href="https://edvances.blob.core.windows.net/class-documents/C-{{classroom.id + '-' + note.name}}" download="{{note.name}}" target="_self">
-                                        <span class="notes-text">
+                            <div class="col-lg-12 support-col">
+                                <!--notes-->
+                                <div>
+                                    <div class="secondery-title">
+                                        Teacher Notes
+                                    </div>
+                                    <div class="clearfix">
+                                        <hr class="bold-hr">
+                                    </div>
+                                    <div class="outlined m-t-10 pad-20">
+                                        <ul class="notes-list">
+                                            <li ng-repeat="note in classroomNotes track by $index">
+                                                <a ng-href="https://edvances.blob.core.windows.net/class-documents/C-{{classroom.id + '-' + note.name}}" download="{{note.name}}" target="_self">
+                                                    <span class="notes-text">
                                             <span class="reltd-title reltitle">{{note.name}}</span>
-                                        </span>
-                                        </a>
-                                        <br>
-                                        <span class="light-text">{{note.createdAt | date:'longDate'}}</span>
-                                        </span>
-                                        <a ng-click="removeClassroomNote(note.id,$index)" ng-if="teacher" class="btn btn-sm">Delete File</a>
-                                    </li>
-                                </ul>
-                                <button class="fill-btn" ng-if="teacher && !submitting" type="file" ngf-select="addClassroomNote($file)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><i class="fa fa-upload" aria-hidden="true"></i> Add Class Document</button>
-                                <button ng-if="teacher &&submitting" type="file" ngf-select="addClassroomNote($file)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><img src="img/spinner.gif"/></button>
+                                                    </span>
+                                                </a>
+                                                <br>
+                                                <span class="light-text">{{note.createdAt | date:'longDate'}}</span>
+                                                </span>
+                                                <a ng-click="removeClassroomNote(note.id,$index)" ng-if="teacher" class="btn btn-sm">Delete File</a>
+                                            </li>
+                                        </ul>
+                                        <button class="fill-btn" ng-if="teacher && !submitting" type="file" ngf-select="addClassroomNote($file)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><i class="fa fa-upload" aria-hidden="true"></i> Add Class Document</button>
+                                        <button ng-if="teacher &&submitting" type="file" ngf-select="addClassroomNote($file)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><img src="img/spinner.gif" /></button>
+                                    </div>
+                                </div>
+                                <!-- notes end -->
                             </div>
                         </div>
-                        <!-- notes end -->
                     </div>
                 </div>
             </div>

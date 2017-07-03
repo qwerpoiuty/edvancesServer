@@ -122,7 +122,7 @@ ul.class-list li:last-child { border-bottom: 0; }
 .class-time { float: right; padding: 0; color: #0583e4; }
 ul.class-list li:after { content: "."; visibility: hidden; display: block; height: 0; clear: both; }
 .cource-progress { display: inline-block; width: 25%; background: #f0f0f0; vertical-align: top; padding: 0; line-height: 0; margin: 9px 0; float: right; }
-.pregress-bar { padding: 7px 10px; display: inline-block; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; background: #ea605e; }
+.pregress-bar { padding: 7px 10px; display: inline-block; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; background: #0583e4; }
 .courses .outlined-btn.red-btn { margin-left: 10px; }
 .pro-img-list img { width: 100%; }
 .pro-img-list { width: 50px; height: 50px; margin-right: 15px; display: inline-block; -webkit-border-radius: 100px; vertical-align: middle; -moz-border-radius: 100px; border-radius: 100px; overflow: hidden; }
@@ -182,6 +182,8 @@ ul.profile-tab > li.active a { position: relative; }
 .act-num { font-size: 20px; font-weight: 600; margin-top: 5px; }
 .act-stat { font-size: 20px; margin-top: 5px; }
 .add-paroll-method { display: none; margin-top: 15px;}
+.paypalinfo .modal-header:after{display: initial;}
+
 /*Edit Profile End*/
 /*Teacher Profile Start*/
 ul.aboutteach-info { padding: 0; list-style: none; }
@@ -291,7 +293,7 @@ div.states > .desc-det i { color: #ffa409; }
 /*Classroom start*/
 .cat-title { background: #0583e4; color: #fff; padding: 8px 13px; font-size: 18px; width: 100%; display: block; }
 .conversation { padding: 20px 15px; }
-.conversation { height: 558px; overflow: scroll; overflow-x: hidden; }
+.conversation { min-height: 200px; max-height: 558px; overflow: scroll; overflow-x: hidden; }
 .chat-text { margin-left: 55px; font-size: 13px; padding: 5px 10px; border-radius: 3px; background: #f7f8fc; border: 1px solid #dddfe4; }
 .conversation img { max-width: 100%; max-height: 100%; }
 .chat-user { width: 45px; height: 45px; overflow: hidden; border-radius: 50px; text-align: center; position: absolute; }
@@ -327,7 +329,7 @@ div.accordion.course-documents { padding: 20px 40px; }
 .secondery-title { font-size: 20px; font-weight: bold; }
 .no-top-border { border-top: 0 !important; }
 .whiteboard-area { min-height: 307px; }
-.user-chat { border: 1px solid #cdcdcd; display: inline-block; border-radius: 3px; padding: 10px 12px 11px; vertical-align: middle; margin-left: 10px; }
+.user-chat { border: 1px solid #cdcdcd; display: inline-block; border-radius: 3px; padding: 8px 12px 8px; vertical-align: middle; margin-left: 10px; }
 .user-chat:hover { border-color: #ea605e; }
 .whiteboard-wrap, .video-streem { display: none; }
 .active-frame { display: block; }
@@ -423,6 +425,31 @@ span.label.label-default { display: none !important; }
 /*Update this Classroom Popup End*/
 
 
+/*Css Fixes Start*/
+.active-sref a{text-decoration: none;}
+.pay-instruction{display: block; margin-bottom: 10px}
+.mycour.activity-title{width: 100%;}
+.m-t-40{margin-top: 40px}
+.qutn{border: 1px solid #e6e6e6;
+    padding: 20px; margin-top: 20px;}
+.qutn > .form-group{float: left;width: 100%}
+.outlined-btn.gray-btn.delete-qtn{position: absolute;
+    top: 0;
+    right: 6px;
+    padding: 5px 8px 3px;
+    font-size: 13px;
+    color: #657184 !important;}
+.pos-rel{position: relative;}
+.p-r-70{padding-right: 70px;}
+.fo-no{font-weight: normal !important;}
+#jitsi > div{width: 100% !important}
+.m-t-0{margin-top: 0}
+.badge.badge-default{    background: #fff;
+    text-shadow: none;
+    color: #333;
+    font-size: 15px;
+    float: left;}
+/*Css Fixes End*/
 
 
 

@@ -13,10 +13,10 @@
             <!-- / info bar -->
             <div class="row mar-btm-30">
                 <div class="col-md-12">
-                    <div class="outlined pad-20 info-bar clearfix gray-bg left-bar">
+                    <div class="outlined pad-10 info-bar clearfix gray-bg left-bar m-t-10a">
                         <div class="icon-cc"><span><img src="img/credit-card.png" alt="CC" title="CC" /></span></div>
                         <div class="info-wrap"><span class="info-text">Your subscription ends on <strong>December 31, 2017</strong></span></div>
-                        <div class="info-btn"><div class="fill-btn">Level: Basic</div></div>
+                        <div class="info-lbl">Basic</div>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
         " style="height:147px"></div>
                         </div>
                     </div>
-                    <div class="outlined clearfix pad-20 no-top-border">
+                    <div class="outlined clearfix pad-10 no-top-border">
                         <div class="row">
                             <div class="col-md-6 col-xs-6 text-center rev-stat"><strong>Gross Revenue</strong><span class="graph-value red-text">80.20k</span></div>
                             <div class="col-md-6 col-xs-6 text-center rev-stat"><strong>Net Revenue</strong><span class="graph-value geen-text">45k</span></div>
@@ -59,6 +59,47 @@
                 <!-- / Earnings this month -->
                 <!-- Upcoming Classes -->
                                 <!-- Calender -->
+                                <div class="col-md-6 mar-btm-30 upcoming-classes">
+                    <div class="outlined clearfix pad-10 gray-bg">
+                        <div class="title-box float-lt">
+                            <span class="main-title">Upcoming Classes</span>
+                            <span class="reltd-title">Your upcoming classes for the Week</span>
+                        </div>
+                    </div>
+                    <div class="outlined clearfix graph no-top-border">
+                        <ul class="class-list">
+                            <li ng-repeat="class in classrooms"><span class="class-title"><a ng-click="transition(class.id)">{{class.title}}</a></span> <span class="class-time" ng-repeat="(key,value) in class.times">{{weekdays[key]}}: {{value.start | date:'HH:MM'}} - {{value.end | date:'HH:MM'}}</span></li>
+                        </ul>
+                    </div>
+                    <div class="outlined clearfix pad-10 no-top-border">
+                        <a href="" class="outlined-btn gray-btn float-rt m-r-0 m-r-0">View All</a>
+                    </div>
+                </div>
+                <!-- / Upcoming Classes -->
+                <!-- Courses -->
+                <div class="col-md-6 mar-btm-30 courses">
+                    <div class="outlined clearfix pad-10 gray-bg">
+                        <div class="title-box float-lt">
+                            <span class="main-title">Courses</span>
+                            <span class="reltd-title">Your current courses</span>
+                        </div>
+                    </div>
+                    <div class="outlined clearfix graph no-top-border">
+                        <ul class="class-list">
+                            <li ng-repeat = "class in classrooms"><span class="class-title">{{class.title}}</span> <span class="cource-progress"><span class="pregress-bar" style="width: 100%"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="outlined clearfix pad-10 no-top-border">
+                        <a href="" class="outlined-btn gray-btn float-rt m-r-0">View All</a> <a ui-sref="newClassroom" class="outlined-btn gray-btn float-rt">Create Course </a>
+                    </div>
+                </div>
+                <!-- / Courses -->
+                
+                
+            </div>
+            <div class="row">
+                
                 <div class="col-md-6 mar-btm-30">
                     <div class="outlined clearfix">
                         <div id="calendar"></div>
@@ -91,33 +132,14 @@
                 });
                 </script>
                 <!-- / Calender -->
-                <div class="col-md-6 mar-btm-30 upcoming-classes">
-                    <div class="outlined clearfix pad-20">
-                        <div class="title-box float-lt">
-                            <span class="main-title">Upcoming Classes</span>
-                            <span class="reltd-title">Your upcoming classes for the Week</span>
-                        </div>
-                    </div>
-                    <div class="outlined clearfix graph no-top-border">
-                        <ul class="class-list">
-                            <li ng-repeat="class in classrooms"><span class="class-title"><a ng-click="transition(class.id)">{{class.title}}</a></span> <span class="class-time" ng-repeat="(key,value) in class.times">{{weekdays[key]}}: {{value.start | date:'HH:MM'}} - {{value.end | date:'HH:MM'}}</span></li>
-                        </ul>
-                    </div>
-                    <div class="outlined clearfix pad-20 no-top-border">
-                        <a href="" class="outlined-btn gray-btn float-rt">View All</a>
-                    </div>
-                </div>
-                <!-- / Upcoming Classes -->
-            </div>
-            <div class="row">
-                                <!-- Transactions -->
+                 <!-- Transactions -->
                 <div class="col-md-6 mar-btm-30 activity">
-                    <div class="outlined clearfix pad-20">
+                    <div class="outlined clearfix pad-10 gray-bg">
                         <div class="title-box float-lt">
                             <span class="main-title">Transactions</span>
                             <span class="reltd-title">Latest from statement </span>
                         </div>
-                        <a href="" class="outlined-btn gray-btn float-rt">STATEMENT</a>
+                        <a href="" class="outlined-btn gray-btn float-rt m-r-0">STATEMENT</a>
                     </div>
                     <div class="outlined clearfix graph no-top-border">
                         <ul class="class-list">
@@ -132,25 +154,6 @@
                     </div>
                 </div>
                 <!-- / Transactions -->
-                <!-- Courses -->
-                <div class="col-md-6 mar-btm-30 courses">
-                    <div class="outlined clearfix pad-20">
-                        <div class="title-box float-lt">
-                            <span class="main-title">Courses</span>
-                            <span class="reltd-title">Your current courses</span>
-                        </div>
-                    </div>
-                    <div class="outlined clearfix graph no-top-border">
-                        <ul class="class-list">
-                            <li ng-repeat = "class in classrooms"><span class="class-title">{{class.title}}</span> <span class="cource-progress"><span class="pregress-bar" style="width: 100%"></span></span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="outlined clearfix pad-20 no-top-border">
-                        <a href="" class="outlined-btn gray-btn float-rt">View All</a> <a ui-sref="newClassroom" class="outlined-btn gray-btn float-rt">Create Course </a>
-                    </div>
-                </div>
-                <!-- / Courses -->
             </div>
             <!-- <div class="row"> -->
 
@@ -169,7 +172,7 @@
                             <li><span class="class-title">Fractions 101</span> <span class="class-time">Wed. Jan 20, 2017</span></li>
                         </ul>
                     </div>
-                    <div class="outlined clearfix pad-20 no-top-border">
+                    <div class="outlined clearfix pad-10 no-top-border">
                         <a href="" class="fill-btn float-rt">View All</a>
                     </div>
                 </div> -->
@@ -224,7 +227,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="outlined clearfix pad-20 no-top-border">
+                    <div class="outlined clearfix pad-10 no-top-border">
                         <a href="" class="fill-btn float-rt">View All</a>
                     </div>
                 </div> -->
