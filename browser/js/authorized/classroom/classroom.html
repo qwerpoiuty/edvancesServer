@@ -45,7 +45,7 @@
                                     <div class="float-rt joincls" ng-if="member">
                                         <a ng-click="test()" ng-hide="joined" class="outlined-btn red-btn v-a-m">Join Class</a>
                                         <a ng-click="close()" ng-show="joined" class="outlined-btn red-btn v-a-m">Leave Class</a>
- <!--                                        <a ng-click="toggleActiveFrame()" class="user-chat v-a-m"><img src="img/user-chat.jpg" alt="user chat" /></a> -->
+                                        <!--                                        <a ng-click="toggleActiveFrame()" class="user-chat v-a-m"><img src="img/user-chat.jpg" alt="user chat" /></a> -->
                                     </div>
                                     <div class="float-rit joincls" ng-if="!member">
                                         <a ng-click="addStudent(user.id)" class="outlined-btn red-btn v-a-m">Purchase Class</a>
@@ -64,86 +64,84 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 stream-col">
-                        <div class="course-documents accordion pad-20 outlined p-b-35">
-                            <!--Resources start-->
-                            <h4 class="accordion-toggle resources activity-title active-tab m-t-20 clearfix">Lessons <i class="fa fa-angle-down"></i> <button ng-if="teacher" ng-click="addLesson()"" class="outlined-btn gray-btn float-rt m-r-0"><i class="fa fa-plus"></i> Lesson</button></h4>
-                            <div class="accordion-content default resources-content">
-                                <div class="clearfix">
-                                    <hr class="bold-hr" />
-                                </div>
-                                <!--Assignments start-->
-                                <div class="assignments-col m-t-20" ng-repeat="lesson in lessons track by $index">
-                                    <div class="lesson-title">
-                                        <h3 class="activity-title m-t-0">{{lesson.title}}
+                                <div class="course-documents accordion pad-20 outlined p-b-35">
+                                    <!--Resources start-->
+                                    <h4 class="accordion-toggle resources activity-title active-tab m-t-20 clearfix">Lessons <i class="fa fa-angle-down"></i> <button ng-if="teacher" ng-click="addLesson()"" class="outlined-btn gray-btn float-rt m-r-0"><i class="fa fa-plus"></i> Lesson</button></h4>
+                                    <div class="accordion-content default resources-content">
+                                        <div class="clearfix">
+                                            <hr class="bold-hr" />
+                                        </div>
+                                        <!--Assignments start-->
+                                        <div class="assignments-col m-t-20" ng-repeat="lesson in lessons track by $index">
+                                            <div class="lesson-title">
+                                                <h3 class="activity-title m-t-0">{{lesson.title}}
                                         <small><a ng-if="teacher" ng-click="editLesson(lesson, $index)" class="link"><i class="fa fa-pencil"></i>Edit</a> | 
                                         <a ng-if="teacher" ng-click="deleteLesson(lesson.id, $index)" class="link"><i class="fa fa-trash"></i>Delete</a></small>
                                         </h3>
-
-                                        <span class="reltd-title semisect reltitle">
-                                    Start Date: <span style="color:red">{{lesson.startDate | date:'longDate'}}</span> End Date: <span style="color:red">{{lesson.endDate | date:'longDate'}}</span></span>
-                                    </div>
-                                    <div class="acc-tab" ng-repeat="section in lesson.sections track by $index">
-                                        <h4 accordion class="innertab accordion-toggle active-tab outlined pad-20 no-bottom-border clearfix">{{$index+1}}. {{section.title}} <i class="fa fa-angle-down"></i></h4>
-                                        <div class="innercont accordion-content default active-cont outlined pad-20 no-pad-top no-top-border no-bottom-border">
-                                            <p>{{section.description}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="acc-tab">
-                                        <h4 accordion class="innertab accordion-toggle active-tab outlined pad-20 no-bottom-border clearfix"><i class="fa fa-file"></i> Lesson Documents <i class="fa fa-angle-down"></i></h4>
-                                        <div class="innercont accordion-content default active-cont outlined pad-20 no-pad-top no-top-border no-bottom-border">
-                                            <div ng-repeat="material in lesson.materials track by $index">
-                                                <a class="link" ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L-{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
-                                                <p>Date Uploaded: {{material.createdAt | date:'longDate'}}</p>
-                                                <button ng-click="removeLessonDoc($index,lesson)" class="btn btn-sm">Delete File</button>
+                                                <span class="reltd-title semisect reltitle">
+                                    Start Date: <span style="color:#0278d2">{{lesson.startDate | date:'longDate'}}</span> End Date: <span style="color:#0278d2">{{lesson.endDate | date:'longDate'}}</span></span>
                                             </div>
-                                            <div>
-                                                <br>
-                                                <button type="button" class="fill-btn" ng-if="teacher && !submitting" type="file" ngf-select="addLessonDoc($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><i class="fa fa-upload" aria-hidden="true"></i> Upload File</button>
-                                                <button type="button" class="fill-btn" ng-if="teacher && submitting"><img src="img/spinner.gif" /></button>
+                                            <div class="acc-tab" ng-repeat="section in lesson.sections track by $index">
+                                                <h4 class="innertab accordion-toggle outlined pad-20 no-bottom-border clearfix active-tab">{{$index+1}}. {{section.title}} <i class="fa fa-angle-down"></i></h4>
+                                                <div class="innercont accordion-content default outlined pad-20 no-pad-top no-top-border no-bottom-border  active-cont">
+                                                    <p>{{section.description}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Assignments end-->
-                                <!--Materials start-->
-                            </div>
-                            <!--Resources end-->
-                            <br>
-                            <!--About Instructor start-->
-                            <div class="about-instructor">
-                                <h4 class="accordion-toggle activity-title m-t-30 clearfix">ABOUT THE INSTRUCTOR <i class="fa fa-angle-down"></i></h4>
-                                <div class="accordion-content default about-instructor-content">
-                                    <div class="clearfix m-b-20">
-                                        <hr class="bold-hr" />
-                                    </div>
-                                    <div class="innercont clearfix m-b-10a">
-                                        <a href="" class="thumb-lg pull-left m-r"><img ng-src="{{classroom.profilePic}}" class="img-circle"></a>
-                                        <div class="instructor-info reltd-title">
-                                            <div class="trname">
-                                                <a href="#" class="link"> <strong> {{classroom.firstName}} {{classroom.lastName}}</strong></a>
-                                            </div>
-                                            <div class="trexp">{{classroom.teacherOptions.title}}</div>
-                                            <div class="trsocial">
-                                                <a class="red-text"><i class="fa fa-envelope"></i> {{classroom.teacher_email}}</a>
+                                            <div class="acc-tab">
+                                                <h4 class="innertab accordion-toggle outlined pad-20 no-bottom-border clearfix active-tab"><i class="fa fa-file"></i> Lesson Documents <i class="fa fa-angle-down"></i></h4>
+                                                <div class="innercont accordion-content default outlined pad-20 no-pad-top no-top-border no-bottom-border active-cont">
+                                                    <div ng-repeat="material in lesson.materials track by $index">
+                                                        <a class="link" ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L-{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
+                                                        <p>Date Uploaded: {{material.createdAt | date:'longDate'}}</p>
+                                                        <button ng-click="removeLessonDoc($index,lesson)" class="btn btn-sm">Delete File</button>
+                                                    </div>
+                                                    <div>
+                                                        <button type="button" class="fill-btn" ng-if="teacher && !submitting" type="file" ngf-select="addLessonDoc($file, $index)" accept="*" ngf-max-height="1000" ngf-max-size="10MB"><i class="fa fa-upload" aria-hidden="true"></i> Upload File</button>
+                                                        <button type="button" class="fill-btn" ng-if="teacher && submitting"><img src="img/spinner.gif" /></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <!--Assignments end-->
+                                        <!--Materials start-->
                                     </div>
-                                    <div class="instr-bio">
-                                        <p>{{classroom.teacherOptions.bio}}</p>
+                                    <!--Resources end-->
+                                    <br>
+                                    <!--About Instructor start-->
+                                    <div class="about-instructor">
+                                        <h4 class="accordion-toggle activity-title m-t-30 clearfix">ABOUT THE INSTRUCTOR <i class="fa fa-angle-down"></i></h4>
+                                        <div class="accordion-content default about-instructor-content">
+                                            <div class="clearfix m-b-20">
+                                                <hr class="bold-hr" />
+                                            </div>
+                                            <div class="innercont clearfix m-b-10a">
+                                                <a href="" class="thumb-lg pull-left m-r"><img ng-src="{{classroom.profilePic}}" class="img-circle"></a>
+                                                <div class="instructor-info reltd-title">
+                                                    <div class="trname">
+                                                        <a href="#" class="link"> <strong> {{classroom.firstName}} {{classroom.lastName}}</strong></a>
+                                                    </div>
+                                                    <div class="trexp">{{classroom.teacherOptions.title}}</div>
+                                                    <div class="trsocial">
+                                                        <a class="red-text"><i class="fa fa-envelope"></i> {{classroom.teacher_email}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="instr-bio">
+                                                <p>{{classroom.teacherOptions.bio}}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!--About Instructor End-->
-                            <!--                             <script type="text/javascript">
+                                    <!--About Instructor End-->
+                            <!-- <script type="text/javascript">
                             $('.accordion').find('.accordion-toggle').click(function() {
                                 $(this).next().slideToggle('fast');
                                 $(this).next().toggleClass('active-cont');
                                 $(this).toggleClass("active-tab");
                             });
                             </script> -->
-                        </div>
-                        <!--left section end-->
-                    </div>
+                                </div>
+                                <!--left section end-->
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">

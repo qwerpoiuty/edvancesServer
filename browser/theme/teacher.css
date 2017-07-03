@@ -528,18 +528,6 @@ a.link { color: #0583e4 !important; }
 .rev-stat { color: #99a6bb; }
 .gray-bg { background: #f7f8fc; }
 .outlined-btn.red-btn { border: 1px solid #0278d2; color: #0278d2 !important; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size: 15px; padding: 10px 18px 10px; font-weight: bold; display: inline-block; color: #0278d2; background: transparent; }
-.loginmodal .checkbox { display: inline-block; margin-right: 20px; }
-.loginmodal .checkbox:last-child { margin-right: 0; }
-.loginmodal .modal-content { max-width: 455px; margin: 0 auto; text-align: center; border-radius: 4px; }
-.modal-body { margin: -15px; }
-.modal-title { font-size: 30px; font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
-.loginmodal .textlinks { text-align: left; padding: 15px 27px !important; margin-bottom: 0; padding-bottom: 7px; }
-.loginmodal .login-signup { border: 1px solid #c5d4d8; width: 100%; border-top: 0; padding: 18px 25px; height: 57px; background: #eff4f8; }
-.loginmodal .modal-footer { border-top: 0; border-top: 0; padding: 27px; padding-top: 15px; }
-.loginmodal .modal-header { border-bottom: 1px solid #c5d4d8; border-radius: 5px; }
-.modal-content { -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.2); box-shadow: 0 5px 15px rgba(0,0,0,.2); }
-.forgotpass-link { padding: 9px 0; text-decoration: underline; }
-.modal-header .close { margin-top: -2px; padding: 7px; margin: -15px -15px; width: 38px; background: #333; opacity: 1; color: #fff; box-shadow: none !important; }
 /*Commen CSS End*/
 /*Media Query Start*/
 @media (max-width: 1400px) {
