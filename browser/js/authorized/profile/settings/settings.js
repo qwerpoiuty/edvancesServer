@@ -39,6 +39,7 @@ app.controller('settingsCtrl', function($scope, userFactory, transactionFactory,
         })
     }
     $scope.updateUser = user => {
+        console.log($scope.interests)
         let times = {}
         if ($scope.user.role == 1) {
             for (var i = 0; i < $scope.days.length; i++) {
