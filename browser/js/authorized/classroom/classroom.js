@@ -60,7 +60,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         }
     }
     $scope.getDocuments = () => {
-        $scope.lessons.forEach(lesson => {
+        var lessons = $scope.lessons.forEach(lesson => {
             classroomFactory.getLessonDocuments(lesson.materials).then(materials => {
                 lesson.materials = materials
             })

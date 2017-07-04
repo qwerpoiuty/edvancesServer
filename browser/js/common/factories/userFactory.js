@@ -40,6 +40,19 @@ app.factory('userFactory', function($http) {
             return response.data
         })
     }
+    d.addCredential = (cred, userId) => {
+        var file = cred;
+        var fd = new FormData();
+        fd.append('credential', file);
+        return $http.post('/api/users/credential/' + userId, fd, {
+            transformRequest: angular.identity,
+            headers: {
+                'Content-Type': undefined
+            }
+        }).then(response => {
+            return response.data
+        })
+    }
     d.changeProfilePic = (picture, userId) => {
         var file = picture;
         var fd = new FormData();

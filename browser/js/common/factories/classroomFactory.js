@@ -12,9 +12,19 @@ app.factory('classroomFactory', function($http) {
             return response.data
         })
     }
+    d.getCurrentTeacherClassrooms = (id) => {
+        return $http.get('/api/classrooms/currentTeacherClassrooms/' + id).then(response => {
+            return response.data
+        })
+    }
     d.getClassroomsByStudent = (id) => {
         return $http.get('/api/classrooms/student/' + id).then(response => {
 
+            return response.data
+        })
+    }
+    d.getCurrentStudentClassrooms = (id) => {
+        return $http.get('/api/classrooms/currentStudentClassrooms/' + id).then(response => {
             return response.data
         })
     }

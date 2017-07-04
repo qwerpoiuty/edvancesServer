@@ -68,11 +68,33 @@
                     </div>
                     <div class="outlined clearfix graph no-top-border">
                         <ul class="class-list">
-                            <li ng-repeat="class in classrooms"><span class="class-title"><a ng-click="transition(class.id)">{{class.title}}</a></span> <span class="class-time" ng-repeat="(key,value) in class.times">{{weekdays[key]}}: {{value.start | date:'HH:MM'}} - {{value.end | date:'HH:MM'}}</span></li>
+                            <li ng-repeat="class in upcomingClasses">
+                            <div class="col-sm-4">
+                            <span class="class-title"><a ng-click="transition(class.id)">{{class.title}}</a></span>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="weekDays-selector pull right" style="font-size:14px;">
+                                    <input ng-disabled="true" type="checkbox" id="weekday-mon" ng-model="class[0]" class="weekday" />
+                                    <label for="weekday-mon" uib-tooltip="{{class.times[0].start | date:'HH:MM a'}} - {{class.times[0].end | date:'HH:MM a'}}">M</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-tue" ng-model="class[1]" class="weekday" />
+                                    <label for="weekday-tue" uib-tooltip="{{class.times[1].start | date:'HH:MM a'}} - {{class.times[1].end | date:'HH:MM a'}}" >T</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-wed" ng-model="class[2]" class="weekday" />
+                                    <label for="weekday-wed" uib-tooltip="{{class.times[2].start | date:'HH:MM a'}} - {{class.times[2].end | date:'HH:MM a'}}" >W</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-thu" ng-model="class[3]" class="weekday" />
+                                    <label for="weekday-thu" uib-tooltip="{{class.times[3].start | date:'HH:MM a'}} - {{class.times[3].end | date:'HH:MM a'}}" >Th</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-fri" ng-model="class[4]" class="weekday" />
+                                    <label for="weekday-fri" uib-tooltip="{{class.times[4].start | date:'HH:MM a'}} - {{class.times[4].end | date:'HH:MM a'}}" >F</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-sat" ng-model="class[5]" class="weekday" />
+                                    <label for="weekday-sat" uib-tooltip="{{class.times[5].start | date:'HH:MM a'}} - {{class.times[5].end | date:'HH:MM a'}}" >S</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-sun" ng-model="class[6]" class="weekday" />
+                                    <label for="weekday-sun" uib-tooltip="{{class.times[6].start | date:'HH:MM a'}} - {{class.times[6].end | date:'HH:MM a'}}" >Su</label>
+                                </div>
+                            </div>
+                            </li>
                         </ul>
                     </div>
                     <div class="outlined clearfix pad-10 no-top-border">
-                        <a href="" class="outlined-btn gray-btn float-rt m-r-0 m-r-0">View All</a>
+                        <a ui-sref="myCourses" class="outlined-btn gray-btn float-rt m-r-0 m-r-0">View All</a>
                     </div>
                 </div>
                 <!-- / Upcoming Classes -->
@@ -91,7 +113,7 @@
                         </ul>
                     </div>
                     <div class="outlined clearfix pad-10 no-top-border">
-                        <a href="" class="outlined-btn gray-btn float-rt m-r-0">View All</a> <a ui-sref="newClassroom" class="outlined-btn gray-btn float-rt">Create Course </a>
+                        <a ui-sref="myCourses" class="outlined-btn gray-btn float-rt m-r-0">View All</a> <a ui-sref="newClassroom" class="outlined-btn gray-btn float-rt">Create Course </a>
                     </div>
                 </div>
                 <!-- / Courses -->

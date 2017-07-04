@@ -23,8 +23,13 @@ app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFac
         $scope.dashboards.push({
             url: "js/authorized/dashboard/teacher.html"
         })
-        classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
-            $scope.classrooms = classrooms
+        classroomFactory.getCurrentTeacherClassrooms($scope.user.id).then(currentClasses => {
+            $scope.classrooms = currentClasses
+            $scope.classrooms.forEach(classroom => {
+                Object.keys(classroom.times).forEach(day => {
+                    classroom[day] = true
+                })
+            })
         })
         transactionFactory.getLatestTransactions($scope.user.id).then(transactions => {
             $scope.transactions = transactions[0]
@@ -35,6 +40,11 @@ app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFac
         })
         classroomFactory.getClassroomsByStudent($scope.user.id).then(classrooms => {
             $scope.classrooms = classrooms
+        })
+        $scope.classrooms.forEach(classroom => {
+            Object.keys(classroom.times).forEach(day => {
+                classroom[day] = true
+            })
         })
     }
 

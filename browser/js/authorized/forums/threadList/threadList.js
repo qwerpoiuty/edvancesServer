@@ -38,8 +38,7 @@ app.controller('threadListCtrl', ($scope, threads, $uibModal, $stateParams, $sta
             }
         })
         modalInstance.result.then(thread => {
-
-            if (result) {
+            if (thread) {
                 $scope.transition(thread.id)
             } else {
                 notificationService.displayNotification('Error creating thread')

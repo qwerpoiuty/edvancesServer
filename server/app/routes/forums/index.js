@@ -1,6 +1,7 @@
 'use strict';
 var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
+var path = require('path');
 var _ = require('lodash');
 var chalk = require('chalk')
 var db = require('../../../db');
@@ -12,17 +13,10 @@ var Comment = db.model('comment')
 var Message = db.model('message')
 var multer = require('multer')
 var azure = require('azure-storage');
-var blobSvc = azure.createBlobService('DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net')
+var env = require(path.join(__dirname, '../../../env'));
+var blobSvc = azure.createBlobService(env.AZURE_ENDPOINT)
 var storage = multer.memoryStorage();
 var streamifier = require('streamifier');
-// var storage = multer.diskStorage({
-//     destination: function(req, file, cb) {
-//         cb(null, './browser/uploads/lessons')
-//     },
-//     filename: function(req, file, cb) {
-//         cb(null, 'L_' + req.params.id + '-' + file.originalname)
-//     }
-// })
 var upload = multer({
     storage: storage
 })

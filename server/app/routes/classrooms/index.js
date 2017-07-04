@@ -1,6 +1,11 @@
 'use strict';
 var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
+var path = require('path');
+var env = require(path.join(__dirname, '../../../env'));
+var azure = require('azure-storage');
+var azure_endpoint = env.AZURE_ENDPOINT
+var blobSvc = azure.createBlobService(azure_endpoint)
 var _ = require('lodash');
 var chalk = require('chalk')
 var db = require('../../../db');
@@ -9,8 +14,6 @@ var User = db.model('user')
 var Transaction = db.model('transaction')
 var Forum = db.model('forum')
 var multer = require('multer')
-var azure = require('azure-storage');
-var blobSvc = azure.createBlobService('DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net')
 var storage = multer.memoryStorage();
 var streamifier = require('streamifier');
 var upload = multer({
@@ -42,9 +45,15 @@ on teacher.id = c.teacher where c.id = ${req.params.id} limit 1`).then(classroom
         res.json(classroom[0])
     })
 })
+
+router.get('/currentTeacherClassrooms/:id', (req, res, next) => {
+    db.query(`select c.* from classrooms c inner join users u on u.id = c.teacher where u.id = ${req.params.id} and c."startDate" > CURRENT_TIMESTAMP and c."endDate" < CURRENT_TIMESTAMP`).then(classrooms => {
+        res.json(classrooms[0])
+    })
+})
 router.get('/teacher/:id', (req, res) => {
     //remember to fetch prices here as well
-    db.query(`select c.* from classrooms c inner join users u on u.id = c.teacher where u.id = ${req.params.id}`).then(classrooms => {
+    db.query(`select c.* from classrooms c inner join users u on u.id = c.teacher where u.id = ${req.params.id} order by c."createdAt"`).then(classrooms => {
         res.json(classrooms[0])
     })
 })
@@ -52,6 +61,13 @@ router.get('/teacher/:id', (req, res) => {
 router.get('/student/:id', (req, res) => {
     //remember to fetch prices here as well
     db.query(`select c.* from classrooms c inner join users u on u.id = any(c.students) where u.id = ${req.params.id}`).then(classrooms => {
+        res.json(classrooms[0])
+    })
+})
+
+router.get('/currentStudentClassrooms/:id', (req, res) => {
+    //remember to fetch prices here as well
+    db.query(`select c.* from classrooms c inner join users u on u.id = any(c.students) where u.id = ${req.params.id}and c."startDate" > CURRENT_TIMESTAMP and c."endDate" < CURRENT_TIMESTAMP`).then(classrooms => {
         res.json(classrooms[0])
     })
 })

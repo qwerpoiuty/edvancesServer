@@ -25,6 +25,11 @@ app.controller('myCourseCtrl', function($scope, user, userFactory, classroomFact
     if ($scope.teacher) {
         classroomFactory.getClassroomsByTeacher($scope.user.id).then(result => {
             $scope.classrooms = result
+            $scope.classrooms.forEach(classroom => {
+                Object.keys(classroom.times).forEach(day => {
+                    classroom[day] = true
+                })
+            })
             console.log($scope.classrooms)
         })
     } else {
@@ -48,8 +53,13 @@ app.controller('myCourseCtrl', function($scope, user, userFactory, classroomFact
         })
         modalInstance.result.then(result => {
             if (result) {
-                classroomFactory.findSingleClassroom($stateParams.id).then(response => {
-                    $scope.classroom = response
+                classroomFactory.getClassroomsByTeacher($scope.user.id).then(result => {
+                    $scope.classrooms = result
+                    $scope.classrooms.forEach(classroom => {
+                        Object.keys(classroom.times).forEach(day => {
+                            classroom[day] = true
+                        })
+                    })
                 })
             }
         })

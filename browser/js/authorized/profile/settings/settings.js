@@ -22,7 +22,9 @@ app.controller('settingsCtrl', function($scope, userFactory, transactionFactory,
             $scope.days[key] = true
         }
     }
-    $scope.interests = {}
+    if ($scope.user.interests !== null) $scope.interests = $scope.user.interests
+    else $scope.interests = {}
+
     $scope.weekdays = {
         0: 'Monday',
         1: 'Tuesday',
@@ -39,7 +41,7 @@ app.controller('settingsCtrl', function($scope, userFactory, transactionFactory,
         })
     }
     $scope.updateUser = user => {
-        console.log($scope.interests)
+        user.interests = $scope.interests
         let times = {}
         if ($scope.user.role == 1) {
             for (var i = 0; i < $scope.days.length; i++) {

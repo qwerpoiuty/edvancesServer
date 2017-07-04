@@ -53,14 +53,28 @@
                 <!-- Quiz Listing start -->
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-6 quiz-block mar-btm-30" ng-repeat="class in classrooms track by $index" >
-                        <a ng-click="transition(class.id)"> <img ng-src="{{class.image}}" alt="{{class.title}}" title="{{class.title}}"></a>
+                        <a ng-click="transition(class.id)"> <img style="min-height:274px" ng-src="{{class.image}}" alt="{{class.title}}" title="{{class.title}}"></a>
                         <div class="outlined pad-20">
-                            <div class="mycour activity-title"><a ng-click="transition(class.id)">{{class.title}} </a><i class="fa fa-check-circle geen-text pull-right"></i>
+                            <div class="mycour activity-title">
+                                <a ng-click="transition(class.id)">{{class.title}}</a>
+                                <h5>Hover to view class times</h5>
                                 <br>
-                                <span class="desc-det">
-                                    <span class="desc-lbl p-l-0" ng-repeat="(key,value) in class.times">{{weekdays[key]}}: {{value.start | date:'HH:mm a'}}-{{value.end | date:'HH:mm a'}}
-</span>
-                                </span>
+                                <div class="weekDays-selector" style="font-size:14px;">
+                                    <input ng-disabled="true" type="checkbox" id="weekday-mon" ng-model="class[0]" class="weekday" />
+                                    <label for="weekday-mon" uib-tooltip="{{class.times[0].start | date:'HH:MM a'}} - {{class.times[0].end | date:'HH:MM a'}}">M</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-tue" ng-model="class[1]" class="weekday" />
+                                    <label for="weekday-tue" uib-tooltip="{{class.times[1].start | date:'HH:MM a'}} - {{class.times[1].end | date:'HH:MM a'}}" >T</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-wed" ng-model="class[2]" class="weekday" />
+                                    <label for="weekday-wed" uib-tooltip="{{class.times[2].start | date:'HH:MM a'}} - {{class.times[2].end | date:'HH:MM a'}}" >W</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-thu" ng-model="class[3]" class="weekday" />
+                                    <label for="weekday-thu" uib-tooltip="{{class.times[3].start | date:'HH:MM a'}} - {{class.times[3].end | date:'HH:MM a'}}" >Th</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-fri" ng-model="class[4]" class="weekday" />
+                                    <label for="weekday-fri" uib-tooltip="{{class.times[4].start | date:'HH:MM a'}} - {{class.times[4].end | date:'HH:MM a'}}" >F</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-sat" ng-model="class[5]" class="weekday" />
+                                    <label for="weekday-sat" uib-tooltip="{{class.times[5].start | date:'HH:MM a'}} - {{class.times[5].end | date:'HH:MM a'}}" >S</label>
+                                    <input ng-disabled="true" type="checkbox" id="weekday-sun" ng-model="class[6]" class="weekday" />
+                                    <label for="weekday-sun" uib-tooltip="{{class.times[6].start | date:'HH:MM a'}} - {{class.times[6].end | date:'HH:MM a'}}" >Su</label>
+                                </div>
                             </div>
                         </div>
                         <div class="outlined pad-10 clearfix no-top-border">

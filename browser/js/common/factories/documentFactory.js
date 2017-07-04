@@ -1,8 +1,10 @@
 app.factory('documentFactory', function($http) {
     var d = {}
         //teachers
-    d.getCredentials = (userid) => {
-        return $http.get('/api/documents/credentials/' + userid).then(response => {
+    d.getDocuments = (query) => {
+        return $http.get('/api/documents/', {
+            params: query
+        }).then(response => {
             return response.data
         })
     }

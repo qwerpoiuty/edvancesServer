@@ -31,4 +31,9 @@ app.controller('teacherDetailCtrl', function($scope, userFactory, classroomFacto
         5: 'Saturday',
         6: 'Sunday'
     }
+    documentFactory.getDocuments({
+        owner: $scope.teacher.id
+    }).then(documents => {
+        $scope.credentials = documents
+    })
 })

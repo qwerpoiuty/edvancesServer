@@ -1,15 +1,14 @@
-app.config(function($stateProvider) {
-    $stateProvider.state('earnings', {
-        templateUrl: 'js/authorized/teachers/reports/earnings/earnings.html',
-        controller: 'earningsCtrl',
-        url: '/earnings',
-        parent: 'reports',
-        resolve: {
+// app.config(function($stateProvider) {
+//     $stateProvider.state('earnings', {
+//         templateUrl: 'js/authorized/teachers/reports/earnings/earnings.html',
+//         controller: 'earningsCtrl',
+//         url: '/earnings',
+//         parent: 'reports',
+//         resolve: {
 
-        }
-    });
-});
-
+//         }
+//     });
+// });
 app.controller('earningsCtrl', function($scope, $sce, $uibModal, userFactory, $state, documentFactory, $stateParams, AuthService, moment) {
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {

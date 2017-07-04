@@ -2,22 +2,26 @@
 var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
 var _ = require('lodash');
+var path = require('path');
 var chalk = require('chalk')
 var db = require('../../../db');
 var User = db.model('user')
 var multer = require('multer')
 var azure = require('azure-storage');
-var blobSvc = azure.createBlobService('DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net')
+var env = require(path.join(__dirname, '../../../env'));
+var azure_endpoint = env.AZURE_ENDPOINT
+var blobSvc = azure.createBlobService(azure_endpoint)
 var storage = multer.memoryStorage();
 var streamifier = require('streamifier');
-// var storage = multer.diskStorage({
-//     destination: function(req, file, cb) {
-//         cb(null, './browser/uploads/lessons')
-//     },
-//     filename: function(req, file, cb) {
-//         cb(null, 'L_' + req.params.id + '-' + file.originalname)
-//     }
-// })
+var Document = db.model('document')
+    // var storage = multer.diskStorage({
+    //     destination: function(req, file, cb) {
+    //         cb(null, './browser/uploads/lessons')
+    //     },
+    //     filename: function(req, file, cb) {
+    //         cb(null, 'L_' + req.params.id + '-' + file.originalname)
+    //     }
+    // })
 var upload = multer({
     storage: storage
 })
@@ -92,7 +96,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/profilePic/:id', upload.single('profilePic'), (req, res) => {
+router.post('/profilePic/:id', upload.single('profilePic'), (req, res, next) => {
     var stream = streamifier.createReadStream(req.file.buffer)
     var picName = req.params.id + '-' + req.file.originalname
     blobSvc.createBlockBlobFromStream('profile-pictures', req.params.id + '-' + req.file.originalname, stream, req.file.size,
@@ -111,6 +115,26 @@ router.post('/profilePic/:id', upload.single('profilePic'), (req, res) => {
                 })
             } else {
                 res.json(new error('Upload unsuccessful'))
+            }
+        })
+})
+
+router.post('/credential/:id', ensureAuthenticated, upload.single('credential'), (req, res, next) => {
+    var stream = streamifier.createReadStream(req.file.buffer)
+    blobSvc.createBlockBlobFromStream('credentials', req.params.id + '-' + req.file.originalname, stream, req.file.size,
+        function(error, result, response) {
+            if (!error) {
+                var credential = {
+                    name: req.file.originalname,
+                    type: req.file.mimetype,
+                    size: req.file.size,
+                    owner: req.params.id
+                }
+                Document.create(credential).then(document => {
+                    res.json(document)
+                })
+            } else {
+                res.json(new Error('error submitting credential'))
             }
         })
 })

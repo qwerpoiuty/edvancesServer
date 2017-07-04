@@ -2,13 +2,16 @@
 var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
 var _ = require('lodash');
+var path = require('path');
 var chalk = require('chalk')
 var db = require('../../../db');
 var Transaction = db.model('transaction')
 var User = db.model('user')
 var multer = require('multer')
+var env = require(path.join(__dirname, '../../../env'));
 var azure = require('azure-storage');
-var blobSvc = azure.createBlobService('DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net')
+var azure_endpoint = env.AZURE_ENDPOINT
+var blobSvc = azure.createBlobService(azure_endpoint)
 var storage = multer.memoryStorage();
 var streamifier = require('streamifier');
 var upload = multer({

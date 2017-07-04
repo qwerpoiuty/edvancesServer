@@ -6,11 +6,16 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('credentialsCtrl', function($scope, userFactory, transactionFactory) {
+app.controller('credentialsCtrl', function($scope, userFactory, transactionFactory, documentFactory) {
     $scope.teacher = ($scope.user.role == 1)
     $scope.times = {}
     $scope.days = [, , , , , , , ]
-    console.log($scope.user)
+    $scope.submitting = false
+    documentFactory.getDocuments({
+        owner: $scope.user.id
+    }).then(documents => {
+        $scope.credentials = documents
+    })
     if ($scope.user.teacherOptions) {
         Object.keys($scope.user.teacherOptions.times).forEach(time => {
             $scope.times[time] = {}
@@ -37,6 +42,34 @@ app.controller('credentialsCtrl', function($scope, userFactory, transactionFacto
             $scope.getUpdatedUser(response.data.id)
         })
     }
+    $scope.addCredential = (cred) => {
+        if ($scope.submitting) return
+        $scope.submitting = true
+        userFactory.addCredential(cred, $scope.user.id).then(response => {
+            $scope.submitting = false
+            $scope.credentials.push(response)
+        })
+    }
+
+    $scope.removeLessonDoc = (materialIndex, lesson) => {
+        lesson.materials.splice(materialIndex, 1)
+        var materials = lesson.materials.map(e => {
+            return e.id
+        })
+        var updates = {
+            updates: {
+                materials: materials
+            }
+        }
+        classroomFactory.updateLesson(lesson.id, updates).then(response => {
+            if (response.status == "OK") {
+                notificationService.displayNotification('Document Deleted')
+            } else {
+                notificationService.displayNotification('Error deleted document, please try again.')
+            }
+        })
+    }
+
     $scope.updateUser = user => {
         let times = {}
         if ($scope.user.role == 1) {

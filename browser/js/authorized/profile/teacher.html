@@ -30,7 +30,13 @@
                         <label class="col-md-3"><strong>Experience</strong></label><span class="col-md-9">{{user.teacherOptions.experience}}</span>
                     </li>
                     <li class="clearfix">
-                        <label class="col-md-3"><strong>Credentials</strong></label><span class="col-md-9">{{user.teacherOptions.credentials}}</span>
+                        <label class="col-md-3"><strong>Credentials</strong></label><span class="col-md-9">
+                            <a ng-href="https://edvancesstorage.blob.core.windows.net/credentials/{{user.id + '-' + credential.name}}" download="{{credential.name}}" target="_self" ng-repeat = "credential in credentials" class= "link clearfix">{{credential.name}}
+                            </a>
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <label class="col-md-3"><strong>Interests</strong></label><span class="col-md-9">{{interests}}</span>
                     </li>
                     <li class="clearfix">
                         <label class="col-md-3"><strong>Courses</strong></label><span class="col-md-9"><a href="" class="link"> <i class="fa fa-mortar-board"></i> {{classrooms.length}}</a></span>

@@ -91,7 +91,7 @@
                                                 <h4 class="innertab accordion-toggle outlined pad-20 no-bottom-border clearfix active-tab"><i class="fa fa-file"></i> Lesson Documents <i class="fa fa-angle-down"></i></h4>
                                                 <div class="innercont accordion-content default outlined pad-20 no-pad-top no-top-border no-bottom-border active-cont">
                                                     <div ng-repeat="material in lesson.materials track by $index">
-                                                        <a class="link" ng-href="https://edvances.blob.core.windows.net/edvances-lesson-docs/L-{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
+                                                        <a class="link" ng-href="https://edvancesstorage.blob.core.windows.net/edvances-lesson-docs/L-{{lesson.id + '-' + material.name}}" download="{{material.name}}" target="_self">{{material.name}}</a>
                                                         <p>Date Uploaded: {{material.createdAt | date:'longDate'}}</p>
                                                         <button ng-click="removeLessonDoc($index,lesson)" class="btn btn-sm">Delete File</button>
                                                     </div>
@@ -161,7 +161,7 @@
                                     <div class="outlined m-t-10 pad-20">
                                         <ul class="notes-list">
                                             <li ng-repeat="note in classroomNotes track by $index">
-                                                <a ng-href="https://edvances.blob.core.windows.net/class-documents/C-{{classroom.id + '-' + note.name}}" download="{{note.name}}" target="_self">
+                                                <a ng-href="https://edvancesstorage.blob.core.windows.net/class-documents/C-{{classroom.id + '-' + note.name}}" download="{{note.name}}" target="_self">
                                                     <span class="notes-text">
                                             <span class="reltd-title reltitle">{{note.name}}</span>
                                                     </span>
