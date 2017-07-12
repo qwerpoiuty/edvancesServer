@@ -36,14 +36,14 @@ app.controller('checkoutCtrl', ($scope, transactionFactory, notificationService)
             }
             transactionFactory.createSale(paypalInfo, $scope.user.id).then(result => {
                 //notification for success and redirect to dashboard
-                if (result.status == 200) {
+                if (result.status === 200) {
                     var modal = notificationService.displayNotification('Payment Successful')
-                    modal.result.then(result => {
+                    modal.result.then(() => {
                         $state.go('dashboard')
                     })
                 } else {
                     var modal = notificationService.displayNotification('Payment Error')
-                    modal.result.then(result => {
+                    modal.result.then(() => {
                         $scope.shopping = true
                         $scope.ccInfo = {}
                         $scope.credits = null
@@ -65,12 +65,12 @@ app.controller('checkoutCtrl', ($scope, transactionFactory, notificationService)
                 //notification for success and redirect to dashboard
                 if (result.status == 200) {
                     var modal = notificationService.displayNotification('Payment Successful')
-                    modal.result.then(result => {
-                        // $state.go('dashboard')
+                    modal.result.then(() => {
+                        $state.go('dashboard')
                     })
                 } else {
                     var modal = notificationService.displayNotification('Payment Error')
-                    modal.result.then(result => {
+                    modal.result.then(() => {
                         $scope.shopping = true
                         $scope.ccInfo = {}
                         $scope.credits = null

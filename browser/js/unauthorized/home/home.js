@@ -28,15 +28,6 @@ app.controller('homeCtrl', function($scope) {
         }
     }
 
-    function generateIndexesArray() {
-        var indexes = [];
-        for (var i = 0; i < currIndex; ++i) {
-            indexes[i] = i;
-        }
-        return shuffle(indexes);
-    }
-
-    // http://stackoverflow.com/questions/962802#962890
     function shuffle(array) {
         var tmp, current, top = array.length;
 
@@ -51,4 +42,16 @@ app.controller('homeCtrl', function($scope) {
 
         return array;
     }
+
+    function generateIndexesArray() {
+        var indexes = [];
+        for (var i = 0; i < currIndex; ++i) {
+            indexes[i] = i;
+        }
+        return shuffle(indexes);
+    }
+
+    // http://stackoverflow.com/questions/962802#962890
+
+    $scope.randomize()
 })

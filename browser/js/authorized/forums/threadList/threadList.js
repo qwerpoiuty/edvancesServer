@@ -20,7 +20,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('threadListCtrl', ($scope, threads, $uibModal, $stateParams, $state, classroom) => {
+app.controller('threadListCtrl', ($scope, threads, $uibModal, $stateParams, $state, classroom, notificationService) => {
     $scope.classroom = classroom
     $scope.threads = threads
     $scope.newThread = () => {

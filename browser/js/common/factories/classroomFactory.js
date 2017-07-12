@@ -96,7 +96,7 @@ app.factory('classroomFactory', function($http) {
         var query = {
             id: classroomId
         }
-        return $http.post('/api/classrooms/delete', email).then(response => {
+        return $http.post('/api/classrooms/delete', query).then(response => {
             return response.data
         })
     }

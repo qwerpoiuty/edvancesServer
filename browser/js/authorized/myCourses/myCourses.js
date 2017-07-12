@@ -11,7 +11,7 @@ app.config(function($stateProvider) {
 });
 
 app.controller('myCourseCtrl', function($scope, user, userFactory, classroomFactory, $state, $uibModal) {
-    $scope.teacher = $scope.user.role == 1
+    $scope.teacher = $scope.user.role === 1
     console.log($scope.user)
     $scope.weekdays = {
         0: 'Monday',
@@ -53,8 +53,8 @@ app.controller('myCourseCtrl', function($scope, user, userFactory, classroomFact
         })
         modalInstance.result.then(result => {
             if (result) {
-                classroomFactory.getClassroomsByTeacher($scope.user.id).then(result => {
-                    $scope.classrooms = result
+                classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
+                    $scope.classrooms = classrooms
                     $scope.classrooms.forEach(classroom => {
                         Object.keys(classroom.times).forEach(day => {
                             classroom[day] = true

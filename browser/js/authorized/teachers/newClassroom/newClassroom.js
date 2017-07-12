@@ -30,17 +30,17 @@ app.controller('newClassroomCtrl', function($scope, $sce, $uibModal, $state, cla
         classroom.times = {}
         for (var i = 0; i < $scope.days.length; i++) {
             if ($scope.days[i]) {
-                if ($scope.times[i].start == null || $scope.times[i].end == null) {
+                if ($scope.times[i].start === null || $scope.times[i].end === null) {
                     return alert('please fill out the times')
                 }
                 classroom.times[i] = $scope.times[i]
             }
         }
-        classroomFactory.createClassroom(classroom, $scope.classThumbnail).then(classroom => {
+        classroomFactory.createClassroom(classroom, $scope.classThumbnail).then(newClassroom => {
             $state.go("classroom", {
-                id: classroom.id
+                id: newClassroom.id
             })
-        }).catch(err => {
+        }).catch(() => {
             $scope.submitting = false
             notificationService.displayNotification('Error creating class, please try again')
         })

@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('myAssignmentsCtrl', ($scope, quizFactory, $state) => {
+app.controller('myAssignmentsCtrl', ($scope, quizFactory, $state, notificationService) => {
     $scope.inProgress = false
     quizFactory.getQuizzesByStudent($scope.user.id).then(quizzes => {
         $scope.quizzes = quizzes[0]
@@ -20,7 +20,7 @@ app.controller('myAssignmentsCtrl', ($scope, quizFactory, $state) => {
     }
     $scope.submitQuiz = () => {
         quizFactory.submitQuiz($scope.user.id, $scope.quiz.id).then(quiz => {
-
+            notificationService.displayNotification('Successfully submitted quiz')
         })
     }
 

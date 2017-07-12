@@ -16,7 +16,9 @@ app.factory('transactionFactory', function($http) {
     }
 
     d.getTransactionsByStudent = (studentID) => {
-
+        return $http.get('/api/transactions/student/' + studentID).then(response => {
+            return response.data
+        })
     }
     d.createSale = (ccinfo, userID) => {
 

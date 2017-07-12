@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
 });
 
 app.controller('profileCtrl', function($scope, $sce, $uibModal, classroomFactory, userFactory, transactionFactory, documentFactory) {
-    $scope.teacher = ($scope.user.role == 1)
+    $scope.teacher = ($scope.user.role === 1)
     if ($scope.teacher) {
         classroomFactory.getClassroomsByTeacher($scope.user.id).then(classrooms => {
             $scope.classrooms = classrooms

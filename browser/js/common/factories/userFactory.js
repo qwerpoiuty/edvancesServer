@@ -67,9 +67,6 @@ app.factory('userFactory', function($http) {
         })
     }
     d.deleteUser = (email) => {
-        var query = {
-            email: email
-        }
         return $http.post('/api/users/delete', email).then(response => {
             return response.data
         })

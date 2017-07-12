@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
         resolve: {
             classroom: (classroomFactory, $stateParams, $state) => {
                 return classroomFactory.findSingleClassroom($stateParams.id).then(classroom => {
-                    if (classroom.length == 0) $state.go('dashboard')
+                    if (classroom.length === 0) $state.go('dashboard')
                     return classroom
                 })
             },
@@ -22,7 +22,6 @@ app.config(function($stateProvider) {
 
 app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, classroomFactory, $stateParams, lessons, documentFactory, moment, Socket, notificationService) {
     //inits
-    console.log(lessons)
     $scope.classroom = classroom[0]
     $scope.lessons = lessons
     $scope.teacher = $scope.user.id === $scope.classroom.teacher_id
@@ -60,7 +59,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         }
     }
     $scope.getDocuments = () => {
-        var lessons = $scope.lessons.forEach(lesson => {
+        $scope.lessons.forEach(lesson => {
             classroomFactory.getLessonDocuments(lesson.materials).then(materials => {
                 lesson.materials = materials
             })
@@ -107,11 +106,10 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             }
         })
         modalInstance.result.then(result => {
-            console.log(result)
             if (result) {
                 $scope.lessons.push(result)
             } else {
-
+                notificationService.displayNotification('Error Adding Lesson')
             }
         })
     }
@@ -179,7 +177,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
             }
         }
         classroomFactory.updateLesson(lesson.id, updates).then(response => {
-            if (response.status == "OK") {
+            if (response.status === "OK") {
                 notificationService.displayNotification('Document Deleted')
             } else {
                 notificationService.displayNotification('Error deleted document, please try again.')
@@ -194,7 +192,7 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
     }
     $scope.removeClassroomNote = (docId, index) => {
         documentFactory.deleteDoc(docId).then(response => {
-            $scope.classnotes.splice(index, 1)
+            if(response) $scope.classnotes.splice(index, 1)
         })
     }
 
@@ -234,9 +232,9 @@ app.controller('classroomCtrl', function($scope, $sce, $uibModal, classroom, cla
         }
     }
 
-    $scope.submitAssignment = ($file, studentId) => {
+    // $scope.submitAssignment = ($file, studentId) => {
 
-    }
+    // }
 
     //socket
     Socket.emit('join classroom', $scope.room)

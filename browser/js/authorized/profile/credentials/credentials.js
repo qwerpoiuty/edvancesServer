@@ -6,8 +6,8 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('credentialsCtrl', function($scope, userFactory, transactionFactory, documentFactory) {
-    $scope.teacher = ($scope.user.role == 1)
+app.controller('credentialsCtrl', function($scope, userFactory, transactionFactory, documentFactory, classroomFactory, notificationService) {
+    $scope.teacher = ($scope.user.role === 1)
     $scope.times = {}
     $scope.days = [, , , , , , , ]
     $scope.submitting = false
@@ -62,7 +62,7 @@ app.controller('credentialsCtrl', function($scope, userFactory, transactionFacto
             }
         }
         classroomFactory.updateLesson(lesson.id, updates).then(response => {
-            if (response.status == "OK") {
+            if (response.status === "OK") {
                 notificationService.displayNotification('Document Deleted')
             } else {
                 notificationService.displayNotification('Error deleted document, please try again.')
@@ -72,14 +72,14 @@ app.controller('credentialsCtrl', function($scope, userFactory, transactionFacto
 
     $scope.updateUser = user => {
         let times = {}
-        if ($scope.user.role == 1) {
+        if ($scope.user.role === 1) {
             for (var i = 0; i < $scope.days.length; i++) {
                 console.log('hello')
                 if ($scope.days[i]) times[i] = $scope.times[i]
             }
             user.teacherOptions.times = times
         }
-        userFactory.updateUser(user).then(user => {
+        userFactory.updateUser(user).then(() => {
             $state.go('profile')
         })
     }

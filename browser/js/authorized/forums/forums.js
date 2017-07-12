@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('forumsCtrl', function($scope, $uibModal, forumFactory, $state, notificationService) {
+app.controller('forumsCtrl', function($scope, $uibModal, forumFactory, $state) {
     //inits
     if ($scope.user.role === 1) $scope.teacher = true
     else $scope.teacher = false

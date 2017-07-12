@@ -1,7 +1,7 @@
 app.directive('accordion', function() {
     return {
         restrict: 'A',
-        link: function(scope, element, attrs) {
+        link: function(scope, element) {
             element.bind('click', function() {
                 let target = $(element).next(".accordion-content")
                 if (element.hasClass("active-tab")) {

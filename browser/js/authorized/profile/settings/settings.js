@@ -43,14 +43,14 @@ app.controller('settingsCtrl', function($scope, userFactory, transactionFactory,
     $scope.updateUser = user => {
         user.interests = $scope.interests
         let times = {}
-        if ($scope.user.role == 1) {
+        if ($scope.user.role === 1) {
             for (var i = 0; i < $scope.days.length; i++) {
                 if ($scope.days[i]) times[i] = $scope.times[i]
             }
             if (!user.teacherOptions) user.teacherOptions = {}
             user.teacherOptions.times = times
         }
-        userFactory.updateUser(user).then(user => {
+        userFactory.updateUser(user).then(() => {
             $state.go('profile')
         })
     }

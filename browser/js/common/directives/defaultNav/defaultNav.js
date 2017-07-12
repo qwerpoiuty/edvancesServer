@@ -49,11 +49,12 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, 
             }
 
             scope.signup = () => {
-                var modalInstance = $uibModal.open({
+                $uibModal.open({
                     templateUrl: "js/common/modals/signup/signup.html",
                     controller: 'signupCtrl',
                     size: 'md'
                 })
+
             }
 
             $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);

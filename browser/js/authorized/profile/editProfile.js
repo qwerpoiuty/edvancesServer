@@ -9,7 +9,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory, $state, documentFactory, $stateParams, AuthService, moment) {
+app.controller('editProfileCtrl', function($scope, $sce, $uibModal, userFactory, $state) {
     $scope.teacher = $scope.user.role === 1
     $scope.test = function() {
         userFactory.changeProfile($scope.user.id, $scope.newProfilePic).then(response => {

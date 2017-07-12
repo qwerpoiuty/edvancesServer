@@ -22,7 +22,6 @@
      $scope.newQuiz.open = new Date($scope.newQuiz.open)
      $scope.newQuiz.close = new Date($scope.newQuiz.close)
      if ($scope.newQuiz.timeFrame) $scope.timeFrame = true
-     console.log($scope.newQuiz)
      if ($scope.user.id !== $scope.quiz.owner) $state.go('dashboard')
 
      $scope.questions = $scope.quiz.questions

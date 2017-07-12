@@ -25,7 +25,7 @@ app.controller('searchCtrl', function($scope, $uibModal, classroomFactory, userF
         6: 'Sunday'
     }
     $scope.classrooms = classrooms
-    $scope.teacher = ($scope.user.role == 1)
+    $scope.teacher = ($scope.user.role === 1)
     console.log(classrooms)
 
     $scope.transition = (id) => {

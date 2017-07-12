@@ -18,7 +18,7 @@
         var settings = $.extend({}, $.fn.eCalendar.defaults, options);
 
         function lpad(value, length, pad) {
-            if (typeof pad == 'undefined') {
+            if (typeof pad === 'undefined') {
                 pad = '0';
             }
             var p;
@@ -74,7 +74,7 @@
         };
 
         function loadEvents() {
-            if (typeof settings.url != 'undefined' && settings.url != '') {
+            if (typeof settings.url !== 'undefined' && settings.url !== '') {
                 $.ajax({
                     url: settings.url,
                     async: false,
@@ -137,12 +137,12 @@
                     cDay.html(dLastDayOfPreviousMonth++);
                 } else if (day <= dLastDayOfMonth) {
                     cDay.addClass('c-day c-pad-top');
-                    if (day == dDay && adMonth == dMonth && adYear == dYear) {
+                    if (day === dDay && adMonth === dMonth && adYear === dYear) {
                         cDay.addClass('c-today');
                     }
                     for (var j = 0; j < settings.events.length; j++) {
                         var d = settings.events[j].datetime;
-                        if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
+                        if (d.getDate() === day && d.getMonth() === dMonth && d.getFullYear() === dYear) {
                             cDay.addClass('c-event').attr('data-event-day', d.getDate());
                             cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
                         }
@@ -157,7 +157,7 @@
             var eventList = $('<div/>').addClass('c-event-list');
             for (var i = 0; i < settings.events.length; i++) {
                 var d = settings.events[i].datetime;
-                if (d.getMonth() == dMonth && d.getFullYear() == dYear) {
+                if (d.getMonth() === dMonth && d.getFullYear() === dYear) {
                     var date = lpad(d.getDate(), 2) + '/' + lpad(d.getMonth() + 1, 2) + ' ' + lpad(d.getHours(), 2) + ':' + lpad(d.getMinutes(), 2);
                     var item = $('<div/>').addClass('c-event-item');
                     var title = $('<div/>').addClass('title').html(date + '  ' + settings.events[i].title + '<br/>');
