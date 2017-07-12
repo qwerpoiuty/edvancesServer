@@ -7,7 +7,3 @@ app.config(function($stateProvider) {
             //you're going to need to resolve all the lessons and quizes this student is a part of ever.
     });
 });
-
-app.controller('myGradesCtrl', ($scope) => {
-
-})
