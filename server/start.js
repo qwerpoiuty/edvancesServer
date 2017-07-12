@@ -11,48 +11,48 @@
  start your application from main.js.
 
 */
-'use strict';
-require('babel-register');
+// 'use strict';
+// require('babel-register');
 
-var chalk = require('chalk');
-var db = require('./db');
+// var chalk = require('chalk');
+// var db = require('./db');
 
-var server = require('http').createServer();
+// var server = require('http').createServer();
 
-var createApplication = function() {
-    var app = require('./app')(db);
-    server.on('request', app); // Attach the Express application.
-    require('./io')(server); // Attach socket.io.
-};
+// var createApplication = function() {
+//     var app = require('./app')(db);
+//     server.on('request', app); // Attach the Express application.
+//     require('./io')(server); // Attach socket.io.
+// };
 
-var startServer = function() {
+// var startServer = function() {
 
-    var PORT = process.env.PORT || 1337;
+//     var PORT = process.env.PORT || 1337;
 
-    server.listen(PORT, function() {
-        console.log(chalk.blue('Server started on port', chalk.magenta(PORT)));
-    });
-
-};
-
-// createApplication()
-// startServer()
-db.sync().then(createApplication).then(startServer).catch(function(err) {
-    console.error(chalk.red(err.stack));
-});
-
-// var http = require('http');
-
-// var server = http.createServer(function(request, response) {
-
-//     response.writeHead(200, {
-//         "Content-Type": "text/plain"
+//     server.listen(PORT, function() {
+//         console.log(chalk.blue('Server started on port', chalk.magenta(PORT)));
 //     });
-//     response.end("Hello Azure!");
 
+// };
+
+// // createApplication()
+// // startServer()
+// db.sync().then(createApplication).then(startServer).catch(function(err) {
+//     console.error(chalk.red(err.stack));
 // });
 
-// var port = process.env.PORT || 1337;
-// server.listen(port);
+var http = require('http');
 
-// console.log("Server running at http://localhost:%d", port);
+var server = http.createServer(function(request, response) {
+
+    response.writeHead(200, {
+        "Content-Type": "text/plain"
+    });
+    response.end("Hello Azure!");
+
+});
+
+var port = process.env.PORT || 1337;
+server.listen(port);
+
+console.log("Server running at http://localhost:%d", port);
