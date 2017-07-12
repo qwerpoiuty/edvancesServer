@@ -12,6 +12,6 @@ module.exports = {
     "LOGGING": true,
     "AZURE_STORAGE_ACCOUNT": 'edvancesstorage',
     'AZURE_STORAGE_ACCESS_KEY': 'iBKzlrDk5Q91fkecyVYCjoBSl1XwLyDNrMkloUoqfVtRo9YAcprZSMhezRyBeeDm3UGIyFNnQFSw6axRHK2hWQ==',
-    "AZURE_ENDPOINT": 'DefaultEndpointsProtocol=https;AccountName=edvances;AccountKey=E69FNxbG0QQF+rLoFRRYulGDKWOYMmfUn1WmNtf9uznDauN0yksEgFFZot+sYPcjEGoHSRl2ccPj8R8JAPaHYA==;EndpointSuffix=core.windows.net'
+    "AZURE_ENDPOINT": 'DefaultEndpointsProtocol=https;AccountName=edvancesstorage;AccountKey=iBKzlrDk5Q91fkecyVYCjoBSl1XwLyDNrMkloUoqfVtRo9YAcprZSMhezRyBeeDm3UGIyFNnQFSw6axRHK2hWQ==;EndpointSuffix=core.windows.net'
 
 };
