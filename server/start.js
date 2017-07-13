@@ -22,7 +22,7 @@ var server = require('http').createServer();
 var createApplication = function() {
     var app = require('./app')(db);
     server.on('request', app); // Attach the Express application.
-    require('./io')(server); // Attach socket.io.
+    // require('./io')(server); // Attach socket.io.
 };
 
 var startServer = function() {
@@ -40,6 +40,7 @@ var startServer = function() {
 db.sync().then(createApplication).then(startServer).catch(function(err) {
     console.error(chalk.red(err.stack));
 });
+
 // var http = require('http');
 
 // var server = http.createServer(function(request, response) {
