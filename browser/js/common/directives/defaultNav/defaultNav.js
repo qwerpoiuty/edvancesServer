@@ -1,4 +1,4 @@
-app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, $uibModal) {
+app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, $uibModal, $css) {
 
     return {
         restrict: 'E',
@@ -17,11 +17,28 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, 
             };
             var setUser = function() {
                 AuthService.getLoggedInUser().then(function(user) {
+                    $css.remove('/frontend.css')
+                    $css.bind({
+                        href: '/common.css',
+                        preload: true,
+                        persist: true
+                    }, $scope)
+                    if (user.role === 1) {
+                        $css.add('/teacher.css')
+                    } else {
+                        $css.add('/student.css')
+                    }
                     scope.user = user;
                 });
             };
             var removeUser = function() {
                 scope.user = null;
+                $css.remote(['/teacher.css', '/student.css', '/common.css'])
+                $css.bind({
+                    href: 'frontend.css',
+                    preload: true,
+                    persist: true
+                }, $scope)
             };
             scope.fold = function() {
                 document.getElementById('app').classList.toggle('app-aside-folded')
