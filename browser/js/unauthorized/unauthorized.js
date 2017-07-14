@@ -12,4 +12,11 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('unauthorizedCtrl', function($scope, $state, $css) {});
+app.controller('unauthorizedCtrl', function($scope, $state, $css) {
+    $css.bind({
+        href: 'frontend.css',
+        preload: true,
+        persist: true
+    }, $scope)
+
+});
