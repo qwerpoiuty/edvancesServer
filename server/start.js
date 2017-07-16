@@ -37,6 +37,7 @@ var startServer = function() {
 
 // createApplication()
 // startServer()
+
 db.sync().then(createApplication).then(startServer).catch(function(err) {
     console.error(chalk.red(err.stack));
 });
