@@ -1,4 +1,4 @@
-app.controller('loginCtrl', function($scope, AuthService, $state, $uibModalInstance, $state) {
+app.controller('loginCtrl', function($scope, AuthService, $state, $uibModalInstance) {
     $scope.authError = null;
 
     $scope.sendLogin = function(loginInfo) {

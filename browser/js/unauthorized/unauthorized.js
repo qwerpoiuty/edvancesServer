@@ -18,5 +18,4 @@ app.controller('unauthorizedCtrl', function($scope, $state, $css) {
         preload: true,
         persist: true
     }, $scope)
-
 });

@@ -9,9 +9,9 @@ a.active, a:hover { color: #0583e4; }
 .app:before { background-color: #fff; }
 .app-header-fixed { padding-top: 152px; }
 @media (min-width: 768px) {
- .app-aside, .navbar-header { width: 296px; }
+ .app-aside, .navbar-header { width: 233px; }
  .app-aside-folded .navbar-collapse, .navbar-collapse { margin-left: 0; }
- .app-content, .app-footer { margin-left: 296px; }
+ .app-content, .app-footer { margin-left: 263px; }
 }
 .bredcrumb i { padding: 0 5px; color: #ccc; }
 .bredcrumb a > small { color: #828386; }

@@ -17,28 +17,24 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, 
             };
             var setUser = function() {
                 AuthService.getLoggedInUser().then(function(user) {
-                    $css.remove('/frontend.css')
+
                     $css.bind({
                         href: '/common.css',
                         preload: true,
                         persist: true
-                    }, $scope)
+                    }, scope)
                     if (user.role === 1) {
                         $css.add('/teacher.css')
                     } else {
                         $css.add('/student.css')
                     }
                     scope.user = user;
+                    console.log(scope.user)
                 });
             };
             var removeUser = function() {
                 scope.user = null;
-                $css.remote(['/teacher.css', '/student.css', '/common.css'])
-                $css.bind({
-                    href: 'frontend.css',
-                    preload: true,
-                    persist: true
-                }, $scope)
+                $css.remove(['/teacher.css', '/student.css', '/common.css'])
             };
             scope.fold = function() {
                 document.getElementById('app').classList.toggle('app-aside-folded')
@@ -60,8 +56,10 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, 
                     size: 'md'
                 })
                 modalInstance.result.then(bool => {
-                    if (bool) $state.go('dashboard')
-
+                    if (bool) {
+                        $state.go('dashboard')
+                        $css.remove('frontend.css')
+                    }
                 })
             }
 
@@ -77,7 +75,6 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, 
             $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
             $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
-
         }
 
     };
