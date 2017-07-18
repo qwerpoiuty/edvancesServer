@@ -21,9 +21,9 @@ var upload = multer({
 
 var paypal = require('paypal-rest-sdk');
 paypal.configure({
-    'mode': 'sandbox', //sandbox or live
-    'client_id': 'ASX33ivFRB2yIssPe0uh9jD9OHzBspfG5k2aU1lTqCkrMRSb65iv49geLnnkjU-xNG-EBuE0-FiecLXr',
-    'client_secret': 'EP-GAGKEoyrXCPwasTDi9sfxkX6MUYL_7HCuJ5IRsv5e3Uskt-TXWEOL9cvoW_NPHG1hsPUCGGHE7_BD'
+    'mode': 'live', //sandbox or live
+    'client_id': 'AarURx5Iv2F2xmRs8ftGkEEYIMUouEvfEI3r_izCiSWaVZe_I-R7swaXsZ-aa2qoYjr-vanpKv32pSg-',
+    'client_secret': 'EOwVmn4ndvv1FyxXMPRhPXDFutUoOn5uN9AxiZFPu0I07BFze9GrSy8hnyoTHpa3Xkf8iFqhoDC0TMpA'
 })
 var ensureAuthenticated = function(req, res, next) {
     var err;
