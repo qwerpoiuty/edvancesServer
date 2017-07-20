@@ -35,7 +35,7 @@ module.exports = db.define('user', {
     },
     profilePic: {
         type: Sequelize.STRING,
-        defaultValue: "https://edvances.blob.core.windows.net/profile-pictures/facebook-default-no-profile-pic-400x400.jpg"
+        defaultValue: "https://edvancesstorage.blob.core.windows.net/profile-pictures/facebook-default-no-profile-pic-400x400.jpg"
     },
     grade: {
         type: Sequelize.STRING

@@ -96,7 +96,7 @@ router.post('/withImage', ensureAuthenticated, upload.single('thumbnail'), (req,
     blobSvc.createBlockBlobFromStream('class-thumbnails', thumbnail, stream, req.file.size,
         function(error, result, response) {
             if (!error) {
-                classroom.image = `https://edvances.blob.core.windows.net/class-thumbnails/${thumbnail}`
+                classroom.image = `https://edvancesstorage.blob.core.windows.net/class-thumbnails/${thumbnail}`
                 Classroom.create(classroom).then(classroom => {
                     Forum.create({
                         name: classroom.title,
@@ -143,7 +143,7 @@ router.post('/image/:id', upload.single('image'), (req, res) => {
                         id: req.params.id
                     }
                 }).then(classroom => {
-                    classroom.image = `https://edvances.blob.core.windows.net/class-thumbnails/${thumbnail}`
+                    classroom.image = `https://edvancesstorage.blob.core.windows.net/class-thumbnails/${thumbnail}`
                     return classroom.save()
                 }).then(classroom => {
                     res.json(classroom)

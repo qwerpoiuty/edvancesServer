@@ -104,7 +104,7 @@ router.post('/profilePic/:id', upload.single('profilePic'), (req, res, next) => 
             console.log(result, response)
             if (!error) {
                 User.findById(req.params.id).then(user => {
-                    user.profilePic = `https://edvances.blob.core.windows.net/profile-pictures/${picName}`
+                    user.profilePic = `https://edvancesstorage.blob.core.windows.net/profile-pictures/${picName}`
                     return user.save()
                 }).then((user) => {
                     res.json({
