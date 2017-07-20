@@ -30,6 +30,19 @@ module.exports = function(db) {
 
     });
 
+    function requireHTTPS(req, res, next) {
+        var isAzure = req.get('x-site-deployment-id'),
+            isSsl = req.get('x-arr-ssl');
+
+        if (isAzure && !isSsl) {
+            return res.redirect('https://' + req.get('host') + req.url);
+        }
+
+        next();
+    }
+
+    app.use(requireHTTPS);
+
     app.get('/*', function(req, res) {
         res.sendFile(app.get('indexHTMLPath'));
     });
