@@ -50,14 +50,14 @@
                         <div class="col-md-8">
                             <div class="row">
                                 <div class="col-md-6 paypalblock p-l-0">
-                                    <a href="" class="paypal-pay">or Pay With <img src="img/paywith-paypal.png" alt="PayPal" /></a>
+                                    <a ng-click="submitPayment('pp')" class="paypal-pay">or Pay With <img src="img/paypal-logo.png" alt="PayPal" /></a>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="creditcard-pay"> Credit Card</div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="cc-payform">
-                                        <form class="form-horizontal ng-pristine ng-valid" ng-submit="updateUser(user)">
+                                        <form class="form-horizontal ng-pristine ng-valid" ng-submit="submitPayment('cc')">
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Card Type</label>
                                                 <div class="col-sm-8">
@@ -101,7 +101,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <select name='expireMM' id='expireMM' ng-model="ccInfo.expire_month" required class="form-control ng-pristine ng-valid ng-empty ng-touched">
+                                                    <select name='expireMM' id='expireMM' ng-model="ccInfo.expire_year" required class="form-control ng-pristine ng-valid ng-empty ng-touched">
                                                         <option value=''>Year</option>
                                                         <option value='2017'>2017</option>
                                                         <option value='2018'>2018</option>

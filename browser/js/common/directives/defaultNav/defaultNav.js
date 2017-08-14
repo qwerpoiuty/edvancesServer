@@ -29,7 +29,6 @@ app.directive('homeNav', function($rootScope, AuthService, AUTH_EVENTS, $state, 
                         $css.add('/student.css')
                     }
                     scope.user = user;
-                    console.log(scope.user)
                 });
             };
             var removeUser = function() {

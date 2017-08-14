@@ -23,7 +23,10 @@ app.controller('profileCtrl', function($scope, $sce, $uibModal, classroomFactory
             $scope.classrooms = classrooms
         })
     }
-    $scope.interests = Object.keys($scope.user.interests).join(', ')
+    console.log($scope.user)
+    if ($scope.user.interests) $scope.interests = Object.keys($scope.user.interests).join(', ')
+    else $scope.interest = ""
+
     $scope.templateUrl = () => {
         if ($scope.teacher) return 'js/authorized/profile/teacher.html'
         else return "js/authorized/profile/student.html"

@@ -52,34 +52,19 @@
         <i class="fa fa-fw fa-plus text"></i>
         <i class="fa fa-fw fa-minus text-active"></i>
       </span>
-            <span class="font-bold">My Courses</span>
+            <span class="font-bold">Courses</span>
         </a>
         <ul class="nav nav-sub dk">
             <li ui-sref-active="active" ui-sref="myCourses">
                 <a>
-                    <span>My Classes</span>
+                    <span>My Courses</span>
                 </a>
             </li>
-           <!--  <li ui-sref-active="active">
-                <a>
-                    <span>Assignments Due</span>
-                </a>
-            </li> -->
             <li ui-sref-active="active">
                 <a ui-sref="myAssignments">
                     <span>My Assignments</span>
                 </a>
             </li>
-           <!--  <li ui-sref-active="active">
-                <a>
-                    <span>Course Forum</span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a>
-                    <span>Course Forum Thread</span>
-                </a>
-            </li> -->
             <li ui-sref-active="active">
                 <a ui-sref="search">
                     <span>Course Sign-up</span>
@@ -87,67 +72,12 @@
             </li>
         </ul>
     </li>
-    <!-- <li>
-        <a>
-            <span class="nav-img"><img src="img/nav-calendar.png"/></span>
-            <span class="font-bold" translate="aside.nav.CALENDAR">Calendar</span>
-        </a>
-    </li>
-    <li ui-sref-active="active">
-        <a ui-sref="app.messages">
-            <span class="nav-img"><img src="img/nav-message.png"/></span>
-            <span class="font-bold" translate="Messages">Messages</span>
-        </a>
-    </li>
-    <li>
-        <a href class="auto">
-            <span class="nav-img"><img src="img/nav-forum.png"/></span>
-            <span class="pull-right text-muted">
-        <i class="fa fa-fw fa-plus text"></i>
-        <i class="fa fa-fw fa-minus text-active"></i>
-      </span>
-            <span class="font-bold">Forums</span>
-        </a>
-        <ul class="nav nav-sub dk">
-            <li ui-sref-active="active">
-                <a ui-sref="app.forums">
-                    <span>Home</span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="app.forums-category">
-                    <span>Category</span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="app.forums-thread">
-                    <span>Thread</span>
-                </a>
-            </li>
-        </ul>
-    </li> -->
-    <!-- <li>
-        <a class="auto">
-            <span class="nav-img"><img src="img/nav-report.png"/></span>
-            <span class="pull-right text-muted">
-        <i class="fa fa-fw fa-plus text"></i>
-        <i class="fa fa-fw fa-minus text-active"></i>
-      </span>
-            <span class="font-bold">Reports</span>
-        </a>
-        <ul class="nav nav-sub dk">
-            <li ui-sref-active="active">
-                <a ui-sref="app.reports-earnings">
-                    <span>Grades</span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="app.transactions">
-                    <span>Statements</span>
-                </a>
-            </li>
-        </ul>
-    </li> -->
+    <li ui-sref-active="active-sref">
+      <a ui-sref="forums">
+       <span class="nav-img"><img src="img/nav-forum.png"></span>
+        <span class="font-bold" translate="Messages">Forums</span>
+      </a>
+  </li>
     <li>
         <a ng-click="logout()">
             <span class="nav-img"><img src="img/nav-logout.png"/></span>
