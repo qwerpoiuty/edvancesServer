@@ -40,10 +40,10 @@ app.controller('dashboardCtrl', function($scope, user, userFactory, classroomFac
         })
         classroomFactory.getClassroomsByStudent($scope.user.id).then(classrooms => {
             $scope.classrooms = classrooms
-        })
-        $scope.classrooms.forEach(classroom => {
-            Object.keys(classroom.times).forEach(day => {
-                classroom[day] = true
+            $scope.classrooms.forEach(classroom => {
+                Object.keys(classroom.times).forEach(day => {
+                    classroom[day] = true
+                })
             })
         })
     }
